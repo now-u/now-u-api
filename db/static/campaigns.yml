@@ -1,6 +1,15 @@
 - id: 1
-  name: Animal Welfare
+  title: Animal Welfare
+  description: Test
+  start_date: '2019-01-01 00:00:00'
+  end_date: ok
 - id: 2
-  name: Climate Change
+  title: Climate Change
+  description: Test
+  start_date: ok
+  end_date: ok
 - id: 3
-  name: Asylum Seekers
+  title: Asylum Seekers
+  description: Test
+  start_date: ok
+  end_date: ok
