@@ -1,6 +1,8 @@
 class Api::V1::CampaignsController < ApplicationController
   def index
-    render json: { data: Campaign.all }, status: :ok
+    data = { data: Campaign.all }
+
+    render json: data.to_json(include: [:actions]), status: :ok
   end
 
   def show

@@ -1,9 +1,5 @@
-class Action < ActiveYaml::Base
-  include ActiveModel::Serializers::JSON
-  include ActiveHash::Associations
+class Action < ApplicationRecord
+  self.inheritance_column = nil
 
-  # extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :campaign
-
-  set_root_path Rails.root.join('db', 'static')
 end
