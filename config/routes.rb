@@ -5,7 +5,9 @@ Rails.application.routes.draw do
       get '/campaigns/:id', to: 'campaigns#show'
       get '/campaigns/:id/actions', to: 'actions#index'
       get '/campaigns/:campaign_id/actions/:id', to: 'actions#show'
-      get '/campaigns/:campaign_id/actions/:id/articles', to: 'articles#index'
+      get '/campaigns/:campaign_id/actions/:id/articles', to: 'action_articles#index'
+      get '/campaigns/:id/articles', to: 'campaign_articles#index'
+      get '/articles/:id', to: 'articles#show'
     end
   end
 end
