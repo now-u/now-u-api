@@ -65,6 +65,14 @@ articles = [
   }
 ]
 
+offers = [
+  {
+    title: 'Offer Title',
+    description: 'Et ipsum viverra malesuada. Duis luctus. Curabitur adipiscing metus et felis. Vestibulum tortor. Pellentesque purus. Donec pharetra, massa quis malesuada auctor, tortor ipsum lobortis ipsum, eget facilisis ante nisieget lectus. Sed a est. Aliquam nec felis eu sem euismod viverra. Suspendisse felis mi, dictum id, convallis ac, mattis non, nibh. Donec sagittis quam eu mauris. Phasellus et leo at quam dapibus pellentesque. In non lacus. Nullam tristique nunc ut arcu scelerisque aliquam. Nullam viverra magna vitae leo. Vestibulum in lacus sit amet lectus tempus aliquet. Duis cursus nisl ac orci. Donec non nisl. Mauris lacus sapien, congue a, facilisis at.',
+    link: 'https://www.bbc.com/news/live/world-52495737'
+  }
+]
+
 campaigns.each do |campaign|
   x = Campaign.create!(campaign)
   actions.each do |action|
@@ -72,5 +80,8 @@ campaigns.each do |campaign|
     articles.each do |article|
       new_action.articles.create!(article.merge(campaign_id: x.id))
     end
+  end
+  offers.each do |offer|
+    x.offers.create!(offer)
   end
 end

@@ -7,8 +7,11 @@ Rails.application.routes.draw do
       get '/campaigns/:campaign_id/actions/:id', to: 'actions#show'
       get '/campaigns/:campaign_id/actions/:id/articles', to: 'action_articles#index'
       get '/campaigns/:id/articles', to: 'campaign_articles#index'
+      get '/campaigns/:id/offers', to: 'campaign_offers#index'
       get '/articles/:id', to: 'articles#show'
       get '/articles', to: 'articles#index'
+      get '/offers/:id', to: 'offers#show'
+      get '/offers', to: 'offers#index'
     end
   end
 end
