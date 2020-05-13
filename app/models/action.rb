@@ -3,4 +3,5 @@ class Action < ApplicationRecord
 
   belongs_to :campaign
   has_many :articles
+  has_many :offers
 end

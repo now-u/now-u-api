@@ -73,6 +73,39 @@ offers = [
   }
 ]
 
+organisations = [
+  {
+    name: 'Organisation 1',
+    description: 'Et ipsum viverra malesuada. Duis luctus. Curabitur adipiscing metus et felis.',
+    logo_link: 'https://cdn.pixabay.com/photo/2013/04/16/14/23/eritrea-105081_960_720.jpg'
+  },
+  {
+    name: 'Organisation 2',
+    description: 'Et ipsum viverra malesuada. Duis luctus. Curabitur adipiscing metus et felis.',
+    logo_link: 'https://cdn.pixabay.com/photo/2013/04/16/14/23/eritrea-105081_960_720.jpg'
+  },
+  {
+    name: 'Organisation 3',
+    description: 'Et ipsum viverra malesuada. Duis luctus. Curabitur adipiscing metus et felis.',
+    logo_link: 'https://cdn.pixabay.com/photo/2013/04/16/14/23/eritrea-105081_960_720.jpg'
+  }
+]
+
+faqs = [
+  {
+    question: 'Et ipsum viverra malesuada duis luctus?',
+    answer: 'Curabitur adipiscing metus et felis.'
+  },
+  {
+    question: 'Et ipsum viverra malesuada duis luctus?',
+    answer: 'Curabitur adipiscing metus et felis.'
+  },
+  {
+    question: 'Et ipsum viverra malesuada duis luctus?',
+    answer: 'Curabitur adipiscing metus et felis.'
+  }
+]
+
 campaigns.each do |campaign|
   x = Campaign.create!(campaign)
   actions.each do |action|
@@ -80,8 +113,16 @@ campaigns.each do |campaign|
     articles.each do |article|
       new_action.articles.create!(article.merge(campaign_id: x.id))
     end
+    offers.each do |offer|
+      new_action.offers.create!(offer.merge(campaign_id: x.id))
+    end
   end
-  offers.each do |offer|
-    x.offers.create!(offer)
-  end
+end
+
+organisations.each do |organisation|
+  Organisation.create!(organisation)
+end
+
+faqs.each do |faq|
+  Faq.create!(faq)
 end
