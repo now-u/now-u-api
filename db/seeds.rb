@@ -126,3 +126,5 @@ end
 faqs.each do |faq|
   Faq.create!(faq)
 end
+
+Article.last.update(video_of_the_day: true)
