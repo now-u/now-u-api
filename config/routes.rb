@@ -1,6 +1,27 @@
+# new user:
+#
+# 1. enter email
+# post /users
+#
+# 2. receive email
+#
+# 3. click link
+# post /users/1/login?token=1234567
+#
+# 4. return new token
+# { data: { user: { email: 'ok', token: '883737733' } } }
+#
+# 5. subsequent requests
+# headers['token'] = '883737733'
+
+
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
+      post '/users', to: 'users#create'
+      get '/users/:id', to: 'users#show'
+      post '/users/:id/login', to: 'user_logins#create'
+
       get :campaigns, to: 'campaigns#index'
       get '/campaigns/:id', to: 'campaigns#show'
       get '/campaigns/:id/actions', to: 'actions#index'
