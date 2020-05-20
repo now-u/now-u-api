@@ -27,6 +27,21 @@ RSpec.describe Api::V1::UsersController, type: :controller do
     end
 
     context 'when email is already registered' do
+      let!(:user) { User.create(email: 'ok@ok.com', token: 'abc123') }
+
+      it 'does not create a new user' do
+        expect { register_user }.not_to change { User.count }
+      end
+
+      it 'changes the token' do
+        expect { register_user }.to change { user.reload.token }
+      end
+
+      it 'sends an email' do
+        register_user
+
+        expect(email_client).to have_received(:send).once        
+      end
     end
   end
 
@@ -41,8 +56,16 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       get_user
     end
 
-    it 'returns the user' do
-      expect(JSON.parse(response.body)['data']['email']).to eq(user.email)
-    end
+    # context 'when valid token in header' do
+      it 'returns the user' do
+        expect(JSON.parse(response.body)['data']['email']).to eq(user.email)
+      end
+    # end
+
+    # context 'when no token in header' do
+    # end
+
+    # context 'when invalid token in header' do
+    # end
   end
 end
