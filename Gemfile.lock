@@ -144,6 +144,9 @@ GEM
       unicode-display_width (>= 1.4.0, < 1.7)
     ruby-progressbar (1.10.1)
     ruby_dep (1.5.0)
+    ruby_http_client (3.5.0)
+    sendgrid-ruby (6.2.1)
+      ruby_http_client (~> 3.4)
     spring (2.1.0)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -178,6 +181,7 @@ DEPENDENCIES
   rails (~> 5.2.3)
   rspec-rails
   rubocop
+  sendgrid-ruby
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data
