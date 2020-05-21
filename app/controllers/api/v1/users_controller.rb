@@ -22,7 +22,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def email_body(user)
-    "Thanks for registering! You can login with the following link: http://mylink.com?email=#{user.email}&token=#{user.token}"
+    "<html><head></head><body>Thanks for registering! You can login with the following link:<br /><br /> <a href=\"https://nowu.page.link/?link=https://now-u.com/loginMobile?email=#{user.email}&token=#{user.token}&apn=com.nowu.app\">Click me</a></body></html>"
   end
 
   def set_user

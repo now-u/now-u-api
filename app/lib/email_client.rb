@@ -24,7 +24,7 @@ class EmailClient
       },
       "content" => [
         {
-          "type" => "text/plain",
+          "type" => "text/html",
           "value" => @body
         }
       ]
