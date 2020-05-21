@@ -2,11 +2,10 @@ class Api::V1::UsersController < ApplicationController
   # before_action :set_user, only: [:show]
 
   def create
-    user = User.where(email: params[:email]).first_or_create
-    user.update_attributes(token: SecureRandom.hex(40))
+    user = User.find_by(email: params[:email]) || User.create!(email: params[:email], token: SecureRandom.hex(40))
     send_registration_email(user)
 
-    render json: { data: user }, status: :ok
+    render json: {}, status: :ok
   end
 
   def show

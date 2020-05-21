@@ -19,8 +19,8 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       post '/users', to: 'users#create'
-      get '/users/:id', to: 'users#show'
-      post '/users/:id/login', to: 'user_logins#create'
+      # get '/users/:id', to: 'users#show'
+      post '/users/login', to: 'user_logins#create'
 
       get :campaigns, to: 'campaigns#index'
       get '/campaigns/:id', to: 'campaigns#show'

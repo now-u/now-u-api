@@ -7,7 +7,23 @@ RSpec.describe Api::V1::UserLoginsController, type: :controller do
     let(:token) { 'abc1234567' }
 
     subject(:login_user) do
-      post :create, params: { token: token, id: user.id }
+      post :create, params: { token: token, email: user.email }
+    end
+
+    it 'changes the token' do
+      expect { login_user }.to change { user.reload.token }
+    end
+
+    it 'returns the new token' do
+      login_user
+
+      expect(JSON.parse(response.body)).to eq({ 'data' => { 'token' => user.reload.token } })
+    end
+
+    it 'returns 200 status' do
+      login_user
+
+      expect(response.status).to eq(200)
     end
 
     context 'when token is invalid' do
@@ -27,9 +43,5 @@ RSpec.describe Api::V1::UserLoginsController, type: :controller do
         expect { login_user }.to change { user.reload.verified }.from(false).to(true)
       end
     end
-
-    it 'changes the token' do
-      expect { login_user }.to change { user.reload.token }
-    end    
   end
 end
