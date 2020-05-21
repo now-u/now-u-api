@@ -58,26 +58,42 @@ RSpec.describe Api::V1::UsersController, type: :controller do
   end
 
   describe '#show' do
-    let(:user) { User.create(email: 'ok@ok.com') }
+    let(:user) { User.create(email: 'ok@ok.com', token: 'abc1234') }
+    let(:token) { user.token }
 
     subject(:get_user) do
-      get :show, params: { id: user.id }
+      request.headers.merge!({ 'token' => token })
+      get :show
     end
 
     before do
       get_user
     end
 
-    # context 'when valid token in header' do
+    context 'when valid token in header' do
       it 'returns the user' do
         expect(JSON.parse(response.body)['data']['email']).to eq(user.email)
       end
-    # end
 
-    # context 'when no token in header' do
-    # end
+      it 'returns 200 status' do
+        expect(response.status).to eq(200)
+      end
+    end
 
-    # context 'when invalid token in header' do
-    # end
+    context 'when no token in header' do
+      let(:token) { nil }
+
+      it 'returns 401 status' do
+        expect(response.status).to eq(401)
+      end
+    end
+
+    context 'when invalid token in header' do
+      let(:token) { 'adddddd' }
+
+      it 'returns 401 status' do
+        expect(response.status).to eq(401)
+      end
+    end
   end
 end

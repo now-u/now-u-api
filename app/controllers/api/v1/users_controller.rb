@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-  # before_action :set_user, only: [:show]
+  before_action :set_user, only: [:show]
 
   def create
     user = User.find_by(email: params[:email]) || User.create!(email: params[:email], token: SecureRandom.hex(40))
@@ -9,9 +9,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def show
-    user = User.find(params[:id])
-
-    render json: { data: user }, status: :ok
+    render json: { data: @user }, status: :ok
   end
 
   private
@@ -26,5 +24,9 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def set_user
+    token = request.headers['token']
+    @user = User.find_by(token: token)
+
+    render json: {}, status: :unauthorized unless @user
   end
 end
