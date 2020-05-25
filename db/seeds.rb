@@ -166,9 +166,25 @@ faqs.each do |faq|
   Faq.create!(faq)
 end
 
+learning_topics = {
+  topic: {
+    title: 'Et ipsum viverra malesuada duis luctus?',
+    image_link: 'https://cdn.pixabay.com/photo/2013/04/16/14/23/eritrea-105081_960_720.jpg',
+    our_answer: 'Curabitur adipiscing metus et felis.'
+  },
+  resource: {
+    title: 'My resource',
+    time: 1.0,
+    link: 'https://www.bbc.com/news/live/world-52495737',
+    type: 'article'
+  }
+}
+
 campaigns.each do |campaign|
   x = Campaign.create!(campaign)
   Goal.all.sample(3).each { |g| CampaignGoal.create!(campaign_id: x.id, goal_id: g.id) }
+  topic = x.learning_topics.create!(learning_topics[:topic])
+  topic.learning_resources.create!(learning_topics[:resource])
   actions.each do |action|
     new_action = x.actions.create!(action)
     articles.each do |article|
