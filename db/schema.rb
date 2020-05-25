@@ -10,19 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_20_183520) do
+ActiveRecord::Schema.define(version: 2020_05_25_094252) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "actions", force: :cascade do |t|
     t.string "title"
-    t.text "description"
     t.string "link"
     t.string "type"
     t.integer "campaign_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "what_description"
+    t.string "why_description"
+    t.float "time"
   end
 
   create_table "articles", force: :cascade do |t|
@@ -36,6 +38,13 @@ ActiveRecord::Schema.define(version: 2020_05_20_183520) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "video_of_the_day", default: false
+  end
+
+  create_table "campaign_goals", force: :cascade do |t|
+    t.integer "campaign_id"
+    t.integer "goal_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "campaigns", force: :cascade do |t|
@@ -55,6 +64,13 @@ ActiveRecord::Schema.define(version: 2020_05_20_183520) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "goals", force: :cascade do |t|
+    t.string "title"
+    t.string "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "offers", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -69,6 +85,16 @@ ActiveRecord::Schema.define(version: 2020_05_20_183520) do
     t.string "name"
     t.string "description"
     t.string "logo_link"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "email"
+    t.string "website"
+  end
+
+  create_table "partnerships", force: :cascade do |t|
+    t.integer "campaign_id"
+    t.integer "organisation_id"
+    t.string "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
