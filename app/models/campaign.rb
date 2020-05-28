@@ -1,4 +1,6 @@
 class Campaign < ApplicationRecord
+  validates_presence_of :title
+
   has_many :actions
   has_many :articles
   has_many :offers
