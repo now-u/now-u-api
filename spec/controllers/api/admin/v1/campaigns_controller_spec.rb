@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Api::Admin::V1::CampaignsController, type: :controller do
+  before do
+    request.headers.merge!({ admin_api_key: Rails.application.config.admin_api_key })
+  end
   describe '#create' do
     let(:campaign_params) do
       {
