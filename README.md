@@ -23,4 +23,4 @@ Things you may want to cover:
 
 * ...
 
-James was here
+James wasn't here
