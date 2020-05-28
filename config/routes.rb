@@ -17,6 +17,12 @@
 
 Rails.application.routes.draw do
   namespace :api do
+    namespace :admin do
+      namespace :v1 do
+        resource :campaigns
+      end
+    end
+
     namespace :v1 do
       post '/users', to: 'users#create'
       get '/users/me', to: 'users#show'
