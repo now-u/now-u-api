@@ -52,10 +52,10 @@ jobs:
 
       - name: Log into registry
         env: 
-          DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
+          DOCKER_USERNAME: ${{secrets.DOCKER_USER}}
           DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
         #run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
-        run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+        run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
 
       - name: Push image
         run: |
