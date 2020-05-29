@@ -1,12 +1,21 @@
 version: '3'
 services:
   db:
-    environment: 
-      - POSTGRES_USER:
-      - POSTGRES_PASSWORD:
+    #environment: 
+    #      - POSTGRES_USER: admin
+    #      - POSTGRES_PASSWORD: test
     image: postgres
+    restart: always
     volumes:
       - ../app/local/db-data:/usr/local/postgresql/data
+    environment:
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: test
+      POSTGRES_DB: test
+    container_name: db
+    networks:
+      - db-network
+  
   api:
     build: .
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
@@ -17,6 +26,12 @@ services:
       - "3001:3000"
     depends_on:
       - db
+    networks:
+      - db-network
 
 volumes: 
   postgres:
+
+networks:
+  db-network:
+    external: false
