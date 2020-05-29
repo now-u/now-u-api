@@ -1,10 +1,10 @@
 name: Docker
 
-on: [push]
-#  push:
-#    # Publish `master` as Docker `latest` image.
-#    branches:
-#      - docker
+on:
+  push:
+    # Publish `master` as Docker `latest` image.
+    branches:
+      - docker
 #
 #    # Publish `v1.2.3` tags as releases.
 #    tags:
