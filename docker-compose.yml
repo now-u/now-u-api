@@ -29,6 +29,15 @@ services:
     networks:
       - db-network
 
+  adminer:
+    image: adminer
+    networks:
+      - db-network
+    ports:
+      - "3002:8080"
+    depends_on:
+      - db
+
 volumes: 
   postgres:
 
