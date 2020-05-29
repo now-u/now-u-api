@@ -46,3 +46,10 @@ Things you may want to cover:
 * ...
 
 James wasn't here
+
+## Deployment
+
+Aim is to have push to docker branch auto build in github actions then push to docker repo
+
+1. test
+
