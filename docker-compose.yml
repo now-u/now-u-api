@@ -4,12 +4,14 @@ services:
     build: ./db/
     restart: always
     volumes:
-      - ../app/local/db-data:/usr/local/postgresql/data
+      #- ../app/local/db-data:/usr/local/postgresql/data
       - ../api-local/postgres:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: test
       POSTGRES_PASSWORD: test
       POSTGRES_DB: test
+    ports: 
+      - "5433:5432"
     container_name: db
     networks:
       - db-network
