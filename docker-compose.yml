@@ -17,7 +17,9 @@ services:
       - db-network
   
   api:
-    build: .
+    build: 
+      context: .
+      dockerfile: Dockerfile
     volumes:
       - .:/now-u-api
       - ../api-local/bundle/:/usr/local/bundle/
