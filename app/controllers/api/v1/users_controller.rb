@@ -20,6 +20,8 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def email_body(user)
-    "<html><head></head><body>Thanks for registering! You can login with the following link:<br /><br /> <a href=\"https://nowu.page.link/?link=https://now-u.com/loginMobile?email=#{user.email}&token=#{user.token}&apn=com.nowu.app\">Click me</a></body></html>"
+    url = "https://now-u.com/loginMobile?email=#{user.email}&token=#{user.token}&apn=com.nowu.app"
+    url = CGI::escape(url)
+    "<html><head></head><body>Thanks for registering! You can login with the following link:<br /><br /> <a href=\"https://nowu.page.link/?link=#{url}">Click me</a></body></html>"
   end
 end
