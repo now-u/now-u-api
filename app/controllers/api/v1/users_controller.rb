@@ -22,11 +22,4 @@ class Api::V1::UsersController < ApplicationController
   def email_body(user)
     "<html><head></head><body>Thanks for registering! You can login with the following link:<br /><br /> <a href=\"https://nowu.page.link/?link=https://now-u.com/loginMobile?email=#{user.email}&token=#{user.token}&apn=com.nowu.app\">Click me</a></body></html>"
   end
-
-  def set_user
-    token = request.headers['token']
-    @user = User.find_by(token: token)
-
-    render json: {}, status: :unauthorized unless @user && @user.verified
-  end
 end
