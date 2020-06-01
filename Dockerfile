@@ -22,7 +22,7 @@ COPY . .
 
 RUN gem -v
 
-COPY docker/entrypoint.sh /usr/bin/
+COPY ./docker/entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 
 ENTRYPOINT ["entrypoint.sh"]
