@@ -17,7 +17,7 @@ COPY Gemfile* ./
 
 RUN gem update --system
 
-RUN bundle install
+RUN bundle install --without development test
 
 COPY . .
 
