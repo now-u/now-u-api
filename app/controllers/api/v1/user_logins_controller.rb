@@ -1,15 +1,21 @@
 class Api::V1::UserLoginsController < ApplicationController
-  def create
-    user = User.find_by(email: params[:email])
-    if user.token != params[:token]
-      response = {}
-      status = :unauthorized
-    else
-      user.update_attributes(verified: true, token: SecureRandom.hex(40))
-      status = :ok
-      response = { 'token' => user.token }
-    end
+  before_action :validate_token, only: [:create]
 
-    render json: { data: response }, status: status
+  def create
+    token = SecureRandom.hex(40)
+    @user.update_attributes(verified: true, token: token)
+    response = { 'token' => token }
+
+    render json: { data: response }, status: :ok
+  end
+
+  private
+
+  def validate_token
+    @user = User.find_by(email: params[:email], token: params[:token])
+
+    return if @user
+
+    render json: {}, status: :unauthorized
   end
 end
