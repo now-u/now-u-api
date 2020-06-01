@@ -27,6 +27,6 @@ class Api::V1::UsersController < ApplicationController
     token = request.headers['token']
     @user = User.find_by(token: token)
 
-    render json: {}, status: :unauthorized unless @user
+    render json: {}, status: :unauthorized unless @user && @user.verified
   end
 end

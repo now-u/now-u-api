@@ -58,7 +58,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
   end
 
   describe '#show' do
-    let(:user) { User.create(email: 'ok@ok.com', token: 'abc1234') }
+    let(:user) { User.create(email: 'ok@ok.com', token: 'abc1234', verified: true) }
     let(:token) { user.token }
 
     subject(:get_user) do
