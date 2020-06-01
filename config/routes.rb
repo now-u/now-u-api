@@ -36,6 +36,7 @@ Rails.application.routes.draw do
       get '/campaigns/:campaign_id/actions/:id/offers', to: 'action_offers#index'
       get '/campaigns/:id/articles', to: 'campaign_articles#index'
       get '/campaigns/:id/offers', to: 'campaign_offers#index'
+      get '/campaigns/:id/learning_topics', to: 'learning_topics#index'
       get '/articles/:id', to: 'articles#show'
       get '/articles', to: 'articles#index'
       get '/offers/:id', to: 'offers#show'
