@@ -12,7 +12,7 @@ rm -f /now-u-api/tmp/pids/server.pid
 #bundle install
 
 echo "Bundling gems"
-bundle install --jobs 8 --retry 3
+bundle install --without development test --jobs 8 --retry 3
 
 echo "Clearing logs"
 bin/rake log:clear
