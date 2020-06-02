@@ -17,8 +17,8 @@ unset BUNDLE_BIN
 #echo "Clearing logs"
 #bin/rake log:clear
 #
-#echo "Run migrations"
-#bundle exec rake db:migrate
+echo "Run migrations"
+bundle exec rake db:migrate
 #
 #echo "Removing contents of tmp dirs"
 #bin/rake tmp:clear
