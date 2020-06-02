@@ -83,11 +83,11 @@ test:
 #
 production:
   <<: *default
-  database: now_u_development
-  username: admin
+  database: <%= ENV['NOW_U_DATABASE_DATABASE'] %>
+  username: <%= ENV['NOW_U_DATABASE_USERNAME'] %>
   password: <%= ENV['NOW_U_DATABASE_PASSWORD'] %>
+  host: <%= ENV['NOW_U_DATABASE_HOST'] %>
   adapter: postgresql
-  host: db
   encoding: unicode
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
