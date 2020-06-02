@@ -28,4 +28,4 @@ EXPOSE 3000
 COPY ./docker/entrypoint-deploy.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint-deploy.sh
 
-ENTRYPOINT ["/usr/bin/entrypoint-deploy.sh"]
+ENTRYPOINT ["./usr/bin/entrypoint-deploy.sh"]
