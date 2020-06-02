@@ -17,16 +17,15 @@
 
 Rails.application.routes.draw do
   namespace :api do
-    namespace :admin do
-      namespace :v1 do
-        resource :campaigns
-      end
-    end
-
     namespace :v1 do
       post '/users', to: 'users#create'
       get '/users/me', to: 'users#show'
       post '/users/login', to: 'user_logins#create'
+
+      get '/users/me/actions', to: 'user_actions#index'
+      post '/users/me/actions/:id/:status', to: 'user_actions#create', constraints: { status: /(complete|reject)/ }
+      # post '/users/me/actions', to: 'user_actions#create'
+      delete '/users/me/actions/:id', to: 'user_actions#destroy'
 
       get :campaigns, to: 'campaigns#index'
       get '/campaigns/:id', to: 'campaigns#show'
