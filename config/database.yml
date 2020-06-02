@@ -86,3 +86,9 @@ production:
   database: now_u_development
   username: admin
   password: <%= ENV['NOW_U_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  host: db
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: 5
