@@ -11,8 +11,8 @@ rm -f /now-u-api/tmp/pids/server.pid
 
 #bundle install
 
-#echo "Bundling gems"
-#bundle install --without development test --jobs 8 --retry 3
+echo "Bundling gems"
+bundle install --without development test --jobs 8 --retry 3
 
 echo "Clearing logs"
 bin/rake log:clear
@@ -22,7 +22,6 @@ bundle exec rake db:migrate
 #
 echo "Removing contents of tmp dirs"
 bin/rake tmp:clear
-#
 
 #echo "Doing the rake thing"
 #bundle exec rake DATABASE_URL=postgresql:no_db:precompile
