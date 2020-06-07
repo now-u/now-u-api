@@ -1,6 +1,46 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::UsersController, type: :controller do
+  describe '#update' do
+    let(:user) { User.create(email: 'ok@ok.com', token: 'abc1234', verified: true) }
+    let(:token) { user.token }
+
+    let(:user_params) do
+      {
+        full_name: 'Dave',
+        location: 'Ireland',
+        date_of_birth: '16/01/1988',
+        monthly_donation_limit: 50.05,
+        home_owner: true
+      }
+    end
+
+    subject(:update_user) do
+      request.headers.merge!({ 'token' => token })
+      put :update, params: user_params
+    end
+
+    it 'updates the user full_name' do
+      expect { update_user }.to change { user.reload.full_name }.from(nil).to('Dave')
+    end
+
+    it 'updates the user location' do
+      expect { update_user }.to change { user.reload.location }.from(nil).to('Ireland')
+    end
+
+    it 'updates the user date_of_birth' do
+      expect { update_user }.to change { user.reload.date_of_birth }.from(nil).to('16/01/1988')
+    end
+
+    it 'updates the user monthly_donation_limit' do
+      expect { update_user }.to change { user.reload.monthly_donation_limit }.from(nil).to(50.05)
+    end
+
+    it 'updates the user home_owner' do
+      expect { update_user }.to change { user.reload.home_owner }.from(nil).to(true)
+    end
+  end
+
   describe '#create' do
     let(:email) { 'ok@ok.com' }
     let(:email_client) { instance_double(EmailClient, send: 'ok') }

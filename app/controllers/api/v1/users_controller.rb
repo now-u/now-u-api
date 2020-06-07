@@ -1,5 +1,11 @@
 class Api::V1::UsersController < ApplicationController
-  before_action :set_user, only: [:show]
+  before_action :set_user, only: [:show, :update]
+
+  def update
+    @user.update(user_params)
+
+    render json: @user, status: :ok
+  end
 
   def create
     user = User.find_by(email: params[:email]) || User.create!(email: params[:email], token: SecureRandom.hex(40))
@@ -19,6 +25,10 @@ class Api::V1::UsersController < ApplicationController
   end
 
   private
+
+  def user_params
+    params.permit(:email, :full_name, :location, :date_of_birth, :monthly_donation_limit, :home_owner)
+  end
 
   def send_registration_email(user)
     client = EmailClient.new(email: user.email, body: email_body(user))
