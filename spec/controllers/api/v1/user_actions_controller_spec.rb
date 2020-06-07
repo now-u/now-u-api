@@ -1,11 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::UserActionsController, type: :controller do
-  let(:user) { User.create(email: 'ok@ok.com', token: 'abc1234', verified: true) }
+  let(:user) { User.create(email: 'ok@ok.com', token: 'abc1234', verified: true, points: points) }
   let(:campaign) { Campaign.create!(title: 'My campaign') }
   let(:action) do
     Action.create!(title: 'My action', campaign_id: campaign.id)
   end
+  let(:points) { 0 }
 
   describe '#index' do
     let!(:user_action) do
@@ -26,6 +27,7 @@ RSpec.describe Api::V1::UserActionsController, type: :controller do
   end
 
   describe '#create' do
+    let(:points) { 4 }
     let(:status) { 'reject' }
     subject(:create_action_with_status) do
       request.headers.merge!({ 'token' => 'abc1234' })
@@ -36,11 +38,20 @@ RSpec.describe Api::V1::UserActionsController, type: :controller do
       expect { create_action_with_status }.to change { UserAction.where(user_id: user.id, action_id: action.id, status: 'rejected').count }.from(0).to(1)
     end
 
+    it 'decrements user points' do
+      expect { create_action_with_status }.to change { user.reload.points }.from(4).to(0)
+    end
+
     context 'when status complete' do
+      let(:points) { 0 }
       let(:status) { 'complete' }
 
       it 'creates the action with completed status' do
         expect { create_action_with_status }.to change { UserAction.where(user_id: user.id, action_id: action.id, status: 'completed').count }.from(0).to(1)
+      end
+
+      it 'increments user points' do
+        expect { create_action_with_status }.to change { user.reload.points }.from(0).to(5)
       end
     end
 
