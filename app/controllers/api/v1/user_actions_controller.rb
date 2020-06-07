@@ -11,11 +11,6 @@ class Api::V1::UserActionsController < ApplicationController
     render json: {}, status: :ok
   end
 
-  # def create
-  #   # UserAction.where(user_id: @user.id, action_id: params[:id]).update_all(status: action_status)
-  #
-  # end
-
   def destroy
   end
 

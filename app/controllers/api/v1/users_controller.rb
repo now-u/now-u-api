@@ -9,7 +9,13 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def show
-    render json: { data: @user }, status: :ok
+    data = { data: @user }
+    data = data.to_json(
+      methods: [:selected_campaigns, :completed_campaigns, :completed_actions, :rejected_actions],
+      include: {  }
+    )
+
+    render json: data, status: :ok
   end
 
   private
