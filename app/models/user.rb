@@ -9,18 +9,18 @@ class User < ApplicationRecord
   has_many :actions, :through => :user_actions
 
   def selected_campaigns
-    campaigns
+    campaigns.ids
   end
 
   def completed_campaigns
-    Campaign.where(id: user_campaigns.where(progress: 100).pluck(:campaign_id))
+    user_campaigns.where(progress: 100).pluck(:campaign_id)
   end
 
   def completed_actions
-    Action.where(id: user_actions.where(status: 'completed').pluck(:action_id))
+    user_actions.where(status: 'completed').pluck(:action_id)
   end
 
   def rejected_actions
-    Action.where(id: user_actions.where(status: 'rejected').pluck(:action_id))
+    user_actions.where(status: 'rejected').pluck(:action_id)
   end
 end

@@ -19,13 +19,4 @@ class Api::V1::UserCampaignsController < ApplicationController
 
     render json: user_response, status: :ok
   end
-
-  private
-
-  def user_response
-    data = { data: @user }
-    data = data.to_json(
-      methods: [:selected_campaigns, :completed_campaigns, :completed_actions, :rejected_actions]
-    )
-  end
 end
