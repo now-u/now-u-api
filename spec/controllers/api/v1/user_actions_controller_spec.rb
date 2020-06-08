@@ -42,6 +42,12 @@ RSpec.describe Api::V1::UserActionsController, type: :controller do
       expect { create_action_with_status }.to change { user.reload.points }.from(4).to(0)
     end
 
+    context 'when reason param present' do
+      it 'adds to comment field on user_actions' do
+        
+      end
+    end
+
     context 'when status complete' do
       let(:points) { 0 }
       let(:status) { 'complete' }
