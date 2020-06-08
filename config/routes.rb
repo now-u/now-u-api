@@ -42,6 +42,7 @@ Rails.application.routes.draw do
       get '/campaigns/:id/learning_topics', to: 'learning_topics#index'
       get '/articles/:id', to: 'articles#show'
       get '/articles', to: 'articles#index'
+      get '/actions/:id', to: 'actions#show'
       get '/offers/:id', to: 'offers#show'
       get '/offers', to: 'offers#index'
       get '/faqs', to: 'faqs#index'

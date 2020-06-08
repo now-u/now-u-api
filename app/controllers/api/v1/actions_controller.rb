@@ -4,6 +4,11 @@ class Api::V1::ActionsController < ApplicationController
   end
 
   def show
-    render json: { data: Action.find(params[:id]) }, status: :ok
+    campaign_id = 
+    render json: { 
+      data: Action.find(params[:id]), 
+      campaign: Campaign.find(Action.find(params[:id]).campaign_id) 
+      }, 
+      status: :ok
   end
 end
