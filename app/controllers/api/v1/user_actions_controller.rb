@@ -14,6 +14,8 @@ class Api::V1::UserActionsController < ApplicationController
 
   def destroy
     UserAction.where(user_id: @user.id, action_id: params[:id]).destroy_all
+    decrement = [@user.points, 5].min
+    @user.decrement!(:points, decrement)
 
     render json: user_response, status: :ok
   end
