@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_28_181803) do
+ActiveRecord::Schema.define(version: 2020_06_08_134535) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 2020_05_28_181803) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "video_of_the_day", default: false
+    t.string "subtitle"
+    t.string "link_text"
   end
 
   create_table "campaign_goals", force: :cascade do |t|
@@ -119,12 +121,34 @@ ActiveRecord::Schema.define(version: 2020_05_28_181803) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "user_actions", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "action_id"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_campaigns", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "campaign_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "progress", default: 0
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "token"
     t.boolean "verified", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "full_name"
+    t.string "location"
+    t.string "date_of_birth"
+    t.float "monthly_donation_limit"
+    t.boolean "home_owner"
+    t.integer "points", default: 0
   end
 
 end
