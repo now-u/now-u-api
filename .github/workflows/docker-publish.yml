@@ -57,6 +57,9 @@ jobs:
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
         #run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
 
+      - name: Get the version 
+        id: vars
+        run: echo ::set-output name=tag::$(echo ${GITHUB_REF:10})
       - name: Push image
         run: |
           IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/$IMAGE_NAME
@@ -76,8 +79,8 @@ jobs:
           echo IMAGE_ID=$IMAGE_ID
           echo VERSION=$VERSION
 
-          docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
-          docker push $IMAGE_ID:$VERSION
+          docker tag $IMAGE_NAME $IMAGE_ID:${{steps.vars.outputs.tag}}
+          docker push $IMAGE_ID:${{steps.vars.outputs.tag}}
           
       - name: deploy
         uses: appleboy/ssh-action@master
