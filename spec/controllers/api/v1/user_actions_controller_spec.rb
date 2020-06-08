@@ -8,6 +8,20 @@ RSpec.describe Api::V1::UserActionsController, type: :controller do
   end
   let(:points) { 0 }
 
+  describe '#destroy' do
+    let!(:user_action) do
+      UserAction.create!(user_id: user.id, action_id: action.id, status: 'completed')
+    end
+    subject(:delete_user_action) do
+      request.headers.merge!({ 'token' => 'abc1234' })
+      delete :destroy, params: { id: action.id }
+    end
+
+    it 'deletes the user action' do
+      expect { delete_user_action }.to change { UserAction.where(user_id: user.id, action_id: action.id).count }.from(1).to(0)
+    end
+  end
+
   describe '#index' do
     let!(:user_action) do
       UserAction.create!(user_id: user.id, action_id: action.id)
@@ -44,7 +58,7 @@ RSpec.describe Api::V1::UserActionsController, type: :controller do
 
     context 'when reason param present' do
       it 'adds to comment field on user_actions' do
-        
+
       end
     end
 

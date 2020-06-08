@@ -13,6 +13,9 @@ class Api::V1::UserActionsController < ApplicationController
   end
 
   def destroy
+    UserAction.where(user_id: @user.id, action_id: params[:id]).destroy_all
+
+    render json: user_response, status: :ok
   end
 
   private
@@ -27,5 +30,5 @@ class Api::V1::UserActionsController < ApplicationController
     return 'rejected' if params[:status] == 'reject'
 
     'completed'
-  end  
+  end
 end
