@@ -72,7 +72,7 @@ jobs:
 
           # Use Docker `latest` tag convention
           #[ "$VERSION" == "master" ] && VERSION=latest
-          [ "$VERSION" == "master" ] && VERSION == ${{ GITHUB_TAG }}
+          [ "$VERSION" == "master" ] && VERSION == ${{ github.tag }}
 
           echo IMAGE_ID=$IMAGE_ID
           echo VERSION=$VERSION
