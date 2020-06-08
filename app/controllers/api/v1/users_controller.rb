@@ -36,10 +36,12 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def email_body(user)
-    # url = "https://now-u.com/loginMobile?email=#{user.email}&token=#{user.token}&apn=com.nowu.app"
-    # url = "https://now-u.com/loginMobile?token=#{user.token}&apn=com.nowu.app"
     url = "https://now-u.com/loginMobile?token%3D#{user.token}&apn=com.nowu.app&isi=1516126639&ibi=com.nowu.app"
-    # url = CGI::escape(url)
-    "<html><head></head><body>Thanks for registering! You can login with the following link:<br /><br /> <a href=\"https://nowu.page.link/?link=#{url}\">Click me</a></body></html>"
+    ERB.new(File.read( File.expand_path('app/views/login.html.erb') )).result(binding)
   end
+
+  # def email_body(user)
+  #   url = "https://now-u.com/loginMobile?token=#{user.token}&apn=com.nowu.app"
+  #   "<html><head></head><body>Thanks for registering! You can login with the following link:<br /><br /> <a href=\"https://nowu.page.link/?link=#{url}\">Click me</a></body></html>"
+  # end
 end
