@@ -56,7 +56,11 @@ jobs:
         #DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
         #run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-
+      
+      - name: Get Version
+        id: vars
+        run: |
+          echo ::set-output name=tag::$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
       - name: Push image
         run: |
           IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/$IMAGE_NAME
@@ -65,7 +69,8 @@ jobs:
           IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
 
           # Strip git ref prefix from version
-          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+          # VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+          VERSION=${{steps.vars.outputs.tag}}
 
           # Strip "v" prefix from tag name
           [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
@@ -88,5 +93,5 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             cd ./traefik
-            docker pull docker.pkg.github.com/now-u/now-u-api/api:$VERSION
-            docker service update --image docker.pkg.github.com/now-u/now-u-api/api:$VERSION api_api
+            docker pull docker.pkg.github.com/now-u/now-u-api/api:${{steps.vars.outputs.tag}}
+            docker service update --image docker.pkg.github.com/now-u/now-u-api/api:${{steps.vars.outputs.tag}} api_api
