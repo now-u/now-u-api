@@ -3,8 +3,8 @@ class ApplicationController < ActionController::API
 
   def set_user
     token = request.headers['token']
-    # @user = User.find_by(token: token)
-    @user = User.first
+    @user = User.find_by(token: token)
+    # @user = User.first
 
     render json: {}, status: :unauthorized unless @user && @user.verified
   end
