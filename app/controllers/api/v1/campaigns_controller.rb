@@ -11,7 +11,6 @@ class Api::V1::CampaignsController < ApplicationController
 
   def show
     data = { data: Campaign.find(params[:id]) }
-
-    render json: data.to_json(include: [:actions]), status: :ok
+    render json: data.to_json(include: [:actions, :campaign_partners]), status: :ok
   end
 end
