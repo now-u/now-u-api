@@ -9,6 +9,7 @@ class Campaign < ApplicationRecord
   has_many :organisations, :through => :partnerships
   has_many :campaign_goals
   has_many :goals, :through => :campaign_goals
+  has_many :user_campaigns
 
   def sdgs
     goals.where('type = ?', 'United Nations Sustainable Development Goal')
@@ -20,5 +21,9 @@ class Campaign < ApplicationRecord
 
   def campaign_partners
     organisations.where('partnerships.type = ?', 'campaign')
+  end
+
+  def number_of_campaigners
+    user_campaigns.select(:user_id).distinct.count
   end
 end
