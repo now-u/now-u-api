@@ -23,4 +23,10 @@ class User < ApplicationRecord
   def rejected_actions
     user_actions.where(status: 'rejected').pluck(:action_id)
   end
+
+  def reset!
+    user_actions.destroy_all
+    user_campaigns.destroy_all
+    update_attributes(points: 0)
+  end
 end

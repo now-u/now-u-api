@@ -6,16 +6,13 @@ class Api::V1::UserCampaignsController < ApplicationController
   end
 
   def create
-    UserCampaign.where(user_id: @user.id, campaign_id: params[:id]).first_or_create
-    @user.increment!(:points, 10)
+    UserCampaign.where(user_id: @user.id, campaign_id: params[:id]).first_or_create!
 
     render json: user_response, status: :ok
   end
 
   def destroy
     UserCampaign.where(user_id: @user.id, campaign_id: params[:id]).destroy_all
-    decrement = [10, @user.points].min
-    @user.decrement!(:points, decrement)
 
     render json: user_response, status: :ok
   end
