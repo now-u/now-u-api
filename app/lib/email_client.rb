@@ -20,7 +20,8 @@ class EmailClient
         }
       ],
       "from" => {
-        "email" => "dave@now-u.com"
+        "email" => "support@now-u.com",
+        "name" => "Now-U Support"
       },
       "content" => [
         {
