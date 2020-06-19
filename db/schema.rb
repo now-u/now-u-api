@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_15_193221) do
+ActiveRecord::Schema.define(version: 2020_06_19_153008) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2020_06_15_193221) do
     t.boolean "video_of_the_day", default: false
     t.string "subtitle"
     t.string "link_text"
+    t.string "source"
   end
 
   create_table "campaign_goals", force: :cascade do |t|
