@@ -27,7 +27,7 @@ class Api::V1::UsersController < ApplicationController
   private
 
   def user_params
-    params.permit(:email, :full_name, :location, :date_of_birth, :monthly_donation_limit, :home_owner)
+    params.permit(:email, :full_name, :location, :date_of_birth, :monthly_donation_limit, :home_owner, :organisation_code)
   end
 
   def send_registration_email(user)
