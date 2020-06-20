@@ -2,8 +2,9 @@ class Api::V1::UsersController < ApplicationController
   before_action :set_user, only: [:show, :update]
 
   def update
-    @user.update(user_params)
-
+    code = user_params[:organisation_code]
+    transformed_user_params = user_params.except(:organisation_code).merge(organisation_id: organisation_id_from_code(code))
+    @user.update(transformed_user_params)
     render json: @user, status: :ok
   end
 
@@ -40,6 +41,10 @@ class Api::V1::UsersController < ApplicationController
     param_link = "https://now-u.com/loginMobile?token%3D#{user.token}&apn=com.nowu.app&isi=1516126639&ibi=com.nowu.app"
     url = "https://nowu.page.link/?link=#{param_link}"
     ERB.new(File.read( File.expand_path('app/views/login.html.erb') )).result(binding)
+  end
+
+  def organisation_id_from_code
+    Organisation.find_by(code: params[:organisation_code]).id
   end
 
   # def email_body(user)
