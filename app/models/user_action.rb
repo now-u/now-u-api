@@ -5,11 +5,11 @@ class UserAction < ApplicationRecord
   after_update :update_score
 
   def increment_score
-    user.increment!(:points, 10)
+    user.increment!(:points, 5)
   end
 
   def decrement_score
-    decrement = [10, user.points].min
+    decrement = [5, user.points].min
     user.decrement!(:points, decrement)
   end
 
