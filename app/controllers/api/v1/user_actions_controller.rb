@@ -21,6 +21,7 @@ class Api::V1::UserActionsController < ApplicationController
 
   def action_status
     return 'rejected' if params[:status] == 'reject'
+    return 'favourited' if params[:status] == 'favourite'
 
     'completed'
   end

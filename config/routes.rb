@@ -24,7 +24,7 @@ Rails.application.routes.draw do
       post '/users/login', to: 'user_logins#create'
 
       get '/users/me/actions', to: 'user_actions#index'
-      post '/users/me/actions/:id/:status', to: 'user_actions#create', constraints: { status: /(complete|reject)/ }
+      post '/users/me/actions/:id/:status', to: 'user_actions#create', constraints: { status: /(complete|reject|favourite)/ }
       # post '/users/me/actions', to: 'user_actions#create'
       delete '/users/me/actions/:id', to: 'user_actions#destroy'
 

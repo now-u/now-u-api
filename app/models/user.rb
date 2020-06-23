@@ -24,6 +24,10 @@ class User < ApplicationRecord
     user_actions.where(status: 'rejected').pluck(:action_id)
   end
 
+  def favourited_actions
+    user_actions.where(status: 'favourited').pluck(:action_id)
+  end
+
   def reset!
     user_actions.destroy_all
     user_campaigns.destroy_all
