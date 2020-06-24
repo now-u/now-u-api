@@ -2,6 +2,7 @@ class Campaign < ApplicationRecord
   validates_presence_of :title
 
   has_many :actions
+  has_many :blog_articles
   has_many :articles
   has_many :offers
   has_many :partnerships
