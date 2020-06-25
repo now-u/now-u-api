@@ -2,7 +2,7 @@ class Api::V1::CampaignsController < ApplicationController
   def index
     data = { data: Campaign.all }
     data = data.to_json(
-      methods: [:number_of_campaigners, :general_partners, :campaign_partners, :sdgs],
+      methods: [:number_of_campaigners, :general_partners, :campaign_partners, :sdgs, :key_aims],
       include: { actions: {}, learning_topics: {} }
     )
 

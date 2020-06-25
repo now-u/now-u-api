@@ -16,6 +16,10 @@ class Campaign < ApplicationRecord
     goals.where('type = ?', 'United Nations Sustainable Development Goal')
   end
 
+  def key_aims
+    goals.where('type = ?', 'Key Aim')
+  end
+
   def general_partners
     organisations.where('partnerships.type = ?', 'general')
   end
