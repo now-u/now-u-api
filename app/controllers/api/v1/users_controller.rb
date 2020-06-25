@@ -37,8 +37,8 @@ class Api::V1::UsersController < ApplicationController
     ERB.new(File.read( File.expand_path('app/views/login.html.erb') )).result(binding)
   end
 
-  def organisation_id_from_code
-    Organisation.find_by(code: params[:organisation_code]).id
+  def organisation_id_from_code(code)
+    Organisation.find_by(code: code)&.id
   end
 
   # def email_body(user)
