@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_25_211234) do
+ActiveRecord::Schema.define(version: 2020_06_25_211723) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(version: 2020_06_25_211234) do
     t.string "what_description"
     t.string "why_description"
     t.float "time"
+    t.boolean "enabled"
+    t.datetime "release_date"
   end
 
   create_table "articles", force: :cascade do |t|
@@ -41,6 +43,8 @@ ActiveRecord::Schema.define(version: 2020_06_25_211234) do
     t.string "subtitle"
     t.string "link_text"
     t.string "source"
+    t.boolean "enabled"
+    t.datetime "release_date"
   end
 
   create_table "blog_articles", force: :cascade do |t|
@@ -77,6 +81,9 @@ ActiveRecord::Schema.define(version: 2020_06_25_211234) do
     t.datetime "updated_at", null: false
     t.string "video_link"
     t.text "description_web"
+    t.boolean "enabled"
+    t.datetime "start_date"
+    t.datetime "end_date"
   end
 
   create_table "faqs", force: :cascade do |t|
