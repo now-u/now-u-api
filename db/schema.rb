@@ -195,7 +195,7 @@ ActiveRecord::Schema.define(version: 2020_06_24_093115) do
     t.float "monthly_donation_limit"
     t.boolean "home_owner"
     t.integer "points", default: 0
-    t.string "organisation_id"
+    t.integer "organisation_id"
   end
 
 end
