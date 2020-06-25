@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Api::V1::UsersController, type: :controller do
   describe '#update' do
+    let(:organisation) { Organisation.create(name: 'Org 1', code: 'TEST123') }
     let(:user) { User.create(email: 'ok@ok.com', token: 'abc1234', verified: true) }
     let(:token) { user.token }
 
@@ -38,6 +39,32 @@ RSpec.describe Api::V1::UsersController, type: :controller do
 
     it 'updates the user home_owner' do
       expect { update_user }.to change { user.reload.home_owner }.from(nil).to(true)
+    end
+
+    context 'when organisation_code present' do
+      let(:org_code) { 'TEST123' }
+      let(:user_params) do
+        {
+          full_name: 'Dave',
+          location: 'Ireland',
+          date_of_birth: '16/01/1988',
+          monthly_donation_limit: 50.05,
+          home_owner: true,
+          organisation_code: org_code
+        }
+      end
+
+      it 'sets organisation_id' do
+        expect { update_user }.to change { user.reload.organisation_id }.from(nil).to(organisation.id)
+      end
+
+      context 'when invalid code' do
+        let(:org_code) { 'INVALID123' }
+
+        it 'raises an error' do
+          expect { update_user }.to raise_exception(ActiveRecord::RecordNotFound)
+        end
+      end
     end
   end
 

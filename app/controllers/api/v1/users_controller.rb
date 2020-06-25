@@ -38,7 +38,9 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def organisation_id_from_code(code)
-    Organisation.find_by(code: code)&.id
+    return nil unless code
+
+    Organisation.find_by_code!(code).id
   end
 
   # def email_body(user)
