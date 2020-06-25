@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_19_153008) do
+ActiveRecord::Schema.define(version: 2020_06_24_093115) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,25 @@ ActiveRecord::Schema.define(version: 2020_06_19_153008) do
     t.string "source"
   end
 
+  create_table "blog_articles", force: :cascade do |t|
+    t.string "title"
+    t.string "subtitle"
+    t.integer "action_id"
+    t.integer "user_id"
+    t.integer "campaign_id"
+    t.integer "reading_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "blog_comments", force: :cascade do |t|
+    t.text "content"
+    t.integer "user_id"
+    t.integer "blog_article_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "campaign_goals", force: :cascade do |t|
     t.integer "campaign_id"
     t.integer "goal_id"
@@ -70,6 +89,14 @@ ActiveRecord::Schema.define(version: 2020_06_19_153008) do
   create_table "goals", force: :cascade do |t|
     t.string "title"
     t.string "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "image_sections", force: :cascade do |t|
+    t.string "img_url"
+    t.integer "blog_article_id"
+    t.integer "appearance_order"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -127,6 +154,14 @@ ActiveRecord::Schema.define(version: 2020_06_19_153008) do
     t.integer "campaign_id"
     t.integer "organisation_id"
     t.string "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "text_sections", force: :cascade do |t|
+    t.text "content"
+    t.integer "blog_article_id"
+    t.integer "appearance_order"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

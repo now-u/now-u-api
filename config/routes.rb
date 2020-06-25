@@ -47,6 +47,7 @@ Rails.application.routes.draw do
       get '/offers', to: 'offers#index'
       get '/faqs', to: 'faqs#index'
       get '/organisations', to: 'organisations#index'
+      get '/blogs', to: 'blog_articles#index'
     end
   end
 end

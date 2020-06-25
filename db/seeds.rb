@@ -102,6 +102,8 @@ articles = [
   }
 ]
 
+
+
 offers = [
   {
     title: 'Offer Title',
@@ -216,3 +218,33 @@ partnerships.each do |x|
 end
 
 Article.last.update(video_of_the_day: true)
+
+users = [
+  {
+    email: 'test@test.com',
+    token: '1234abc',
+    verified: false,
+    full_name: 'Lorem Ipsum',
+    location: 'London',
+    date_of_birth: '01/01/2020',
+    monthly_donation_limit: 10.0,
+    points: 1
+  }
+]
+
+users.each{ | user | User.create!(user) }
+
+blog_articles = [
+  {
+    title: 'Blog Title',
+    user_id: User.first.id,
+    action_id: Action.first.id,
+    campaign_id: Campaign.first.id,
+    subtitle: 'Blog Subtitle',
+    reading_time: 10
+  }
+]
+
+blog_articles.each do | blog_article | 
+  BlogArticle.create!(blog_article)
+end
