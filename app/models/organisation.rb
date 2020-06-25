@@ -2,14 +2,17 @@ class Organisation < ApplicationRecord
   has_many :partnerships
   has_many :users
   has_many :campaigns, :through => :partnerships
+  before_create :set_code
+  validates_uniqueness_of :code
 
-  def create_organisation_code
-    self.code = generateCode()
+  def set_code
+    self.code ||= generate_code
   end
 
   private
-  
-  def generateCode()
-    SecureRandom.hex(8)
+
+  # https://stackoverflow.com/questions/88311/how-to-generate-a-random-string-in-ruby
+  def generate_code
+    ('A'..'Z').to_a.shuffle[0,8].join
   end
 end
