@@ -27,6 +27,7 @@ RSpec.describe Api::V1::UserCampaignsController, type: :controller do
     before do
       UserCampaign.create!(user_id: user.id, campaign_id: campaign.id)
     end
+
     subject(:destroy_user_campaign) do
       request.headers.merge!({ 'token' => 'abc1234' })
       delete :destroy, params: { id: campaign.id }
@@ -37,13 +38,13 @@ RSpec.describe Api::V1::UserCampaignsController, type: :controller do
     end
 
     it 'decrements user points by 10' do
-      expect { destroy_user_campaign }.to change { user.reload.points }.from(8).to(0)
+      expect { destroy_user_campaign }.to change { user.reload.points }.from(18).to(8)
     end
 
     it 'returns new points count' do
       destroy_user_campaign
 
-      expect(JSON.parse(response.body)['data']['points']).to eq(0)
+      expect(JSON.parse(response.body)['data']['points']).to eq(8)
     end
   end
 end
