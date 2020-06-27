@@ -248,3 +248,32 @@ blog_articles = [
 blog_articles.each do | blog_article | 
   BlogArticle.create!(blog_article)
 end
+
+text_sections = [
+  {
+    content: 'This is the first text section and should appear first',
+    blog_article_id: BlogArticle.first.id,
+    appearance_order: 1
+  },
+  {
+    content: 'This is the second text section and should appear second',
+    blog_article_id: BlogArticle.first.id,
+    appearance_order: 2
+  }
+]
+
+text_sections.each do | text_section | 
+  TextSection.create!(text_section)
+end 
+
+image_sections = [
+  {
+    img_url: 'https://share.now-u.com/logo.png',
+    blog_article_id: BlogArticle.first.id,
+    appearance_order: 3
+  }
+]
+
+image_sections.each do | image_section |
+  ImageSection.create!(image_section)
+end
