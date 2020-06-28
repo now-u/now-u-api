@@ -12,6 +12,8 @@ class Campaign < ApplicationRecord
   has_many :goals, :through => :campaign_goals
   has_many :user_campaigns
 
+  scope :active, -> { where('enabled IS TRUE AND start_date IS NULL AND end_date IS NULL').or(where('enabled IS TRUE AND (? > start_date AND ? < end_date)', DateTime.now, DateTime.now)) }
+
   def sdgs
     goals.where('type = ?', 'United Nations Sustainable Development Goal')
   end
