@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_28_181406) do
+ActiveRecord::Schema.define(version: 2020_06_28_184909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2020_06_28_181406) do
     t.string "what_description"
     t.string "why_description"
     t.float "time"
-    t.boolean "enabled"
+    t.boolean "enabled", default: false
     t.datetime "release_date"
   end
 
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2020_06_28_181406) do
     t.string "subtitle"
     t.string "link_text"
     t.string "source"
-    t.boolean "enabled"
+    t.boolean "enabled", default: false
     t.datetime "release_date"
   end
 
@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 2020_06_28_181406) do
     t.datetime "updated_at", null: false
     t.string "video_link"
     t.text "description_web"
-    t.boolean "enabled"
+    t.boolean "enabled", default: false
     t.datetime "start_date"
     t.datetime "end_date"
     t.string "short_name"
