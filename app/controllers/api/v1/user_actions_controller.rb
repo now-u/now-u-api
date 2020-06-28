@@ -6,8 +6,8 @@ class Api::V1::UserActionsController < ApplicationController
   end
 
   def create
-    UserAction.where(user_id: @user.id, action_id: params[:id]).first_or_create.update(status: action_status)
-
+    update_params = { status: action_status, comment: params[:reason] }.compact
+    UserAction.where(user_id: @user.id, action_id: params[:id]).first_or_create.update(update_params)
     render json: user_response, status: :ok
   end
 
