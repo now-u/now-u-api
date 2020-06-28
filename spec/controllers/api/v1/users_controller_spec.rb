@@ -71,17 +71,31 @@ RSpec.describe Api::V1::UsersController, type: :controller do
   describe '#create' do
     let(:email) { 'ok@ok.com' }
     let(:email_client) { instance_double(EmailClient, send: 'ok') }
+    let(:user_params) do
+      { email: email }
+    end
 
     before do
       allow(EmailClient).to receive(:new).and_return(email_client)
     end
 
     subject(:register_user) do
-      post :create, params: { email: email }
+      post :create, params: user_params
     end
 
     it 'creates the user' do
       expect { register_user }.to change { User.count }.by(1)
+    end
+
+    context 'when full_name param present' do
+      let(:user_params) do
+        { email: email, full_name: 'Dave' }
+      end
+
+      it 'creates the user with full_name' do
+        register_user
+        expect(User.last.full_name).to eq('Dave')
+      end
     end
 
     it 'sends an email' do
