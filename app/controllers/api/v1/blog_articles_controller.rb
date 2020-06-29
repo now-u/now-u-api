@@ -6,7 +6,7 @@ class Api::V1::BlogArticlesController < ApplicationController
   def show
     data = { data: BlogArticle.find(params[:id]) }
     data = data.to_json(
-      include: [:text_sections, :image_sections]
+      include: [:text_sections, :image_sections, :tags]
     )
     render json: data, status: :ok
   end

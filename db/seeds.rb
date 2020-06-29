@@ -233,12 +233,13 @@ users = [
 ]
 
 users.each{ | user | User.create!(user) }
+action_for_blog = Action.create(campaign_id: Campaign.first.id, enabled: true)
 
 blog_articles = [
   {
     title: 'Blog Title',
     user_id: User.first.id,
-    action_id: Action.first.id,
+    action_id: action_for_blog.id,
     campaign_id: Campaign.first.id,
     subtitle: 'Blog Subtitle',
     reading_time: 10
@@ -276,4 +277,25 @@ image_sections = [
 
 image_sections.each do | image_section |
   ImageSection.create!(image_section)
+end
+
+tags = [
+  {
+    tag: 'homelessness'
+  }
+]
+
+tags.each do | tag |
+  Tag.create!(tag)
+end
+
+blog_tags = [
+  {
+    blog_article_id: BlogArticle.first.id,
+    tag_id: Tag.first.id
+  }
+]
+
+blog_tags.each do | blog_tag |
+  BlogTag.create!(blog_tag)
 end
