@@ -12,7 +12,7 @@ class Api::V1::UserLoginsController < ApplicationController
   private
 
   def validate_token
-    @user = User.find_by(email: params[:email], token: params[:token])
+    @user = User.find_by(email: params[:email]&.downcase, token: params[:token])
 
     return if @user
 

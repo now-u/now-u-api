@@ -9,7 +9,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def create
-    user = User.find_by(email: user_params[:email]) || User.create!(email: user_params[:email], full_name: user_params[:full_name], token: SecureRandom.hex(40))
+    user = User.find_by(email: user_params[:email]&.downcase) || User.create!(email: user_params[:email]&.downcase, full_name: user_params[:full_name], token: SecureRandom.hex(40))
     send_registration_email(user)
 
     render json: {}, status: :ok
