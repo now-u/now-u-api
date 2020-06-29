@@ -4,7 +4,7 @@ RSpec.describe Api::V1::UserActionsController, type: :controller do
   let(:user) { User.create(email: 'ok@ok.com', token: 'abc1234', verified: true, points: points) }
   let(:campaign) { Campaign.create!(title: 'My campaign') }
   let(:action) do
-    Action.create!(title: 'My action', campaign_id: campaign.id)
+    Action.create!(title: 'My action', campaign_id: campaign.id, enabled: true)
   end
   let(:points) { 0 }
 
