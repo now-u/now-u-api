@@ -26,7 +26,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def send_registration_email(user)
-    client = EmailClient.new(email: user.email, body: email_body(user))
+    client = SesEmailClient.new(email: user.email, body: email_body(user))
     client.send
   end
 
