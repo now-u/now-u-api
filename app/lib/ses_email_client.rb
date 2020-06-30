@@ -10,7 +10,7 @@ class SesEmailClient < EmailClient
 
   def email_config
     encoding = "UTF-8"
-    sender = "support@now-u.com"
+    sender = "Now-U Support <support@now-u.com>"
     subject = "Now-u Account Login"
     {
       destination: {
