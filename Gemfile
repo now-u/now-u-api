@@ -10,6 +10,7 @@ gem 'puma', '~> 3.11'
 gem 'rspec-rails'
 gem 'sendgrid-ruby'
 gem 'aws-sdk-ses', '~> 1.32'
+gem 'aws-sdk-sns', '~> 1.27'
 gem 'active_hash', '~> 3.1'
 
 # Use Capistrano for deployment
