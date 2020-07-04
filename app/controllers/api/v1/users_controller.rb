@@ -34,6 +34,7 @@ class Api::V1::UsersController < ApplicationController
     host = request.base_url
     param_link = "https://now-u.com/loginMobile?token%3D#{user.token}&apn=com.nowu.app&isi=1516126639&ibi=com.nowu.app"
     url = "https://nowu.page.link/?link=#{param_link}"
+    token = user.token
     ERB.new(File.read( File.expand_path('app/views/login.html.erb') )).result(binding)
   end
 
