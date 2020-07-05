@@ -17,7 +17,7 @@
 </head>
 
 <body style="
-        height: 100vh;
+        min-height: 100vh;
         color: white;
         background: linear-gradient(180deg, rgba(255, 136, 0, 1) 0%, rgba(211, 14, 0, 1) 100%);
         background-repeat: no-repeat;
@@ -26,13 +26,7 @@
  
     <div id="main-container" style="
         text-align: center;
-        display: grid;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        -moz-transform: translateX(-50%) translateY(-50%);
-        -webkit-transform: translateX(-50%) translateY(-50%);
-        transform: translateX(-50%) translateY(-50%);
+        padding: 50px 0px;
       ">
         <h1 style="
           color:white;
@@ -50,7 +44,7 @@
         
         <p id="mid-p" style="
           color:white;
-          margin:0;
+          margin:auto;
           margin-top: 80px;
           font-size: 18px;
           max-width: 250px;
@@ -59,6 +53,7 @@
         <a href="<%= url %>" id="btn" style="
             display: inline-block;
             margin: auto;
+            margin-top: 15px;
             width: 70px;
             padding: 10px 20px 10px 20px;
             text-align: center;
@@ -70,13 +65,14 @@
             border-radius: 5px;
             box-shadow: 1px 1px 2px rgba(0, 0, 0, .5);
           ">LOG IN</a>
-
+        
         <p id="mid-p" style="
           color:white;
-          margin:0;
+          margin:auto;
           margin-top: 80px;
           font-size: 18px;
           max-width: 250px;
+
         ">Do not share this email with anyone</p>
 
         
@@ -87,18 +83,18 @@
         "/>
         <p id="mid-p" style="
           color:white;
-          margin:0;
+          margin:auto;
           margin-top: 60px;
-          font-size: 18px;
           max-width: 250px;
+          width: 250px;
         ">If the button does not work, use the token below to log in: </p>
         <p id="mid-p" style="
           color:white;
-          margin:0;
+          margin:auto;
           margin-top: 10px;
-          font-size: 18px;
           max-width: 250px;
-          "><%= token %></p>
+          width: 280px;
+        "><%= token %></p>
 
     </div>
 
