@@ -12,6 +12,7 @@ gem 'sendgrid-ruby'
 gem 'aws-sdk-ses', '~> 1.32'
 gem 'aws-sdk-sns', '~> 1.27'
 gem 'active_hash', '~> 3.1'
+gem 'bitly', '~> 2.0', '>= 2.0.1'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
