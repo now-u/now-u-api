@@ -2,7 +2,7 @@ class Api::V1::BlogArticlesController < ApplicationController
   before_action :validate_token, only: [:create]
   
   def index
-    render json: { data: BlogArticle.all }, status: :ok
+    render json: { data: BlogArticle.where(enabled: true) }, status: :ok
   end
 
   def create
