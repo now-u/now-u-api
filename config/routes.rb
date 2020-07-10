@@ -49,6 +49,7 @@ Rails.application.routes.draw do
       get '/organisations', to: 'organisations#index'
       get '/blogs', to: 'blog_articles#index'
       get '/blogs/:id', to: 'blog_articles#show'
+      post '/blogs/create', to: 'blog_articles#create'
     end
   end
 end
