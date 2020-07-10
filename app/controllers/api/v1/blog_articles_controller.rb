@@ -1,5 +1,5 @@
 class Api::V1::BlogArticlesController < ApplicationController
-  # before_action :set_user, only: [:create]
+  before_action :validate_token, only: [:create]
   
   def index
     render json: { data: BlogArticle.all }, status: :ok
@@ -10,7 +10,8 @@ class Api::V1::BlogArticlesController < ApplicationController
       title: params[:title],
       subtitle: params[:subtitle],
       action_id: Action.first.id,
-      user_id: params[:user_id].to_i,
+      # action_id: params[:action_id].to_i,
+      user_id: @user.id,
       campaign_id: params[:campaign_id].to_i,
       reading_time: params[:reading_time].to_i
     )
@@ -40,5 +41,15 @@ class Api::V1::BlogArticlesController < ApplicationController
       include: [:text_sections, :image_sections, :tags]
     )
     render json: data, status: :ok
+  end
+
+  private
+
+  def validate_token
+    @user = User.find_by(token: params[:token])
+
+    return if @user
+
+    render json: {}, status: :unauthorized
   end
 end
