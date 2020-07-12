@@ -1,0 +1,2 @@
+class PressCoverageArticle < ApplicationRecord
+end
