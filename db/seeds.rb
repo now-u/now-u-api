@@ -102,7 +102,24 @@ articles = [
   }
 ]
 
+press_coverage_articles = [
+  {
+    image_url: 'www.now-u.com',
+    link: 'www.now-u.com',
+    media_name: 'Now-U',
+    title: 'Now-U'
+  },
+  {
+    image_url: 'www.exampleurl.org',
+    link: 'www.examplelink.org',
+    media_name: 'Media Name',
+    title: 'Now-U'
+  }
+]
 
+press_coverage_articles.each do | article |
+  PressCoverageArticle.create!(article)
+end
 
 offers = [
   {
