@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_15_154653) do
+ActiveRecord::Schema.define(version: 2020_07_15_155249) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -232,6 +232,8 @@ ActiveRecord::Schema.define(version: 2020_07_15_154653) do
     t.boolean "home_owner"
     t.integer "points", default: 0
     t.integer "organisation_id"
+    t.string "profile_picture_url"
+    t.text "description"
   end
 
 end

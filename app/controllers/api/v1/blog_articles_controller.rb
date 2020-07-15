@@ -41,7 +41,7 @@ class Api::V1::BlogArticlesController < ApplicationController
     data = { blog: blog }
     sections
     data = data.to_json(
-      include: [:tags, :user]
+      include: [:tags, :user => {only: [:full_name, :description, :profile_picture_url]}]
     )
     data = {data: JSON.parse(data), sections: sections}
     render json: data, status: :ok
