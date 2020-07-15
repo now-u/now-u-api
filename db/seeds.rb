@@ -269,11 +269,13 @@ end
 
 text_sections = [
   {
+    title: 'this is a title',
     content: 'This is the first text section and should appear first',
     blog_article_id: BlogArticle.first.id,
     appearance_order: 1
   },
   {
+    title: 'this is a title',
     content: 'This is the second text section and should appear second',
     blog_article_id: BlogArticle.first.id,
     appearance_order: 2
