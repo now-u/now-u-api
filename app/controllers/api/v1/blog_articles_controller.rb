@@ -35,11 +35,17 @@ class Api::V1::BlogArticlesController < ApplicationController
   end
 
   def show
-    data = { data: BlogArticle.find(params[:id]) }
+    blog = BlogArticle.find(params[:id])
+    sections = blog.text_sections + blog.image_sections
+    sections = sections.sort_by{ | section | section.appearance_order }
+    data = { blog: blog }
+    sections
     data = data.to_json(
-      include: [:text_sections, :image_sections, :tags]
+      include: [:tags, :user]
     )
+    data = {data: JSON.parse(data), sections: sections}
     render json: data, status: :ok
+    
   end
 
   private
