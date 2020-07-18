@@ -8,14 +8,14 @@ class ReportHelpers
     user_campaigns = UserCampaign.where('created_at BETWEEN ? and ?', @from, @to).pluck(:user_id)
     return 0 unless user_campaigns.size > 0
 
-    campaigns_per_user = user_campaigns.size / user_campaigns.uniq.size
+    campaigns_per_user = (user_campaigns.size / user_campaigns.uniq.size.to_f).round(3)
   end
 
   def actions_completed_per_user
     user_actions = UserAction.where(status: 'completed').where('updated_at BETWEEN ? and ?', @from, @to).pluck(:user_id)
     return 0 unless user_actions.size > 0
 
-    campaigns_per_user = user_actions.size / user_actions.uniq.size
+    campaigns_per_user = (user_actions.size / user_actions.uniq.size.to_f).round(3)
   end
 end
 
