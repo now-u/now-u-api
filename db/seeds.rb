@@ -259,7 +259,8 @@ blog_articles = [
     action_id: action_for_blog.id,
     campaign_id: Campaign.first.id,
     subtitle: 'Blog Subtitle',
-    reading_time: 10
+    reading_time: 10,
+    enabled: true
   }
 ]
 
