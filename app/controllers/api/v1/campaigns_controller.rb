@@ -1,20 +1,19 @@
 class Api::V1::CampaignsController < ApplicationController
   def index
-    data = { data: Campaign.active.all }
-    data = data.to_json(
-      methods: [:number_of_campaigners, :general_partners, :campaign_partners, :sdgs, :key_aims],
-      include: { actions: {}, learning_topics: {} }
-    )
-
-    render json: data, status: :ok
+    render json: campaign_data, root: 'data', status: :ok, adapter: :json
   end
 
   def show
-    data = { data: Campaign.find(params[:id]) }
-    data = data.to_json(
-      methods: [:number_of_campaigners],
-      include: [:actions, :campaign_partners]
-    )
-    render json: data, status: :ok
+    render json: Campaign.find(params[:id]), root: 'data', status: :ok, adapter: :json
+  end
+
+  private
+
+  def campaign_data
+    if params[:old]
+      Campaign.where('end_date < ?', DateTime.now).all
+    else
+      Campaign.active.all
+    end
   end
 end
