@@ -31,6 +31,9 @@ Rails.application.routes.draw do
       post '/users/me/campaigns/:id', to: 'user_campaigns#create'
       delete '/users/me/campaigns/:id', to: 'user_campaigns#destroy'
 
+      post '/users/me/learning_resources/:id', to: 'user_learning_resources#create'
+      delete '/users/me/learning_resources/:id', to: 'user_learning_resources#destroy'
+
       get :campaigns, to: 'campaigns#index'
       get '/campaigns/:id', to: 'campaigns#show'
       get '/campaigns/:id/actions', to: 'actions#index'

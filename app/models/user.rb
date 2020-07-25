@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :campaigns, :through => :user_campaigns
   has_many :user_actions
   has_many :actions, :through => :user_actions
+  has_many :user_learning_resources
+  has_many :learning_resources, :through => :user_learning_resources
 
   def selected_campaigns
     campaigns.ids
@@ -27,6 +29,10 @@ class User < ApplicationRecord
 
   def favourited_actions
     user_actions.where(status: 'favourited').pluck(:action_id)
+  end
+
+  def completed_learning_resources
+    learning_resources.ids
   end
 
   def reset!
