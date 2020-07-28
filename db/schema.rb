@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_25_103106) do
+ActiveRecord::Schema.define(version: 2020_07_28_180647) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +94,7 @@ ActiveRecord::Schema.define(version: 2020_07_25_103106) do
     t.datetime "start_date"
     t.datetime "end_date"
     t.string "short_name"
+    t.string "infographic_url"
   end
 
   create_table "faqs", force: :cascade do |t|
@@ -127,6 +128,7 @@ ActiveRecord::Schema.define(version: 2020_07_25_103106) do
     t.integer "learning_topic_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "source"
   end
 
   create_table "learning_topics", force: :cascade do |t|
@@ -136,6 +138,7 @@ ActiveRecord::Schema.define(version: 2020_07_25_103106) do
     t.integer "campaign_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "priority", default: 0
   end
 
   create_table "offers", force: :cascade do |t|
