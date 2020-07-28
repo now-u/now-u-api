@@ -8,4 +8,8 @@ class CampaignSerializer < ActiveModel::Serializer
   def actions
     self.object.actions.active
   end
+
+  def learning_topics
+    self.object.learning_topics.order('priority ASC')
+  end
 end
