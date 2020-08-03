@@ -14,6 +14,7 @@ gem 'aws-sdk-sns', '~> 1.27'
 gem 'active_hash', '~> 3.1'
 gem 'active_model_serializers', '~> 0.10.10'
 gem 'bitly', '~> 2.0', '>= 2.0.1'
+gem 'gibbon', '~> 3.3', '>= 3.3.4'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
