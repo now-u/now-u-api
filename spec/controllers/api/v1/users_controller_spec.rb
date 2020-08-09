@@ -71,12 +71,16 @@ RSpec.describe Api::V1::UsersController, type: :controller do
   describe '#create' do
     let(:email) { 'ok@ok.com' }
     let(:email_client) { instance_double(EmailClient, send: 'ok') }
+    let(:newsletter_client) { instance_double(MailingListClient, add_to_list: 'ok') }
+
     let(:user_params) do
       { email: email }
     end
 
     before do
       allow(EmailClient).to receive(:new).and_return(email_client)
+      allow(MailingListClient).to receive(:new).and_return(newsletter_client)
+      allow(Gibbon::Request).to receive(:new).and_return(instance_double(Gibbon::Request))
     end
 
     subject(:register_user) do
@@ -102,6 +106,24 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       register_user
 
       expect(email_client).to have_received(:send).once
+    end
+
+    it 'does not add user to mailchimp' do
+      register_user
+
+      expect(newsletter_client).not_to have_received(:add_to_list)
+    end
+
+    context 'when newsletter_signup param present' do
+      let(:user_params) do
+        { email: email, full_name: 'Dave', newsletter_signup: true }
+      end
+
+      it 'adds the user to Mailchimp' do
+        register_user
+
+        expect(newsletter_client).to have_received(:add_to_list).once.with(list_id: Api::V1::UsersController::MAILCHIMP_LIST_ID, email_address: email, name: 'Dave')
+      end
     end
 
     it 'returns empty object' do
