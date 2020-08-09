@@ -4,14 +4,13 @@ class MailingListClient
   end
 
   def add_to_list(list_id:, email_address:, name: nil)
-    names = name&.split(' ')
     additional_data = {}
-    additional_data[:merge_fields] = { FNAME: names[0], LNAME: names[1..-1]&.join(' ').presence }.compact if names
+    additional_data[:merge_fields] = { NAME: name } if name
     params = {
       body: { email_address: email_address, status: "subscribed" }.merge(additional_data)
     }
-    @client.lists(list_id).members(membership_id(email_address)).upsert(params)
-    Rails.logger.info "Subscriber added to list #{list_id}: #{params}"
+    response = @client.lists(list_id).members(membership_id(email_address)).upsert(params)
+    Rails.logger.info "Subscriber added to/updated on list #{list_id}: #{params}, #{response.body}"
   end
 
   private
