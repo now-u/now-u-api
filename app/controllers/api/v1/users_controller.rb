@@ -1,7 +1,7 @@
 class Api::V1::UsersController < ApplicationController
   before_action :set_user, only: [:show, :update]
 
-  MAILCHIMP_LIST_ID = 'abc123'
+  MAILCHIMP_LIST_ID = 'b604a851dc'
 
   def update
     code = user_params[:organisation_code]
