@@ -14,17 +14,19 @@ class CampaignReportHelpers
   end
 
   def actions_completed
-    UserAction.joins(:action).where('actions.campaign_id = ?', @campaign_id).where(status: 'completed').where('user_actions.updated_at BETWEEN ? and ?', @from, @to).count
+    UserAction.joins(:action).where('actions.campaign_id = ?', @campaign_id)
+                             .where(status: 'completed')
+                             .where('user_actions.updated_at BETWEEN ? and ?', @from, @to).count
   end
 
   def most_popular_action
     res = UserAction.joins(:action).where('actions.campaign_id = ?', @campaign_id)
                                    .where(status: 'completed')
                                    .where('user_actions.updated_at BETWEEN ? and ?', @from, @to)
-                                   .group_by { |x| x.action.title }.map { |k,v| [k, v.size] }
+                                   .group_by { |x| x.action.title }.map { |k,v| ["#{k} (#{v.size})", v.size] }
     return nil unless res.any?
 
-    res.sort_by { |x|x[1] }.reverse.first[0]
+    res.sort_by { |x| x[1] }.reverse.first[0]
   end
 
   # average # of actions marked done by users
@@ -47,18 +49,18 @@ class ReportHelpers
 
   # average # of campaigns per user
   def campaigns_per_user
-    user_campaigns = UserCampaign.where('created_at BETWEEN ? and ?', @from, @to).pluck(:user_id)
-    return 0 unless user_campaigns.size > 0
+    user_campaigns = UserCampaign.where('created_at BETWEEN ? and ?', @from, @to)
+    return 0 unless user_campaigns.count > 0
 
-    campaigns_per_user = (user_campaigns.size / user_campaigns.uniq.size.to_f).round(3)
+    (user_campaigns.count / User.count.to_f).round(3)
   end
 
   # average # of actions marked done by users
   def actions_completed_per_user
-    user_actions = UserAction.where(status: 'completed').where('updated_at BETWEEN ? and ?', @from, @to).pluck(:user_id)
-    return 0 unless user_actions.size > 0
+    user_actions = UserAction.where(status: 'completed').where('updated_at BETWEEN ? and ?', @from, @to)
+    return 0 unless user_actions.count > 0
 
-    campaigns_per_user = (user_actions.size / user_actions.uniq.size.to_f).round(3)
+    (user_actions.count / User.count.to_f).round(3)
   end
 end
 
