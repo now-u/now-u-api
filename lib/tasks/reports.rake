@@ -1,12 +1,10 @@
 class CampaignReportHelpers
-  def initialize(from, to, campaign_id)
-    @from = from || DateTime.parse('2020-07-01').beginning_of_day
-    @to = to || DateTime.now.end_of_day
+  def initialize(campaign_id)
     @campaign_id = campaign_id
   end
 
   def number_of_campaign_supporters
-    UserCampaign.where(campaign_id: @campaign_id).where('user_campaigns.created_at BETWEEN ? and ?', @from, @to).count
+    UserCampaign.where(campaign_id: @campaign_id).count
   end
 
   def number_of_campaign_partners
@@ -14,15 +12,14 @@ class CampaignReportHelpers
 
   def actions_completed
     UserAction.joins(:action).where('actions.campaign_id = ?', @campaign_id)
-                             .where(status: 'completed')
-                             .where('user_actions.updated_at BETWEEN ? and ?', @from, @to).count
+                             .where(status: 'completed').count
   end
 
   def most_popular_action
     res = UserAction.joins(:action).where('actions.campaign_id = ?', @campaign_id)
                                    .where(status: 'completed')
-                                   .where('user_actions.updated_at BETWEEN ? and ?', @from, @to)
                                    .group_by { |x| x.action.title }.map { |k,v| ["#{k} (#{v.size})", v.size] }
+
     return nil unless res.any?
 
     res.sort_by { |x| x[1] }.reverse.first[0]
@@ -57,17 +54,14 @@ end
 #   rails reports:all
 namespace :reports do
   desc "Output reports"
-  task :all, [:from_date, :to_date] => [:environment] do |task, args|
-    if args[:from_date] && args[:to_date]
-      from = DateTime.parse(args[:from_date]).beginning_of_day
-      to = DateTime.parse(args[:to_date]).end_of_day
-    end
+  task :all => [:environment] do |task, args|
     result = { campaigns: {}, overall: {} }
     report = ReportHelpers.new
 
     result[:overall]['User count'] = User.count
     result[:overall]['Actions completed'] = UserAction.where(status: 'completed').count
-    result[:overall]['Users who support at least one campaign'] = UserCampaign.all.pluck(:user_id).uniq.size
+    result[:overall]['Campaigns joined'] = UserCampaign.count
+    result[:overall]['Campaigners (Users who support at least one campaign)'] = UserCampaign.all.pluck(:user_id).uniq.size
     result[:overall]['Users who have completed at least one action'] = UserAction.where(status: 'completed').pluck(:user_id).uniq.size
     result[:overall]['Average campaigns per user'] = report.campaigns_per_user
     result[:overall]['Average actions per user'] = report.actions_completed_per_user
@@ -75,10 +69,9 @@ namespace :reports do
 
     Campaign.active.each do |campaign|
       result[:campaigns][campaign.title] = {}
-      campaign_report = CampaignReportHelpers.new(from, to, campaign.id)
+      campaign_report = CampaignReportHelpers.new(campaign.id)
 
-
-      result[:campaigns][campaign.title]['Number of campaign supporters'] = campaign_report.number_of_campaign_supporters
+      result[:campaigns][campaign.title]['Campaigners'] = campaign_report.number_of_campaign_supporters
       result[:campaigns][campaign.title]['Actions completed'] = campaign_report.actions_completed
       result[:campaigns][campaign.title]['Most popular action'] = campaign_report.most_popular_action
     end
