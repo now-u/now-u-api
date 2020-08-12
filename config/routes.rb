@@ -27,7 +27,7 @@ Rails.application.routes.draw do
       post '/users/me/actions/:id/:status', to: 'user_actions#create', constraints: { status: /(complete|reject|favourite)/ }
       # post '/users/me/actions', to: 'user_actions#create'
       delete '/users/me/actions/:id', to: 'user_actions#destroy'
-
+      put '/users/me/notifications/:id/dismiss', to: 'user_notifications#update'
       post '/users/me/campaigns/:id', to: 'user_campaigns#create'
       delete '/users/me/campaigns/:id', to: 'user_campaigns#destroy'
 

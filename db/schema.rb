@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_28_180647) do
+ActiveRecord::Schema.define(version: 2020_08_12_191335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -141,6 +141,13 @@ ActiveRecord::Schema.define(version: 2020_07_28_180647) do
     t.integer "priority", default: 0
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.string "text"
+    t.string "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "offers", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -226,6 +233,14 @@ ActiveRecord::Schema.define(version: 2020_07_28_180647) do
   create_table "user_learning_resources", force: :cascade do |t|
     t.integer "user_id"
     t.integer "learning_resource_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_notifications", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "notification_id"
+    t.boolean "dismissed", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

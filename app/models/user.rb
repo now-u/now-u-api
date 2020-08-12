@@ -10,6 +10,8 @@ class User < ApplicationRecord
   has_many :actions, :through => :user_actions
   has_many :user_learning_resources
   has_many :learning_resources, :through => :user_learning_resources
+  has_many :user_notifications
+  has_many :notifications, :through => :user_notifications
 
   def selected_campaigns
     campaigns.ids
@@ -33,6 +35,10 @@ class User < ApplicationRecord
 
   def completed_learning_resources
     learning_resources.ids
+  end
+
+  def active_notifications
+    notifications.where('user_notifications.dismissed IS false')
   end
 
   def reset!
