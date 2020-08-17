@@ -1,6 +1,8 @@
 class Api::V1::UsersController < ApplicationController
   before_action :set_user, only: [:show, :update]
 
+  MAILCHIMP_LIST_ID = 'b604a851dc'
+
   def update
     code = user_params[:organisation_code]
     transformed_user_params = user_params.except(:organisation_code).merge(organisation_id: organisation_id_from_code(code))
@@ -11,6 +13,7 @@ class Api::V1::UsersController < ApplicationController
   def create
     user = User.find_by(email: user_params[:email]&.downcase) || User.create!(email: user_params[:email]&.downcase, full_name: user_params[:full_name], token: SecureRandom.hex(40))
     send_registration_email(user)
+    add_to_mailing_list(user) if params[:newsletter_signup]
 
     render json: {}, status: :ok
   end
@@ -23,6 +26,11 @@ class Api::V1::UsersController < ApplicationController
 
   def user_params
     params.permit(:email, :full_name, :location, :date_of_birth, :monthly_donation_limit, :home_owner, :organisation_code)
+  end
+
+  def add_to_mailing_list(user)
+    client = MailingListClient.new
+    client.add_to_list(list_id: MAILCHIMP_LIST_ID, email_address: user.email, name: user.full_name)
   end
 
   def send_registration_email(user)
