@@ -10,6 +10,10 @@ class CampaignReportHelpers
   def number_of_campaign_partners
   end
 
+  def action_types
+    UserAction.joins(:action).where('actions.campaign_id = ?', @campaign_id).where(status: 'completed').group(:type).count
+  end
+
   def actions_completed
     UserAction.joins(:action).where('actions.campaign_id = ?', @campaign_id)
                              .where(status: 'completed').count
@@ -74,6 +78,7 @@ namespace :reports do
       result[:campaigns][campaign.title]['Campaigners'] = campaign_report.number_of_campaign_supporters
       result[:campaigns][campaign.title]['Actions completed'] = campaign_report.actions_completed
       result[:campaigns][campaign.title]['Most popular action'] = campaign_report.most_popular_action
+      result[:campaigns][campaign.title]['Action types'] = campaign_report.action_types
     end
 
     pp result
