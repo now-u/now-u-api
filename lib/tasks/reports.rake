@@ -58,7 +58,8 @@ end
 #   rails reports:all
 namespace :reports do
   desc "Output reports"
-  task :all => [:environment] do |task, args|
+  task :all, [:status] => [:environment] do |task, args|
+    status = args[:status] || 'active'
     result = { campaigns: {}, overall: {} }
     report = ReportHelpers.new
 
@@ -71,7 +72,7 @@ namespace :reports do
     result[:overall]['Average actions per user'] = report.actions_completed_per_user
     result[:overall]['Top users (by actions completed)'] = report.top_users
 
-    Campaign.active.each do |campaign|
+    Campaign.send(status).each do |campaign|
       result[:campaigns][campaign.title] = {}
       campaign_report = CampaignReportHelpers.new(campaign.id)
 
