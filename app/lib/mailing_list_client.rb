@@ -11,6 +11,8 @@ class MailingListClient
     }
     response = @client.lists(list_id).members(membership_id(email_address)).upsert(params)
     Rails.logger.info "Subscriber added to/updated on list #{list_id}: #{params}, #{response.body}"
+  rescue Gibbon::MailChimpError => e
+    Rails.logger.error "Could not add subscriber to list #{list_id}: #{e.message}"
   end
 
   private
