@@ -12,7 +12,9 @@ class ApplicationController < ActionController::API
   def user_response
     data = { data: @user.reload }
     data = data.to_json(
-      methods: [:selected_campaigns, :completed_campaigns, :completed_actions, :rejected_actions, :favourited_actions, :completed_learning_resources]
+      methods: [:selected_campaigns, :completed_campaigns, :completed_actions,
+                :rejected_actions, :favourited_actions, :completed_learning_resources,
+                :active_notifications]
     )
   end
 end
