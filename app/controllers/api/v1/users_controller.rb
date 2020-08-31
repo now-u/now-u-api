@@ -18,7 +18,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def create
-    user = User.find_by(email: user_params[:email]&.downcase) || User.create!(email: user_params[:email]&.downcase, full_name: user_params[:full_name], token: SecureRandom.hex(40))
+    user = User.find_by(email: user_params[:email]&.downcase) || User.create!(email: user_params[:email]&.downcase, full_name: user_params[:full_name], token: SecureRandom.hex(40), newsletter: params[:newsletter_signup] || false)
     send_registration_email(user)
     add_to_mailing_list(user) if params[:newsletter_signup]
 
