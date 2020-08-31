@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       put '/users/me', to: 'users#update'
       delete '/users/me', to: 'users#destroy'
       post '/users/login', to: 'user_logins#create'
+      put '/users/me/newsletter/:status', to: 'user_newsletter_signup#update', constraints: { status: /(subscribe|unsubscribe)/ }
 
       get '/users/me/actions', to: 'user_actions#index'
       post '/users/me/actions/:id/:status', to: 'user_actions#create', constraints: { status: /(complete|reject|favourite)/ }
