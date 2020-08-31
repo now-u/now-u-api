@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       post '/users', to: 'users#create'
       get '/users/me', to: 'users#show'
       put '/users/me', to: 'users#update'
+      delete '/users/me', to: 'users#destroy'
       post '/users/login', to: 'user_logins#create'
 
       get '/users/me/actions', to: 'user_actions#index'

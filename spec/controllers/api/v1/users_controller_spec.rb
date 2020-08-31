@@ -1,6 +1,31 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::UsersController, type: :controller do
+  describe '#destroy' do
+    let(:newsletter_client) { instance_double(MailingListClient, remove_from_list: 'ok') }
+
+    before do
+      allow(MailingListClient).to receive(:new).and_return(newsletter_client)
+    end
+
+    let(:user) { User.create(email: 'ok@ok.com', token: 'abc1234', verified: true) }
+    let(:token) { user.token }
+
+    subject(:delete_user) do
+      request.headers.merge!({ 'token' => token })
+      delete :destroy
+    end
+
+    it 'deletes the user' do
+      expect { delete_user }.to change { User.exists?(user.id) }.from(true).to(false)
+    end
+
+    it 'makes request to Mailchimp to remove user from mailing list' do
+      delete_user
+      expect(newsletter_client).to have_received(:remove_from_list).once
+    end
+  end
+
   describe '#update' do
     let(:organisation) { Organisation.create(name: 'Org 1', code: 'TEST123') }
     let(:user) { User.create(email: 'ok@ok.com', token: 'abc1234', verified: true) }

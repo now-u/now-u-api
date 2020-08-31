@@ -1,7 +1,14 @@
 class Api::V1::UsersController < ApplicationController
-  before_action :set_user, only: [:show, :update]
+  before_action :set_user, only: [:show, :update, :destroy]
 
   MAILCHIMP_LIST_ID = 'b604a851dc'
+
+  def destroy
+    remove_from_mailing_list(@user)
+    @user.destroy
+
+    render json: {}, status: :ok
+  end
 
   def update
     code = user_params[:organisation_code]
@@ -31,6 +38,11 @@ class Api::V1::UsersController < ApplicationController
   def add_to_mailing_list(user)
     client = MailingListClient.new
     client.add_to_list(list_id: MAILCHIMP_LIST_ID, email_address: user.email, name: user.full_name)
+  end
+
+  def remove_from_mailing_list(user)
+    client = MailingListClient.new
+    client.remove_from_list(list_id: MAILCHIMP_LIST_ID, email_address: user.email)
   end
 
   def send_registration_email(user)
