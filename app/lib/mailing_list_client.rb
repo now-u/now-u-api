@@ -3,6 +3,14 @@ class MailingListClient
     @client = init_client
   end
 
+  def subscriber(list_id:, email_address:)
+    response = @client.lists(list_id).members(membership_id(email_address)).retrieve
+    response.body
+  rescue Gibbon::MailChimpError => e
+    Rails.logger.error "Could not retrieve subscriber #{email_address} from list #{list_id}: #{e.message}"
+    {}
+  end
+
   def add_to_list(list_id:, email_address:, name: nil)
     additional_data = {}
     additional_data[:merge_fields] = { NAME: name } if name
@@ -13,6 +21,13 @@ class MailingListClient
     Rails.logger.info "Subscriber added to/updated on list #{list_id}: #{params}, #{response.body}"
   rescue Gibbon::MailChimpError => e
     Rails.logger.error "Could not add subscriber to list #{list_id}: #{e.message}"
+  end
+
+  def remove_from_list(list_id:, email_address:)
+    response = @client.lists(list_id).members(membership_id(email_address)).update(body: { status: "unsubscribed" })
+    Rails.logger.info "Subscriber #{email_address} removed from list #{list_id}: #{response.body}"
+  rescue Gibbon::MailChimpError => e
+    Rails.logger.error "Could not remove subscriber #{email_address} from list #{list_id}: #{e.message}"
   end
 
   private
