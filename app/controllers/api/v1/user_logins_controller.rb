@@ -3,7 +3,7 @@ class Api::V1::UserLoginsController < ApplicationController
 
   def create
     @user.update_attributes(verified: true)
-    response = { 'token' => token }
+    response = { 'token' => @user.token }
 
     render json: { data: response }, status: :ok
   end
