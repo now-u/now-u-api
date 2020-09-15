@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_31_185722) do
+ActiveRecord::Schema.define(version: 2020_09_06_180953) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -245,6 +245,15 @@ ActiveRecord::Schema.define(version: 2020_08_31_185722) do
     t.boolean "dismissed", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "user_tokens", force: :cascade do |t|
+    t.string "token", null: false
+    t.integer "user_id"
+    t.datetime "expires_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["token"], name: "index_user_tokens_on_token", unique: true
   end
 
   create_table "users", force: :cascade do |t|
