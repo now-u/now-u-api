@@ -12,6 +12,11 @@ class User < ApplicationRecord
   has_many :learning_resources, :through => :user_learning_resources
   has_many :user_notifications
   has_many :notifications, :through => :user_notifications
+  has_many :user_tokens
+
+  def short_token
+    user_tokens.valid.first || user_tokens.create
+  end
 
   def selected_campaigns
     campaigns.ids

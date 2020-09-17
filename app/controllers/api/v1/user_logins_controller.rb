@@ -2,9 +2,8 @@ class Api::V1::UserLoginsController < ApplicationController
   before_action :validate_token, only: [:create]
 
   def create
-    token = SecureRandom.hex(40)
-    @user.update_attributes(verified: true, token: token)
-    response = { 'token' => token }
+    @user.update_attributes(verified: true)
+    response = { 'token' => @user.token }
 
     render json: { data: response }, status: :ok
   end
@@ -12,7 +11,9 @@ class Api::V1::UserLoginsController < ApplicationController
   private
 
   def validate_token
-    @user = User.find_by(email: params[:email]&.downcase, token: params[:token])
+    token = params[:token]&.strip
+    email = params[:email]&.strip&.downcase
+    @user = UserToken.valid.joins(:user).where(token: token).where('users.email = ?', email).first&.user
 
     return if @user
 
