@@ -13,7 +13,7 @@ class Api::V1::UserLoginsController < ApplicationController
   def validate_token
     token = params[:token]&.strip
     email = params[:email]&.strip&.downcase
-    @user = UserToken.joins(:user).where(token: token).where('users.email = ?', email).first&.user
+    @user = UserToken.valid.joins(:user).where(token: token).where('users.email = ?', email).first&.user
 
     return if @user
 
