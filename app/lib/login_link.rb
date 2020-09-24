@@ -19,7 +19,7 @@ class LoginLink
   def ios13?
     return false unless @platform && @version
 
-    return true if (@platform.downcase == 'ios') && (@version.downcase.to_s == '13')
+    return true if (@platform.downcase == 'ios') && (@version.to_s.downcase =~ /^(13|14)/)
 
     false
   end

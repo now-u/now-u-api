@@ -19,9 +19,27 @@ RSpec.describe LoginLink, type: :class do
       end
     end
 
-    context 'when platform and version present' do
+    context 'when platform and version present and version 12.xxx' do
       let(:platform) { 'ios' }
-      let(:version) { '13' }
+      let(:version) { '12.123.23' }
+
+      it 'returns expected link' do
+        expect(link).to eq("https://nowu.page.link/?link=https://now-u.com/loginMobile?token%3D#{token}&apn=com.nowu.app&isi=1516126639&ibi=com.nowu.app")
+      end
+    end
+
+    context 'when platform and version present and version 13.xxx' do
+      let(:platform) { 'ios' }
+      let(:version) { '13.123.23' }
+
+      it 'returns expected link' do
+        expect(link).to eq("com.nowu.app://loginMobile?token=#{token}")
+      end
+    end
+
+    context 'when platform and version present and version 14.xxx' do
+      let(:platform) { 'ios' }
+      let(:version) { '14.123.23' }
 
       it 'returns expected link' do
         expect(link).to eq("com.nowu.app://loginMobile?token=#{token}")
