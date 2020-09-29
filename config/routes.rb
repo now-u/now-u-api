@@ -18,6 +18,7 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
+      get '/redirect', to: 'redirect#create'
       post '/users', to: 'users#create'
       get '/users/me', to: 'users#show'
       put '/users/me', to: 'users#update'
