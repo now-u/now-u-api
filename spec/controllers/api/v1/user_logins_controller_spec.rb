@@ -5,10 +5,10 @@ RSpec.describe Api::V1::UserLoginsController, type: :controller do
     let(:verified) { false }
     let(:user) { User.create!(email: 'ok@ok.com', token: 'abc1234567', verified: verified) }
     let(:user_token) { user.user_tokens.create! } # temporary token
-    # let(:token) { 'abc1234567' }
+    let(:token) { user_token.token }
 
     subject(:login_user) do
-      post :create, params: { token: user_token.token, email: user.email }
+      post :create, params: { token: token, email: user.email }
     end
 
     it 'does not change the permanent token' do
@@ -33,15 +33,41 @@ RSpec.describe Api::V1::UserLoginsController, type: :controller do
       end
     end
 
-    context 'when temporary token is invalid' do
+    context 'when temporary token is nil' do
+      let(:token) { nil }
       before do
-        user_token.expire!
         login_user
       end
 
       it 'returns unauthorised response' do
         expect(response.status).to eq(401)
       end
+    end
+
+    context 'when temporary token value is not valid' do
+      let(:token) { 'meh' }
+      before do
+        login_user
+      end
+
+      it 'returns unauthorised response' do
+        expect(response.status).to eq(401)
+      end
+    end
+
+    context 'when temporary token is expired' do
+      before do
+        user_token.expire!
+        login_user
+      end
+
+      it 'returns appropriate error code' do
+        expect(response.status).to eq(419)
+      end
+
+      # it 'returns appropriate error message' do
+      #   expect(JSON.parse(response.body)).to eq({ 'error' => { 'message' => 'meh' } })
+      # end
     end
   end
 end

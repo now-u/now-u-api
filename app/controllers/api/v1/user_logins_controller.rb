@@ -17,6 +17,9 @@ class Api::V1::UserLoginsController < ApplicationController
 
     return if @user
 
-    render json: {}, status: :unauthorized
+    status = :unauthorized
+    status = 419 if UserToken.invalid.joins(:user).where(token: token).where('users.email = ?', email).any?
+
+    render json: {}, status: status
   end
 end

@@ -6,6 +6,7 @@ class UserToken < ApplicationRecord
   belongs_to :user
 
   scope :valid, -> { where('expires_at > ?', Time.current) }
+  scope :invalid, -> { where('expires_at < ?', Time.current) }
 
   def generate_token
     self.token = (0..9).to_a.sample(6).join
