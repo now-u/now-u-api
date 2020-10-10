@@ -34,4 +34,8 @@ class Campaign < ApplicationRecord
   def number_of_campaigners
     user_campaigns.select(:user_id).distinct.count
   end
+
+  def number_of_completed_actions
+    UserAction.where(action_id: actions.ids, status: 'completed').count
+  end
 end
