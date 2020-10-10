@@ -3,6 +3,15 @@ class CampaignReportHelpers
     @campaign_id = campaign_id
   end
 
+  def learning_resources_completed
+    campaign = Campaign.find(@campaign_id)
+    learning_topics = campaign.learning_topics
+    campaign_learning_resource_reference = learning_topics.map { |x| x.learning_resources }.flatten.map { |x| [x.id, x.title] }.to_h
+    campaign_learning_resource_ids = LearningResource.where(learning_topic_id: learning_topics.ids).ids
+    campaign_learning_resource_counts = UserLearningResource.where(learning_resource_id: campaign_learning_resource_ids).pluck(:learning_resource_id).group_by(&:itself).transform_values(&:count)
+    campaign_learning_resource_counts.map { |k, v| [campaign_learning_resource_reference[k], v] }.to_h
+  end
+
   def number_of_campaign_supporters
     UserCampaign.where(campaign_id: @campaign_id).count
   end
@@ -70,7 +79,7 @@ namespace :reports do
     result[:overall]['Users who have completed at least one action'] = UserAction.where(status: 'completed').pluck(:user_id).uniq.size
     result[:overall]['Average campaigns per user'] = report.campaigns_per_user
     result[:overall]['Average actions per user'] = report.actions_completed_per_user
-    result[:overall]['Top users (by actions completed)'] = report.top_users
+    # result[:overall]['Top users (by actions completed)'] = report.top_users
 
     Campaign.send(status).each do |campaign|
       result[:campaigns][campaign.title] = {}
@@ -80,6 +89,7 @@ namespace :reports do
       result[:campaigns][campaign.title]['Actions completed'] = campaign_report.actions_completed
       result[:campaigns][campaign.title]['Most popular action'] = campaign_report.most_popular_action
       result[:campaigns][campaign.title]['Action types'] = campaign_report.action_types
+      result[:campaigns][campaign.title]['Learning Resources'] = campaign_report.learning_resources_completed
     end
 
     pp result
