@@ -34,6 +34,7 @@ Rails.application.routes.draw do
       put '/users/me/notifications/:id/dismiss', to: 'user_notifications#update'
       post '/users/me/campaigns/:id', to: 'user_campaigns#create'
       delete '/users/me/campaigns/:id', to: 'user_campaigns#destroy'
+      put '/users/me/organisations', to: 'user_organisations#update'
 
       post '/users/me/learning_resources/:id', to: 'user_learning_resources#create'
       delete '/users/me/learning_resources/:id', to: 'user_learning_resources#destroy'
