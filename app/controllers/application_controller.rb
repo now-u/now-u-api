@@ -17,4 +17,11 @@ class ApplicationController < ActionController::API
                 :active_notifications, :organisation]
     )
   end
+
+  def user_with_organisation
+    data = { data: @user.reload }
+    data = data.to_json(
+      methods: [:organisation]
+    )
+  end
 end

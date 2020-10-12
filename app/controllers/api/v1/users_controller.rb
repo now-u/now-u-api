@@ -12,9 +12,10 @@ class Api::V1::UsersController < ApplicationController
 
   def update
     code = user_params[:organisation_code]
-    transformed_user_params = user_params.except(:organisation_code).merge(organisation_id: organisation_id_from_code(code))
+    organisation = { organisation_id: organisation_id_from_code(code) }.compact
+    transformed_user_params = user_params.except(:organisation_code).merge(organisation)
     @user.update(transformed_user_params)
-    render json: @user, status: :ok
+    render json: user_with_organisation, status: :ok
   end
 
   def create
