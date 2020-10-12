@@ -4,6 +4,6 @@ class Api::V1::UserOrganisationsController < ApplicationController
   def update
     @user.update(organisation_id: nil)
 
-    render json: @user.reload, status: :ok
+    render json: { data: @user.reload }, status: :ok
   end
 end
