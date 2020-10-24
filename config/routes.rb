@@ -63,4 +63,5 @@ Rails.application.routes.draw do
       post '/blogs/create', to: 'blog_articles#create'
     end
   end
+  get '/reports', to: 'reports#index'
 end
