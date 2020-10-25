@@ -14,6 +14,8 @@ class User < ApplicationRecord
   has_many :notifications, :through => :user_notifications
   has_many :user_tokens
 
+  enum user_role_id: { user: 1, developer: 2, campaign_admin: 3 }
+
   def short_token
     user_tokens.valid.first || user_tokens.create
   end

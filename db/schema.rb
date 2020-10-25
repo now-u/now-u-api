@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_06_180953) do
+ActiveRecord::Schema.define(version: 2020_10_25_193714) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -272,6 +272,7 @@ ActiveRecord::Schema.define(version: 2020_09_06_180953) do
     t.string "profile_picture_url"
     t.text "description"
     t.boolean "newsletter", default: false
+    t.integer "user_role_id"
   end
 
 end
