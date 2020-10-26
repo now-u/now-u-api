@@ -12,13 +12,13 @@ class Api::V1::CampaignsController < ApplicationController
   private
 
   def campaign_data
-    return Campaign.current_and_future if @user && @user.campaign_admin?
-
     if params[:old]
-      Campaign.where('end_date < ?', DateTime.now).all
+      campaigns = Campaign.where('end_date < ?', DateTime.now).all
     else
-      Campaign.active.all
+      campaigns = Campaign.active.all
+      campaigns = (campaigns + Campaign.current_and_future).uniq if @user && @user.campaign_admin?
     end
+    campaigns
   end
 
   def set_user
