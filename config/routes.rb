@@ -61,6 +61,7 @@ Rails.application.routes.draw do
       get '/press_coverage', to: 'press_coverage_articles#index'
       get '/press_coverage/:id', to: 'press_coverage_articles#show'
       post '/blogs/create', to: 'blog_articles#create'
+      get '/learning_topics/:id', to: 'learning_topics#show'
     end
   end
   get '/reports', to: 'reports#index'
