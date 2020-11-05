@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_25_193714) do
+ActiveRecord::Schema.define(version: 2020_11_05_204106) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -199,6 +199,29 @@ ActiveRecord::Schema.define(version: 2020_10_25_193714) do
     t.string "title"
   end
 
+  create_table "quiz_answers", force: :cascade do |t|
+    t.string "answer_image_url"
+    t.string "answer_text"
+    t.boolean "is_correct", default: false
+    t.integer "quiz_question_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "quiz_questions", force: :cascade do |t|
+    t.string "question"
+    t.integer "quiz_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "quizzes", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "tags", force: :cascade do |t|
     t.string "tag"
     t.datetime "created_at", null: false
@@ -275,4 +298,6 @@ ActiveRecord::Schema.define(version: 2020_10_25_193714) do
     t.integer "user_role_id"
   end
 
+  add_foreign_key "quiz_answers", "quiz_questions"
+  add_foreign_key "quiz_questions", "quizzes"
 end

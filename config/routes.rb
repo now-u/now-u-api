@@ -18,6 +18,8 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
+      get '/quizzes', to: 'quiz#index'
+      get '/quizzes/:id', to: 'quiz#show'
       get '/redirect', to: 'redirect#create'
       post '/users', to: 'users#create'
       get '/users/me', to: 'users#show'
