@@ -16,18 +16,26 @@ ActiveRecord::Schema.define(version: 20_201_112_193_421) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
-  create_table 'actions', force: :cascade do |t|
-    t.string 'title'
-    t.string 'link'
-    t.string 'type'
-    t.integer 'campaign_id'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.string 'what_description'
-    t.string 'why_description'
-    t.float 'time'
-    t.boolean 'enabled', default: false
-    t.datetime 'release_date'
+  create_table "action_steps", force: :cascade do |t|
+    t.integer "action_id"
+    t.integer "action_index", default: 0
+    t.string "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "actions", force: :cascade do |t|
+    t.string "title"
+    t.string "link"
+    t.string "type"
+    t.integer "campaign_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "what_description"
+    t.string "why_description"
+    t.float "time"
+    t.boolean "enabled", default: false
+    t.datetime "release_date"
   end
 
   create_table 'articles', force: :cascade do |t|
