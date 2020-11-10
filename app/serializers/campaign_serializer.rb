@@ -5,7 +5,7 @@ class CampaignSerializer < ActiveModel::Serializer
              :campaign_partners, :sdgs, :key_aims, :actions, :learning_topics, :infographic_url
 
   def actions
-    self.object.actions.active
+    ActiveModel::Serializer::CollectionSerializer.new(self.object.actions.active, serializer: ActionSerializer).as_json
   end
 
   def learning_topics
