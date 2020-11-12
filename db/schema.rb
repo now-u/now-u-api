@@ -16,9 +16,17 @@ ActiveRecord::Schema.define(version: 20_201_112_193_421) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
+  create_table "action_step_options", force: :cascade do |t|
+    t.integer "action_step_id"
+    t.integer "index", default: 0
+    t.string "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "action_steps", force: :cascade do |t|
     t.integer "action_id"
-    t.integer "action_index", default: 0
+    t.integer "index", default: 0
     t.string "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
