@@ -4,7 +4,7 @@ class ActionSerializer < ActiveModel::Serializer
              :action_steps
 
   def action_steps
-    data = self.object.action_steps.order('action_index ASC, id ASC')
+    data = self.object.action_steps.order('index ASC, id ASC')
     ActiveModel::Serializer::CollectionSerializer.new(data, serializer: ActionStepSerializer).as_json
   end
 end
