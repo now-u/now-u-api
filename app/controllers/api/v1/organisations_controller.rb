@@ -7,4 +7,8 @@ class Api::V1::OrganisationsController < ApplicationController
 
     render json: data, status: :ok
   end
+
+  def show
+    render json: Organisation.find(params[:id]), root: 'data', status: :ok, adapter: :json
+  end
 end

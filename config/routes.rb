@@ -18,6 +18,8 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
+      get '/quizzes', to: 'quiz#index'
+      get '/quizzes/:id', to: 'quiz#show'
       get '/redirect', to: 'redirect#create'
       post '/users', to: 'users#create'
       get '/users/me', to: 'users#show'
@@ -34,6 +36,7 @@ Rails.application.routes.draw do
       put '/users/me/notifications/:id/dismiss', to: 'user_notifications#update'
       post '/users/me/campaigns/:id', to: 'user_campaigns#create'
       delete '/users/me/campaigns/:id', to: 'user_campaigns#destroy'
+      put '/users/me/organisations', to: 'user_organisations#update'
 
       post '/users/me/learning_resources/:id', to: 'user_learning_resources#create'
       delete '/users/me/learning_resources/:id', to: 'user_learning_resources#destroy'
@@ -54,11 +57,14 @@ Rails.application.routes.draw do
       get '/offers', to: 'offers#index'
       get '/faqs', to: 'faqs#index'
       get '/organisations', to: 'organisations#index'
+      get '/organisations/:id', to: 'organisations#show'
       get '/blogs', to: 'blog_articles#index'
       get '/blogs/:id', to: 'blog_articles#show'
       get '/press_coverage', to: 'press_coverage_articles#index'
       get '/press_coverage/:id', to: 'press_coverage_articles#show'
       post '/blogs/create', to: 'blog_articles#create'
+      get '/learning_topics/:id', to: 'learning_topics#show'
     end
   end
+  get '/reports', to: 'reports#index'
 end
