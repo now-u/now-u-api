@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Api::V1::UserNewsletterSignupController, type: :controller do
@@ -14,7 +16,7 @@ RSpec.describe Api::V1::UserNewsletterSignupController, type: :controller do
     let(:status) { 'subscribe' }
 
     subject(:update_subscription) do
-      request.headers.merge!({ 'token' => token })
+      request.headers.merge!('token' => token)
       put :update, params: { status: status }
     end
 

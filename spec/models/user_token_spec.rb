@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe UserToken, type: :model do
@@ -22,7 +24,7 @@ RSpec.describe UserToken, type: :model do
       before do
         user_token.update!(expires_at: Time.current - 1.day)
       end
-      
+
       it 'returns true' do
         expect(user_token.expired?).to eq true
       end

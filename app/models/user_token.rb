@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserToken < ApplicationRecord
   validates_uniqueness_of :token
   before_create :generate_token
@@ -17,12 +19,12 @@ class UserToken < ApplicationRecord
   end
 
   def expired?
-    self.expires_at < Time.current
+    expires_at < Time.current
   end
 
   def expire!
     new_expiry = Time.current - 1.minute
     self.expires_at = new_expiry
-    self.save!
+    save!
   end
 end

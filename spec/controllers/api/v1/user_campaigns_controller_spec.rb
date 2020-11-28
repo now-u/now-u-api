@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Api::V1::UserCampaignsController, type: :controller do
@@ -8,7 +10,7 @@ RSpec.describe Api::V1::UserCampaignsController, type: :controller do
     let(:points) { 0 }
 
     subject(:create_user_campaign) do
-      request.headers.merge!({ 'token' => 'abc1234' })
+      request.headers.merge!('token' => 'abc1234')
       post :create, params: { id: campaign.id }
     end
 
@@ -29,7 +31,7 @@ RSpec.describe Api::V1::UserCampaignsController, type: :controller do
     end
 
     subject(:destroy_user_campaign) do
-      request.headers.merge!({ 'token' => 'abc1234' })
+      request.headers.merge!('token' => 'abc1234')
       delete :destroy, params: { id: campaign.id }
     end
 

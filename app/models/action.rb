@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Action < ApplicationRecord
   self.inheritance_column = nil
 

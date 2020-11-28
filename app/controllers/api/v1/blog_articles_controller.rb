@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class Api::V1::BlogArticlesController < ApplicationController
   before_action :validate_token, only: [:create]
-  
+
   def index
     data = BlogArticle.where(enabled: true)
     data = data.to_json(
-      include: [:tags, :user => {only: [:full_name, :description, :profile_picture_url]}]
+      include: [:tags, user: { only: %i[full_name description profile_picture_url] }]
     )
     render json: data, status: :ok
   end
@@ -18,16 +20,16 @@ class Api::V1::BlogArticlesController < ApplicationController
       campaign_id: params[:campaign_id].to_i,
       reading_time: params[:reading_time].to_i
     )
-    params[:sections].each_with_index do | section, index |
-      if section["type"] == 'image_section'
+    params[:sections].each_with_index do |section, index|
+      if section['type'] == 'image_section'
         ImageSection.create!(
-          img_url: section["img_url"],
+          img_url: section['img_url'],
           blog_article_id: BlogArticle.last.id,
           appearance_order: index + 1
         )
-      elsif section["type"] == 'text_section'
+      elsif section['type'] == 'text_section'
         TextSection.create!(
-          content: section["content"],
+          content: section['content'],
           blog_article_id: BlogArticle.last.id,
           appearance_order: index + 1
         )
@@ -41,15 +43,14 @@ class Api::V1::BlogArticlesController < ApplicationController
   def show
     blog = BlogArticle.find(params[:id])
     sections = blog.text_sections + blog.image_sections
-    sections = sections.sort_by{ | section | section.appearance_order }
+    sections = sections.sort_by(&:appearance_order)
     data = { blog: blog }
     sections
     data = data.to_json(
-      include: [:tags, :user => {only: [:full_name, :description, :profile_picture_url]}]
+      include: [:tags, user: { only: %i[full_name description profile_picture_url] }]
     )
-    data = {data: JSON.parse(data), sections: sections}
+    data = { data: JSON.parse(data), sections: sections }
     render json: data, status: :ok
-    
   end
 
   private

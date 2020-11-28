@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Campaign < ApplicationRecord
   validates_presence_of :title
 
@@ -7,9 +9,9 @@ class Campaign < ApplicationRecord
   has_many :offers
   has_many :partnerships
   has_many :learning_topics
-  has_many :organisations, :through => :partnerships
+  has_many :organisations, through: :partnerships
   has_many :campaign_goals
-  has_many :goals, :through => :campaign_goals
+  has_many :goals, through: :campaign_goals
   has_many :user_campaigns
 
   scope :active, -> { where('enabled IS TRUE AND start_date IS NULL AND end_date IS NULL').or(where('enabled IS TRUE AND (? > start_date AND ? < end_date)', DateTime.now, DateTime.now)) }

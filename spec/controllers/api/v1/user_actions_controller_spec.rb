@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Api::V1::UserActionsController, type: :controller do
@@ -13,7 +15,7 @@ RSpec.describe Api::V1::UserActionsController, type: :controller do
       UserAction.create!(user_id: user.id, action_id: action.id, status: 'completed')
     end
     subject(:delete_user_action) do
-      request.headers.merge!({ 'token' => 'abc1234' })
+      request.headers.merge!('token' => 'abc1234')
       delete :destroy, params: { id: action.id }
     end
 
@@ -27,7 +29,7 @@ RSpec.describe Api::V1::UserActionsController, type: :controller do
       UserAction.create!(user_id: user.id, action_id: action.id)
     end
     subject(:get_actions) do
-      request.headers.merge!({ 'token' => 'abc1234' })
+      request.headers.merge!('token' => 'abc1234')
       get :index
     end
 
@@ -44,7 +46,7 @@ RSpec.describe Api::V1::UserActionsController, type: :controller do
     let(:points) { 4 }
     let(:status) { 'reject' }
     subject(:create_action_with_status) do
-      request.headers.merge!({ 'token' => 'abc1234' })
+      request.headers.merge!('token' => 'abc1234')
       post :create, params: { id: action.id, status: status }
     end
 
@@ -58,7 +60,6 @@ RSpec.describe Api::V1::UserActionsController, type: :controller do
 
     context 'when reason param present' do
       it 'adds to comment field on user_actions' do
-
       end
     end
 

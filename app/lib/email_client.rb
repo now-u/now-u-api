@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'sendgrid-ruby'
 include SendGrid
 
@@ -9,29 +11,29 @@ class EmailClient
 
   def send
     data = {
-      "personalizations" => [
+      'personalizations' => [
         {
-          "to" => [
+          'to' => [
             {
-              "email" => @email
+              'email' => @email
             }
           ],
-          "subject" => "Now-u Account Login"
+          'subject' => 'Now-u Account Login'
         }
       ],
-      "from" => {
-        "email" => "support@now-u.com",
-        "name" => "Now-U Support"
+      'from' => {
+        'email' => 'support@now-u.com',
+        'name' => 'Now-U Support'
       },
-      "content" => [
+      'content' => [
         {
-          "type" => "text/html",
-          "value" => @body
+          'type' => 'text/html',
+          'value' => @body
         }
       ]
     }
     sg = SendGrid::API.new(api_key: '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')
-    response = sg.client.mail._("send").post(request_body: data)
+    response = sg.client.mail._('send').post(request_body: data)
     Rails.logger.info "User registration/login email sent; Email: #{@email}, Body: #{@body}; Response code: #{response.status_code}, body: #{response.body}, header: #{response.headers}"
   end
 

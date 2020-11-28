@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class Api::V1::UsersController < ApplicationController
-  before_action :set_user, only: [:show, :update, :destroy]
+  before_action :set_user, only: %i[show update destroy]
 
   MAILCHIMP_LIST_ID = 'b604a851dc'
 
@@ -57,7 +59,7 @@ class Api::V1::UsersController < ApplicationController
     param_link = "https://now-u.com/loginMobile?token%3D#{short_token.token}&apn=com.nowu.app&isi=1516126639&ibi=com.nowu.app"
     url = "https://nowu.page.link/?link=#{param_link}"
     token = short_token.token
-    ERB.new(File.read( File.expand_path('app/views/login.html.erb') )).result(binding)
+    ERB.new(File.read(File.expand_path('app/views/login.html.erb'))).result(binding)
   end
 
   def organisation_id_from_code(code)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   validates_uniqueness_of :email
   validates_uniqueness_of :token
@@ -5,13 +7,13 @@ class User < ApplicationRecord
   has_many :blog_articles
   belongs_to :organisation, optional: true
   has_many :user_campaigns
-  has_many :campaigns, :through => :user_campaigns
+  has_many :campaigns, through: :user_campaigns
   has_many :user_actions
-  has_many :actions, :through => :user_actions
+  has_many :actions, through: :user_actions
   has_many :user_learning_resources
-  has_many :learning_resources, :through => :user_learning_resources
+  has_many :learning_resources, through: :user_learning_resources
   has_many :user_notifications
-  has_many :notifications, :through => :user_notifications
+  has_many :notifications, through: :user_notifications
   has_many :user_tokens
 
   enum user_role_id: { user: 1, developer: 2, campaign_admin: 3 }

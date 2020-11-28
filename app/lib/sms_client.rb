@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SmsClient
   def initialize(phone_number:, text:)
     @phone_number = phone_number
@@ -14,11 +16,11 @@ class SmsClient
 
   def init_client
     x = Aws::SNS::Client.new(client_config)
-    resp = x.set_sms_attributes(attributes: { "DefaultSenderID" => "NowU" })
+    resp = x.set_sms_attributes(attributes: { 'DefaultSenderID' => 'NowU' })
     x
   end
 
   def client_config
-    { region: "eu-west-1" }
+    { region: 'eu-west-1' }
   end
 end
