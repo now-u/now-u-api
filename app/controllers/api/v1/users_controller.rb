@@ -21,7 +21,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def create
-    user = User.find_by(email: user_params[:email]&.downcase) || User.create!(email: user_params[:email]&.downcase, full_name: user_params[:full_name], token: SecureRandom.hex(40), newsletter: params[:newsletter_signup] || false)
+    user = User.find_by(email: user_params[:email]&.downcase) || create_user
     send_registration_email(user)
     add_to_mailing_list(user) if params[:newsletter_signup]
 
@@ -33,6 +33,12 @@ class Api::V1::UsersController < ApplicationController
   end
 
   private
+
+  def create_user
+    newsletter_signup = params[:newsletter_signup] || false
+    User.create!(email: user_params[:email]&.downcase, full_name: user_params[:full_name],
+                 token: SecureRandom.hex(40), newsletter: newsletter_signup)
+  end
 
   def user_params
     params.permit(:email, :full_name, :location, :date_of_birth, :monthly_donation_limit, :home_owner, :organisation_code)

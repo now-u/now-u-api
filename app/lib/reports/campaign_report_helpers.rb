@@ -11,7 +11,10 @@ module Reports
       learning_topics = campaign.learning_topics
       campaign_learning_resource_reference = learning_topics.map(&:learning_resources).flatten.map { |x| [x.id, x.title] }.to_h
       campaign_learning_resource_ids = LearningResource.where(learning_topic_id: learning_topics.ids).ids
-      campaign_learning_resource_counts = UserLearningResource.where(learning_resource_id: campaign_learning_resource_ids).pluck(:learning_resource_id).group_by(&:itself).transform_values(&:count)
+      campaign_learning_resource_counts = UserLearningResource.where(learning_resource_id: campaign_learning_resource_ids)
+                                                              .pluck(:learning_resource_id)
+                                                              .group_by(&:itself)
+                                                              .transform_values(&:count)
       campaign_learning_resource_counts.map { |k, v| [campaign_learning_resource_reference[k], v] }.to_h
     end
 
