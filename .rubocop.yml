@@ -1,1 +1,11 @@
 inherit_from: .rubocop_todo.yml
+
+AllCops:
+  Exclude:
+    - 'db/seeds.rb'
+    - 'db/schema.rb'
+    - 'spec/**/*.rb'
+    - 'config/**/*.rb'
+
+Metrics/LineLength:
+  Max: 120

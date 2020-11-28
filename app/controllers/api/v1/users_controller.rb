@@ -67,9 +67,4 @@ class Api::V1::UsersController < ApplicationController
 
     Organisation.find_by_code!(code).id
   end
-
-  # def email_body(user)
-  #   url = "https://now-u.com/loginMobile?token=#{user.token}&apn=com.nowu.app"
-  #   "<html><head></head><body>Thanks for registering! You can login with the following link:<br /><br /> <a href=\"https://nowu.page.link/?link=#{url}\">Click me</a></body></html>"
-  # end
 end
