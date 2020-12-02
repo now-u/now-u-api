@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
@@ -27,7 +29,7 @@ goals = [
   { title: 'Life Below Water', type: 'United Nations Sustainable Development Goal' },
   { title: 'Life On Land', type: 'United Nations Sustainable Development Goal' },
   { title: 'Peace, Justice, and Strong Institutions', type: 'United Nations Sustainable Development Goal' },
-  { title: 'Partnerships for the Goals', type: 'United Nations Sustainable Development Goal' },
+  { title: 'Partnerships for the Goals', type: 'United Nations Sustainable Development Goal' }
 ]
 goals.each { |x| Goal.create!(x) }
 
@@ -44,7 +46,7 @@ campaigns = [
   {
     title: 'Refugee welfare & resettlement',
     description_app: "Over 70 million people worldwide have been forced to flee their homes. Whilst the vast majority remain in their own or neighbouring countries, tens of thousands of people have died trying to reach safety in Europe. Those who do make it are rarely welcomed with support and compassion. People are beaten, gassed and locked up. Several have been killed - adults and children alike.\nThis campaign raises awareness about refugees and asylum seekers in Europe. We connect you with actions to help improve their welfare and fight for the resettlement of people who are displaced, at risk and without a place to call home.",
-    description_web: "70 million people worldwide have been forced to leave their homes to seek refuge, risking everything in search of a safe environment where they can rebuild their lives (UNHCR).<br>The vast majority remain in their own or neighbouring countries, with little or no support. Others embark on long and dangerous journeys to Europe, often encountering starvation, sickness and violence along the way. Tens of thousands of people have died trying to reach safety in Europe. Those who do make it are rarely welcomed with support and compassion. People are beaten, gassed and locked up. Several have been killed - adults and children alike.<br>Did you know that many towns across Europe have offered their support but had their request denied by governments? Hostile policies are preventing people from being reunited with family, finding safe homes and becoming valued members of our communities.<br>This campaign raises awareness about the lives of refugees and asylum seekers in Europe. We connect you with actions to help improve their welfare andand fight for the resettlement of people who are displaced, at risk and without a place to call home.<br>Together we can help change the lives of thousands and reform policies to empower future generations of refugees and asylum seekers to rebuild their lives.",
+    description_web: '70 million people worldwide have been forced to leave their homes to seek refuge, risking everything in search of a safe environment where they can rebuild their lives (UNHCR).<br>The vast majority remain in their own or neighbouring countries, with little or no support. Others embark on long and dangerous journeys to Europe, often encountering starvation, sickness and violence along the way. Tens of thousands of people have died trying to reach safety in Europe. Those who do make it are rarely welcomed with support and compassion. People are beaten, gassed and locked up. Several have been killed - adults and children alike.<br>Did you know that many towns across Europe have offered their support but had their request denied by governments? Hostile policies are preventing people from being reunited with family, finding safe homes and becoming valued members of our communities.<br>This campaign raises awareness about the lives of refugees and asylum seekers in Europe. We connect you with actions to help improve their welfare andand fight for the resettlement of people who are displaced, at risk and without a place to call home.<br>Together we can help change the lives of thousands and reform policies to empower future generations of refugees and asylum seekers to rebuild their lives.',
     number_of_campaigners: 0,
     header_image: 'https://images.unsplash.com/photo-1551556729-c8dee4337009?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80',
     video_link: 'https://www.youtube.com/watch?v=h5vnFpWCOhQ',
@@ -53,14 +55,13 @@ campaigns = [
   {
     title: 'Water, sanitation & hygiene',
     description_app: "1 in every 10 people still do not have access to clean water, and every minute a newborn child dies from an infection caused by a lack of this basic human right.\nWithout clean water, sanitation and hygiene (WASH), every aspect of human welfare suffers and diseases thrive. Right now, in the midst of COVID-19, this issue is more pressing than ever; without WASH we lose our first line of defence against the spread of the virus.\nThis campaign promotes awareness about the importance of WASH systems in low- and middle-income countries. We give you easy actions to advocate for WASH for all, and to support amazing WASH charities who are transforming the lives of millions.",
-    description_web: "1 in every 10 people still do not have access to clean water, and every minute a newborn child dies from an infection caused by a lack of this basic human right (WHO).<br>Without clean water, sanitation and hygiene (WASH), every aspect of human welfare suffers and diseases thrive. What’s more, rising populations and an increase of droughts and flooding has put even more pressure on water security.<br>Right now, in the midst of COVID-19, this issue is more pressing than ever; without WASH we lose our first line of defence against the spread of the virus. To make matters worse, for those living in overcrowded urban settlements and slums, physical distancing measures are impossible. With 3 billion people (that’s 2 in every 5) still without hand-washing facilities at home, the pandemic is exacerbating existing WASH inequalities, and placing huge pressures on the countries already struggling most.<br>This campaign promotes awareness about the importance of WASH systems in developing countries, not only for the current crisis, but for the long-term welfare of millions of people living in poverty. We give you easy actions to advocate for WASH for all, and to support amazing WASH charities who are transforming the lives of millions.",
+    description_web: '1 in every 10 people still do not have access to clean water, and every minute a newborn child dies from an infection caused by a lack of this basic human right (WHO).<br>Without clean water, sanitation and hygiene (WASH), every aspect of human welfare suffers and diseases thrive. What’s more, rising populations and an increase of droughts and flooding has put even more pressure on water security.<br>Right now, in the midst of COVID-19, this issue is more pressing than ever; without WASH we lose our first line of defence against the spread of the virus. To make matters worse, for those living in overcrowded urban settlements and slums, physical distancing measures are impossible. With 3 billion people (that’s 2 in every 5) still without hand-washing facilities at home, the pandemic is exacerbating existing WASH inequalities, and placing huge pressures on the countries already struggling most.<br>This campaign promotes awareness about the importance of WASH systems in developing countries, not only for the current crisis, but for the long-term welfare of millions of people living in poverty. We give you easy actions to advocate for WASH for all, and to support amazing WASH charities who are transforming the lives of millions.',
     number_of_campaigners: 0,
     header_image: 'https://images.unsplash.com/photo-1437914983566-976d85602771?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80',
     video_link: 'https://www.youtube.com/watch?v=h5vnFpWCOhQ',
     goals: ['Clean Water and Sanitation']
   }
 ]
-
 
 actions = [
   {
@@ -89,7 +90,6 @@ actions = [
   }
 ]
 
-
 articles = [
   {
     title: 'Article Title',
@@ -117,7 +117,7 @@ press_coverage_articles = [
   }
 ]
 
-press_coverage_articles.each do | article |
+press_coverage_articles.each do |article|
   PressCoverageArticle.create!(article)
 end
 
@@ -249,7 +249,7 @@ users = [
   }
 ]
 
-users.each{ | user | User.create!(user) }
+users.each { |user| User.create!(user) }
 action_for_blog = Action.create(campaign_id: Campaign.first.id, enabled: true)
 
 blog_articles = [
@@ -264,7 +264,7 @@ blog_articles = [
   }
 ]
 
-blog_articles.each do | blog_article | 
+blog_articles.each do |blog_article|
   BlogArticle.create!(blog_article)
 end
 
@@ -283,9 +283,9 @@ text_sections = [
   }
 ]
 
-text_sections.each do | text_section | 
+text_sections.each do |text_section|
   TextSection.create!(text_section)
-end 
+end
 
 image_sections = [
   {
@@ -295,7 +295,7 @@ image_sections = [
   }
 ]
 
-image_sections.each do | image_section |
+image_sections.each do |image_section|
   ImageSection.create!(image_section)
 end
 
@@ -305,7 +305,7 @@ tags = [
   }
 ]
 
-tags.each do | tag |
+tags.each do |tag|
   Tag.create!(tag)
 end
 
@@ -316,6 +316,6 @@ blog_tags = [
   }
 ]
 
-blog_tags.each do | blog_tag |
+blog_tags.each do |blog_tag|
   BlogTag.create!(blog_tag)
 end

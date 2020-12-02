@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ShortUrlClient
-  TOKEN = '43027f15c5cef9f67f624b6c849a076ba86c6aba'.freeze
+  TOKEN = '43027f15c5cef9f67f624b6c849a076ba86c6aba'
 
   def initialize(url:)
     @url = url

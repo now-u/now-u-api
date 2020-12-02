@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 module Reports
   class ReportHelpers
-    def initialize
-    end
+    def initialize; end
 
     def campaigns_per_user
       user_campaigns = UserCampaign.all.count
@@ -17,8 +18,8 @@ module Reports
 
     def top_users
       user_ids = UserAction.where(status: 'completed').all.pluck(:user_id)
-      counts = user_ids.group_by(&:itself).map { |k,v| [k, v.length] }.to_h.sort_by { |k,v| v }.reverse.take(5).to_h
+      counts = user_ids.group_by(&:itself).map { |k, v| [k, v.length] }.to_h.sort_by { |_k, v| v }.reverse.take(5).to_h
       User.where(id: counts.keys).map { |x| [x.email, counts[x.id]] }.to_h
     end
-  end  
+  end
 end

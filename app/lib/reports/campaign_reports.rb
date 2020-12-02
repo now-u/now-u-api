@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Reports
   class CampaignReports
     def initialize(args = {})
@@ -31,5 +33,4 @@ module Reports
       result
     end
   end
-
 end

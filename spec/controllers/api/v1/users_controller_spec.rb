@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Api::V1::UsersController, type: :controller do
@@ -12,7 +14,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
     let(:token) { user.token }
 
     subject(:delete_user) do
-      request.headers.merge!({ 'token' => token })
+      request.headers.merge!('token' => token)
       delete :destroy
     end
 
@@ -42,7 +44,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
     end
 
     subject(:update_user) do
-      request.headers.merge!({ 'token' => token })
+      request.headers.merge!('token' => token)
       put :update, params: user_params
     end
 
@@ -190,7 +192,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
     let(:token) { user.token }
 
     subject(:get_user) do
-      request.headers.merge!({ 'token' => token })
+      request.headers.merge!('token' => token)
       get :show
     end
 

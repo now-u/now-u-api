@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Api::V1::LearningTopicsController < ApplicationController
   def index
     render json: learning_topics, status: :ok

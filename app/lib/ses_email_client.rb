@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class SesEmailClient < EmailClient
   def send
-    awsregion = "eu-west-2"
+    awsregion = 'eu-west-2'
     ses = Aws::SES::Client.new(region: awsregion)
     response = ses.send_email(email_config)
     Rails.logger.info "User registration/login email sent; Email: #{@email}, Body: #{@body}; Response: #{response}"
@@ -9,32 +11,32 @@ class SesEmailClient < EmailClient
   private
 
   def email_config
-    encoding = "UTF-8"
-    sender = "Now-U Support <support@now-u.com>"
-    subject = "Now-u Account Login"
+    encoding = 'UTF-8'
+    sender = 'Now-U Support <support@now-u.com>'
+    subject = 'Now-u Account Login'
     {
       destination: {
         to_addresses: [
-          @email,
-        ],
+          @email
+        ]
       },
       message: {
         body: {
           html: {
             charset: encoding,
-            data: @body,
+            data: @body
           },
           text: {
             charset: encoding,
-            data: 'N/A',
-          },
+            data: 'N/A'
+          }
         },
         subject: {
           charset: encoding,
-          data: subject,
-        },
+          data: subject
+        }
       },
-    source: sender
+      source: sender
     }
   end
 end

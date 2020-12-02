@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Api::V1::UserLoginsController, type: :controller do
@@ -19,7 +21,7 @@ RSpec.describe Api::V1::UserLoginsController, type: :controller do
       it 'returns the permanent token' do
         login_user
 
-        expect(JSON.parse(response.body)).to eq({ 'data' => { 'token' => user.token } })
+        expect(JSON.parse(response.body)).to eq('data' => { 'token' => user.token })
       end
 
       it 'sets verified flag to true' do

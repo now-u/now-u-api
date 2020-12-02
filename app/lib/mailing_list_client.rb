@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MailingListClient
   def initialize
     @client = init_client
@@ -15,7 +17,7 @@ class MailingListClient
     additional_data = {}
     additional_data[:merge_fields] = { NAME: name } if name
     params = {
-      body: { email_address: email_address, status: "subscribed" }.merge(additional_data)
+      body: { email_address: email_address, status: 'subscribed' }.merge(additional_data)
     }
     response = @client.lists(list_id).members(membership_id(email_address)).upsert(params)
     Rails.logger.info "Subscriber added to/updated on list #{list_id}: #{params}, #{response.body}"
@@ -24,7 +26,7 @@ class MailingListClient
   end
 
   def remove_from_list(list_id:, email_address:)
-    response = @client.lists(list_id).members(membership_id(email_address)).update(body: { status: "unsubscribed" })
+    response = @client.lists(list_id).members(membership_id(email_address)).update(body: { status: 'unsubscribed' })
     Rails.logger.info "Subscriber #{email_address} removed from list #{list_id}: #{response.body}"
   rescue Gibbon::MailChimpError => e
     Rails.logger.error "Could not remove subscriber #{email_address} from list #{list_id}: #{e.message}"

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Api::V1::CampaignsController < ApplicationController
   before_action :set_user
 
@@ -16,7 +18,7 @@ class Api::V1::CampaignsController < ApplicationController
       campaigns = Campaign.where('end_date < ?', DateTime.now).all
     else
       campaigns = Campaign.active.all
-      campaigns = (campaigns + Campaign.current_and_future).uniq if @user && @user.campaign_admin?
+      campaigns = (campaigns + Campaign.current_and_future).uniq if @user&.campaign_admin?
     end
     campaigns
   end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # new user:
 #
 # 1. enter email
@@ -13,7 +15,6 @@
 #
 # 5. subsequent requests
 # headers['token'] = '883737733'
-
 
 Rails.application.routes.draw do
   namespace :api do

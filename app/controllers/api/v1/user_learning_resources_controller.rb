@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Api::V1::UserLearningResourcesController < ApplicationController
   before_action :set_user
 

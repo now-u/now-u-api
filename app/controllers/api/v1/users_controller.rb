@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class Api::V1::UsersController < ApplicationController
-  before_action :set_user, only: [:show, :update, :destroy]
+  before_action :set_user, only: %i[show update destroy]
 
   MAILCHIMP_LIST_ID = 'b604a851dc'
 
@@ -19,7 +21,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def create
-    user = User.find_by(email: user_params[:email]&.downcase) || User.create!(email: user_params[:email]&.downcase, full_name: user_params[:full_name], token: SecureRandom.hex(40), newsletter: params[:newsletter_signup] || false)
+    user = User.find_by(email: user_params[:email]&.downcase) || create_user
     send_registration_email(user)
     add_to_mailing_list(user) if params[:newsletter_signup]
 
@@ -31,6 +33,12 @@ class Api::V1::UsersController < ApplicationController
   end
 
   private
+
+  def create_user
+    newsletter_signup = params[:newsletter_signup] || false
+    User.create!(email: user_params[:email]&.downcase, full_name: user_params[:full_name],
+                 token: SecureRandom.hex(40), newsletter: newsletter_signup)
+  end
 
   def user_params
     params.permit(:email, :full_name, :location, :date_of_birth, :monthly_donation_limit, :home_owner, :organisation_code)
@@ -57,7 +65,7 @@ class Api::V1::UsersController < ApplicationController
     param_link = "https://now-u.com/loginMobile?token%3D#{short_token.token}&apn=com.nowu.app&isi=1516126639&ibi=com.nowu.app"
     url = "https://nowu.page.link/?link=#{param_link}"
     token = short_token.token
-    ERB.new(File.read( File.expand_path('app/views/login.html.erb') )).result(binding)
+    ERB.new(File.read(File.expand_path('app/views/login.html.erb'))).result(binding)
   end
 
   def organisation_id_from_code(code)
@@ -65,9 +73,4 @@ class Api::V1::UsersController < ApplicationController
 
     Organisation.find_by_code!(code).id
   end
-
-  # def email_body(user)
-  #   url = "https://now-u.com/loginMobile?token=#{user.token}&apn=com.nowu.app"
-  #   "<html><head></head><body>Thanks for registering! You can login with the following link:<br /><br /> <a href=\"https://nowu.page.link/?link=#{url}\">Click me</a></body></html>"
-  # end
 end

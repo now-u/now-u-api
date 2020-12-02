@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BlogArticle < ApplicationRecord
   belongs_to :user
   belongs_to :action
@@ -7,6 +9,5 @@ class BlogArticle < ApplicationRecord
   has_many :text_sections, dependent: :destroy
   has_many :image_sections, dependent: :destroy
   has_many :blog_tags
-  has_many :tags, :through => :blog_tags
-
+  has_many :tags, through: :blog_tags
 end
