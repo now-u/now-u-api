@@ -11,6 +11,6 @@ class Action < ApplicationRecord
   scope :active, lambda {
     where('enabled IS TRUE AND release_date IS NULL').or(
       where('enabled IS TRUE AND ? > release_date', DateTime.now)
-    )
+    ).where('end_date IS NULL OR end_date > ?', DateTime.now)
   }
 end
