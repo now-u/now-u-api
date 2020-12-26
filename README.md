@@ -40,3 +40,4 @@ To find out what needs doing checkout the [issues](https://github.com/now-u/now-
 
 ## Notes :memo:
 
+The endpoints for this repo is https://api.now-u.com/api/v1/campaigns (replace campaigns with whatever endpoint you need)
