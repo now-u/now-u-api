@@ -12,7 +12,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_201_112_193_421) do
+ActiveRecord::Schema.define(version: 2020_12_06_194424) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -28,6 +29,7 @@ ActiveRecord::Schema.define(version: 20_201_112_193_421) do
     t.float 'time'
     t.boolean 'enabled', default: false
     t.datetime 'release_date'
+    t.datetime 'end_date'
   end
 
   create_table 'articles', force: :cascade do |t|
@@ -130,6 +132,8 @@ ActiveRecord::Schema.define(version: 20_201_112_193_421) do
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
     t.string 'source'
+    t.datetime 'release_date'
+    t.datetime 'end_date'
   end
 
   create_table 'learning_topics', force: :cascade do |t|

@@ -2,24 +2,16 @@
 
 class Api::V1::LearningTopicsController < ApplicationController
   def index
-    render json: learning_topics, status: :ok
+    render json: learning_topics, root: 'data', status: :ok, adapter: :json
   end
 
   def show
-    topic = { data: LearningTopic.find(params[:id]) }
-
-    topic = topic.to_json(
-      include: [:learning_resources]
-    )
-    render json: topic, status: :ok
+    render json: LearningTopic.find(params[:id]), root: 'data', status: :ok, adapter: :json
   end
 
   private
 
   def learning_topics
-    data = { data: Campaign.find(params[:id]).learning_topics.order('priority ASC') }
-    data.to_json(
-      include: [:learning_resources]
-    )
+    Campaign.find(params[:id]).learning_topics.order('priority ASC')
   end
 end
