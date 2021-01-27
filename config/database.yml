@@ -1,8 +1,8 @@
 default: &default
   adapter: postgresql
-  host: db
-  username: test
-  password: test
+  # host: db
+  # username: test
+  # password: test
   encoding: unicode
   pool: 5
 
@@ -15,7 +15,6 @@ test:
   encoding: unicode
   pool: 5
   database: now_u_test
-
 
 production:
   <<: *default

@@ -27,7 +27,7 @@ Rails.application.routes.draw do
       put '/users/me', to: 'users#update'
       delete '/users/me', to: 'users#destroy'
       post '/users/login', to: 'user_logins#create'
-      post '/users/login-user', to: 'users#login_user'
+      post '/users/authenticate-user', to: 'users#authenticate_user'
       put '/users/me/newsletter/:status', to: 'user_newsletter_signup#update', constraints: { status: /(subscribe|unsubscribe)/ }
 
       get '/users/me/actions', to: 'user_actions#index'

@@ -226,4 +226,25 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       end
     end
   end
+
+  describe '#authenticate_user' do
+    
+    let(:user) { User.create(email: 'ok@ok.com', token: 'abc1234', verified: true) }
+    let(:email) { user.email }
+    let(:user_params) do
+      { email: email }
+    end
+    let(:worng_params) do
+      { email: "wrong@email.com"}
+    end
+    it 'should return status 200 if user exists' do
+      post :authenticate_user, params: user_params
+      expect(response).to have_http_status(200)
+    end 
+    it 'should return status 404 if no user found' do
+      post :authenticate_user, params: worng_params
+      expect(response).to have_http_status(404)
+    end
+  end
+  
 end
