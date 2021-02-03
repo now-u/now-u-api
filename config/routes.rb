@@ -29,7 +29,7 @@ Rails.application.routes.draw do
       post '/users/login', to: 'user_logins#create'
       post '/users/authenticate-user', to: 'users#authenticate_user'
       put '/users/me/newsletter/:status', to: 'user_newsletter_signup#update', constraints: { status: /(subscribe|unsubscribe)/ }
-      put '/users/me/newsletter_signup', to: 'user_newsletter_signup#toggle'
+      put '/users/me/newsletter_subscription_toggle', to: 'user_newsletter_signup#toggle'
 
       get '/users/me/actions', to: 'user_actions#index'
       post '/users/me/actions/:id/:status', to: 'user_actions#create', constraints: { status: /(complete|reject|favourite)/ }

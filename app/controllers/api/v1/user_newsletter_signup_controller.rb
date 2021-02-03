@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::UserNewsletterSignupController < ApplicationController
-  before_action :set_user
-
-  MAILCHIMP_LIST_ID = 'b604a851dc'
+  before_action :set_user, :set_mailing_list_id
 
   def update
     client = MailingListClient.new
