@@ -11,10 +11,6 @@ class ApplicationController < ActionController::API
     render json: {}, status: :unauthorized unless @user&.verified
   end
 
-  def set_mailing_list_id
-    MAILCHIMP_LIST_ID = 'b604a851dc'
-  end
-
   def user_response
     data = { data: @user.reload }
     data = data.to_json(
