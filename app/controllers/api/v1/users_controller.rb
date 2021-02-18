@@ -77,7 +77,12 @@ class Api::V1::UsersController < ApplicationController
   def email_body(user)
     host = request.base_url
     short_token = user.short_token
-    param_link = "https://now-u.com/loginMobile?token%3D#{short_token.token}&apn=com.nowu.app&isi=1516126639&ibi=com.nowu.app"
+    if params[:platform] == 'web'
+      # insert the web url here.
+      param_link = "https://www.example-link.com"
+    else 
+      param_link = "https://now-u.com/loginMobile?token%3D#{short_token.token}&apn=com.nowu.app&isi=1516126639&ibi=com.nowu.app"
+    end
     url = "https://nowu.page.link/?link=#{param_link}"
     token = short_token.token
     ERB.new(File.read(File.expand_path('app/views/login.html.erb'))).result(binding)
