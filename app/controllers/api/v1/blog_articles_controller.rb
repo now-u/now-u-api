@@ -4,7 +4,7 @@ class Api::V1::BlogArticlesController < ApplicationController
   before_action :validate_token, only: [:create]
 
   def index
-    data = BlogArticle.where(enabled: true)
+    data = BlogArticle.where(enabled: true).order(created_at: :desc)
     data = data.to_json(
       include: [:tags, user: { only: %i[full_name description profile_picture_url] }]
     )
