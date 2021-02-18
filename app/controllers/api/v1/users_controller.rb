@@ -77,7 +77,7 @@ class Api::V1::UsersController < ApplicationController
   def email_body(user)
     host = request.base_url
     short_token = user.short_token
-    if params[:platform] == 'web'
+    if params[:platform].downcase == 'web'
       # insert the web url here.
       param_link = "https://www.example-link.com"
     else 
