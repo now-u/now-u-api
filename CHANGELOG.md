@@ -13,6 +13,10 @@ The above is taken from: https://keepachangelog.com/en/1.0.0/
 
 ## The log
 
+### Unreleased: 
+
+- #36 [feature] Split the web and app sign in endpoints that are sent in the email (untested)
+
 ### Version 1.7.39
 
 - #338 [Changed] Configured Rubocop (Ruby Linter) and fixed some low hanging fruit
