@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_10_152948) do
+ActiveRecord::Schema.define(version: 2021_02_24_171004) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,12 @@ ActiveRecord::Schema.define(version: 2021_02_10_152948) do
     t.boolean "enabled", default: false
     t.datetime "release_date"
     t.datetime "end_date"
+  end
+
+  create_table "actions_causes", id: false, force: :cascade do |t|
+    t.bigint "cause_id", null: false
+    t.bigint "action_id", null: false
+    t.index ["cause_id", "action_id"], name: "index_actions_causes_on_cause_id_and_action_id"
   end
 
   create_table "app_versions", force: :cascade do |t|
@@ -104,6 +110,26 @@ ActiveRecord::Schema.define(version: 2021_02_10_152948) do
     t.datetime "end_date"
     t.string "short_name"
     t.string "infographic_url"
+  end
+
+  create_table "campaigns_causes", id: false, force: :cascade do |t|
+    t.bigint "cause_id", null: false
+    t.bigint "campaign_id", null: false
+  end
+
+  create_table "causes", force: :cascade do |t|
+    t.string "image"
+    t.string "icon"
+    t.string "name"
+    t.string "description"
+    t.integer "number_joiners"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "causes_learning_resources", id: false, force: :cascade do |t|
+    t.bigint "cause_id", null: false
+    t.bigint "learning_resource_id", null: false
   end
 
   create_table "faqs", force: :cascade do |t|

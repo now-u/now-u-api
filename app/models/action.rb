@@ -7,6 +7,7 @@ class Action < ApplicationRecord
   has_many :articles
   has_many :offers
   has_many :blog_articles
+  has_and_belongs_to_many :causes, optional: true
 
   scope :active, lambda {
     where('enabled IS TRUE AND release_date IS NULL').or(

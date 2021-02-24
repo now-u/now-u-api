@@ -13,6 +13,7 @@ class Campaign < ApplicationRecord
   has_many :campaign_goals
   has_many :goals, through: :campaign_goals
   has_many :user_campaigns
+  has_and_belongs_to_many :causes, optional: true
 
   scope :active, lambda {
     where('enabled IS TRUE AND start_date IS NULL AND end_date IS NULL').or(
