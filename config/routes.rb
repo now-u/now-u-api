@@ -17,6 +17,7 @@
 # headers['token'] = '883737733'
 
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   namespace :api do
     namespace :v1 do
       get '/quizzes', to: 'quiz#index'

@@ -18,6 +18,7 @@ gem 'rails', '~> 5.2.3'
 gem 'rspec-rails'
 gem 'sendgrid-ruby'
 gem 'rails-controller-testing'
+gem 'rails_admin' 
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
