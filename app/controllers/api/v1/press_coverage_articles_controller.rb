@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::PressCoverageArticlesController < ApplicationController
+class Api::V1::PressCoverageArticlesController < APIApplicationController
   def index
     render json: { data: PressCoverageArticle.all }, status: :ok
   end

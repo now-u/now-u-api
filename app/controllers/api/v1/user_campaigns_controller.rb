@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::UserCampaignsController < ApplicationController
+class Api::V1::UserCampaignsController < APIApplicationController
   before_action :set_user
 
   def index

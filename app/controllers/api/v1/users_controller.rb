@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::UsersController < ApplicationController
+class Api::V1::UsersController < APIApplicationController
   before_action :set_user, only: %i[show update destroy]
 
   MAILCHIMP_LIST_ID = 'b604a851dc'

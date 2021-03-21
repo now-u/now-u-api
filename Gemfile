@@ -19,6 +19,7 @@ gem 'rspec-rails'
 gem 'sendgrid-ruby'
 gem 'rails-controller-testing'
 gem 'rails_admin' 
+gem 'devise'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

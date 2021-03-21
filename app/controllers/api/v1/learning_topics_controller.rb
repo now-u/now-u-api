@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::LearningTopicsController < ApplicationController
+class Api::V1::LearningTopicsController < APIApplicationController
   def index
     render json: learning_topics, root: 'data', status: :ok, adapter: :json
   end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::UserOrganisationsController < ApplicationController
+class Api::V1::UserOrganisationsController < APIApplicationController
   before_action :set_user
 
   def update
