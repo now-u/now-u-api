@@ -17,8 +17,7 @@
 # headers['token'] = '883737733'
 
 Rails.application.routes.draw do
-  devise_for :admins
-  mount RailsAdmin::Engine => '/', as: 'rails_admin'
+  root to: 'application#index'
   namespace :api do
     namespace :v1 do
       get '/quizzes', to: 'quiz#index'
@@ -77,5 +76,9 @@ Rails.application.routes.draw do
       post '/app_released', to: 'app_version#check'
     end
   end
+  
+  devise_for :admins
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  
   get '/reports', to: 'reports#index'
 end
