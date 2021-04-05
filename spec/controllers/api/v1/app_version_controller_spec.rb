@@ -2,13 +2,13 @@ require 'rails_helper'
 require 'byebug'
 RSpec.describe Api::V1::AppVersionController, type: :controller do
     describe 'check' do
-        let(:last_version) { AppVersion.create!(version_number: '1.1.2', compatible_with_current_api: true, release_notes: "Released")}
-        let(:previous_version) { AppVersion.create!(version_number: '1.1.1', compatible_with_current_api: true, release_notes: "Old, but still ok to use")}
-        let(:depreciated_version) { AppVersion.create!(version_number: '1.1.0', compatible_with_current_api: false, release_notes: "Depreciated")}
+        last_version = AppVersion.create!(version_number: '1.1.2', compatible_with_current_api: true, release_notes: "Released")
+        previous_version = AppVersion.create!(version_number: '1.1.1', compatible_with_current_api: true, release_notes: "Old, but still ok to use")
+        depreciated_version = AppVersion.create!(version_number: '1.1.0', compatible_with_current_api: false, release_notes: "Depreciated")
         ok_params = {version_number: '1.1.2'}
         still_ok_params = {version_number: '1.1.1'}
         depreciated_params = {version_number: '1.1.0'}
-byebug
+
         it 'should return status ok if version is equal with last_version' do
             post :check, params: ok_params
             expect(response).to have_http_status(200)
