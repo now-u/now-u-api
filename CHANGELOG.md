@@ -16,10 +16,10 @@ The above is taken from: https://keepachangelog.com/en/1.0.0/
 ### Unreleased: 
 
 - #36 [feature] Split the web and app sign in endpoints that are sent in the email (untested)
+- #37 [Added] Created an endpoint to toggle the user Mailchimp subscription
+- #38 [Changed] Configured posts order by created_at
+- #39 [Added] Created an endpoint to check if the app version is still compatible or not
 
 ### Version 1.7.39
 
 - #338 [Changed] Configured Rubocop (Ruby Linter) and fixed some low hanging fruit
-- #339 [Added] Created an endpoint to toggle the user Mailchimp subscription
-- #340 [Changed] Configured posts order by created_at
-- #341 [Added] Created an endpoint to check if the app version is still compatible or not
