@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'byebug'
 
 RSpec.describe Api::V1::SearchController, type: :controller do
     describe "#search" do

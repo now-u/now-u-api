@@ -1,5 +1,5 @@
 require 'rails_helper'
-require 'byebug'
+
 RSpec.describe Api::V1::AppVersionController, type: :controller do
     describe 'check' do
         last_version = AppVersion.create!(version_number: '1.1.2', compatible_with_current_api: true, release_notes: "Released")
@@ -19,7 +19,7 @@ RSpec.describe Api::V1::AppVersionController, type: :controller do
         end
         it 'should return status 299 if version is is not compatible with api' do
             post :check, params: depreciated_params
-            expect(response).to have_http_status(299)
+            expect(response.body).to have_http_status(299)
         end
     end
 end

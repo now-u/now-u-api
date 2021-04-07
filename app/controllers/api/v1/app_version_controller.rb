@@ -5,9 +5,9 @@ class Api::V1::AppVersionController < ApplicationController
 
         if version.version_number == last_version.version_number 
             render json: {}, status: :ok
-        elsif version.compatible_with_current_api == true
+        elsif version.compatible_with_current_api
             render :text => 'UPDATE AVAILABLE', status: :ok
-        elsif version.compatible_with_current_api == false
+        else
             render :text  => 'DEPRECIATED', :status => 299
         end
     end
