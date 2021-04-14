@@ -6,7 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.5.0'
 
 gem 'active_hash', '~> 3.1'
-gem 'active_model_serializers', '~> 0.10.10'
+gem 'active_model_serializers', '~> 0.10.12'
 gem 'aws-sdk-ses', '~> 1.32'
 gem 'aws-sdk-sns', '~> 1.27'
 gem 'bitly', '~> 2.0', '>= 2.0.1'
