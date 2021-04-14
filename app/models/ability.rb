@@ -2,64 +2,75 @@
 
 class Ability
   include CanCan::Ability
-  ADMIN_MODEL_LIST = [ 
+  UNRESTRICTED_MODEL_LIST = [ 
     Action,
-    Article, 
-    Admin,
-    CampaignGoal, 
+    Article,
+    BlogArticle,
+    CampaignGoal,
     Campaign,
-    Goal, 
-    Faq, 
-    LearningResource, 
-    LearningTopic, 
-    Notification, 
-    Offer, 
+    Goal,
+    Faq,
+    LearningResource,
+    LearningTopic,
+    Notification,
+    Offer,
     Organisation,
     Partnership
   ]
-  def initialize(user)
-    # Define abilities for the passed in user here. For example:
-    #
-    #   user ||= User.new # guest user (not logged in)
-    #   if user.admin?
-    #     can :manage, :all
-    #   else
-    #     can :read, :all
-    #   end
-    #
-    # The first argument to `can` is the action you are giving the user
-    # permission to do.
-    # If you pass :manage it will apply to every action. Other common actions
-    # here are :read, :create, :update and :destroy.
-    #
-    # The second argument is the resource the user can perform the action on.
-    # If you pass :all it will apply to every resource. Otherwise pass a Ruby
-    # class of the resource.
-    #
-    # The third argument is an optional hash of conditions to further filter the
-    # objects.
-    # For example, here the user can only update published articles.
-    #
-    #   can :update, Article, :published => true
-    #
-    # See the wiki for details:
-    # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
-    
-    can :access, :rails_admin   # grant access to rails_admin
-    can :read, :dashboard       # grant access to the dashboard
-    
-    can :read, ADMIN_MODEL_LIST
-    can :manage, Campaign
-    # HERE ARE SOME EXAMPLES OF HOW WE CAN USE CANCAN TO AUTHORISE
-    # return unless user && user.admin?
-    # can :access, :rails_admin       # only allow admin users to access Rails Admin
-    # can :read, :dashboard           # allow access to dashboard
-    # if user.role? :superadmin
-    #   can :manage, :all             # allow superadmins to do anything
-    # elsif user.role? :manager
-    #   can :manage, [User, Product]  # allow managers to do anything to products and users
-    # elsif user.role? :sales
-    #   can :update, Product, hidden: false  # allow sales to only update visible products
-    # end
+
+  MODEL_LIST = [
+    Admin,
+    User
+  ] + UNRESTRICTED_MODEL_LIST
+
+  def initialize(admin)
+    can :access, :rails_admin   # grant access to rails_admin for everyone
+    can :read, :dashboard       # grant access to the dashboard for everyone
+    can :read, UNRESTRICTED_MODEL_LIST
+
+    if admin.has_permission(Admin.admin_roles[:campaign_researcher])
+      can :manage, [
+        Campaign,
+        Action,
+        LearningResource,
+        LearningTopic,
+        Partnership,
+        Organisation,
+        CampaignGoal
+      ]
+    end
+
+    if admin.has_permission(Admin.admin_roles[:blog_writer])
+      can :manage, [
+        BlogArticle,
+        BlogTag,
+        ImageSection,
+        TextSection
+      ]
+    end
+
+    if admin.has_permission(Admin.admin_roles[:internal_notifications])
+      can :manage, [
+        Notification
+      ]
+      # Lets add an action to be able to release these notifications as well
+    end
+
+    if admin.has_permission(Admin.admin_roles[:news])
+      can :manage, [
+        Article
+      ]
+    end
+
+    if admin.has_permission(Admin.admin_roles[:partners])
+      can :manage, [
+        Partnership,
+        Organisation
+      ]
+    end
+
+    if admin.has_permission(Admin.admin_roles[:superuser])
+      can :manage, MODEL_LIST
+    end
   end
 end
