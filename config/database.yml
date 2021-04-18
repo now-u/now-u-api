@@ -16,7 +16,6 @@ test:
   pool: 5
   database: now_u_test
 
-
 production:
   <<: *default
   database: <%= ENV['NOW_U_DATABASE_DATABASE'] %>

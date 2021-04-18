@@ -27,7 +27,11 @@ Rails.application.routes.draw do
       put '/users/me', to: 'users#update'
       delete '/users/me', to: 'users#destroy'
       post '/users/login', to: 'user_logins#create'
+      post '/users/authenticate-user', to: 'users#authenticate_user'
       put '/users/me/newsletter/:status', to: 'user_newsletter_signup#update', constraints: { status: /(subscribe|unsubscribe)/ }
+      get '/users/me/newletter', to: 'user_newsletter_signup#check_user' # Returns true if user is on mailing list
+      post '/users/me/newletter', to: 'user_newsletter_signup#add_user' # Adds user to the mailing list
+      delete '/users/me/newletter', to: 'user_newsletter_signup#remove_user' # Removes user from the mailing list
 
       get '/users/me/actions', to: 'user_actions#index'
       post '/users/me/actions/:id/:status', to: 'user_actions#create', constraints: { status: /(complete|reject|favourite)/ }
@@ -65,6 +69,8 @@ Rails.application.routes.draw do
       get '/press_coverage/:id', to: 'press_coverage_articles#show'
       post '/blogs/create', to: 'blog_articles#create'
       get '/learning_topics/:id', to: 'learning_topics#show'
+
+      post '/app_released', to: 'app_version#check'
     end
   end
   get '/reports', to: 'reports#index'

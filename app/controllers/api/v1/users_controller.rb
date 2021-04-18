@@ -21,11 +21,22 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def create
-    user = User.find_by(email: user_params[:email]&.downcase) || create_user
+    user = authenticate_user || create_user
     send_registration_email(user)
     add_to_mailing_list(user) if params[:newsletter_signup]
 
     render json: {}, status: :ok
+  end
+
+  def authenticate_user
+    user = find_user
+    if user
+      send_registration_email(user)
+      
+      render json: {}, status: :ok
+    else
+      render :text => 'Not Found', :status => 404
+    end
   end
 
   def show
@@ -33,6 +44,10 @@ class Api::V1::UsersController < ApplicationController
   end
 
   private
+
+  def find_user
+    user = User.find_by(email: user_params[:email]&.downcase)
+  end
 
   def create_user
     newsletter_signup = params[:newsletter_signup] || false
@@ -62,7 +77,12 @@ class Api::V1::UsersController < ApplicationController
   def email_body(user)
     host = request.base_url
     short_token = user.short_token
-    param_link = "https://now-u.com/loginMobile?token%3D#{short_token.token}&apn=com.nowu.app&isi=1516126639&ibi=com.nowu.app"
+    if params[:platform] == 'web'
+      # insert the web url here.
+      param_link = "https://www.example-link.com"
+    else 
+      param_link = "https://now-u.com/loginMobile?token%3D#{short_token.token}&apn=com.nowu.app&isi=1516126639&ibi=com.nowu.app"
+    end
     url = "https://nowu.page.link/?link=#{param_link}"
     token = short_token.token
     ERB.new(File.read(File.expand_path('app/views/login.html.erb'))).result(binding)
