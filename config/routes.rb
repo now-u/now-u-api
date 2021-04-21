@@ -70,6 +70,7 @@ Rails.application.routes.draw do
       post '/blogs/create', to: 'blog_articles#create'
       get '/learning_topics/:id', to: 'learning_topics#show'
       get '/search', to: 'search#index'
+      get '/:model/search', to: 'search#search'
 
       post '/app_released', to: 'app_version#check'
     end

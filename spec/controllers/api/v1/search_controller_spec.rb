@@ -45,8 +45,21 @@ RSpec.describe Api::V1::SearchController, type: :controller do
             expect(lrs.size).to eq(2)
             actions = JSON.parse(response.body)["result"]["actions"]
             expect(actions.size).to eq(2)
-
-            
+        end
+        it "should return only campaings" do
+            get :search, params: { model: "campaigns", query: "test" }, as: :json
+            campaigns = JSON.parse(response.body)["result"]["campaigns"]
+            expect(campaigns.size).to eq(2)
+        end
+        it "should return only learning resources" do
+            get :search, params: { model: "learning_resources", query: "test" }, as: :json
+            lrs = JSON.parse(response.body)["result"]["learning_resources"]
+            expect(lrs.size).to eq(2)
+        end
+        it "should return only actions" do
+            get :search, params: { model: "actions", query: "test" }, as: :json
+            actions = JSON.parse(response.body)["result"]["actions"]
+            expect(actions.size).to eq(2)
         end
     end
 end
