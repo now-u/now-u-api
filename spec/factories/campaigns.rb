@@ -1,16 +1,16 @@
 FactoryBot.define do
   factory :campaign do
-    title { "Raising awareness on plastic pollution" }
-    description_app  { "A detailed description on raising awareness" }
+    title { Faker::Marketing.buzzwords }
+    description_app  { Faker::Lorem.sentence }
     header_image { nil }
-    created_at { Time.now }
-    updated_at { Time.now }
+    created_at { Faker::Date.in_date_period }
+    updated_at { Faker::Date.in_date_period }
     video_link { nil }
     description_web { nil }
     enabled { true }
-    start_date { Time.now }
-    end_date { Time.now }
-    short_name { 'Plastic Pollution' }
+    start_date { Faker::Date.in_date_period }
+    end_date { Faker::Date.in_date_period }
+    short_name { Faker::Hipster.sentence }
     infographic_url { nil }
   end
 end

@@ -22,6 +22,7 @@ gem 'rails_admin'
 gem 'devise'
 gem 'cancancan'
 gem 'factory_bot_rails'
+gem 'faker'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

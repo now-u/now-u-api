@@ -1,16 +1,16 @@
 FactoryBot.define do
   factory :action do
-    title { "Raising awareness on plastic pollution" }
-    link  { "A detailed description on raising awareness" }
+    title { Faker::Marketing.buzzwords }
+    link  { nil }
     type { nil }
     campaign_id { create(:campaign).id }
-    created_at { Time.now }
-    updated_at { Time.now }
+    created_at { Faker::Date.in_date_period }
+    updated_at { Faker::Date.in_date_period }
     what_description { nil }
     why_description { nil }
     time { true }
     enabled { true }
-    release_date { Time.now }
-    end_date { Time.now }
+    release_date { Faker::Date.in_date_period }
+    end_date { Faker::Date.in_date_period }
   end
 end

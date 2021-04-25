@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :blog_article do
-    title { "A blog title" }
-    subtitle  { "A blog subtitle" }
+    title { Faker::Marketing.buzzwords }
+    subtitle  { Faker::Lorem.sentence }
     action_id { create(:action).id }
     user_id { User.first&.id || create(:user).id }
     campaign_id { create(:campaign).id }
@@ -9,7 +9,7 @@ FactoryBot.define do
     enabled { true }
     header_image { nil }
     tags { [] }
-    # created_at { Time.now }
-    # updated_at { "2021-04-25T12:29:12.068Z" }
+    created_at { Faker::Date.in_date_period }
+    updated_at { Faker::Date.in_date_period }
   end
 end
