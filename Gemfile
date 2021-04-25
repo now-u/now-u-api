@@ -21,6 +21,7 @@ gem 'rails-controller-testing'
 gem 'rails_admin' 
 gem 'devise'
 gem 'cancancan'
+gem 'factory_bot_rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

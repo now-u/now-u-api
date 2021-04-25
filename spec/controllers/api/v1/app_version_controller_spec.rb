@@ -9,6 +9,15 @@ RSpec.describe Api::V1::AppVersionController, type: :controller do
         still_ok_params = {version_number: '1.1.1'}
         depreciated_params = {version_number: '1.1.0'}
 
+        before do 
+            depreciated_version
+            previous_version
+            last_version
+            ok_params
+            still_ok_params
+            depreciated_params
+        end
+
         it 'should return status ok if version is equal with last_version' do
             post :check, params: ok_params
             expect(response).to have_http_status(200)
@@ -19,7 +28,7 @@ RSpec.describe Api::V1::AppVersionController, type: :controller do
         end
         it 'should return status 299 if version is is not compatible with api' do
             post :check, params: depreciated_params
-            expect(response.body).to have_http_status(299)
+            expect(response).to have_http_status(299)
         end
     end
 end

@@ -21,7 +21,7 @@ class Api::V1::UsersController < APIApplicationController
   end
 
   def create
-    user = authenticate_user || create_user
+    user = find_user || create_user
     send_registration_email(user)
     add_to_mailing_list(user) if params[:newsletter_signup]
 
@@ -32,10 +32,10 @@ class Api::V1::UsersController < APIApplicationController
     user = find_user
     if user
       send_registration_email(user)
-      
+
       render json: {}, status: :ok
     else
-      render :text => 'Not Found', :status => 404
+      render text: 'Not Found', status: 404
     end
   end
 
