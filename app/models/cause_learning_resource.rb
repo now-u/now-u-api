@@ -1,0 +1,2 @@
+class CauseLearningResource < ApplicationRecord
+end
