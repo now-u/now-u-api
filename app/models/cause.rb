@@ -1,6 +1,10 @@
 class Cause < ApplicationRecord
-  # do has and belongs to many relationship to actions here
-  # do has and belongs to many relationship to users here
-  # do has and belongs to many relationship to campaigns here
-  # do has and belongs to many relationship to learning_resources here
+  has_many :cause_actions, dependent: :destroy
+  has_many :actions, through: :cause_actions
+
+  has_many :cause_learning_resources, dependent: :destroy
+  has_many :learning_resources, through: :cause_learning_resources
+
+  has_many :cause_campaigns, dependent: :destroy
+  has_many :campaigns, through: :cause_campaigns
 end

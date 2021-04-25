@@ -1,5 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe CauseCampaign, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe CauseCampaign do
+  subject { build(:cause_campaign) }
+
+  describe "associations" do
+    it { is_expected.to belong_to(:cause) }
+    it { is_expected.to belong_to(:campaign) }
+  end
 end

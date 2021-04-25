@@ -11,4 +11,7 @@ class LearningResource < ApplicationRecord
   scope :active, lambda {
     where('release_date IS NULL OR ? > release_date', DateTime.now).where('end_date IS NULL OR end_date > ?', DateTime.now)
   }
+
+  has_many :cause_learning_resources, dependent: :destroy
+  has_many :causes, through: :cause_learning_resources
 end

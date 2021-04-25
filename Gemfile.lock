@@ -284,6 +284,8 @@ GEM
       tilt
     sendgrid-ruby (6.4.0)
       ruby_http_client (~> 3.4)
+    shoulda-matchers (4.5.1)
+      activesupport (>= 4.2.0)
     spring (2.1.1)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -337,6 +339,7 @@ DEPENDENCIES
   rspec-rails
   rubocop
   sendgrid-ruby
+  shoulda-matchers (~> 4.0)
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data

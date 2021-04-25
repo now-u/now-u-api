@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :blog_article do
     title { Faker::Marketing.buzzwords }
@@ -5,11 +7,9 @@ FactoryBot.define do
     action_id { create(:action).id }
     user_id { User.first&.id || create(:user).id }
     campaign_id { create(:campaign).id }
-    reading_time { nil }
+    reading_time { Faker::Number.number(digits: [1, 2].sample) }
     enabled { true }
-    header_image { nil }
+    header_image { Faker::Internet.url }
     tags { [] }
-    created_at { Faker::Date.in_date_period }
-    updated_at { Faker::Date.in_date_period }
   end
 end

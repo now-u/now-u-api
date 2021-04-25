@@ -1,14 +1,14 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :action do
     title { Faker::Marketing.buzzwords }
-    link  { nil }
+    link  { Faker::Internet.url }
     type { nil }
     campaign_id { create(:campaign).id }
-    created_at { Faker::Date.in_date_period }
-    updated_at { Faker::Date.in_date_period }
-    what_description { nil }
-    why_description { nil }
-    time { true }
+    what_description { Faker::Lorem.sentence }
+    why_description { Faker::Lorem.sentence }
+    time { 0.1 }
     enabled { true }
     release_date { Faker::Date.in_date_period }
     end_date { Faker::Date.in_date_period }

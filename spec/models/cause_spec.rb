@@ -1,5 +1,13 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe Cause, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Cause do
+  subject { build(:cause) }
+
+  describe "associations" do
+    it { should have_many(:learning_resources) }
+    it { should have_many(:actions) }
+    it { should have_many(:campaigns) }
+  end
 end

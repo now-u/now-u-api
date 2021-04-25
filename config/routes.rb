@@ -73,6 +73,8 @@ Rails.application.routes.draw do
       get '/search', to: 'search#index'
       get '/:model/search', to: 'search#search'
 
+      resources :causes
+
       post '/app_released', to: 'app_version#check'
     end
   end
