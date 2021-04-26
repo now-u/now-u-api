@@ -8,6 +8,9 @@ class Action < ApplicationRecord
   has_many :offers
   has_many :blog_articles
 
+  include PgSearch::Model
+  pg_search_scope :search, against: [:title, :type, :what_description, :why_description]
+
   scope :active, lambda {
     where('enabled IS TRUE AND release_date IS NULL').or(
       where('enabled IS TRUE AND ? > release_date', DateTime.now)

@@ -14,6 +14,9 @@ class Campaign < ApplicationRecord
   has_many :goals, through: :campaign_goals
   has_many :user_campaigns
 
+  include PgSearch::Model
+  pg_search_scope :search, against: [:title, :description_app, :description_web]
+
   scope :active, lambda {
     where('enabled IS TRUE AND start_date IS NULL AND end_date IS NULL').or(
       where('enabled IS TRUE AND (? > start_date AND ? < end_date)', DateTime.now, DateTime.now)
