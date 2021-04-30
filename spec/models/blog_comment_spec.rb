@@ -2,6 +2,8 @@
 
 require 'rails_helper'
 
-RSpec.describe BlogComment, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe BlogComment do
+  subject { build(:blog_comment) }
+
+  it { should be_valid }
 end

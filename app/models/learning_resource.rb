@@ -6,7 +6,7 @@ class LearningResource < ApplicationRecord
   belongs_to :learning_topic
 
   include PgSearch::Model
-  pg_search_scope :search, against: [:title, :type]
+  pg_search_scope :search, against: %i[title type]
 
   scope :active, lambda {
     where('release_date IS NULL OR ? > release_date', DateTime.now).where('end_date IS NULL OR end_date > ?', DateTime.now)

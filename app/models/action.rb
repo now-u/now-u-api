@@ -9,7 +9,7 @@ class Action < ApplicationRecord
   has_many :blog_articles
 
   include PgSearch::Model
-  pg_search_scope :search, against: [:title, :type, :what_description, :why_description]
+  pg_search_scope :search, against: %i[title type what_description why_description]
 
   has_many :cause_actions, dependent: :destroy
   has_many :causes, through: :cause_actions

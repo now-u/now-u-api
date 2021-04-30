@@ -11,10 +11,13 @@ gem 'aws-sdk-ses', '~> 1.32'
 gem 'aws-sdk-sns', '~> 1.27'
 gem 'bitly', '~> 2.0', '>= 2.0.1'
 gem 'database_cleaner'
+gem 'factory_bot_rails'
+gem 'faker'
 gem 'gibbon', '~> 3.3', '>= 3.3.4'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 gem 'rails', '~> 5.2.3'
+gem 'rails-controller-testing'
 gem 'rspec-rails'
 gem 'sendgrid-ruby'
 gem 'rails-controller-testing'
@@ -48,5 +51,5 @@ group :development do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'pg_search'
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

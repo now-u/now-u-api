@@ -2,6 +2,8 @@
 
 require 'rails_helper'
 
-RSpec.describe Action, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Action do
+  subject { build(:action) }
+
+  it { should be_valid }
 end

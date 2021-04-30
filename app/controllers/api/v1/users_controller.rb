@@ -46,7 +46,7 @@ class Api::V1::UsersController < APIApplicationController
   private
 
   def find_user
-    user = User.find_by(email: user_params[:email]&.downcase)
+    User.find_by(email: user_params[:email]&.downcase)
   end
 
   def create_user
@@ -77,12 +77,12 @@ class Api::V1::UsersController < APIApplicationController
   def email_body(user)
     host = request.base_url
     short_token = user.short_token
-    if params[:platform] == 'web'
-      # insert the web url here.
-      param_link = "https://www.example-link.com"
-    else 
-      param_link = "https://now-u.com/loginMobile?token%3D#{short_token.token}&apn=com.nowu.app&isi=1516126639&ibi=com.nowu.app"
-    end
+    param_link = if params[:platform] == 'web'
+                   # insert the web url here.
+                   'https://www.example-link.com'
+                 else
+                   "https://now-u.com/loginMobile?token%3D#{short_token.token}&apn=com.nowu.app&isi=1516126639&ibi=com.nowu.app"
+                 end
     url = "https://nowu.page.link/?link=#{param_link}"
     token = short_token.token
     ERB.new(File.read(File.expand_path('app/views/login.html.erb'))).result(binding)

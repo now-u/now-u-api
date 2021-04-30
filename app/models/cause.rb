@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Cause < ApplicationRecord
   has_many :cause_actions, dependent: :destroy
   has_many :actions, through: :cause_actions

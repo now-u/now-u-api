@@ -2,6 +2,8 @@
 
 require 'rails_helper'
 
-RSpec.describe PressCoverageArticle, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe PressCoverageArticle do
+  subject { build(:press_coverage_article) }
+
+  it { should be_valid }
 end

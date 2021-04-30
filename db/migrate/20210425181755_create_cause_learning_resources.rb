@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateCauseLearningResources < ActiveRecord::Migration[5.2]
   def change
     create_table :cause_learning_resources do |t|

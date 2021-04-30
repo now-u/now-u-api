@@ -9,7 +9,7 @@ class Api::V1::CausesController < ApplicationController
     render json: Cause.find(params[:id])
   end
 
-private
+  private
 
   def causes
     Cause.all
