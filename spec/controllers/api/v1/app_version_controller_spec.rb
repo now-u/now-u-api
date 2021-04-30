@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Api::V1::AppVersionController, type: :controller do
     describe 'check' do
-        last_version = AppVersion.create!(version_number: '1.1.2', compatible_with_current_api: true, release_notes: "Released")
-        previous_version = AppVersion.create!(version_number: '1.1.1', compatible_with_current_api: true, release_notes: "Old, but still ok to use")
         depreciated_version = AppVersion.create!(version_number: '1.1.0', compatible_with_current_api: false, release_notes: "Depreciated")
+        previous_version = AppVersion.create!(version_number: '1.1.1', compatible_with_current_api: true, release_notes: "Old, but still ok to use")
+        last_version = AppVersion.create!(version_number: '1.1.2', compatible_with_current_api: true, release_notes: "Released")
         ok_params = {version_number: '1.1.2'}
         still_ok_params = {version_number: '1.1.1'}
         depreciated_params = {version_number: '1.1.0'}

@@ -2,6 +2,15 @@
 
 require 'rails_helper'
 
-RSpec.describe TextSection, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe TextSection do
+  subject { build(:text_section) }
+
+  context "when valid" do
+    it { should be_valid }
+  end
+
+  context "when not valid" do
+    subject { build(:text_section, blog_article_id: nil)}
+    it { should_not be_valid }
+  end
 end

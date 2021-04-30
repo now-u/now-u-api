@@ -2,6 +2,9 @@
 
 require 'rails_helper'
 
-RSpec.describe UserAction, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe UserAction do
+  subject { create(:user_action) }
+
+  it { should belong_to(:user) }
+  it { should belong_to(:action) }
 end

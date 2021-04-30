@@ -8,6 +8,9 @@ default: &default
 
 development:
   <<: *default
+  host: 
+  username: 
+  password: 
   database: now_u_development
 
 test:
