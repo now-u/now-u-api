@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddEndDateToActionsAndLearningResources < ActiveRecord::Migration[5.2]
   def change
     add_column :actions, :end_date, :datetime

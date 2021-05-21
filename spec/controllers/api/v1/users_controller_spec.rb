@@ -97,7 +97,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
 
   describe '#create' do
     let(:email) { 'ok@ok.com' }
-    let(:email_client) { instance_double(EmailClient, send: 'ok') }
+    let(:email_client) { instance_double(SesEmailClient, send: 'ok') }
     let(:newsletter_client) { instance_double(MailingListClient, add_to_list: 'ok') }
 
     let(:user_params) do
@@ -105,7 +105,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
     end
 
     before do
-      allow(EmailClient).to receive(:new).and_return(email_client)
+      allow(SesEmailClient).to receive(:new).and_return(email_client)
       allow(MailingListClient).to receive(:new).and_return(newsletter_client)
       allow(Gibbon::Request).to receive(:new).and_return(instance_double(Gibbon::Request))
     end
@@ -237,6 +237,12 @@ RSpec.describe Api::V1::UsersController, type: :controller do
     let(:worng_params) do
       { email: "wrong@email.com"}
     end
+    let(:email_client) { instance_double(SesEmailClient, send: 'ok') }
+
+    before do
+      allow(SesEmailClient).to receive(:new).and_return(email_client)
+    end
+    
     it 'should return status 200 if user exists' do
       post :authenticate_user, params: user_params
       expect(response).to have_http_status(200)

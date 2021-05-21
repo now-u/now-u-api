@@ -2,6 +2,8 @@
 
 require 'rails_helper'
 
-RSpec.describe LearningResource, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe LearningResource do
+  subject { build(:learning_resource) }
+
+  it { should be_valid }
 end

@@ -3,14 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::UserCampaignsController, type: :controller do
-  let(:user) { User.create(email: 'ok@ok.com', token: 'abc1234', verified: true, points: points) }
-  let(:campaign) { Campaign.create!(title: 'My campaign') }
+  let(:user) { create(:user, points: points) }
+  let(:campaign) { create(:campaign) }
 
   describe '#create' do
     let(:points) { 0 }
-
     subject(:create_user_campaign) do
-      request.headers.merge!('token' => 'abc1234')
+      request.headers.merge!('token' => user.token )
       post :create, params: { id: campaign.id }
     end
 
@@ -31,7 +30,7 @@ RSpec.describe Api::V1::UserCampaignsController, type: :controller do
     end
 
     subject(:destroy_user_campaign) do
-      request.headers.merge!('token' => 'abc1234')
+      request.headers.merge!('token' => user.token)
       delete :destroy, params: { id: campaign.id }
     end
 

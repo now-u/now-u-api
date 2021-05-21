@@ -15,7 +15,7 @@ module Reports
                                                               .pluck(:learning_resource_id)
                                                               .group_by(&:itself)
                                                               .transform_values(&:count)
-      campaign_learning_resource_counts.map { |k, v| [campaign_learning_resource_reference[k], v] }.to_h
+      campaign_learning_resource_counts.transform_keys { |k| campaign_learning_resource_reference[k] }
     end
 
     def number_of_campaign_supporters

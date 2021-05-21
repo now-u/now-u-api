@@ -2,6 +2,9 @@
 
 require 'rails_helper'
 
-RSpec.describe UserNotification, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe UserNotification do
+  subject { create(:user_notification) }
+
+  it { should belong_to(:user) }
+  it { should belong_to(:notification) }
 end

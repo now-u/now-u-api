@@ -2,6 +2,8 @@
 
 require 'rails_helper'
 
-RSpec.describe BlogArticle, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe BlogArticle do
+  subject { build(:blog_article) }
+
+  it { should be_valid }
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_14_183633) do
+ActiveRecord::Schema.define(version: 2021_04_25_181849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -125,9 +125,31 @@ ActiveRecord::Schema.define(version: 2021_04_14_183633) do
     t.string "infographic_url"
   end
 
-  create_table "campaigns_causes", id: false, force: :cascade do |t|
+  create_table "cause_actions", force: :cascade do |t|
+    t.bigint "cause_id", null: false
+    t.bigint "action_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["action_id"], name: "index_cause_actions_on_action_id"
+    t.index ["cause_id"], name: "index_cause_actions_on_cause_id"
+  end
+
+  create_table "cause_campaigns", force: :cascade do |t|
     t.bigint "cause_id", null: false
     t.bigint "campaign_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["campaign_id"], name: "index_cause_campaigns_on_campaign_id"
+    t.index ["cause_id"], name: "index_cause_campaigns_on_cause_id"
+  end
+
+  create_table "cause_learning_resources", force: :cascade do |t|
+    t.bigint "cause_id", null: false
+    t.bigint "learning_resource_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cause_id"], name: "index_cause_learning_resources_on_cause_id"
+    t.index ["learning_resource_id"], name: "index_cause_learning_resources_on_learning_resource_id"
   end
 
   create_table "causes", force: :cascade do |t|
@@ -135,14 +157,9 @@ ActiveRecord::Schema.define(version: 2021_04_14_183633) do
     t.string "icon"
     t.string "name"
     t.string "description"
-    t.integer "number_joiners"
+    t.integer "joiners"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "causes_learning_resources", id: false, force: :cascade do |t|
-    t.bigint "cause_id", null: false
-    t.bigint "learning_resource_id", null: false
   end
 
   create_table "faqs", force: :cascade do |t|
@@ -349,6 +366,12 @@ ActiveRecord::Schema.define(version: 2021_04_14_183633) do
     t.integer "user_role_id"
   end
 
+  add_foreign_key "cause_actions", "actions"
+  add_foreign_key "cause_actions", "causes"
+  add_foreign_key "cause_campaigns", "campaigns"
+  add_foreign_key "cause_campaigns", "causes"
+  add_foreign_key "cause_learning_resources", "causes"
+  add_foreign_key "cause_learning_resources", "learning_resources"
   add_foreign_key "quiz_answers", "quiz_questions"
   add_foreign_key "quiz_questions", "quizzes"
 end

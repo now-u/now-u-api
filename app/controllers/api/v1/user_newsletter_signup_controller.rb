@@ -9,8 +9,8 @@ class Api::V1::UserNewsletterSignupController < APIApplicationController
     subscriber = client.subscriber(list_id: MAILCHIMP_LIST_ID, email_address: @user.email)
     if subscriber && subscriber.status == 'subscribed'
       render json: {}, status: :ok
-    else 
-      render :text => 'Not Found', :status => 404
+    else
+      render text: 'Not Found', status: 404
     end
   end
 
@@ -45,5 +45,4 @@ class Api::V1::UserNewsletterSignupController < APIApplicationController
   def set_client
     @client = MailingListClient.new
   end
-
 end
