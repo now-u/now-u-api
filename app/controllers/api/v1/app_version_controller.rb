@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::AppVersionController < ApplicationController
+class Api::V1::AppVersionController < APIApplicationController
   def check
     last_version = AppVersion.all.last
     version = AppVersion.find_by(version_number: params[:version_number])
