@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::ActionsController < ApplicationController
+class Api::V1::ActionsController < APIApplicationController
   def index
     render json: { data: Action.active.where(campaign_id: params[:id]) }, status: :ok
   end

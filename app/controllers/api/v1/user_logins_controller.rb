@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::UserLoginsController < ApplicationController
+class Api::V1::UserLoginsController < APIApplicationController
   before_action :validate_token, only: [:create]
 
   def create

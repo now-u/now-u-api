@@ -19,6 +19,7 @@ The above is taken from: https://keepachangelog.com/en/1.0.0/
 - #37 [Added] Created an endpoint to toggle the user Mailchimp subscription
 - #38 [Changed] Configured posts order by created_at
 - #39 [Added] Created an endpoint to check if the app version is still compatible or not
+- #49 [Added] Method to Notification model to release notification to all Users. 
 
 ### Version 1.7.39
 

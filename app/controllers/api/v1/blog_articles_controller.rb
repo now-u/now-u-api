@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::BlogArticlesController < ApplicationController
+class Api::V1::BlogArticlesController < APIApplicationController
   before_action :validate_token, only: [:create]
 
   def index

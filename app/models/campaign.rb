@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Campaign < ApplicationRecord
+
   validates_presence_of :title
 
   has_many :actions

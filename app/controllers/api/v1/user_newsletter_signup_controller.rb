@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::UserNewsletterSignupController < ApplicationController
+class Api::V1::UserNewsletterSignupController < APIApplicationController
   before_action :set_user, :set_client
 
   MAILCHIMP_LIST_ID = 'b604a851dc'
