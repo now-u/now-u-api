@@ -2,6 +2,8 @@
 
 require 'rails_helper'
 
-RSpec.describe ImageSection, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe ImageSection do
+  subject { build(:image_section) }
+
+  it { should be_valid }
 end

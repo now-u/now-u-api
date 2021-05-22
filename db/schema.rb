@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_10_152948) do
+ActiveRecord::Schema.define(version: 2021_04_25_181849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,25 @@ ActiveRecord::Schema.define(version: 2021_02_10_152948) do
     t.boolean "enabled", default: false
     t.datetime "release_date"
     t.datetime "end_date"
+  end
+
+  create_table "actions_causes", id: false, force: :cascade do |t|
+    t.bigint "cause_id", null: false
+    t.bigint "action_id", null: false
+    t.index ["cause_id", "action_id"], name: "index_actions_causes_on_cause_id_and_action_id"
+  end
+
+  create_table "admins", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "admin_role"
+    t.index ["email"], name: "index_admins_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
   create_table "app_versions", force: :cascade do |t|
@@ -104,6 +123,43 @@ ActiveRecord::Schema.define(version: 2021_02_10_152948) do
     t.datetime "end_date"
     t.string "short_name"
     t.string "infographic_url"
+  end
+
+  create_table "cause_actions", force: :cascade do |t|
+    t.bigint "cause_id", null: false
+    t.bigint "action_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["action_id"], name: "index_cause_actions_on_action_id"
+    t.index ["cause_id"], name: "index_cause_actions_on_cause_id"
+  end
+
+  create_table "cause_campaigns", force: :cascade do |t|
+    t.bigint "cause_id", null: false
+    t.bigint "campaign_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["campaign_id"], name: "index_cause_campaigns_on_campaign_id"
+    t.index ["cause_id"], name: "index_cause_campaigns_on_cause_id"
+  end
+
+  create_table "cause_learning_resources", force: :cascade do |t|
+    t.bigint "cause_id", null: false
+    t.bigint "learning_resource_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cause_id"], name: "index_cause_learning_resources_on_cause_id"
+    t.index ["learning_resource_id"], name: "index_cause_learning_resources_on_learning_resource_id"
+  end
+
+  create_table "causes", force: :cascade do |t|
+    t.string "image"
+    t.string "icon"
+    t.string "name"
+    t.string "description"
+    t.integer "joiners"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "faqs", force: :cascade do |t|
@@ -310,6 +366,12 @@ ActiveRecord::Schema.define(version: 2021_02_10_152948) do
     t.integer "user_role_id"
   end
 
+  add_foreign_key "cause_actions", "actions"
+  add_foreign_key "cause_actions", "causes"
+  add_foreign_key "cause_campaigns", "campaigns"
+  add_foreign_key "cause_campaigns", "causes"
+  add_foreign_key "cause_learning_resources", "causes"
+  add_foreign_key "cause_learning_resources", "learning_resources"
   add_foreign_key "quiz_answers", "quiz_questions"
   add_foreign_key "quiz_questions", "quizzes"
 end

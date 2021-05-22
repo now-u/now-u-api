@@ -1,5 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe AppVersion, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe AppVersion do
+  subject { build(:app_version) }
+
+  it { should be_valid }
 end

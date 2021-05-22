@@ -2,6 +2,8 @@
 
 require 'rails_helper'
 
-RSpec.describe LearningTopic, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe LearningTopic do
+  subject { build(:learning_topic) }
+
+  it { should be_valid }
 end

@@ -2,6 +2,8 @@
 
 require 'rails_helper'
 
-RSpec.describe CampaignGoal, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe CampaignGoal do
+  subject { build(:campaign_goal) }
+
+  it { should be_valid }
 end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::UsersController < ApplicationController
+class Api::V1::UsersController < APIApplicationController
   before_action :set_user, only: %i[show update destroy]
 
   MAILCHIMP_LIST_ID = 'b604a851dc'
@@ -21,7 +21,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def create
-    user = authenticate_user || create_user
+    user = find_user || create_user
     send_registration_email(user)
     add_to_mailing_list(user) if params[:newsletter_signup]
 
@@ -32,10 +32,10 @@ class Api::V1::UsersController < ApplicationController
     user = find_user
     if user
       send_registration_email(user)
-      
+
       render json: {}, status: :ok
     else
-      render :text => 'Not Found', :status => 404
+      render text: 'Not Found', status: 404
     end
   end
 
@@ -46,7 +46,7 @@ class Api::V1::UsersController < ApplicationController
   private
 
   def find_user
-    user = User.find_by(email: user_params[:email]&.downcase)
+    User.find_by(email: user_params[:email]&.downcase)
   end
 
   def create_user
@@ -77,12 +77,12 @@ class Api::V1::UsersController < ApplicationController
   def email_body(user)
     host = request.base_url
     short_token = user.short_token
-    if params[:platform] == 'web'
-      # insert the web url here.
-      param_link = "https://www.example-link.com"
-    else 
-      param_link = "https://now-u.com/loginMobile?token%3D#{short_token.token}&apn=com.nowu.app&isi=1516126639&ibi=com.nowu.app"
-    end
+    param_link = if params[:platform] == 'web'
+                   # insert the web url here.
+                   'https://www.example-link.com'
+                 else
+                   "https://now-u.com/loginMobile?token%3D#{short_token.token}&apn=com.nowu.app&isi=1516126639&ibi=com.nowu.app"
+                 end
     url = "https://nowu.page.link/?link=#{param_link}"
     token = short_token.token
     ERB.new(File.read(File.expand_path('app/views/login.html.erb'))).result(binding)

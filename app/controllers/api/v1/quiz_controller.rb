@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::QuizController < ApplicationController
+class Api::V1::QuizController < APIApplicationController
   def index
     render json: Quiz.all, root: 'data', status: :ok, adapter: :json
   end
