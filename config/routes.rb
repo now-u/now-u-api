@@ -23,12 +23,12 @@ Rails.application.routes.draw do
       get '/quizzes', to: 'quiz#index'
       get '/quizzes/:id', to: 'quiz#show'
       get '/redirect', to: 'redirect#create'
-      post '/users', to: 'users#create'
+      post '/users', to: 'users#create' # this signs up the user OR logs them in OR both 
       get '/users/me', to: 'users#show'
       put '/users/me', to: 'users#update'
       delete '/users/me', to: 'users#destroy'
-      post '/users/login', to: 'user_logins#create'
-      post '/users/authenticate-user', to: 'users#authenticate_user'
+      post '/users/login', to: 'user_logins#create' # this will take temporary token and return real token 
+      post '/users/authenticate-user', to: 'users#authenticate_user' # this logs in the user
       put '/users/me/newsletter/:status', to: 'user_newsletter_signup#update', constraints: { status: /(subscribe|unsubscribe)/ }
       get '/users/me/newletter', to: 'user_newsletter_signup#check_user' # Returns true if user is on mailing list
       post '/users/me/newletter', to: 'user_newsletter_signup#add_user' # Adds user to the mailing list
