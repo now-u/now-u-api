@@ -10,22 +10,36 @@ gem 'active_model_serializers', '~> 0.10.10'
 gem 'aws-sdk-ses', '~> 1.32'
 gem 'aws-sdk-sns', '~> 1.27'
 gem 'bitly', '~> 2.0', '>= 2.0.1'
-gem 'database_cleaner'
-gem 'factory_bot_rails'
-gem 'faker'
 gem 'gibbon', '~> 3.3', '>= 3.3.4'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 gem 'rails', '~> 5.2.3'
+
+# Testing 
+gem 'database_cleaner'
 gem 'rails-controller-testing'
 gem 'rspec-rails'
 gem 'sendgrid-ruby'
 gem 'rails-controller-testing'
-gem 'rails_admin' 
-gem 'devise'
-gem 'cancancan'
+
+# For creating mock models to test
 gem 'factory_bot_rails'
+
+# For creating mock data to test
 gem 'faker'
+
+# For the admin panel
+gem 'rails_admin' 
+
+# For authentication
+gem 'devise'
+
+# Omniauth Facebook plugin for SSO
+gem 'omniauth-facebook'
+
+# For authorisation
+gem 'cancancan'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

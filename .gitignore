@@ -17,6 +17,9 @@
 /storage/*
 !/storage/.keep
 
+# Do not commit the .env file, please
+.env
+
 .byebug_history
 
 # Ignore master key for decrypting credentials and more.
