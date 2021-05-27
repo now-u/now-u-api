@@ -40,6 +40,9 @@ gem 'omniauth-facebook'
 # For authorisation
 gem 'cancancan'
 
+# For environment variables
+
+gem 'dotenv-rails', groups: [:development, :test]
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
