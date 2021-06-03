@@ -343,6 +343,7 @@ DEPENDENCIES
   faker
   gibbon (~> 3.3, >= 3.3.4)
   listen (>= 3.0.5, < 3.6)
+  omniauth
   omniauth-facebook
   pg (>= 0.18, < 2.0)
   pg_search

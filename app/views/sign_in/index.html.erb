@@ -9,6 +9,7 @@
 </p>
 <p id="results" />
 <script>
+console.log('this is an example')
  $('a').click(function(e) {
   e.preventDefault();
   window.fetch('https://www.facebook.com/v10.0/dialog/oauth?client_id=<%= ENV['FACEBOOK_APP_ID'] %>&redirect_uri=<%= ENV['BASE_URL'] %>/api/v1/facebook/callback&state=1234', {

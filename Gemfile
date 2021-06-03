@@ -20,7 +20,6 @@ gem 'database_cleaner'
 gem 'rails-controller-testing'
 gem 'rspec-rails'
 gem 'sendgrid-ruby'
-gem 'rails-controller-testing'
 
 # For creating mock models to test
 gem 'factory_bot_rails'
@@ -35,6 +34,7 @@ gem 'rails_admin'
 gem 'devise'
 
 # Omniauth Facebook plugin for SSO
+gem 'omniauth'
 gem 'omniauth-facebook'
 
 # For authorisation
