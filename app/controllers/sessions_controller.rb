@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
-class Api::V1::SessionsController < APIApplicationController
+class SessionsController < APIApplicationController
   def facebook
-    byebug
     FacebookUser.begin_session!(session, request.env['omniauth.auth'])
 
     if current_user

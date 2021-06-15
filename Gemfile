@@ -36,6 +36,8 @@ gem 'devise'
 # Omniauth Facebook plugin for SSO
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'omniauth-rails_csrf_protection'
+gem 'thin'
 
 # For authorisation
 gem 'cancancan'
