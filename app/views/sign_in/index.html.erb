@@ -4,6 +4,6 @@
 <body>
 <div id="fb-root"></div>
 <p id="connect">
-<%= link_to("Login with facebook!", "https://www.facebook.com/v11.0/dialog/oauth?client_id=#{ENV['FACEBOOK_APP_ID_TEST']}&redirect_uri=#{ENV['BASE_URL']}/auth/facebook/callback&state=1234") %>
+  <%= link_to("Login with facebook!", "https://www.facebook.com/v10.0/dialog/oauth?client_id=#{ENV['FACEBOOK_APP_ID_TEST']}&redirect_uri=#{ENV['BASE_URL']}/auth/facebook/callback&state=1234") %>
 </p>
 <p id="results" />

@@ -1,6 +1,19 @@
 # frozen_string_literal: true
 
 class APIApplicationController < ActionController::API
+  def current_user
+    @current_user ||= find_user
+  end
+
+  def find_user
+    byebug
+    User.find_by("LOWER(email) = ?", facebook_user&.email)
+  end
+
+  def facebook_user
+    @facebook_user ||= FacebookUser.load_from_session(session)
+  end
+
   private
 
   def set_user

@@ -7,11 +7,14 @@ class FacebookUser
   end
 
   def self.begin_session!(session, omniauth_payload)
+    byebug
     session['facebook_user'] = {
-      'email' => omniauth_payload['info']['email'],
+      'email' => omniauth_payload.info.email,
+      'name' => omniauth_payload.info.name,
+      'uuid' => omniauth_payload.uid,
       'last_active_at' => Time.zone.now,
-      'id_token' => omniauth_payload['credentials']['id_token'],
-      'provider' => omniauth_payload['provider'],
+      'id_token' => omniauth_payload.credentials.token,
+      'provider' => omniauth_payload.provider,
     }
   end
 
