@@ -73,9 +73,6 @@ Rails.application.routes.draw do
       get '/search', to: 'search#index'
       get '/:model/search', to: 'search#search'
 
-      # Routes for SSO with Facebook
-      get '/auth/facebook/callback', to: 'sessions#facebook_callback'
-
       # Routes for SSO with Google
       # get '/auth/google/callback', to: 'sessions#google_callback'
       
@@ -87,6 +84,9 @@ Rails.application.routes.draw do
       post '/app_released', to: 'app_version#check'
     end
   end
+
+  # Routes for SSO with Facebook
+  get '/auth/facebook/callback', to: 'sessions#facebook'
   
   get '/sign-in', to: 'sign_in#index'
   devise_for :admins

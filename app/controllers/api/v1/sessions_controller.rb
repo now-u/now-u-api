@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::SessionsController < APIApplicationController
-  def facebook_callback
+  def facebook
     byebug
     FacebookUser.begin_session!(session, request.env['omniauth.auth'])
 
