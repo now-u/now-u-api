@@ -1,17 +1,19 @@
 class FacebookUser
   attr_reader :email
 
-  def initialize(email:, provider: 'facebook')
+  def initialize(email:, name:, provider: 'facebook', id_token: nil, facebook_uuid:)
     @email = email&.downcase
     @provider = provider&.to_s
+    @id_token = id_token
+    @name = name
+    @facebook_uuid = facebook_uuid
   end
 
   def self.begin_session!(session, omniauth_payload)
-    byebug
     session['facebook_user'] = {
       'email' => omniauth_payload.info.email,
       'name' => omniauth_payload.info.name,
-      'uuid' => omniauth_payload.uid,
+      'facebook_uuid' => omniauth_payload.uid,
       'last_active_at' => Time.zone.now,
       'id_token' => omniauth_payload.credentials.token,
       'provider' => omniauth_payload.provider,
@@ -27,6 +29,8 @@ class FacebookUser
     new(
       email: facebook_sign_in_session['email'],
       id_token: facebook_sign_in_session['id_token'],
+      name: facebook_sign_in_session['name'],
+      facebook_uuid: facebook_sign_in_session['facebook_uuid'],
       provider: facebook_sign_in_session['provider'],
     )
   end
