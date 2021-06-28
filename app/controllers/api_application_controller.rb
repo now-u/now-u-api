@@ -10,6 +10,10 @@ class APIApplicationController < ActionController::API
     # one thing that needs to be discussed is that NOT all facebook users have email
     # should we rather be searching by their facebook UUID, which we know everyone has. 
     # and if their email field is blank, we can manually ask them to input an email into now-u
+
+    # Return early if facebook_user == nil, otherwise it will create a user with nil values..., nil email etc!
+    return nil if facebook_user.nil?
+
     User.find_or_create_by(email: facebook_user&.email)
   end
 
