@@ -2,10 +2,11 @@
 
 class Ability
   include CanCan::Ability
-  UNRESTRICTED_MODEL_LIST = [ 
+  UNRESTRICTED_MODEL_LIST = [
     Action,
     Article,
     BlogArticle,
+    BlogComment,
     CampaignGoal,
     Campaign,
     Goal,
