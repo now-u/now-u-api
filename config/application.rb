@@ -38,5 +38,8 @@ module NowUApi
     config.middleware.use ActionDispatch::Flash
     config.middleware.use Rack::MethodOverride
     config.middleware.use ActionDispatch::Session::CookieStore, {:key=>"_now_u_api_session"}
+
+    config.assets.paths << Rails.root.join('node_modules')
+    config.assets.precompile += %w( application.css )
   end
 end
