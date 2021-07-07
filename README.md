@@ -27,6 +27,10 @@ $ bundle install
 ```
 then...
 ```
+yarn install
+```
+then...
+```
 rails db:create
 ```
 then...
