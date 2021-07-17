@@ -4,12 +4,9 @@ services:
     build: ./db/
     restart: always
     volumes:
-      #- ../app/local/db-data:/usr/local/postgresql/data
-      - ../api-local/postgres:/var/lib/postgresql/data
-    environment:
-      POSTGRES_USER: test
-      POSTGRES_PASSWORD: test
-      POSTGRES_DB: test
+      - postgres:/var/lib/postgresql/data:Z
+    env_file:
+      - .env
     ports: 
       - "5433:5432"
     container_name: db
@@ -19,7 +16,7 @@ services:
   api:
     build: 
       context: .
-      dockerfile: Dockerfile.deploy
+      dockerfile: Dockerfile
     volumes:
       - .:/now-u-api
       - ../api-local/bundle/:/usr/local/bundle/
@@ -27,8 +24,11 @@ services:
       - "3001:3000"
     depends_on:
       - db
+    env_file:
+      - .env
     networks:
       - db-network
+    command: start.sh
 
   adminer:
     image: adminer

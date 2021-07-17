@@ -9,13 +9,14 @@ rm -f /now-u-api/tmp/pids/server.pid
 
 # Then exec the container's main process (what's set as CMD in the Dockerfile).
 
-#bundle install
-
 echo "Bundling gems"
 bundle install --jobs 8 --retry 3
 
 echo "Clearing logs"
 bin/rake log:clear
+
+echo "Creating databases"
+bundle exec rake db:create
 
 echo "Run migrations"
 bundle exec rake db:migrate
@@ -26,9 +27,6 @@ bundle exec rake db:seed
 echo "Removing contents of tmp dirs"
 bin/rake tmp:clear
 
-echo "Starting app server ..."
-bundle exec rails s -p 3000 -b '0.0.0.0'
-
-#rails db:create db:migrate db:seed
+echo "DONE"
 
 exec "$@"

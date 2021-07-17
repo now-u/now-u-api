@@ -24,22 +24,7 @@ RUN gem -v
 
 COPY ./docker/entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
+COPY ./docker/start.sh /usr/bin/
+RUN chmod +x /usr/bin/start.sh
 
 ENTRYPOINT ["entrypoint.sh"]
-
-
-#ENV GEM_HOME="/usr/local/bundle"
-#ENV PATH $GEM_HOME/bin:$GEM_HOME/gems/bin:$PATH
-#RUN gem install bundler --no-document -v '2.0.2'
-#RUN gem install rubygems-bundler --no-rdoc --no-ri
-#RUN bundle install
-#COPY . /now-u-api
-
-# Add a script to be executed every time the container starts.
-#COPY entrypoint.sh /usr/bin/
-#RUN chmod +x /usr/bin/entrypoint.sh
-#EXPOSE 3000
-
-# Start the main process.
-#CMD ["rails", "server", "-b", "0.0.0.0"]
-#CMD ["rails db:create db:migarte db:seed"]
