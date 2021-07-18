@@ -16,7 +16,7 @@ COPY Gemfile* ./
 
 RUN gem update --system
 
-RUN bundle install
+RUN bundle install --with=development
 
 COPY . .
 

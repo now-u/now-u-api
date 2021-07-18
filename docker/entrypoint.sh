@@ -27,6 +27,4 @@ bundle exec rake db:seed
 echo "Removing contents of tmp dirs"
 bin/rake tmp:clear
 
-echo "DONE"
-
 exec "$@"
