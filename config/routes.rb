@@ -17,6 +17,8 @@
 # headers['token'] = '883737733'
 
 Rails.application.routes.draw do
+  mount Rswag::Ui::Engine => '/api-docs'
+  mount Rswag::Api::Engine => '/api-docs'
   root to: 'application#index'
   namespace :api do
     namespace :v1 do
