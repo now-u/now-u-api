@@ -4,21 +4,14 @@ info:
   title: API V1
   version: v1
 paths:
-  "/campaigns/{id}":
+  "/api/v1/campaigns":
     get:
-      summary: Retrieves a campaign
+      summary: Retrieves all Campaigns
       tags:
-      - campaigns
-      - Another Tag
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
+      - Campaigns
       responses:
         '200':
-          description: campaign found
+          description: Campaigns found
           content:
             application/json:
               schema:
@@ -28,13 +21,44 @@ paths:
                     type: integer
                   title:
                     type: string
-                  content:
+                  description_app:
+                    type: text
+                  header_image:
                     type: string
-                required:
-                - id
-                - title
-                - content
-            application/xml:
+                  created_at:
+                    type: datetime
+                  updated_at:
+                    type: datetime
+                  video_link:
+                    type: string
+                  description_web:
+                    type: text
+                  enabled:
+                    type: boolean
+                  start_date:
+                    type: datetime
+                  end_date:
+                    type: datetime
+                  short_name:
+                    type: string
+                  infographic_url:
+                    type: string
+  "/api/v1/campaigns/{id}":
+    get:
+      summary: Retrieves a Campaign
+      tags:
+      - Campaigns
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Campaign found
+          content:
+            application/json:
               schema:
                 type: object
                 properties:
@@ -42,14 +66,30 @@ paths:
                     type: integer
                   title:
                     type: string
-                  content:
+                  description_app:
+                    type: text
+                  header_image:
                     type: string
-                required:
-                - id
-                - title
-                - content
+                  created_at:
+                    type: datetime
+                  updated_at:
+                    type: datetime
+                  video_link:
+                    type: string
+                  description_web:
+                    type: text
+                  enabled:
+                    type: boolean
+                  start_date:
+                    type: datetime
+                  end_date:
+                    type: datetime
+                  short_name:
+                    type: string
+                  infographic_url:
+                    type: string
 servers:
 - url: https://{defaultHost}
   variables:
     defaultHost:
-      default: www.example.com
+      default: api.now-u.com
