@@ -4,6 +4,102 @@ info:
   title: API V1
   version: v1
 paths:
+  "/api/v1/articles":
+    get:
+      summary: Retrieves all articles
+      tags:
+      - Articles
+      responses:
+        '200':
+          description: articles found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  title:
+                    type: string
+                  body:
+                    type: text
+                  header_image:
+                    type: string
+                  full_article_link:
+                    type: string
+                  video_link:
+                    type: string
+                  action_id:
+                    type: integer
+                  campaign_id:
+                    type: integer
+                  created_at:
+                    type: datetime
+                  updated_at:
+                    type: datetime
+                  video_of_the_day:
+                    type: boolean
+                  subtitle:
+                    type: string
+                  link_text:
+                    type: string
+                  source:
+                    type: string
+                  enabled:
+                    type: boolean
+                  release_date:
+                    type: datetime
+  "/api/v1/articles/{id}":
+    get:
+      summary: Retrieves a article
+      tags:
+      - Articles
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: article found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  title:
+                    type: string
+                  body:
+                    type: text
+                  header_image:
+                    type: string
+                  full_article_link:
+                    type: string
+                  video_link:
+                    type: string
+                  action_id:
+                    type: integer
+                  campaign_id:
+                    type: integer
+                  created_at:
+                    type: datetime
+                  updated_at:
+                    type: datetime
+                  video_of_the_day:
+                    type: boolean
+                  subtitle:
+                    type: string
+                  link_text:
+                    type: string
+                  source:
+                    type: string
+                  enabled:
+                    type: boolean
+                  release_date:
+                    type: datetime
   "/api/v1/campaigns":
     get:
       summary: Retrieves all Campaigns
@@ -43,13 +139,13 @@ paths:
                     type: string
                   infographic_url:
                     type: string
-  "/api/v1/campaigns/{id}":
+  "/api/v1/campaigns/{campaign_id}":
     get:
       summary: Retrieves a Campaign
       tags:
       - Campaigns
       parameters:
-      - name: id
+      - name: campaign_id
         in: path
         required: true
         schema:
@@ -88,6 +184,409 @@ paths:
                     type: string
                   infographic_url:
                     type: string
+  "/api/v1/campaigns/{campaign_id}/actions":
+    get:
+      summary: Retrieves a Campaigns actions
+      tags:
+      - Campaigns
+      parameters:
+      - name: campaign_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Campaigns actions found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  title:
+                    type: string
+                  link:
+                    type: string
+                  type:
+                    type: string
+                  campaign_id:
+                    type: integer
+                  created_at:
+                    type: datetime
+                  updated_at:
+                    type: datetime
+                  what_description:
+                    type: string
+                  why_description:
+                    type: string
+                  time:
+                    type: float
+                  enabled:
+                    type: boolean
+                  release_date:
+                    type: datetime
+                  end_date:
+                    type: datetime
+  "/api/v1/campaigns/{campaign_id}/actions/{action_id}":
+    get:
+      summary: Retrieves a Campaigns action through action id
+      tags:
+      - Campaigns
+      parameters:
+      - name: campaign_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: action_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Campaign found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  title:
+                    type: string
+                  link:
+                    type: string
+                  type:
+                    type: string
+                  campaign_id:
+                    type: integer
+                  created_at:
+                    type: datetime
+                  updated_at:
+                    type: datetime
+                  what_description:
+                    type: string
+                  why_description:
+                    type: string
+                  time:
+                    type: float
+                  enabled:
+                    type: boolean
+                  release_date:
+                    type: datetime
+                  end_date:
+                    type: datetime
+  "/api/v1/campaigns/{campaign_id}/actions/{action_id}/articles":
+    get:
+      summary: Retrieves a Campaigns articles through action id
+      tags:
+      - Campaigns
+      parameters:
+      - name: campaign_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: action_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Campaign found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  title:
+                    type: string
+                  body:
+                    type: text
+                  header_image:
+                    type: string
+                  full_article_link:
+                    type: string
+                  video_link:
+                    type: string
+                  action_id:
+                    type: integer
+                  campaign_id:
+                    type: integer
+                  created_at:
+                    type: datetime
+                  updated_at:
+                    type: datetime
+                  video_of_the_day:
+                    type: boolean
+                  subtitle:
+                    type: string
+                  link_text:
+                    type: string
+                  source:
+                    type: string
+                  enabled:
+                    type: boolean
+                  release_date:
+                    type: datetime
+  "/api/v1/campaigns/{campaign_id}/actions/{action_id}/offers":
+    get:
+      summary: Retrieves a Campaigns offers through action id
+      tags:
+      - Campaigns
+      parameters:
+      - name: campaign_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: action_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Campaign found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  title:
+                    type: string
+                  description:
+                    type: text
+                  link:
+                    type: string
+                  campaign_id:
+                    type: integer
+                  created_at:
+                    type: datetime
+                  updated_at:
+                    type: datetime
+                  action_id:
+                    type: integer
+  "/api/v1/campaigns/{campaign_id}/articles":
+    get:
+      summary: Retrieves a Campaigns articles
+      tags:
+      - Campaigns
+      parameters:
+      - name: campaign_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: action_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Campaign found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  title:
+                    type: string
+                  body:
+                    type: text
+                  header_image:
+                    type: string
+                  full_article_link:
+                    type: string
+                  video_link:
+                    type: string
+                  action_id:
+                    type: integer
+                  campaign_id:
+                    type: integer
+                  created_at:
+                    type: datetime
+                  updated_at:
+                    type: datetime
+                  video_of_the_day:
+                    type: boolean
+                  subtitle:
+                    type: string
+                  link_text:
+                    type: string
+                  source:
+                    type: string
+                  enabled:
+                    type: boolean
+                  release_date:
+                    type: datetime
+  "/api/v1/campaigns/{campaign_id}/offers":
+    get:
+      summary: Retrieves a Campaigns articles
+      tags:
+      - Campaigns
+      parameters:
+      - name: campaign_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: action_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Campaign found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  title:
+                    type: string
+                  description:
+                    type: text
+                  link:
+                    type: string
+                  campaign_id:
+                    type: integer
+                  created_at:
+                    type: datetime
+                  updated_at:
+                    type: datetime
+                  action_id:
+                    type: integer
+  "/api/v1/offers":
+    get:
+      summary: Retrieves all offers
+      tags:
+      - Offers
+      responses:
+        '200':
+          description: offers found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  title:
+                    type: string
+                  description:
+                    type: text
+                  link:
+                    type: string
+                  campaign_id:
+                    type: integer
+                  created_at:
+                    type: datetime
+                  updated_at:
+                    type: datetime
+                  action_id:
+                    type: integer
+  "/api/v1/offers/{id}":
+    get:
+      summary: Retrieves a offer
+      tags:
+      - Offers
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: offer found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  title:
+                    type: string
+                  description:
+                    type: text
+                  link:
+                    type: string
+                  campaign_id:
+                    type: integer
+                  created_at:
+                    type: datetime
+                  updated_at:
+                    type: datetime
+                  action_id:
+                    type: integer
+  "/api/v1/quizzes":
+    get:
+      summary: Retrieves all quizzes
+      tags:
+      - Quizzes
+      responses:
+        '200':
+          description: quizzes found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  title:
+                    type: string
+                  description:
+                    type: string
+                  created_at:
+                    type: datetime
+                  updated_at:
+                    type: datetime
+  "/api/v1/quizzes/{id}":
+    get:
+      summary: Retrieves a quiz
+      tags:
+      - Quizzes
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: quiz found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  title:
+                    type: string
+                  description:
+                    type: string
+                  created_at:
+                    type: datetime
+                  updated_at:
+                    type: datetime
 servers:
 - url: https://{defaultHost}
   variables:
