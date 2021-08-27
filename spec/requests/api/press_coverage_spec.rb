@@ -8,6 +8,10 @@ RSpec.describe Api::V1::PressCoverageArticlesController, type: :request do
           res
   }
 
+  before do
+    press_coverage_article
+  end
+
   path '/api/v1/press_coverage' do
     get 'Retrieves all press_coverage' do
       tags 'Press coverage'
@@ -18,7 +22,6 @@ RSpec.describe Api::V1::PressCoverageArticlesController, type: :request do
         properties: press_coverage_schema
 
         before do |example|
-          press_coverage_article
           submit_request(example.metadata)
         end
 

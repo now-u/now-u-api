@@ -8,6 +8,10 @@ RSpec.describe Api::V1::OrganisationsController, type: :request do
           res
   }
 
+  before do
+    organisation
+  end
+
   path '/api/v1/organisations' do
     get 'Retrieves all organisations' do
       tags 'Organisations'
@@ -18,7 +22,6 @@ RSpec.describe Api::V1::OrganisationsController, type: :request do
         properties: organisation_schema
 
         before do |example|
-          organisation
           submit_request(example.metadata)
         end
 

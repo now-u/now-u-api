@@ -8,6 +8,10 @@ RSpec.describe Api::V1::ArticlesController, type: :request do
           res
   }
 
+  before do
+    article
+  end
+
   path '/api/v1/articles' do
     get 'Retrieves all articles' do
       tags 'Articles'

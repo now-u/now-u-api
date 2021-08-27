@@ -8,7 +8,7 @@ class Api::V1::BlogArticlesController < APIApplicationController
     data = data.to_json(
       include: [:tags, { user: { only: %i[full_name description profile_picture_url] } }]
     )
-    render json: JSON(data), root: 'data', status: :ok, adapter: :json
+    render json: data, status: :ok
   end
 
   def create

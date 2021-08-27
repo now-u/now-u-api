@@ -2,11 +2,17 @@ require 'swagger_helper'
 
 RSpec.describe Api::V1::CausesController, type: :request do
   let(:cause) { create(:cause) }
+  let(:campaign) { create(:campaign) }
   let(:id) { cause.id }
   cause_schema = Cause.column_names.reduce({}) { |res, column_name|
           res[column_name.to_sym] = {type: Cause.column_for_attribute(column_name).type}
           res
   }
+
+  before do
+    cause
+    campaign
+  end
 
   path '/api/v1/causes' do
     get 'Retrieves all causes' do

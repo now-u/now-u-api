@@ -28,6 +28,11 @@ RSpec.describe Api::V1::CampaignsController, type: :request do
     res
   }
 
+  before do
+    campaign
+    
+  end
+
   path '/api/v1/campaigns' do
     get 'Retrieves all Campaigns' do
       tags 'Campaigns'
@@ -38,7 +43,6 @@ RSpec.describe Api::V1::CampaignsController, type: :request do
         properties: campaign_schema
         
         before do |example|
-          campaign
           submit_request(example.metadata)
         end
 

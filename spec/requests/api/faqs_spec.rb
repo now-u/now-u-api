@@ -8,6 +8,10 @@ RSpec.describe Api::V1::FaqsController, type: :request do
           res
   }
 
+  before do
+    faq
+  end
+
   path '/api/v1/faqs' do
     get 'Retrieves all faqs' do
       tags 'Frequently Asked Questions'
@@ -18,7 +22,6 @@ RSpec.describe Api::V1::FaqsController, type: :request do
         properties: faq_schema
 
         before do |example|
-          faq
           submit_request(example.metadata)
         end
 

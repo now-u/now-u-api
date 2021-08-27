@@ -8,6 +8,10 @@ RSpec.describe Api::V1::QuizController, type: :request do
           res
   }
 
+  before do
+    quiz
+  end
+
   path '/api/v1/quizzes' do
     get 'Retrieves all quizzes' do
       tags 'Quizzes'
