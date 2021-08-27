@@ -36,7 +36,7 @@ RSpec.describe Api::V1::CampaignsController, type: :request do
       response '200', 'Campaigns found' do
         schema type: :object,
         properties: campaign_schema
-
+        
         before do |example|
           campaign
           submit_request(example.metadata)
