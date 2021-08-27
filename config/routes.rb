@@ -74,8 +74,8 @@ Rails.application.routes.draw do
       get '/learning_topics/:id', to: 'learning_topics#show'
       get '/search', to: 'search#index'
       get '/:model/search', to: 'search#search'
-
-      resources :causes
+      get '/causes', to: 'causes#index'
+      get '/causes/:id', to: 'causes#show'
 
       post '/app_released', to: 'app_version#check'
     end

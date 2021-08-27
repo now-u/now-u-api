@@ -100,6 +100,82 @@ paths:
                     type: boolean
                   release_date:
                     type: datetime
+  "/api/v1/blogs":
+    get:
+      summary: Retrieves all blogs
+      tags:
+      - Blogs
+      responses:
+        '200':
+          description: blogs found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  title:
+                    type: string
+                  subtitle:
+                    type: string
+                  action_id:
+                    type: integer
+                  user_id:
+                    type: integer
+                  campaign_id:
+                    type: integer
+                  reading_time:
+                    type: integer
+                  created_at:
+                    type: datetime
+                  updated_at:
+                    type: datetime
+                  enabled:
+                    type: boolean
+                  header_image:
+                    type: string
+  "/api/v1/blogs/{id}":
+    get:
+      summary: Retrieves a blog
+      tags:
+      - Blogs
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: blog found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  title:
+                    type: string
+                  subtitle:
+                    type: string
+                  action_id:
+                    type: integer
+                  user_id:
+                    type: integer
+                  campaign_id:
+                    type: integer
+                  reading_time:
+                    type: integer
+                  created_at:
+                    type: datetime
+                  updated_at:
+                    type: datetime
+                  enabled:
+                    type: boolean
+                  header_image:
+                    type: string
   "/api/v1/campaigns":
     get:
       summary: Retrieves all Campaigns
@@ -471,6 +547,133 @@ paths:
                     type: datetime
                   action_id:
                     type: integer
+  "/api/v1/campaigns/{campaign_id}/learning_topics":
+    get:
+      summary: Retrieves a Campaigns learning topics
+      tags:
+      - Campaigns
+      parameters:
+      - name: campaign_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: action_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Campaign found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  title:
+                    type: string
+                  description:
+                    type: text
+                  link:
+                    type: string
+                  campaign_id:
+                    type: integer
+                  created_at:
+                    type: datetime
+                  updated_at:
+                    type: datetime
+                  action_id:
+                    type: integer
+  "/api/v1/causes":
+    get:
+      summary: Retrieves all causes
+      tags:
+      - Causes
+      responses:
+        '200':
+          description: causes found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  image:
+                    type: string
+                  icon:
+                    type: string
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  joiners:
+                    type: integer
+                  created_at:
+                    type: datetime
+                  updated_at:
+                    type: datetime
+  "/api/v1/causes/{id}":
+    get:
+      summary: Retrieves a cause
+      tags:
+      - Causes
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: cause found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  image:
+                    type: string
+                  icon:
+                    type: string
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  joiners:
+                    type: integer
+                  created_at:
+                    type: datetime
+                  updated_at:
+                    type: datetime
+  "/api/v1/faqs":
+    get:
+      summary: Retrieves all faqs
+      tags:
+      - Frequently Asked Questions
+      responses:
+        '200':
+          description: faqs found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  question:
+                    type: string
+                  answer:
+                    type: string
+                  created_at:
+                    type: datetime
+                  updated_at:
+                    type: datetime
   "/api/v1/offers":
     get:
       summary: Retrieves all offers
@@ -535,6 +738,178 @@ paths:
                     type: datetime
                   action_id:
                     type: integer
+  "/api/v1/organisations":
+    get:
+      summary: Retrieves all organisations
+      tags:
+      - Organisations
+      responses:
+        '200':
+          description: organisations found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  logo_link:
+                    type: string
+                  created_at:
+                    type: datetime
+                  updated_at:
+                    type: datetime
+                  email:
+                    type: string
+                  website:
+                    type: string
+                  IG_link:
+                    type: string
+                  FB_link:
+                    type: string
+                  twitter_link:
+                    type: string
+                  extra_text_1:
+                    type: string
+                  extra_text_2:
+                    type: string
+                  extra_text_3:
+                    type: string
+                  extra_link_1:
+                    type: string
+                  extra_link_2:
+                    type: string
+                  extra_link_3:
+                    type: string
+                  organisation_type:
+                    type: string
+                  code:
+                    type: string
+                  geographic_reach:
+                    type: string
+  "/api/v1/organisations/{id}":
+    get:
+      summary: Retrieves a organisation
+      tags:
+      - Organisations
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: organisation found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  logo_link:
+                    type: string
+                  created_at:
+                    type: datetime
+                  updated_at:
+                    type: datetime
+                  email:
+                    type: string
+                  website:
+                    type: string
+                  IG_link:
+                    type: string
+                  FB_link:
+                    type: string
+                  twitter_link:
+                    type: string
+                  extra_text_1:
+                    type: string
+                  extra_text_2:
+                    type: string
+                  extra_text_3:
+                    type: string
+                  extra_link_1:
+                    type: string
+                  extra_link_2:
+                    type: string
+                  extra_link_3:
+                    type: string
+                  organisation_type:
+                    type: string
+                  code:
+                    type: string
+                  geographic_reach:
+                    type: string
+  "/api/v1/press_coverage":
+    get:
+      summary: Retrieves all press_coverage
+      tags:
+      - Press coverage
+      responses:
+        '200':
+          description: press_coverage found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  image_url:
+                    type: string
+                  link:
+                    type: string
+                  media_name:
+                    type: string
+                  created_at:
+                    type: datetime
+                  updated_at:
+                    type: datetime
+                  title:
+                    type: string
+  "/api/v1/press_coverage/{id}":
+    get:
+      summary: Retrieves a press_coverage
+      tags:
+      - Press coverage
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: press_coverage found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  image_url:
+                    type: string
+                  link:
+                    type: string
+                  media_name:
+                    type: string
+                  created_at:
+                    type: datetime
+                  updated_at:
+                    type: datetime
+                  title:
+                    type: string
   "/api/v1/quizzes":
     get:
       summary: Retrieves all quizzes
