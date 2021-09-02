@@ -71,6 +71,11 @@ RSpec.describe Api::V1::CampaignsController, type: :request do
           assert_response_matches_metadata(example.metadata)
         end
       end
+
+      response '404', 'Not found' do
+        let(:campaign_id) { "something_invalid" }
+        run_test!
+      end
     end
   end
 
@@ -91,6 +96,11 @@ RSpec.describe Api::V1::CampaignsController, type: :request do
         it 'returns a valid 201 response' do |example|
           assert_response_matches_metadata(example.metadata)
         end
+      end
+
+      response '404', 'Not found' do
+        let(:campaign_id) { "something_invalid" }
+        run_test!
       end
     end
   end
@@ -113,6 +123,12 @@ RSpec.describe Api::V1::CampaignsController, type: :request do
         it 'returns a valid 201 response' do |example|
           assert_response_matches_metadata(example.metadata)
         end
+      end
+
+      response '404', 'Not found' do
+        let(:campaign_id) { "something_invalid" }
+        let(:action_id) { "something_invalid" }
+        run_test!
       end
     end
   end
@@ -142,6 +158,12 @@ RSpec.describe Api::V1::CampaignsController, type: :request do
           expect(data.first["title"]).to eq article.title
         end
       end
+
+      response '404', 'Not found' do
+        let(:campaign_id) { "something_invalid" }
+        let(:action_id) { "something_invalid" }
+        run_test!
+      end
     end
   end
 
@@ -164,6 +186,12 @@ RSpec.describe Api::V1::CampaignsController, type: :request do
         it 'returns a valid 201 response' do |example|
           assert_response_matches_metadata(example.metadata)
         end
+      end
+
+      response '404', 'Not found' do
+        let(:campaign_id) { "something_invalid" }
+        let(:action_id) { "something_invalid" }
+        run_test!
       end
     end
   end
@@ -188,6 +216,12 @@ RSpec.describe Api::V1::CampaignsController, type: :request do
           assert_response_matches_metadata(example.metadata)
         end
       end
+
+      response '404', 'Not found' do
+        let(:campaign_id) { "something_invalid" }
+        let(:action_id) { "something_invalid" }
+        run_test!
+      end
     end
   end
 
@@ -210,6 +244,12 @@ RSpec.describe Api::V1::CampaignsController, type: :request do
           assert_response_matches_metadata(example.metadata)
         end
       end
+
+      response '404', 'Not found' do
+        let(:campaign_id) { "something_invalid" }
+        let(:action_id) { "something_invalid" }
+        run_test!
+      end
     end
   end
 
@@ -231,6 +271,12 @@ RSpec.describe Api::V1::CampaignsController, type: :request do
         it 'returns a valid 201 response' do |example|
           assert_response_matches_metadata(example.metadata)
         end
+      end
+
+      response '404', 'Not found' do
+        let(:campaign_id) { "something_invalid" }
+        let(:action_id) { "something_invalid" }
+        run_test!
       end
     end
   end

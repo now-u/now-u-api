@@ -50,6 +50,11 @@ RSpec.describe Api::V1::PressCoverageArticlesController, type: :request do
           assert_response_matches_metadata(example.metadata)
         end
       end
+
+      response '404', 'Not found' do
+        let(:id) { "something_invalid" }
+        run_test!
+      end
     end
   end
 end

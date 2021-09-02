@@ -2,7 +2,6 @@ require 'swagger_helper'
 
 RSpec.describe Api::V1::FaqsController, type: :request do
   let(:faq) { create(:faq) }
-  let(:id) { offer.id }
   faq_schema = Faq.column_names.reduce({}) { |res, column_name|
           res[column_name.to_sym] = {type: Faq.column_for_attribute(column_name).type}
           res

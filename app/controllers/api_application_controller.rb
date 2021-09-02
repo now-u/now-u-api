@@ -1,7 +1,13 @@
 # frozen_string_literal: true
 
 class APIApplicationController < ActionController::API
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+
   private
+
+  def record_not_found(error)
+    render json: { error: error.message }, status: :not_found
+  end
 
   def set_user
     token = request.headers['token']
