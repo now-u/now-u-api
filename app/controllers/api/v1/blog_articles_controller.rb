@@ -15,7 +15,7 @@ class Api::V1::BlogArticlesController < APIApplicationController
     blog = BlogArticle.create!(
       title: params[:title],
       subtitle: params[:subtitle],
-      action_id: params[:action_id].to_i,
+      campaign_action_id: params[:campaign_action_id].to_i,
       user_id: @user.id,
       campaign_id: params[:campaign_id].to_i,
       reading_time: params[:reading_time].to_i

@@ -3,7 +3,7 @@
 class Ability
   include CanCan::Ability
   UNRESTRICTED_MODEL_LIST = [
-    Action,
+    CampaignAction,
     Article,
     BlogArticle,
     BlogComment,
@@ -32,7 +32,7 @@ class Ability
     if admin.has_permission(Admin.admin_roles[:campaign_researcher])
       can :manage, [
         Campaign,
-        Action,
+        CampaignAction,
         LearningResource,
         LearningTopic,
         Partnership,

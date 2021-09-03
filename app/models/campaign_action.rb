@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Action < ApplicationRecord
+class CampaignAction < ApplicationRecord
   self.inheritance_column = nil
 
   belongs_to :campaign

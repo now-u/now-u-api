@@ -7,7 +7,7 @@ FactoryBot.define do
     header_image { Faker::Internet.url }
     full_article_link { Faker::Internet.url }
     video_link { Faker::Internet.url }
-    action_id { create(:action).id }
+    campaign_action_id { create(:campaign_action).id }
     campaign_id { create(:campaign).id }
     video_of_the_day { nil }
     subtitle { Faker::Marketing.buzzwords }

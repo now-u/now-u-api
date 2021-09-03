@@ -6,6 +6,6 @@ FactoryBot.define do
     description { Faker::Lorem.sentence }
     link { Faker::Internet.url }
     campaign_id { create(:campaign).id }
-    action_id { create(:action).id }
+    campaign_action_id { create(:campaign_action).id }
   end
 end

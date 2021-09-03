@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :user_action do
     user_id { create(:user).id }
-    action_id { create(:action).id }
+    campaign_action_id { create(:campaign_action).id }
     status { nil }
     comment { nil }
   end

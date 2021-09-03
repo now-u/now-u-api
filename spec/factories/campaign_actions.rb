@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :action do
+  factory :campaign_action do
     title { Faker::Marketing.buzzwords }
     link  { Faker::Internet.url }
     type { nil }

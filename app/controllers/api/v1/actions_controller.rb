@@ -2,12 +2,12 @@
 
 class Api::V1::ActionsController < APIApplicationController
   def index
-    render json: { data: Action.active.where(campaign_id: params[:id]) }, status: :ok
+    render json: { data: CampaignAction.active.where(campaign_id: params[:id]) }, status: :ok
   end
 
   def show
-    action = Action.find(params[:id])
-    data = { data: action }
+    campaign_action = CampaignAction.find(params[:id])
+    data = { data: campaign_action }
     data = data.to_json(
       include: [campaign: { methods: [:number_of_campaigners] }]
     )

@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :user_campaigns
   has_many :campaigns, through: :user_campaigns
   has_many :user_actions
-  has_many :actions, through: :user_actions
+  has_many :campaign_actions, through: :user_actions
   has_many :user_learning_resources
   has_many :learning_resources, through: :user_learning_resources
   has_many :user_notifications
@@ -31,15 +31,15 @@ class User < ApplicationRecord
   end
 
   def completed_actions
-    user_actions.where(status: 'completed').pluck(:action_id)
+    user_actions.where(status: 'completed').pluck(:campaign_action_id)
   end
 
   def rejected_actions
-    user_actions.where(status: 'rejected').pluck(:action_id)
+    user_actions.where(status: 'rejected').pluck(:campaign_action_id)
   end
 
   def favourited_actions
-    user_actions.where(status: 'favourited').pluck(:action_id)
+    user_actions.where(status: 'favourited').pluck(:campaign_action_id)
   end
 
   def completed_learning_resources

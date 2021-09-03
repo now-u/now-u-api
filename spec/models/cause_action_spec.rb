@@ -7,6 +7,6 @@ describe CauseAction do
 
   describe "associations" do
     it { is_expected.to belong_to(:cause) }
-    it { is_expected.to belong_to(:action) }
+    it { is_expected.to belong_to(:campaign_action) }
   end
 end

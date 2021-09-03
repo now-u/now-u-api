@@ -2,8 +2,8 @@
 
 require 'rails_helper'
 
-describe Action do
-  subject { build(:action) }
+describe CampaignAction do
+  subject { build(:campaign_action) }
 
   it { should be_valid }
 end
