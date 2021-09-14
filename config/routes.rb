@@ -17,6 +17,8 @@
 # headers['token'] = '883737733'
 
 Rails.application.routes.draw do
+  mount Rswag::Ui::Engine => '/api-docs'
+  mount Rswag::Api::Engine => '/api-docs'
   root to: 'application#index'
   namespace :api do
     namespace :v1 do
@@ -72,8 +74,8 @@ Rails.application.routes.draw do
       get '/learning_topics/:id', to: 'learning_topics#show'
       get '/search', to: 'search#index'
       get '/:model/search', to: 'search#search'
-
-      resources :causes
+      get '/causes', to: 'causes#index'
+      get '/causes/:id', to: 'causes#show'
 
       post '/app_released', to: 'app_version#check'
     end

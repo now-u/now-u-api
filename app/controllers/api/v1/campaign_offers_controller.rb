@@ -2,6 +2,6 @@
 
 class Api::V1::CampaignOffersController < APIApplicationController
   def index
-    render json: { data: Offer.where(campaign_id: params[:id]) }, status: :ok
+    render json: { data: Campaign.find(params[:id]).offers }, status: :ok
   end
 end

@@ -45,3 +45,8 @@ To find out what needs doing checkout the [issues](https://github.com/now-u/now-
 ## Notes :memo:
 
 The endpoints for this repo is https://api.now-u.com/api/v1/campaigns (replace campaigns with whatever endpoint you need)
+
+To make swagger api documentation, run the following command
+
+`SWAGGER_DRY_RUN=0 RAILS_ENV=test rails rswag`
+

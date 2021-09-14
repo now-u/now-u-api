@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'swagger_helper'
 
 RSpec.describe "Causes", type: :request do
   let(:cause) { create(:cause) }

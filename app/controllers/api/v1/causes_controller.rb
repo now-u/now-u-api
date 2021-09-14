@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::CausesController < ApplicationController
+class Api::V1::CausesController < APIApplicationController
   def index
     render json: causes, root: 'data', status: :ok, adapter: :json
   end
