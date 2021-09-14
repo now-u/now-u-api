@@ -10,31 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_25_181849) do
+ActiveRecord::Schema.define(version: 2021_09_03_145609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "actions", force: :cascade do |t|
-    t.string "title"
-    t.string "link"
-    t.string "type"
-    t.integer "campaign_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "what_description"
-    t.string "why_description"
-    t.float "time"
-    t.boolean "enabled", default: false
-    t.datetime "release_date"
-    t.datetime "end_date"
-  end
-
-  create_table "actions_causes", id: false, force: :cascade do |t|
-    t.bigint "cause_id", null: false
-    t.bigint "action_id", null: false
-    t.index ["cause_id", "action_id"], name: "index_actions_causes_on_cause_id_and_action_id"
-  end
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -63,7 +42,7 @@ ActiveRecord::Schema.define(version: 2021_04_25_181849) do
     t.string "header_image"
     t.string "full_article_link"
     t.string "video_link"
-    t.integer "action_id"
+    t.integer "campaign_action_id"
     t.integer "campaign_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -78,7 +57,7 @@ ActiveRecord::Schema.define(version: 2021_04_25_181849) do
   create_table "blog_articles", force: :cascade do |t|
     t.string "title"
     t.string "subtitle"
-    t.integer "action_id"
+    t.integer "campaign_action_id"
     t.integer "user_id"
     t.integer "campaign_id"
     t.integer "reading_time"
@@ -101,6 +80,21 @@ ActiveRecord::Schema.define(version: 2021_04_25_181849) do
     t.integer "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "campaign_actions", force: :cascade do |t|
+    t.string "title"
+    t.string "link"
+    t.string "type"
+    t.integer "campaign_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "what_description"
+    t.string "why_description"
+    t.float "time"
+    t.boolean "enabled", default: false
+    t.datetime "release_date"
+    t.datetime "end_date"
   end
 
   create_table "campaign_goals", force: :cascade do |t|
@@ -127,10 +121,10 @@ ActiveRecord::Schema.define(version: 2021_04_25_181849) do
 
   create_table "cause_actions", force: :cascade do |t|
     t.bigint "cause_id", null: false
-    t.bigint "action_id", null: false
+    t.bigint "campaign_action_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["action_id"], name: "index_cause_actions_on_action_id"
+    t.index ["campaign_action_id"], name: "index_cause_actions_on_campaign_action_id"
     t.index ["cause_id"], name: "index_cause_actions_on_cause_id"
   end
 
@@ -225,7 +219,7 @@ ActiveRecord::Schema.define(version: 2021_04_25_181849) do
     t.integer "campaign_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "action_id"
+    t.integer "campaign_action_id"
   end
 
   create_table "organisations", force: :cascade do |t|
@@ -308,7 +302,7 @@ ActiveRecord::Schema.define(version: 2021_04_25_181849) do
 
   create_table "user_actions", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "action_id"
+    t.integer "campaign_action_id"
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -366,7 +360,7 @@ ActiveRecord::Schema.define(version: 2021_04_25_181849) do
     t.integer "user_role_id"
   end
 
-  add_foreign_key "cause_actions", "actions"
+  add_foreign_key "cause_actions", "campaign_actions"
   add_foreign_key "cause_actions", "causes"
   add_foreign_key "cause_campaigns", "campaigns"
   add_foreign_key "cause_campaigns", "causes"

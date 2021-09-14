@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
 class Campaign < ApplicationRecord
-
   validates_presence_of :title
 
-  has_many :actions
+  has_many :campaign_actions
   has_many :blog_articles
   has_many :articles
   has_many :offers
@@ -50,6 +49,6 @@ class Campaign < ApplicationRecord
   end
 
   def number_of_completed_actions
-    UserAction.where(action_id: actions.ids, status: 'completed').count
+    UserAction.where(campaign_action_id: campaign_actions.ids, status: 'completed').count
   end
 end

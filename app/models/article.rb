@@ -2,7 +2,7 @@
 
 class Article < ApplicationRecord
   belongs_to :campaign
-  belongs_to :action
+  belongs_to :campaign_action
 
   scope :active, lambda {
     where('enabled IS TRUE AND release_date IS NULL').or(

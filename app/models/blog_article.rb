@@ -2,7 +2,7 @@
 
 class BlogArticle < ApplicationRecord
   belongs_to :user
-  belongs_to :action
+  belongs_to :campaign_action
   belongs_to :campaign
 
   has_many :comments, dependent: :destroy, class_name: "BlogComment"

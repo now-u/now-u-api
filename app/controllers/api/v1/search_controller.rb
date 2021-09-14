@@ -7,7 +7,7 @@ class Api::V1::SearchController < ApplicationController
         campaigns: Campaign.all.search(params[:query]),
         # {causes: Cause.all.search(params[:query])},
         learning_resources: LearningResource.all.search(params[:query]),
-        actions: Action.all.search(params[:query])
+        campaign_actions: CampaignAction.all.search(params[:query])
       }
       render json: { result: result }
     else
@@ -31,8 +31,8 @@ class Api::V1::SearchController < ApplicationController
       else
         render json: { result: 'no query' }
       end
-    when 'actions'
-      result = { actions: Action.all.search(params[:query]) }
+    when 'campaign_actions'
+      result = { campaign_actions: CampaignAction.all.search(params[:query]) }
       if params[:query].present?
         render json: { result: result }
       else

@@ -5,28 +5,28 @@ require 'rails_helper'
 RSpec.describe Api::V1::UserActionsController, type: :controller do
   let(:user) { User.create(email: 'ok@ok.com', token: 'abc1234', verified: true, points: points) }
   let(:campaign) { Campaign.create!(title: 'My campaign') }
-  let(:action) do
-    Action.create!(title: 'My action', campaign_id: campaign.id, enabled: true)
+  let(:campaign_action) do
+    CampaignAction.create!(title: 'My action', campaign_id: campaign.id, enabled: true)
   end
   let(:points) { 0 }
 
   describe '#destroy' do
     let!(:user_action) do
-      UserAction.create!(user_id: user.id, action_id: action.id, status: 'completed')
+      UserAction.create!(user_id: user.id, campaign_action_id: campaign_action.id, status: 'completed')
     end
     subject(:delete_user_action) do
       request.headers.merge!('token' => 'abc1234')
-      delete :destroy, params: { id: action.id }
+      delete :destroy, params: { id: campaign_action.id }
     end
 
     it 'deletes the user action' do
-      expect { delete_user_action }.to change { UserAction.where(user_id: user.id, action_id: action.id).count }.from(1).to(0)
+      expect { delete_user_action }.to change { UserAction.where(user_id: user.id, campaign_action_id: campaign_action.id).count }.from(1).to(0)
     end
   end
 
   describe '#index' do
     let!(:user_action) do
-      UserAction.create!(user_id: user.id, action_id: action.id)
+      UserAction.create!(user_id: user.id, campaign_action_id: campaign_action.id)
     end
     subject(:get_actions) do
       request.headers.merge!('token' => 'abc1234')
@@ -38,7 +38,7 @@ RSpec.describe Api::V1::UserActionsController, type: :controller do
     end
 
     it 'returns the user actions' do
-      expect(JSON.parse(response.body)['data'].pluck('id')).to match_array([action.id])
+      expect(JSON.parse(response.body)['data'].pluck('id')).to match_array([campaign_action.id])
     end
   end
 
@@ -47,11 +47,11 @@ RSpec.describe Api::V1::UserActionsController, type: :controller do
     let(:status) { 'reject' }
     subject(:create_action_with_status) do
       request.headers.merge!('token' => 'abc1234')
-      post :create, params: { id: action.id, status: status }
+      post :create, params: { id: campaign_action.id, status: status }
     end
 
     it 'creates the user action with rejected status' do
-      expect { create_action_with_status }.to change { UserAction.where(user_id: user.id, action_id: action.id, status: 'rejected').count }.from(0).to(1)
+      expect { create_action_with_status }.to change { UserAction.where(user_id: user.id, campaign_action_id: campaign_action.id, status: 'rejected').count }.from(0).to(1)
     end
 
     it 'decrements user points' do
@@ -68,7 +68,7 @@ RSpec.describe Api::V1::UserActionsController, type: :controller do
       let(:status) { 'complete' }
 
       it 'creates the action with completed status' do
-        expect { create_action_with_status }.to change { UserAction.where(user_id: user.id, action_id: action.id, status: 'completed').count }.from(0).to(1)
+        expect { create_action_with_status }.to change { UserAction.where(user_id: user.id, campaign_action_id: campaign_action.id, status: 'completed').count }.from(0).to(1)
       end
 
       it 'increments user points' do
@@ -79,7 +79,7 @@ RSpec.describe Api::V1::UserActionsController, type: :controller do
     context 'when user action already exists' do
       let(:status) { 'complete' }
       let!(:user_action) do
-        UserAction.create!(user_id: user.id, action_id: action.id, status: 'rejected')
+        UserAction.create!(user_id: user.id, campaign_action_id: campaign_action.id, status: 'rejected')
       end
 
       it 'updates the user action status' do

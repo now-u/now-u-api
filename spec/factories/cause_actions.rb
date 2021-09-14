@@ -3,6 +3,6 @@
 FactoryBot.define do
   factory :cause_action do
     association :cause
-    association :action
+    association :campaign_action
   end
 end

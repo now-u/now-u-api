@@ -2,10 +2,10 @@
 
 class UserAction < ApplicationRecord
   belongs_to :user
-  belongs_to :action
+  belongs_to :campaign_action
   after_destroy :decrement_score
   after_update :update_score
-  validates_uniqueness_of :action_id, scope: :user_id
+  validates_uniqueness_of :campaign_action_id, scope: :user_id
 
   def increment_score
     user.increment!(:points, 5)

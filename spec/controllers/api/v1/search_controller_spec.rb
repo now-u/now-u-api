@@ -7,8 +7,8 @@ RSpec.describe Api::V1::SearchController, type: :controller do
         let(:learning_topic) { LearningTopic.create!(title: "lt test", campaign: campaign)}
         let(:learning_resource) { LearningResource.create!(title: "test lr", learning_topic: learning_topic)}
         let(:learning_resource2) { LearningResource.create!(title: "test", type: "lr", learning_topic: learning_topic)}
-        let(:action) { Action.create!(title: "test action", campaign: campaign)}
-        let(:action2) { Action.create!(title: "test", type: "action", campaign: campaign)}
+        let(:campaign_action) { CampaignAction.create!(title: "test action", campaign: campaign)}
+        let(:campaign_action2) { CampaignAction.create!(title: "test", type: "action", campaign: campaign)}
 
         before do
             campaign
@@ -16,8 +16,8 @@ RSpec.describe Api::V1::SearchController, type: :controller do
             learning_topic
             learning_resource
             learning_resource2
-            action
-            action2
+            campaign_action
+            campaign_action2
         end
         it "should return only campaings" do
             get :index, params: { query: "campaign" }, as: :json
@@ -34,7 +34,7 @@ RSpec.describe Api::V1::SearchController, type: :controller do
         it "should return only actions" do
             get :index, params: { query: "action" }, as: :json
 
-            result = JSON.parse(response.body)["result"]["actions"]
+            result = JSON.parse(response.body)["result"]["campaign_actions"]
             expect(result.size).to eq(2)
         end
         it "should return 2 each model" do
@@ -43,8 +43,8 @@ RSpec.describe Api::V1::SearchController, type: :controller do
             expect(campaigns.size).to eq(2)
             lrs = JSON.parse(response.body)["result"]["learning_resources"]
             expect(lrs.size).to eq(2)
-            actions = JSON.parse(response.body)["result"]["actions"]
-            expect(actions.size).to eq(2)
+            campaign_actions = JSON.parse(response.body)["result"]["campaign_actions"]
+            expect(campaign_actions.size).to eq(2)
         end
         it "should return only campaings" do
             get :search, params: { model: "campaigns", query: "test" }, as: :json
@@ -57,9 +57,9 @@ RSpec.describe Api::V1::SearchController, type: :controller do
             expect(lrs.size).to eq(2)
         end
         it "should return only actions" do
-            get :search, params: { model: "actions", query: "test" }, as: :json
-            actions = JSON.parse(response.body)["result"]["actions"]
-            expect(actions.size).to eq(2)
+            get :search, params: { model: "campaign_actions", query: "test" }, as: :json
+            campaign_actions = JSON.parse(response.body)["result"]["campaign_actions"]
+            expect(campaign_actions.size).to eq(2)
         end
     end
 end
