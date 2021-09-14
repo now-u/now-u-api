@@ -3,9 +3,9 @@ require 'swagger_helper'
 RSpec.describe Api::V1::CampaignsController, type: :request do
   let(:campaign) { create(:campaign) }
   let(:campaign_id) { campaign.id }
-  let(:action) { create(:action, campaign_id: campaign_id) }
+  let(:action) { create(:campaign_action, campaign_id: campaign_id) }
   let(:action_id) { action.id }
-  let(:article) { create(:article, action_id: action_id) }
+  let(:article) { create(:article, campaign_action_id: action_id) }
   let(:offer) { create(:offer, action_id: action_id) }
 
   campaign_schema = Campaign.column_names.reduce({}) { |res, column_name|
@@ -13,8 +13,8 @@ RSpec.describe Api::V1::CampaignsController, type: :request do
           res
   }
 
-  action_schema = Action.column_names.reduce({}) { |res, column_name|
-    res[column_name.to_sym] = {type: Action.column_for_attribute(column_name).type}
+  action_schema = CampaignAction.column_names.reduce({}) { |res, column_name|
+    res[column_name.to_sym] = {type: CampaignAction.column_for_attribute(column_name).type}
     res
   }
 
