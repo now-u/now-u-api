@@ -13,7 +13,7 @@ class APIApplicationController < ActionController::API
     token = request.headers['token']
     @user = User.find_by(token: token)
 
-    render json: {}, status: :unauthorized unless @user&.verified
+    render json: { message: "User authorization failed" }, status: :unauthorized unless @user&.verified
   end
 
   def user_response
