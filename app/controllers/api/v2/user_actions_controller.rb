@@ -15,18 +15,18 @@ private
 
   def user_actions_data
     @user.campaign_actions.map do |a|
-      a.serializable_hash.symbolize_keys.merge(additional_fields(a))
+      a.serializable_hash.symbolize_keys.merge(additional_fields(a.id))
     end
   end
 
   def user_action_data
-    @user.campaign_actions.find(params[:id]).serializable_hash.symbolize_keys.merge(additional_fields(a))
+    @user.campaign_actions.find(params[:id]).serializable_hash.symbolize_keys.merge(additional_fields(params[:id]))
   end
 
-  def additional_fields(action)
+  def additional_fields(action_id)
     {
-      causes: action.causes,
-      status: @user.user_actions.find_by(campaign_action_id: action.id).status,
+      causes: CampaignAction.find(action_id)&.causes,
+      status: @user.user_actions.find_by(campaign_action_id: action_id).status,
     }
   end
 end

@@ -89,6 +89,10 @@ Rails.application.routes.draw do
       get '/user/actions', to: 'user_actions#index'
       get '/user/actions/:id', to: 'user_actions#index'
       get '/user/campaigns', to: 'user_campaigns#index'
+
+      # Other routes
+      get '/actions', to: 'campaign_actions#index'
+      get '/actions/:id', to: 'campaign_actions#show'
     end
   end
 
