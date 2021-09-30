@@ -26,7 +26,7 @@ private
   def additional_fields(action_id)
     {
       causes: CampaignAction.find(action_id)&.causes,
-      status: @user.user_actions.find_by(campaign_action_id: action_id).status,
+      completed: @user.user_actions.find_by(campaign_action_id: action_id).status,
     }
   end
 end
