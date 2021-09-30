@@ -35,7 +35,7 @@ RSpec.describe Api::V1::CampaignsController, type: :request do
 
   path '/api/v1/campaigns' do
     get 'Retrieves all Campaigns' do
-      tags 'Campaigns'
+      tags 'API::V1 -> Campaigns'
       produces 'application/json'
 
       response '200', 'Campaigns found' do
@@ -55,7 +55,7 @@ RSpec.describe Api::V1::CampaignsController, type: :request do
 
   path '/api/v1/campaigns/{campaign_id}' do
     get 'Retrieves a Campaign' do
-      tags 'Campaigns'
+      tags 'API::V1 -> Campaigns'
       produces 'application/json'
       parameter name: :campaign_id, in: :path, type: :string
 
@@ -81,7 +81,7 @@ RSpec.describe Api::V1::CampaignsController, type: :request do
 
   path '/api/v1/campaigns/{campaign_id}/actions' do
     get 'Retrieves a Campaigns actions' do
-      tags 'Campaigns'
+      tags 'API::V1 -> Campaigns'
       produces 'application/json'
       parameter name: :campaign_id, in: :path, type: :string
 
@@ -107,7 +107,7 @@ RSpec.describe Api::V1::CampaignsController, type: :request do
 
   path '/api/v1/campaigns/{campaign_id}/actions/{action_id}' do
     get 'Retrieves a Campaigns action through action id' do
-      tags 'Campaigns'
+      tags 'API::V1 -> Campaigns'
       produces 'application/json'
       parameter name: :campaign_id, in: :path, type: :string
       parameter name: :action_id, in: :path, type: :string
@@ -135,7 +135,7 @@ RSpec.describe Api::V1::CampaignsController, type: :request do
 
   path '/api/v1/campaigns/{campaign_id}/actions/{action_id}/articles' do
     get 'Retrieves a Campaigns articles through action id' do
-      tags 'Campaigns'
+      tags 'API::V1 -> Campaigns'
       produces 'application/json'
       parameter name: :campaign_id, in: :path, type: :string
       parameter name: :action_id, in: :path, type: :string
@@ -169,7 +169,7 @@ RSpec.describe Api::V1::CampaignsController, type: :request do
 
   path '/api/v1/campaigns/{campaign_id}/actions/{action_id}/offers' do
     get 'Retrieves a Campaigns offers through action id' do
-      tags 'Campaigns'
+      tags 'API::V1 -> Campaigns'
       produces 'application/json'
       parameter name: :campaign_id, in: :path, type: :string
       parameter name: :action_id, in: :path, type: :string
@@ -198,7 +198,7 @@ RSpec.describe Api::V1::CampaignsController, type: :request do
 
   path '/api/v1/campaigns/{campaign_id}/articles' do
     get 'Retrieves a Campaigns articles' do
-      tags 'Campaigns'
+      tags 'API::V1 -> Campaigns'
       produces 'application/json'
       parameter name: :campaign_id, in: :path, type: :string
       parameter name: :action_id, in: :path, type: :string
@@ -227,7 +227,7 @@ RSpec.describe Api::V1::CampaignsController, type: :request do
 
   path '/api/v1/campaigns/{campaign_id}/offers' do
     get 'Retrieves a Campaigns articles' do
-      tags 'Campaigns'
+      tags 'API::V1 -> Campaigns'
       produces 'application/json'
       parameter name: :campaign_id, in: :path, type: :string
       parameter name: :action_id, in: :path, type: :string
@@ -255,7 +255,7 @@ RSpec.describe Api::V1::CampaignsController, type: :request do
 
   path '/api/v1/campaigns/{campaign_id}/learning_topics' do
     get 'Retrieves a Campaigns learning topics' do
-      tags 'Campaigns'
+      tags 'API::V1 -> Campaigns'
       produces 'application/json'
       parameter name: :campaign_id, in: :path, type: :string
       parameter name: :action_id, in: :path, type: :string

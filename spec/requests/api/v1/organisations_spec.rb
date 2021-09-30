@@ -14,7 +14,7 @@ RSpec.describe Api::V1::OrganisationsController, type: :request do
 
   path '/api/v1/organisations' do
     get 'Retrieves all organisations' do
-      tags 'Organisations'
+      tags 'API::V1 -> Organisations'
       produces 'application/json'
 
       response '200', 'organisations found' do
@@ -34,7 +34,7 @@ RSpec.describe Api::V1::OrganisationsController, type: :request do
 
   path '/api/v1/organisations/{id}' do
     get 'Retrieves a organisation' do
-      tags 'Organisations'
+      tags 'API::V1 -> Organisations'
       produces 'application/json'
       parameter name: :id, in: :path, type: :string
 

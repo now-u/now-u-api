@@ -16,7 +16,7 @@ RSpec.describe Api::V1::CausesController, type: :request do
 
   path '/api/v1/causes' do
     get 'Retrieves all causes' do
-      tags 'Causes'
+      tags 'API::V1 -> Causes'
       produces 'application/json'
 
       response '200', 'causes found' do
@@ -36,7 +36,7 @@ RSpec.describe Api::V1::CausesController, type: :request do
 
   path '/api/v1/causes/{id}' do
     get 'Retrieves a cause' do
-      tags 'Causes'
+      tags 'API::V1 -> Causes'
       produces 'application/json'
       parameter name: :id, in: :path, type: :string
 

@@ -10,7 +10,7 @@ RSpec.describe Api::V1::OffersController, type: :request do
 
   path '/api/v1/offers' do
     get 'Retrieves all offers' do
-      tags 'Offers'
+      tags 'API::V1 -> Offers'
       produces 'application/json'
 
       response '200', 'offers found' do
@@ -31,7 +31,7 @@ RSpec.describe Api::V1::OffersController, type: :request do
 
   path '/api/v1/offers/{id}' do
     get 'Retrieves a offer' do
-      tags 'Offers'
+      tags 'API::V1 -> Offers'
       produces 'application/json'
       parameter name: :id, in: :path, type: :string
 

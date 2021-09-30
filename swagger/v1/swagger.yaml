@@ -8,7 +8,7 @@ paths:
     get:
       summary: Retrieves all articles
       tags:
-      - Articles
+      - API::V1 -> Articles
       responses:
         '200':
           description: articles found
@@ -16,22 +16,22 @@ paths:
             application/json:
               example:
                 data:
-                - id: 88
-                  title: market share
-                  body: Est quia sit repellat.
-                  header_image: http://haag.co/sharon.hilpert
-                  full_article_link: http://bernhard.info/keith.lind
-                  video_link: http://olson.info/josiah.littel
-                  campaign_action_id: 1148
-                  campaign_id: 2447
-                  created_at: '2021-09-30T16:31:44.941Z'
-                  updated_at: '2021-09-30T16:31:44.941Z'
+                - id: 102
+                  title: out of the box
+                  body: Quod eos sunt eius.
+                  header_image: http://wyman.org/marty
+                  full_article_link: http://hickle-hyatt.org/gil
+                  video_link: http://trantow.info/johnie.durgan
+                  campaign_action_id: 1190
+                  campaign_id: 2541
+                  created_at: '2021-09-30T16:44:14.916Z'
+                  updated_at: '2021-09-30T16:44:14.916Z'
                   video_of_the_day:
-                  subtitle: tee it up
-                  link_text: http://nader.co/kristofer_buckridge
-                  source: http://dare.org/albert
+                  subtitle: heads down
+                  link_text: http://gerhold.org/constance.jerde
+                  source: http://luettgen-corkery.org/dwayne
                   enabled: true
-                  release_date: '2021-08-29T00:00:00.000Z'
+                  release_date: '2021-05-31T00:00:00.000Z'
               schema:
                 type: object
                 properties:
@@ -71,7 +71,7 @@ paths:
     get:
       summary: Retrieves a article
       tags:
-      - Articles
+      - API::V1 -> Articles
       parameters:
       - name: id
         in: path
@@ -85,22 +85,22 @@ paths:
             application/json:
               example:
                 data:
-                  id: 89
-                  title: data points
-                  body: Assumenda repudiandae officia ut.
-                  header_image: http://cronin.io/william
-                  full_article_link: http://mcdermott-jast.co/susann.rau
-                  video_link: http://cormier.biz/marissa_brown
-                  campaign_action_id: 1149
-                  campaign_id: 2449
-                  created_at: '2021-09-30T16:31:44.978Z'
-                  updated_at: '2021-09-30T16:31:44.978Z'
+                  id: 103
+                  title: synergy
+                  body: Quas nemo natus nihil.
+                  header_image: http://bartoletti.biz/tamar
+                  full_article_link: http://kulas.net/retta
+                  video_link: http://kuphal.name/leta_olson
+                  campaign_action_id: 1191
+                  campaign_id: 2543
+                  created_at: '2021-09-30T16:44:14.959Z'
+                  updated_at: '2021-09-30T16:44:14.959Z'
                   video_of_the_day:
-                  subtitle: market share
-                  link_text: http://hayes.info/venice_buckridge
-                  source: http://roberts.net/lilia
+                  subtitle: make it actionable
+                  link_text: http://ratke.info/claudio.heller
+                  source: http://schimmel.co/rene
                   enabled: true
-                  release_date: '2021-02-18T00:00:00.000Z'
+                  release_date: '2021-01-12T00:00:00.000Z'
               schema:
                 type: object
                 properties:
@@ -146,34 +146,34 @@ paths:
     get:
       summary: Retrieves all blogs
       tags:
-      - Blogs
+      - API::V1 -> Blogs
       responses:
         '200':
           description: blogs found
           content:
             application/json:
               example:
-              - id: 196
-                title: thought leadership
-                subtitle: Nulla laboriosam autem ut.
-                campaign_action_id: 1151
-                user_id: 1901
-                campaign_id: 2453
-                reading_time: 73
-                created_at: '2021-09-30T16:31:45.072Z'
-                updated_at: '2021-09-30T16:31:45.072Z'
+              - id: 202
+                title: SWAG
+                subtitle: Vel quia maxime totam.
+                campaign_action_id: 1193
+                user_id: 1917
+                campaign_id: 2547
+                reading_time: 2
+                created_at: '2021-09-30T16:44:15.066Z'
+                updated_at: '2021-09-30T16:44:15.066Z'
                 enabled: true
-                header_image: http://anderson.info/shon
+                header_image: http://predovic.org/denita
                 tags: []
                 user:
-                  full_name: Anton Schamberger
+                  full_name: Alline Conroy
                   profile_picture_url:
                   description:
   "/api/v1/blogs/{id}":
     get:
       summary: Retrieves a blog
       tags:
-      - Blogs
+      - API::V1 -> Blogs
       parameters:
       - name: id
         in: path
@@ -188,20 +188,20 @@ paths:
               example:
                 data:
                   blog:
-                    id: 197
-                    title: tee it up
-                    subtitle: Et ut aut ipsam.
-                    campaign_action_id: 1152
-                    user_id: 1902
-                    campaign_id: 2455
-                    reading_time: 11
-                    created_at: '2021-09-30T16:31:45.109Z'
-                    updated_at: '2021-09-30T16:31:45.109Z'
+                    id: 203
+                    title: t-shirt sizes
+                    subtitle: Voluptas hic et ipsa.
+                    campaign_action_id: 1194
+                    user_id: 1918
+                    campaign_id: 2549
+                    reading_time: 91
+                    created_at: '2021-09-30T16:44:15.109Z'
+                    updated_at: '2021-09-30T16:44:15.109Z'
                     enabled: true
-                    header_image: http://wiza.biz/grant
+                    header_image: http://friesen.biz/shalon
                     tags: []
                     user:
-                      full_name: Amb. Erin Flatley
+                      full_name: Trenton Terry
                       profile_picture_url:
                       description:
                 sections: []
@@ -240,7 +240,7 @@ paths:
     get:
       summary: Retrieves all Campaigns
       tags:
-      - Campaigns
+      - API::V1 -> Campaigns
       responses:
         '200':
           description: Campaigns found
@@ -281,7 +281,7 @@ paths:
     get:
       summary: Retrieves a Campaign
       tags:
-      - Campaigns
+      - API::V1 -> Campaigns
       parameters:
       - name: campaign_id
         in: path
@@ -295,18 +295,19 @@ paths:
             application/json:
               example:
                 data:
-                  id: 2459
-                  title: button up the loose ends
-                  description_app: Minima sit aut dolor.
-                  header_image: http://conn.com/jerome
-                  created_at: '2021-09-30T16:31:45.182Z'
-                  updated_at: '2021-09-30T16:31:45.182Z'
-                  video_link: http://oconner-blanda.io/houston
+                  id: 2553
+                  title: sprint to the finish line
+                  description_app: Reiciendis rerum placeat est.
+                  header_image: http://berge.biz/houston.lueilwitz
+                  created_at: '2021-09-30T16:44:15.187Z'
+                  updated_at: '2021-09-30T16:44:15.187Z'
+                  video_link: http://weissnat.io/joaquin.moen
                   description_web:
                   enabled: true
-                  start_date: '2021-08-27T00:00:00.000Z'
-                  end_date: '2021-03-17T00:00:00.000Z'
-                  short_name: Chicharrones cray meggings post-ironic tacos.
+                  start_date: '2021-12-04T00:00:00.000Z'
+                  end_date: '2021-10-15T00:00:00.000Z'
+                  short_name: Meggings etsy small batch occupy austin taxidermy single-origin
+                    coffee trust fund franzen.
                   number_of_campaigners: 0
                   number_of_completed_actions: 0
                   general_partners: []
@@ -315,7 +316,7 @@ paths:
                   key_aims: []
                   campaign_actions: []
                   learning_topics: []
-                  infographic_url: http://glover.com/elroy
+                  infographic_url: http://walsh-gottlieb.name/lucy
               schema:
                 type: object
                 properties:
@@ -355,7 +356,7 @@ paths:
     get:
       summary: Retrieves a Campaigns actions
       tags:
-      - Campaigns
+      - API::V1 -> Campaigns
       parameters:
       - name: campaign_id
         in: path
@@ -408,7 +409,7 @@ paths:
     get:
       summary: Retrieves a Campaigns action through action id
       tags:
-      - Campaigns
+      - API::V1 -> Campaigns
       parameters:
       - name: campaign_id
         in: path
@@ -427,34 +428,33 @@ paths:
             application/json:
               example:
                 data:
-                  id: 1154
-                  title: bleeding edge
-                  link: http://reichel.net/karlyn_heaney
+                  id: 1196
+                  title: bandwidth-constrained
+                  link: http://ullrich.com/maximina_lindgren
                   type:
-                  campaign_id: 2463
-                  created_at: '2021-09-30T16:31:45.252Z'
-                  updated_at: '2021-09-30T16:31:45.252Z'
-                  what_description: Tempora reprehenderit voluptatem natus.
-                  why_description: Enim adipisci similique libero.
+                  campaign_id: 2557
+                  created_at: '2021-09-30T16:44:15.268Z'
+                  updated_at: '2021-09-30T16:44:15.268Z'
+                  what_description: Neque mollitia quia eveniet.
+                  why_description: Odit consequatur et et.
                   time: 0.1
                   enabled: true
-                  release_date: '2021-01-01T00:00:00.000Z'
-                  end_date: '2021-05-04T00:00:00.000Z'
+                  release_date: '2021-11-22T00:00:00.000Z'
+                  end_date: '2021-04-22T00:00:00.000Z'
                   campaign:
-                    id: 2463
-                    title: out of the box
-                    description_app: Quaerat autem voluptatum vero.
-                    header_image: http://hammes.net/janey.ebert
-                    created_at: '2021-09-30T16:31:45.248Z'
-                    updated_at: '2021-09-30T16:31:45.248Z'
-                    video_link: http://parisian-leuschke.biz/meggan
+                    id: 2557
+                    title: bleeding edge
+                    description_app: Incidunt earum voluptates voluptatem.
+                    header_image: http://larson.name/oma
+                    created_at: '2021-09-30T16:44:15.263Z'
+                    updated_at: '2021-09-30T16:44:15.263Z'
+                    video_link: http://yundt-torphy.net/kathey.collier
                     description_web:
                     enabled: true
-                    start_date: '2021-02-21T00:00:00.000Z'
-                    end_date: '2021-01-13T00:00:00.000Z'
-                    short_name: Meditation tacos leggings direct trade marfa neutra
-                      pour-over brunch franzen.
-                    infographic_url: http://blanda.info/benton_schumm
+                    start_date: '2021-12-24T00:00:00.000Z'
+                    end_date: '2021-06-22T00:00:00.000Z'
+                    short_name: Forage jean shorts beard 90's seitan celiac.
+                    infographic_url: http://wisoky.org/rolland.balistreri
                     number_of_campaigners: 0
               schema:
                 type: object
@@ -495,7 +495,7 @@ paths:
     get:
       summary: Retrieves a Campaigns articles through action id
       tags:
-      - Campaigns
+      - API::V1 -> Campaigns
       parameters:
       - name: campaign_id
         in: path
@@ -514,22 +514,22 @@ paths:
             application/json:
               example:
                 data:
-                - id: 92
-                  title: circle back
-                  body: Soluta similique ut est.
-                  header_image: http://cummerata.net/joaquin
-                  full_article_link: http://mosciski.io/santo_block
-                  video_link: http://lueilwitz-stoltenberg.info/fausto.schamberger
-                  campaign_action_id: 1156
-                  campaign_id: 2468
-                  created_at: '2021-09-30T16:31:45.318Z'
-                  updated_at: '2021-09-30T16:31:45.318Z'
+                - id: 106
+                  title: streamline
+                  body: Dolorem qui hic quia.
+                  header_image: http://thiel-davis.com/grisel_bode
+                  full_article_link: http://nader.co/deanna_little
+                  video_link: http://hermiston.io/noe
+                  campaign_action_id: 1198
+                  campaign_id: 2562
+                  created_at: '2021-09-30T16:44:15.339Z'
+                  updated_at: '2021-09-30T16:44:15.339Z'
                   video_of_the_day:
-                  subtitle: SWAG
-                  link_text: http://boyle-konopelski.biz/niki
-                  source: http://lesch.co/lenard_ward
+                  subtitle: circle back
+                  link_text: http://hahn-quigley.co/ellamae
+                  source: http://leffler.biz/tessa
                   enabled: true
-                  release_date: '2021-08-30T00:00:00.000Z'
+                  release_date: '2021-06-29T00:00:00.000Z'
               schema:
                 type: object
                 properties:
@@ -575,7 +575,7 @@ paths:
     get:
       summary: Retrieves a Campaigns offers through action id
       tags:
-      - Campaigns
+      - API::V1 -> Campaigns
       parameters:
       - name: campaign_id
         in: path
@@ -623,7 +623,7 @@ paths:
     get:
       summary: Retrieves a Campaigns articles
       tags:
-      - Campaigns
+      - API::V1 -> Campaigns
       parameters:
       - name: campaign_id
         in: path
@@ -687,7 +687,7 @@ paths:
     get:
       summary: Retrieves a Campaigns articles
       tags:
-      - Campaigns
+      - API::V1 -> Campaigns
       parameters:
       - name: campaign_id
         in: path
@@ -735,7 +735,7 @@ paths:
     get:
       summary: Retrieves a Campaigns learning topics
       tags:
-      - Campaigns
+      - API::V1 -> Campaigns
       parameters:
       - name: campaign_id
         in: path
@@ -783,7 +783,7 @@ paths:
     get:
       summary: Retrieves all causes
       tags:
-      - Causes
+      - API::V1 -> Causes
       responses:
         '200':
           description: causes found
@@ -791,12 +791,12 @@ paths:
             application/json:
               example:
                 data:
-                - id: 237
-                  name: two-way street
-                  image: http://cole.com/francene
-                  icon: http://stark.name/tamesha.batz
-                  joiners: 82
-                  description: Quaerat quasi ut ad.
+                - id: 245
+                  name: rubber meets the road
+                  image: http://wiza-rohan.io/aubrey
+                  icon: http://ebert.co/theresia
+                  joiners: 33
+                  description: Rerum et exercitationem ducimus.
               schema:
                 type: object
                 properties:
@@ -820,7 +820,7 @@ paths:
     get:
       summary: Retrieves a cause
       tags:
-      - Causes
+      - API::V1 -> Causes
       parameters:
       - name: id
         in: path
@@ -833,12 +833,12 @@ paths:
           content:
             application/json:
               example:
-                id: 238
-                name: heads down
-                image: http://hansen.name/conrad.friesen
-                icon: http://klocko-beer.org/lurlene
-                joiners: 79
-                description: Dolore occaecati assumenda accusantium.
+                id: 246
+                name: sales funnel
+                image: http://jenkins.name/thao.cartwright
+                icon: http://robel.biz/edyth
+                joiners: 9
+                description: Quo sit id adipisci.
               schema:
                 type: object
                 properties:
@@ -868,7 +868,7 @@ paths:
     get:
       summary: Retrieves all faqs
       tags:
-      - Frequently Asked Questions
+      - API::V1 -> Frequently Asked Questions
       responses:
         '200':
           description: faqs found
@@ -876,11 +876,11 @@ paths:
             application/json:
               example:
                 data:
-                - id: 14
-                  question: granular
-                  answer: t-shirt sizes
-                  created_at: '2021-09-30T16:31:45.512Z'
-                  updated_at: '2021-09-30T16:31:45.512Z'
+                - id: 16
+                  question: rubber meets the road
+                  answer: thought leadership
+                  created_at: '2021-09-30T16:44:15.547Z'
+                  updated_at: '2021-09-30T16:44:15.547Z'
               schema:
                 type: object
                 properties:
@@ -898,7 +898,7 @@ paths:
     get:
       summary: Retrieves all offers
       tags:
-      - Offers
+      - API::V1 -> Offers
       responses:
         '200':
           description: offers found
@@ -906,14 +906,14 @@ paths:
             application/json:
               example:
                 data:
-                - id: 27
-                  title: value proposition
-                  description: Laudantium saepe fugiat voluptatem.
-                  link: http://mckenzie.name/arnoldo
-                  campaign_id: 2483
-                  created_at: '2021-09-30T16:31:45.536Z'
-                  updated_at: '2021-09-30T16:31:45.536Z'
-                  campaign_action_id: 1161
+                - id: 31
+                  title: get a pulse on
+                  description: Ratione sunt minima et.
+                  link: http://cronin-hills.org/tia
+                  campaign_id: 2577
+                  created_at: '2021-09-30T16:44:15.573Z'
+                  updated_at: '2021-09-30T16:44:15.573Z'
+                  campaign_action_id: 1203
               schema:
                 type: object
                 properties:
@@ -937,7 +937,7 @@ paths:
     get:
       summary: Retrieves a offer
       tags:
-      - Offers
+      - API::V1 -> Offers
       parameters:
       - name: id
         in: path
@@ -951,14 +951,14 @@ paths:
             application/json:
               example:
                 data:
-                  id: 28
-                  title: value proposition
-                  description: Modi nostrum odit at.
-                  link: http://adams.co/daren
-                  campaign_id: 2485
-                  created_at: '2021-09-30T16:31:45.553Z'
-                  updated_at: '2021-09-30T16:31:45.553Z'
-                  campaign_action_id: 1162
+                  id: 32
+                  title: let's take this offline
+                  description: Repellat aperiam qui officiis.
+                  link: http://labadie.biz/lakiesha_blick
+                  campaign_id: 2579
+                  created_at: '2021-09-30T16:44:15.591Z'
+                  updated_at: '2021-09-30T16:44:15.591Z'
+                  campaign_action_id: 1204
               schema:
                 type: object
                 properties:
@@ -988,7 +988,7 @@ paths:
     get:
       summary: Retrieves all organisations
       tags:
-      - Organisations
+      - API::V1 -> Organisations
       responses:
         '200':
           description: organisations found
@@ -996,25 +996,25 @@ paths:
             application/json:
               example:
                 data:
-                - id: 751
-                  name: impact map
-                  description: Aut facilis enim dicta.
-                  logo_link: http://beer.org/truman
-                  created_at: '2021-09-30T16:31:45.566Z'
-                  updated_at: '2021-09-30T16:31:45.566Z'
-                  email: gilda@larkin.net
-                  website: http://kulas.com/jacob
-                  IG_link: http://pollich.org/dorine_breitenberg
-                  FB_link: http://lindgren.net/dewayne
-                  twitter_link: http://mcclure.com/glenn.skiles
-                  extra_text_1: Consequatur laborum porro autem.
+                - id: 773
+                  name: tee it up
+                  description: Voluptatum quis deleniti facere.
+                  logo_link: http://yost.com/nakia_carroll
+                  created_at: '2021-09-30T16:44:15.604Z'
+                  updated_at: '2021-09-30T16:44:15.604Z'
+                  email: mindi@kreiger.co
+                  website: http://boyle-bogisich.org/devora
+                  IG_link: http://mayert-fadel.co/erik
+                  FB_link: http://skiles.org/nathaniel_cummerata
+                  twitter_link: http://kuhn.com/rosario_walter
+                  extra_text_1: Harum reiciendis ut ea.
                   extra_text_2:
                   extra_text_3:
-                  extra_link_1: http://padberg.biz/lucio_hand
+                  extra_link_1: http://rice-yost.name/phyllis_corkery
                   extra_link_2:
                   extra_link_3:
                   organisation_type:
-                  code: DGCYFOTM
+                  code: TLJKRXNG
                   geographic_reach:
                   campaigns: []
               schema:
@@ -1064,7 +1064,7 @@ paths:
     get:
       summary: Retrieves a organisation
       tags:
-      - Organisations
+      - API::V1 -> Organisations
       parameters:
       - name: id
         in: path
@@ -1078,25 +1078,25 @@ paths:
             application/json:
               example:
                 data:
-                  id: 752
-                  name: customer journey
-                  description: Veritatis asperiores quae quia.
-                  logo_link: http://brown-pfeffer.org/cecille
-                  created_at: '2021-09-30T16:31:45.579Z'
-                  updated_at: '2021-09-30T16:31:45.579Z'
-                  email: loyd.okeefe@torp.org
-                  website: http://keeling.net/darby_bogisich
-                  IG_link: http://schuster.net/fredric_murray
-                  FB_link: http://reynolds-bogan.biz/aurelio
-                  twitter_link: http://cruickshank.io/shelton
-                  extra_text_1: Non maiores magnam repellendus.
+                  id: 774
+                  name: circle back
+                  description: In officiis velit sed.
+                  logo_link: http://willms-langosh.co/shae_littel
+                  created_at: '2021-09-30T16:44:15.618Z'
+                  updated_at: '2021-09-30T16:44:15.618Z'
+                  email: george.wuckert@huel-okon.co
+                  website: http://collier-blick.org/elaine
+                  IG_link: http://hilpert-okeefe.org/shon.dickens
+                  FB_link: http://parker-veum.biz/bernita
+                  twitter_link: http://ferry-schneider.net/sena.kunde
+                  extra_text_1: Occaecati in libero deserunt.
                   extra_text_2:
                   extra_text_3:
-                  extra_link_1: http://streich.net/magdalen.hessel
+                  extra_link_1: http://greenfelder.name/avery
                   extra_link_2:
                   extra_link_3:
                   organisation_type:
-                  code: JNCWEBSZ
+                  code: IEVJAXDP
                   geographic_reach:
               schema:
                 type: object
@@ -1151,7 +1151,7 @@ paths:
     get:
       summary: Retrieves all press_coverage
       tags:
-      - Press coverage
+      - API::V1 -> Press coverage
       responses:
         '200':
           description: press_coverage found
@@ -1159,13 +1159,13 @@ paths:
             application/json:
               example:
                 data:
-                - id: 40
-                  image_url: http://dubuque-grant.com/yvette
-                  link: http://dooley-stanton.io/isiah_brown
-                  media_name: let's take this offline
-                  created_at: '2021-09-30T16:31:45.606Z'
-                  updated_at: '2021-09-30T16:31:45.606Z'
-                  title: deep dive
+                - id: 46
+                  image_url: http://carter.info/gary_satterfield
+                  link: http://ebert.com/clementine
+                  media_name: heavy lifting
+                  created_at: '2021-09-30T16:44:15.647Z'
+                  updated_at: '2021-09-30T16:44:15.647Z'
+                  title: give you some time back
               schema:
                 type: object
                 properties:
@@ -1187,7 +1187,7 @@ paths:
     get:
       summary: Retrieves a press_coverage
       tags:
-      - Press coverage
+      - API::V1 -> Press coverage
       parameters:
       - name: id
         in: path
@@ -1201,13 +1201,13 @@ paths:
             application/json:
               example:
                 data:
-                  id: 41
-                  image_url: http://gleichner-oconner.info/earnest_zieme
-                  link: http://bahringer.org/leilani.heller
-                  media_name: infographic
-                  created_at: '2021-09-30T16:31:45.614Z'
-                  updated_at: '2021-09-30T16:31:45.614Z'
-                  title: button up the loose ends
+                  id: 47
+                  image_url: http://fritsch.biz/kristian_klein
+                  link: http://flatley-stiedemann.info/jayson
+                  media_name: two-way street
+                  created_at: '2021-09-30T16:44:15.655Z'
+                  updated_at: '2021-09-30T16:44:15.655Z'
+                  title: two-way street
               schema:
                 type: object
                 properties:
@@ -1235,7 +1235,7 @@ paths:
     get:
       summary: Retrieves all quizzes
       tags:
-      - Quizzes
+      - API::V1 -> Quizzes
       responses:
         '200':
           description: quizzes found
@@ -1243,9 +1243,9 @@ paths:
             application/json:
               example:
                 data:
-                - id: 96
-                  title: etc. etc.
-                  description: Sed vel tempore sequi.
+                - id: 102
+                  title: out of the box
+                  description: Repellat veritatis non totam.
                   questions: []
               schema:
                 type: object
@@ -1264,7 +1264,7 @@ paths:
     get:
       summary: Retrieves a quiz
       tags:
-      - Quizzes
+      - API::V1 -> Quizzes
       parameters:
       - name: id
         in: path
@@ -1278,9 +1278,9 @@ paths:
             application/json:
               example:
                 data:
-                  id: 97
-                  title: out of pocket
-                  description: Nisi non nihil temporibus.
+                  id: 103
+                  title: button up the loose ends
+                  description: Vel facere natus distinctio.
                   questions: []
               schema:
                 type: object
@@ -1305,7 +1305,7 @@ paths:
     get:
       summary: 'If no user token header present, completed: ''User not authenticated'''
       tags:
-      - User Actions
+      - API::V2(latest) -> User Actions
       parameters:
       - name: token
         in: header
@@ -1318,19 +1318,19 @@ paths:
             application/json:
               example:
                 data:
-                - id: 1164
-                  title: best practice
-                  link: http://mueller.name/conrad
+                - id: 1206
+                  title: value proposition
+                  link: http://kohler.name/maxwell_harvey
                   type:
-                  campaign_id: 2488
-                  created_at: '2021-09-30T16:31:45.694Z'
-                  updated_at: '2021-09-30T16:31:45.694Z'
-                  what_description: Eos minus omnis libero.
-                  why_description: Placeat qui adipisci rerum.
+                  campaign_id: 2582
+                  created_at: '2021-09-30T16:44:15.740Z'
+                  updated_at: '2021-09-30T16:44:15.740Z'
+                  what_description: Voluptates enim commodi esse.
+                  why_description: Voluptas harum a et.
                   time: 0.1
                   enabled: true
-                  release_date: '2021-06-23T00:00:00.000Z'
-                  end_date: '2021-12-15T00:00:00.000Z'
+                  release_date: '2021-09-26T00:00:00.000Z'
+                  end_date: '2021-03-24T00:00:00.000Z'
                   completed: Authentication failed
               schema:
                 type: object
@@ -1365,7 +1365,7 @@ paths:
     get:
       summary: Getting a specific user action
       tags:
-      - User Actions
+      - API::V2(latest) -> User Actions
       parameters:
       - name: id
         in: path
@@ -1383,19 +1383,19 @@ paths:
             application/json:
               example:
                 data:
-                  id: 1165
-                  title: two-way street
-                  link: http://yost.net/kayleigh
+                  id: 1207
+                  title: penetrate the market
+                  link: http://mitchell.co/alec.pagac
                   type:
-                  campaign_id: 2489
-                  created_at: '2021-09-30T16:31:45.705Z'
-                  updated_at: '2021-09-30T16:31:45.705Z'
-                  what_description: Illum sunt hic et.
-                  why_description: Quos autem est consequatur.
+                  campaign_id: 2583
+                  created_at: '2021-09-30T16:44:15.753Z'
+                  updated_at: '2021-09-30T16:44:15.753Z'
+                  what_description: Rerum quam voluptates quia.
+                  why_description: Dolorem beatae nihil tenetur.
                   time: 0.1
                   enabled: true
-                  release_date: '2021-11-19T00:00:00.000Z'
-                  end_date: '2021-12-07T00:00:00.000Z'
+                  release_date: '2021-04-29T00:00:00.000Z'
+                  end_date: '2021-07-29T00:00:00.000Z'
                   causes: []
                   completed:
               schema:
@@ -1431,7 +1431,7 @@ paths:
     get:
       summary: Not including the correct header
       tags:
-      - User Actions
+      - API::V2(latest) -> User Actions
       parameters:
       - name: token
         in: header
@@ -1444,19 +1444,19 @@ paths:
             application/json:
               example:
                 data:
-                - id: 1166
-                  title: ideate
-                  link: http://schimmel.biz/shanice
+                - id: 1208
+                  title: penetrate the market
+                  link: http://heathcote.io/deana
                   type:
-                  campaign_id: 2490
-                  created_at: '2021-09-30T16:31:45.741Z'
-                  updated_at: '2021-09-30T16:31:45.741Z'
-                  what_description: Delectus eaque deserunt et.
-                  why_description: Ut eos eaque et.
+                  campaign_id: 2584
+                  created_at: '2021-09-30T16:44:15.790Z'
+                  updated_at: '2021-09-30T16:44:15.790Z'
+                  what_description: Libero earum maxime autem.
+                  why_description: Reprehenderit vero alias omnis.
                   time: 0.1
                   enabled: true
-                  release_date: '2021-08-09T00:00:00.000Z'
-                  end_date: '2021-11-21T00:00:00.000Z'
+                  release_date: '2021-12-18T00:00:00.000Z'
+                  end_date: '2021-11-17T00:00:00.000Z'
                   causes: []
                   completed:
               schema:
@@ -1503,7 +1503,7 @@ paths:
     get:
       summary: Getting a specific user action
       tags:
-      - User Actions
+      - API::V2(latest) -> User Actions
       parameters:
       - name: id
         in: path
@@ -1521,19 +1521,19 @@ paths:
             application/json:
               example:
                 data:
-                - id: 1168
-                  title: let's take this offline
-                  link: http://greenholt-hane.co/alvina_lindgren
+                - id: 1210
+                  title: growth unit
+                  link: http://jenkins.name/chan.flatley
                   type:
-                  campaign_id: 2492
-                  created_at: '2021-09-30T16:31:45.792Z'
-                  updated_at: '2021-09-30T16:31:45.792Z'
-                  what_description: Nihil eos voluptatem tenetur.
-                  why_description: Repellat ut vel error.
+                  campaign_id: 2586
+                  created_at: '2021-09-30T16:44:15.842Z'
+                  updated_at: '2021-09-30T16:44:15.842Z'
+                  what_description: Aliquam atque earum est.
+                  why_description: Ratione rem voluptatem enim.
                   time: 0.1
                   enabled: true
-                  release_date: '2021-08-07T00:00:00.000Z'
-                  end_date: '2021-06-20T00:00:00.000Z'
+                  release_date: '2021-05-05T00:00:00.000Z'
+                  end_date: '2021-10-26T00:00:00.000Z'
                   causes: []
                   completed:
               schema:

@@ -13,7 +13,7 @@ RSpec.describe Api::V1::FaqsController, type: :request do
 
   path '/api/v1/faqs' do
     get 'Retrieves all faqs' do
-      tags 'Frequently Asked Questions'
+      tags 'API::V1 -> Frequently Asked Questions'
       produces 'application/json'
 
       response '200', 'faqs found' do

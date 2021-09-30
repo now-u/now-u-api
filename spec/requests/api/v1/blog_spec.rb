@@ -14,7 +14,7 @@ RSpec.describe Api::V1::BlogArticlesController, type: :request do
 
   path '/api/v1/blogs' do
     get 'Retrieves all blogs' do
-      tags 'Blogs'
+      tags 'API::V1 -> Blogs'
       produces 'application/json'
 
       response '200', 'blogs found' do
@@ -36,7 +36,7 @@ RSpec.describe Api::V1::BlogArticlesController, type: :request do
 
   path '/api/v1/blogs/{id}' do
     get 'Retrieves a blog' do
-      tags 'Blogs'
+      tags 'API::V1 -> Blogs'
       produces 'application/json'
       parameter name: :id, in: :path, type: :string
 

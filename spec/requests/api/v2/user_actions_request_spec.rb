@@ -15,7 +15,7 @@ RSpec.describe Api::V2::UserActionsController, type: :request do
 
   path '/api/v2/user/actions' do
     get 'Retrieves all actions from said user when including User in header' do
-      tags 'User Actions'
+      tags 'API::V2(latest) -> User Actions'
       produces 'application/json'
       let(:'token') { user.token }
       
@@ -36,7 +36,7 @@ RSpec.describe Api::V2::UserActionsController, type: :request do
     end
 
     get 'Not including the correct header' do
-      tags 'User Actions'
+      tags 'API::V2(latest) -> User Actions'
       produces 'application/json'
       let(:'token') { 'I can haz cheesburger' }
       
@@ -59,7 +59,7 @@ RSpec.describe Api::V2::UserActionsController, type: :request do
 
   path '/api/v2/user/actions/{id}' do
     get 'Getting a specific user action' do
-      tags 'User Actions'
+      tags 'API::V2(latest) -> User Actions'
       produces 'application/json'
       parameter name: :id, in: :path, type: :string
       let(:'token') { user.token }

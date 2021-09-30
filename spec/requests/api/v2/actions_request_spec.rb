@@ -15,7 +15,7 @@ RSpec.describe Api::V2::CampaignActionsController, type: :request do
 
   path '/api/v2/actions' do
     get 'Retrieves all Campaign Actions. If user token header present, with a completed: null/completed param' do
-      tags 'User Actions'
+      tags 'API::V2(latest) -> User Actions'
       produces 'application/json'
       let(:'token') { user.token }
       
@@ -36,7 +36,7 @@ RSpec.describe Api::V2::CampaignActionsController, type: :request do
     end
 
     get "If no user token header present, completed: 'User not authenticated'" do
-      tags 'User Actions'
+      tags 'API::V2(latest) -> User Actions'
       produces 'application/json'
       
       response '200', 'Campaign Actions found!' do
@@ -57,7 +57,7 @@ RSpec.describe Api::V2::CampaignActionsController, type: :request do
 
   path '/api/v2/actions/{id}' do
     get 'Getting a specific user action' do
-      tags 'User Actions'
+      tags 'API::V2(latest) -> User Actions'
       produces 'application/json'
       parameter name: :id, in: :path, type: :string
       let(:'token') { user.token }

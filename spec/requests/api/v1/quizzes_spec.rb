@@ -14,7 +14,7 @@ RSpec.describe Api::V1::QuizController, type: :request do
 
   path '/api/v1/quizzes' do
     get 'Retrieves all quizzes' do
-      tags 'Quizzes'
+      tags 'API::V1 -> Quizzes'
       produces 'application/json'
 
       response '200', 'quizzes found' do
@@ -35,7 +35,7 @@ RSpec.describe Api::V1::QuizController, type: :request do
 
   path '/api/v1/quizzes/{id}' do
     get 'Retrieves a quiz' do
-      tags 'Quizzes'
+      tags 'API::V1 -> Quizzes'
       produces 'application/json'
       parameter name: :id, in: :path, type: :string
 

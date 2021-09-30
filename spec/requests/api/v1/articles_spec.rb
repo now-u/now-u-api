@@ -14,7 +14,7 @@ RSpec.describe Api::V1::ArticlesController, type: :request do
 
   path '/api/v1/articles' do
     get 'Retrieves all articles' do
-      tags 'Articles'
+      tags 'API::V1 -> Articles'
       produces 'application/json'
 
       response '200', 'articles found' do
@@ -35,7 +35,7 @@ RSpec.describe Api::V1::ArticlesController, type: :request do
 
   path '/api/v1/articles/{id}' do
     get 'Retrieves a article' do
-      tags 'Articles'
+      tags 'API::V1 -> Articles'
       produces 'application/json'
       parameter name: :id, in: :path, type: :string
 
