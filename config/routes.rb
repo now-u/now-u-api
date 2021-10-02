@@ -89,10 +89,18 @@ Rails.application.routes.draw do
       get '/user/actions', to: 'user_actions#index'
       get '/user/actions/:id', to: 'user_actions#index'
       get '/user/campaigns', to: 'user_campaigns#index'
+      get '/user/campaigns/:id', to: 'user_campaigns#index'
 
-      # Other routes
+      # Actions
       get '/actions', to: 'campaign_actions#index'
       get '/actions/:id', to: 'campaign_actions#show'
+
+      # Campaigns
+      get '/campaigns', to: 'campaigns#index'
+      get '/campaigns/:id', to: 'campaigns#show'
+
+      # Causes
+      get '/causes', to: 'causes#index'
     end
   end
 
