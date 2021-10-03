@@ -22,18 +22,15 @@ private
   end
 
   def additional_fields(action_id)
-    @user = User.find_by token: request.headers['token']
-    return authentication_failed unless @user
-
     {
       causes: CampaignAction.find(action_id)&.causes,
-      completed: @user.user_actions.find_by(campaign_action_id: action_id)&.status,
+      completed: get_status(action_id),
     }
   end
 
-  def authentication_failed
-    {
-      completed: "Authentication failed"
-    }
+  def get_status(action_id)
+    return 'Authentication failed' unless request.headers['token'] && user
+
+    user.user_actions.find_by(campaign_action_id: action_id)&.status
   end
 end

@@ -16,6 +16,10 @@ class APIApplicationController < ActionController::API
     render json: { message: "User authorization failed" }, status: :unauthorized unless @user&.verified
   end
 
+  def user
+    @user ||= User.find_by token: request.headers['token']
+  end
+
   def user_response
     data = { data: @user.reload }
     data = data.to_json(

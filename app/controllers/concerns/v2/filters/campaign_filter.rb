@@ -13,7 +13,7 @@ module V2
 
       def call
         # At the moment, this only supports singular
-        # queries.
+        # queries
         query_params.map do |key, query|
           Campaign.public_send(FILTERS[key], eval(query))
         end.first

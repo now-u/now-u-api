@@ -23,20 +23,15 @@ private
 
   def additional_fields(cause_id)
     # TODO: How do we find out if a user has "joined" a cause?
-    # @user = User.find_by token: request.headers['token']
-    # return authentication_failed unless @user
-
-    # {
-    #   completed: @user.user_causes.find_by(cause: cause_id)&.status,
-    # }
     {
-      joined: "Not yet implemented"
+      joined: get_status(cause_id)
     }
   end
 
-  def authentication_failed
-    {
-      completed: "Authentication failed"
-    }
+  def get_status(cause_id)
+    return 'Authentication failed' unless request.headers['token'] && user
+
+    # user.user_causes.find_by(cause: cause_id)&.status,
+    'Not yet implemented'
   end
 end

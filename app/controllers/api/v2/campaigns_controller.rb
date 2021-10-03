@@ -26,19 +26,16 @@ private
   end
 
   def additional_fields(campaign_id)
-    @user = User.find_by token: request.headers['token']
-    return authentication_failed unless @user
-
     {
       causes: Campaign.find(campaign_id)&.causes,
-      completed: @user.user_campaigns.find_by(campaign_id: campaign_id)&.status,
+      completed: get_status(campaign_id),
     }
   end
 
-  def authentication_failed
-    {
-      completed: "Authentication failed"
-    }
+  def get_status(campaign_id)
+    return 'Authentication failed' unless request.headers['token'] && user
+
+    user.user_campaigns.find_by(campaign_id: campaign_id)&.status
   end
 
   def merge_additional_fields(model)
