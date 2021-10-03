@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V2::CampaignsController < APIApplicationController
-  before_action :set_filter
+  before_action :set_filter, only: :index
 
   def index
     render json: { data: campaigns_data }, status: :ok
@@ -43,6 +43,6 @@ private
   end
 
   def set_filter
-    @filter = ::V2::Filters::CampaignFilter.new(request.url)
+    @filter = ::V2::Filters::Filter.new(request_url: request.url, model: Campaign)
   end
 end

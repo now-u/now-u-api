@@ -1,6 +1,6 @@
 module V2
   module Filters
-    module CampaignFilter
+    module CampaignActionFilter
       FILTERS = {
         "cause__in" => :filter_by_cause
       }
