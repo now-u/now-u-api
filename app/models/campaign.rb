@@ -25,6 +25,11 @@ class Campaign < ApplicationRecord
       where('enabled IS TRUE AND (? > start_date AND ? < end_date)', DateTime.now, DateTime.now)
     )
   }
+
+  scope :filter_by_cause, lambda { |cause_arr|
+    joins(:causes).where(causes: { id: cause_arr })
+  }
+
   scope :inactive, -> { where('end_date < ?', DateTime.now).all }
   scope :current_and_future, -> { where('enabled IS TRUE AND (end_date IS NULL OR end_date > ?)', DateTime.now) }
 

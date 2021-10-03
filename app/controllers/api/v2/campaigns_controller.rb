@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V2::CampaignsController < APIApplicationController
+  before_action :set_filter
+
   def index
     render json: { data: campaigns_data }, status: :ok
   end
@@ -12,13 +14,15 @@ class Api::V2::CampaignsController < APIApplicationController
 private
 
   def campaigns_data
+    return @filter.call.map {|c| merge_additional_fields(c)} unless @filter.query_params.nil?
+
     Campaign.all.map do |a|
-      a.serializable_hash.symbolize_keys.merge(additional_fields(a.id))
+      merge_additional_fields(a)
     end
   end
 
   def campaign_data
-    Campaign.find(params[:id]).serializable_hash.symbolize_keys.merge(additional_fields(params[:id]))
+    merge_additional_fields(Campaign.find(params[:id]))
   end
 
   def additional_fields(campaign_id)
@@ -35,5 +39,13 @@ private
     {
       completed: "Authentication failed"
     }
+  end
+
+  def merge_additional_fields(model)
+    model.serializable_hash.symbolize_keys.merge(additional_fields(model.id))
+  end
+
+  def set_filter
+    @filter = ::V2::Filters::CampaignFilter.new(request.url)
   end
 end
