@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_03_145609) do
+ActiveRecord::Schema.define(version: 2021_10_10_134411) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,6 +95,8 @@ ActiveRecord::Schema.define(version: 2021_09_03_145609) do
     t.boolean "enabled", default: false
     t.datetime "release_date"
     t.datetime "end_date"
+    t.boolean "of_the_month"
+    t.boolean "recommended"
   end
 
   create_table "campaign_goals", force: :cascade do |t|
@@ -117,6 +119,8 @@ ActiveRecord::Schema.define(version: 2021_09_03_145609) do
     t.datetime "end_date"
     t.string "short_name"
     t.string "infographic_url"
+    t.boolean "of_the_month"
+    t.boolean "recommended"
   end
 
   create_table "cause_actions", force: :cascade do |t|
