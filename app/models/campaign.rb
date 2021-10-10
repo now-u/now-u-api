@@ -32,6 +32,8 @@ class Campaign < ApplicationRecord
 
   scope :of_the_month, ->(bool) { where(of_the_month: bool) }
 
+  scope :recommended, ->(bool) { where(recommended: bool) }
+
   scope :inactive, -> { where('end_date < ?', DateTime.now).all }
   scope :current_and_future, -> { where('enabled IS TRUE AND (end_date IS NULL OR end_date > ?)', DateTime.now) }
 

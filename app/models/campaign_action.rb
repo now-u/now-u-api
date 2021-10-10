@@ -25,4 +25,6 @@ class CampaignAction < ApplicationRecord
   }
 
   scope :of_the_month, ->(bool) { where(of_the_month: bool) }
+
+  scope :recommended, ->(bool) { where(recommended: bool) }
 end
