@@ -23,4 +23,6 @@ class CampaignAction < ApplicationRecord
   scope :filter_by_cause, lambda { |cause_arr|
     joins(:causes).where(causes: { id: cause_arr })
   }
+
+  scope :of_the_month, ->(bool) { where(of_the_month: bool) }
 end

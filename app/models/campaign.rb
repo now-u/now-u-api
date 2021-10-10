@@ -30,6 +30,8 @@ class Campaign < ApplicationRecord
     joins(:causes).where(causes: { id: cause_arr })
   }
 
+  scope :of_the_month, ->(bool) { where(of_the_month: bool) }
+
   scope :inactive, -> { where('end_date < ?', DateTime.now).all }
   scope :current_and_future, -> { where('enabled IS TRUE AND (end_date IS NULL OR end_date > ?)', DateTime.now) }
 

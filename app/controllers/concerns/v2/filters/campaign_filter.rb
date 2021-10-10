@@ -5,7 +5,8 @@ module V2
 
       FILTERS = {
         'cause__in' => :filter_by_cause,
-        'limit' => :limit
+        'limit' => :limit,
+        'of_the_month' => :of_the_month
       }
     end
   end
