@@ -4,7 +4,8 @@ module V2
       MODEL = Campaign
 
       FILTERS = {
-        'cause__in' => :filter_by_cause
+        'cause__in' => :filter_by_cause,
+        'limit' => :limit
       }
     end
   end
