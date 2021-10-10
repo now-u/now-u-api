@@ -43,6 +43,6 @@ private
   end
 
   def set_filter
-    @filter = ::V2::Filters::Filter.new(request_url: request.url, model: CampaignAction)
+    @filter = ::V2::Filters::Filter.new(request_url: request.url, filter_model: ::V2::Filters::CampaignActionFilter)
   end
 end
