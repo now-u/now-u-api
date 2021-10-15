@@ -13,6 +13,8 @@ module V2
         # At the moment, this only supports singular
         # queries
         query_params.map do |key, query|
+          next unless filter_model::FILTERS[key]
+
           filter_model::MODEL.public_send(filter_model::FILTERS[key], JSON(query))
         end.first
       end
