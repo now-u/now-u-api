@@ -12,5 +12,7 @@ FactoryBot.define do
     end_date { Faker::Date.in_date_period }
     short_name { Faker::Hipster.sentence }
     infographic_url { Faker::Internet.url }
+    of_the_month { [true, false].sample }
+    recommended { [true, false].sample }
   end
 end
