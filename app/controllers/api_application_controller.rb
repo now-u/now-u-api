@@ -2,6 +2,7 @@
 
 class APIApplicationController < ActionController::API
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  rescue_from V2::Filters::Filter::InvalidFilter, with: :invalid_filter_message
 
   private
 
@@ -38,5 +39,9 @@ class APIApplicationController < ActionController::API
 
   def invalid_json_message(exception)
     render json: { data: "There was an error when parsing the JSON. #{exception}" }
+  end
+
+  def invalid_filter_message(exception)
+    render json: { data: exception }
   end
 end

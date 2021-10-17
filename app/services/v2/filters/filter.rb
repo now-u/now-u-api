@@ -1,6 +1,7 @@
 module V2
   module Filters
     class Filter
+      class InvalidFilter < StandardError;end
       # to add more filters, use hash lookup to the model scope
       attr_reader :query_params, :filter_model
 
@@ -13,7 +14,7 @@ module V2
         # At the moment, this only supports singular
         # queries
         query_params.map do |key, query|
-          next unless filter_model::FILTERS[key]
+          raise InvalidFilter, "Invalid filter '#{key}' for model #{filter_model::MODEL}" unless filter_model::FILTERS[key]
 
           filter_model::MODEL.public_send(filter_model::FILTERS[key], JSON(query))
         end.first
