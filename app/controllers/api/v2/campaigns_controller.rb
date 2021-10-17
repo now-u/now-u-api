@@ -2,6 +2,7 @@
 
 class Api::V2::CampaignsController < APIApplicationController
   before_action :set_filter, only: :index
+  rescue_from JSON::ParserError, with: :invalid_json_message
 
   def index
     render json: { data: campaigns_data }, status: :ok

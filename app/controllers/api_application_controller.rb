@@ -35,4 +35,8 @@ class APIApplicationController < ActionController::API
       methods: [:organisation]
     )
   end
+
+  def invalid_json_message(exception)
+    render json: { data: "There was an error when parsing the JSON. #{exception}" }
+  end
 end
