@@ -21,6 +21,14 @@ The above is taken from: https://keepachangelog.com/en/1.0.0/
 - #39 [Added] Created an endpoint to check if the app version is still compatible or not
 - #49 [Added] Method to Notification model to release notification to all Users. 
 
+### V2 Unreleased
+
+- #xxx [Added] Added request specs
+- #xxx [Added] RSwag API documentation generated from request specs
+- #xxx [Added] V2 API controllers with endpoints, Campaign, Action, Causes, User Actions, User Campaigns
+- #xxx [Added] V2 API controllers consume tokens in headers for user specific information in response object
+- #xxx [Added] Added filter pattern that consumes a specific model-filter module, CampaignFilter, CampaignActionFilter
+
 ### Version 1.7.39
 
 - #338 [Changed] Configured Rubocop (Ruby Linter) and fixed some low hanging fruit
