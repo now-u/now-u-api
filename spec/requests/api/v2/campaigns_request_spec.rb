@@ -65,6 +65,34 @@ RSpec.describe Api::V2::CampaignsController, type: :request do
     end
   end
 
+  path '/api/v2/campaigns/{id}' do
+    get 'Getting a specific campaign' do
+      tags 'API::V2(latest) -> Campaigns'
+      produces 'application/json'
+      parameter name: :id, in: :path, type: :string
+      let(:'token') { user.token }
+      
+      response '200', 'Campaign found! (with user header)' do
+        schema type: :object,
+        properties: campaign_schema
+        parameter name: 'token', :in => :header, :type => :string
+
+        before do |example|
+          campaign
+          submit_request(example.metadata)
+        end
+
+        it 'returns a valid 200 response' do |example|
+          assert_response_matches_metadata(example.metadata)
+        end
+
+        it 'returns if the user has completed the campaign' do
+          expect(JSON(response.body)['data']['completed']).to eq nil
+        end
+      end
+    end
+  end
+
   path '/api/v2/campaigns?cause__in=[{cause_id}]' do
     get "Filters campaigns by cause id's" do
       tags 'API::V2(latest) -> Campaigns'
@@ -111,34 +139,6 @@ RSpec.describe Api::V2::CampaignsController, type: :request do
 
         it 'returns an array of length 1' do
           expect(JSON(response.body)['data'].length).to eq 1
-        end
-      end
-    end
-  end
-
-  path '/api/v2/campaigns/{id}' do
-    get 'Getting a specific campaign' do
-      tags 'API::V2(latest) -> Campaigns'
-      produces 'application/json'
-      parameter name: :id, in: :path, type: :string
-      let(:'token') { user.token }
-      
-      response '200', 'Campaign found! (with user header)' do
-        schema type: :object,
-        properties: campaign_schema
-        parameter name: 'token', :in => :header, :type => :string
-
-        before do |example|
-          campaign
-          submit_request(example.metadata)
-        end
-
-        it 'returns a valid 200 response' do |example|
-          assert_response_matches_metadata(example.metadata)
-        end
-
-        it 'returns if the user has completed the campaign' do
-          expect(JSON(response.body)['data']['completed']).to eq nil
         end
       end
     end

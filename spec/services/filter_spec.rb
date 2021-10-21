@@ -34,7 +34,7 @@ RSpec.describe V2::Filters::Filter, type: :model do
       let(:request_url) { "https://ilovecats.com/bigkahunaburger?absoluterubbish=true" }
 
       it "returns nothing" do
-        expect(subject.call).to eq nil
+        expect { subject.call }.to raise_error "Invalid filter 'absoluterubbish' for model CampaignAction"
       end
     end
   end
