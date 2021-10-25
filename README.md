@@ -15,6 +15,15 @@ Whether you were formally onboarded onto the now-u team, or would like to contri
 
 ### Setup :hammer:
 
+#### Docker (Recommended)
+
+Prerequisites: 
+
+- `docker`
+- `docker-compose`
+- `make`
+
+#### Local
 1. First clone this repo. Prerequisites include Ruby version 2.5.0 and Ruby on Rails 5.2.3, as stated in the Gemfile at the time of writing this. 
 2. Make sure you are on the `master` branch
 3. Run the following commands
