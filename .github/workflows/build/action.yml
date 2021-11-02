@@ -1,0 +1,29 @@
+name: Build and push
+
+inputs:
+  docker-file:  # id of input
+    description: 'The docker file to use for build'
+    required: true
+    default: 'Dockerfile.deploy'
+  image-name:
+    description: 'The name of the docker image to push'
+    required: true
+  image-owner:
+    description: 'The name of the owner of the docker image'
+    required: true
+    default: 'now-u'
+
+runs:
+  using: "composite"
+  steps:
+    - name: Build image
+      run: docker build . --file ${{ inputs.docker-file }} --tag ghcr.io/${{ inputs.image-owner }}/${{ inputs.image-name }} --label "runnumber=${GITHUB_RUN_ID}"
+      shell: bash
+      
+    - name: Log into registry
+      run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      shell: bash
+
+    - name: Push image
+      run: docker push ghcr.io/$${ inputs.image-owner }/${{ inputs.image-name }}:latest
+      shell: bash

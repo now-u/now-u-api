@@ -1,11 +1,6 @@
 name: Run tests on pr 
 on:
   pull_request:
-  push:
-      branches: 
-        - dev
-        - staging
-        - main
 
 jobs:
   pr-test:

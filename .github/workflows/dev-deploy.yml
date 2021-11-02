@@ -1,0 +1,29 @@
+name: Staging Deployment 
+
+on:
+  pull_request:
+  push:
+    branches:
+      - dev
+  
+jobs:
+  pr-test:
+    name: Run tests on pr 
+    runs-on: ubuntu-latest
+
+    steps: 
+      - name: Checkout repo 
+        uses: actions/checkout@v2
+
+      - name: Run the tests 
+        uses: ./.github/workflows/test
+      
+      - name: Build image
+        uses: ./.github/workflows/build
+        with:
+          image-name: 'api-dev'
+      
+      - name: Deploy
+        uses: ./.github/workflows/deploy
+        with:
+          services: 'staging-api staging-db'
