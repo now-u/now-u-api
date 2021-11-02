@@ -15,5 +15,5 @@ jobs:
       COMPOSE_FILE: docker-compose.yml
 
     steps: 
-      - id: Run the tests 
+      - name: Run the tests 
         uses: ./github/actions/test.yml
