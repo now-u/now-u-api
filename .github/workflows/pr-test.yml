@@ -1,0 +1,19 @@
+name: Run tests on pr 
+on:
+  pull_request:
+  push:
+      branches: 
+        - dev
+        - staging
+        - main
+
+jobs:
+  pr-test:
+    name: Run tests on pr 
+    runs-on: ubuntu-latest
+    env:
+      COMPOSE_FILE: docker-compose.yml
+
+    steps: 
+      - id: Run the tests 
+        uses: ./github/actions/test.yml
