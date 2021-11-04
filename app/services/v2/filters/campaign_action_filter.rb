@@ -7,7 +7,8 @@ module V2
         'cause__in' => :filter_by_cause,
         'limit' => :limit,
         'of_the_month' => :of_the_month,
-        'recommended' => :recommended
+        'recommended' => :recommended,
+        'type' => :type
       }
     end
   end
