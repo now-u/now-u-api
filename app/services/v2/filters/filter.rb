@@ -3,11 +3,12 @@ module V2
     class Filter
       class InvalidFilter < StandardError;end
       # to add more filters, use hash lookup to the model scope
-      attr_reader :query_params, :filter_model
+      attr_reader :query_params, :filter_model, :user_token
 
-      def initialize(request_url:, filter_model:)
-        @query_params = Addressable::URI.parse(request_url).query_values
+      def initialize(request:, filter_model:)
+        @query_params = Addressable::URI.parse(request.url).query_values
         @filter_model = filter_model
+        @user_token = request.headers['token']
       end
 
       def call

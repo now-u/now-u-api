@@ -2,9 +2,11 @@ require 'rails_helper'
 
 RSpec.describe V2::Filters::Filter, type: :model do
   let(:request_url) { "https://ilovecats.com/bigkahunaburger?completed=true" }
+  let(:headers) { {'token': "123456"} }
+  let(:request) { OpenStruct.new(headers: headers, url: request_url) }
   let(:filter_model) { nil }
 
-  subject { described_class.new(request_url: request_url, filter_model: filter_model) }
+  subject { described_class.new(request: request, filter_model: filter_model) }
 
   it "seperates the query params out of the URL" do
     expect(subject.query_params).to eq({"completed" => "true"})
