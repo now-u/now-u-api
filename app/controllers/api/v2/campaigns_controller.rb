@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Api::V2::CampaignsController < APIApplicationController
-  before_action :set_filter, only: :index
   rescue_from JSON::ParserError, with: :invalid_json_message
 
   def index
@@ -15,10 +14,8 @@ class Api::V2::CampaignsController < APIApplicationController
 private
 
   def campaigns_data
-    return @filter.call.map {|c| merge_additional_fields(c)} unless @filter.query_params.nil?
-
-    Campaign.all.map do |a|
-      merge_additional_fields(a)
+    ::V2::Filters::Filter.new(request: request, filter_model: ::V2::Filters::CampaignFilter, data: Campaign.all).call.map do |campaign|
+      merge_additional_fields(campaign)
     end
   end
 
@@ -41,9 +38,5 @@ private
 
   def merge_additional_fields(model)
     model.serializable_hash.symbolize_keys.merge(additional_fields(model.id))
-  end
-
-  def set_filter
-    @filter = ::V2::Filters::Filter.new(request: request, filter_model: ::V2::Filters::CampaignFilter)
   end
 end

@@ -6,7 +6,7 @@ RSpec.describe V2::Filters::Filter, type: :model do
   let(:request) { OpenStruct.new(headers: headers, url: request_url) }
   let(:filter_model) { nil }
 
-  subject { described_class.new(request: request, filter_model: filter_model) }
+  subject { described_class.new(request: request, filter_model: filter_model, data: "I am the fallback data") }
 
   it "seperates the query params out of the URL" do
     expect(subject.query_params).to eq({"completed" => "true"})
@@ -33,11 +33,18 @@ RSpec.describe V2::Filters::Filter, type: :model do
     end
 
     context "with a filter that doesnt exist" do
-      let(:request_url) { "https://ilovecats.com/bigkahunaburger?absoluterubbish=true" }
+      let(:request_url) { "https://ilovecats.com/bigkahunaburger?catsrule=true" }
 
       it "returns nothing" do
-        expect { subject.call }.to raise_error "Invalid filter 'absoluterubbish' for model CampaignAction"
+        expect { subject.call }.to raise_error "Invalid filter 'catsrule' for model CampaignAction"
       end
+    end
+  end
+
+  context "when there are no filters" do
+    let(:request_url) { "https://icanhazcheezeburger.com/doublewhopperplease" }
+    it "returns the fallback data" do
+      expect(subject.call).to eq "I am the fallback data"
     end
   end
 end
