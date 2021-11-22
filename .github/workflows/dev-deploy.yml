@@ -22,6 +22,7 @@ jobs:
         uses: ./.github/workflows/build
         with:
           image-name: 'api-dev'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Deploy
         uses: ./.github/workflows/deploy
