@@ -11,7 +11,10 @@ inputs:
   image-owner:
     description: 'The name of the owner of the docker image'
     required: true
-    default: 'now-u'
+    default: 'now-u'  
+  github-token:
+    description: 'Github token with access to ghcr'
+    required: true
 
 runs:
   using: "composite"
@@ -21,7 +24,7 @@ runs:
       shell: bash
       
     - name: Log into registry
-      run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      run: echo "${{ inputs.github-token }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
       shell: bash
 
     - name: Push image
