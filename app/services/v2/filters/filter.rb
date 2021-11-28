@@ -15,17 +15,32 @@ module V2
       def call(query_params = @query_params, data = @data)
         return data unless query_params&.any?
 
-        # TODO: Adding ability to filter user specific data, such as joined=true
+        query_param(query_params)
 
-        call(query_params.except(query_params.first[0]), scope_data(query_params.first[0], query_params.first[1]))
+        call(query_params.except(@query_param.key), scope_data(@query_param.key, @query_param.value))
       end
 
       private
 
       def scope_data(key, query)
-        raise InvalidFilter, "Invalid filter '#{key}' for model #{filter_model::MODEL}" unless filter_model::FILTERS[key]
+        raise InvalidFilter, "Invalid filter '#{key}' for model #{filter_model::MODEL}" unless filter_model::FILTERS[key] || filter_model::USER_FILTERS[key]
 
-        filter_model::MODEL.public_send(filter_model::FILTERS[key], JSON(query))
+        if user_query?(key)
+          User.find_by(token: user_token).public_send(filter_model::USER_MODEL).where(filter_model::FILTERS[key] => JSON(query))
+        else
+          filter_model::MODEL.public_send(filter_model::FILTERS[key], JSON(query))
+        end
+      end
+
+      def user_query?(key)
+        filter_model::USER_FILTERS[key]
+      end
+
+      def query_param(query_params)
+        @query_param = OpenStruct.new(
+          key: query_params.first[0],
+          value: query_params.first[1]
+        )
       end
     end
   end
