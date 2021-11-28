@@ -8,10 +8,6 @@ RSpec.describe V2::Filters::Filter, type: :model do
 
   subject { described_class.new(request: request, filter_model: filter_model, data: "I am the fallback data") }
 
-  it "seperates the query params out of the URL" do
-    expect(subject.query_params).to eq({"completed" => "true"})
-  end
-
   context "with campaign actions filter module" do
     let(:filter_model) { V2::Filters::CampaignActionFilter }
     let(:campaign_action) { create(:campaign_action) }

@@ -3,7 +3,7 @@ module V2
     class Filter
       class InvalidFilter < StandardError;end
       # To add more filters, use hash lookup to the model scope
-      attr_reader :query_params, :filter_model, :user_token, :data
+      attr_reader :filter_model, :user_token
 
       def initialize(request:, filter_model:, data:)
         @query_params = Addressable::URI.parse(request.url).query_values
@@ -12,22 +12,20 @@ module V2
         @user_token = request.headers['token']
       end
 
-      def call
-        return data unless query_params
+      def call(query_params = @query_params, data = @data)
+        return data unless query_params&.any?
 
         # TODO: Adding ability to filter user specific data, such as joined=true
 
-        # At the moment, this only supports singular
-        # queries
+        call(query_params.except(query_params.first[0]), scope_data(query_params.first[0], query_params.first[1]))
+      end
 
-        # TODO: multiple queries
-        # Perhaps we need to daisy chain the scopes using recursive public_sends to ensure
-        # that when multiple queries are added, they are scoped correctly
-        query_params.map do |key, query|
-          raise InvalidFilter, "Invalid filter '#{key}' for model #{filter_model::MODEL}" unless filter_model::FILTERS[key]
+      private
 
-          filter_model::MODEL.public_send(filter_model::FILTERS[key], JSON(query))
-        end.first
+      def scope_data(key, query)
+        raise InvalidFilter, "Invalid filter '#{key}' for model #{filter_model::MODEL}" unless filter_model::FILTERS[key]
+
+        filter_model::MODEL.public_send(filter_model::FILTERS[key], JSON(query))
       end
     end
   end
