@@ -1,17 +1,13 @@
 require 'swagger_helper'
 
 RSpec.describe Api::V2::UserActionsController, type: :request do
-  let(:user) { create(:user) }
-  let(:user_action) { create(:user_action, user_id: user.id) }
-  let(:id) { user_action.id }
+  let!(:user) { create(:user) }
+  let!(:user_action) { create(:user_action, user_id: user.id) }
+  let!(:id) { user_action.id }
   user_action_schema = UserAction.column_names.reduce({}) { |res, column_name|
           res[column_name.to_sym] = {type: UserAction.column_for_attribute(column_name).type}
           res
   }
-
-  before do
-    user_action
-  end
 
   path '/api/v2/user/actions' do
     get 'Retrieves all actions from said user' do
