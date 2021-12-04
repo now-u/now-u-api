@@ -38,4 +38,21 @@ describe Campaign do
       end
     end
   end
+
+  describe "#status" do
+    let!(:published_campaign) { build(:campaign, status: 1)}
+    let!(:archived_campaign) { build(:campaign, status: 2)}
+
+    it "has a default status of draft" do
+      expect(subject.status).to eq "draft"
+    end
+
+    it "can have a published status" do
+      expect(published_campaign.status).to eq "published"
+    end
+
+    it "can have a archived status" do
+      expect(archived_campaign.status).to eq "archived"
+    end
+  end
 end

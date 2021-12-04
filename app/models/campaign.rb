@@ -20,6 +20,12 @@ class Campaign < ApplicationRecord
   has_many :cause_campaigns, dependent: :destroy
   has_many :causes, through: :cause_campaigns
 
+  enum status: {
+    draft: 0,
+    published: 1,
+    archived: 2,
+  }
+
   scope :active, lambda {
     where('enabled IS TRUE AND start_date IS NULL AND end_date IS NULL').or(
       where('enabled IS TRUE AND (? > start_date AND ? < end_date)', DateTime.now, DateTime.now)
