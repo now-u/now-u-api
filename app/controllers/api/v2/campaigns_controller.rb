@@ -14,6 +14,10 @@ class Api::V2::CampaignsController < APIApplicationController
 private
 
   def campaigns_data
+    # TODO: at the moment we are returning all campaigns, published, not published, draft, you name it
+    # we need to split this into published campaigns for regular users, and 'all' (or maybe just draft + publishd?) 
+    # campaigns for admin users. There is currently an enum on User model to do this. 
+
     ::V2::Filters::Filter.new(request: request, filter_model: ::V2::Filters::CampaignFilter, data: Campaign.all).call.map do |campaign|
       merge_additional_fields(campaign)
     end
