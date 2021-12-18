@@ -4,6 +4,18 @@ inputs:
   services:  # id of input
     description: 'Space separated string of services to pull'
     required: true
+  host:
+    description: 'ssh host'
+    required: true
+  username:
+    description: 'ssh username'
+    required: true
+  key:
+    description: 'ssh key'
+    required: true
+  port:
+    description: 'ssh port'
+    required: true
 
 runs:
   using: "composite"
@@ -13,10 +25,10 @@ runs:
       env:
         SERVICE_NAMES: ${{ inputs.services }}
       with:
-        host: ${{ secrets.SERVER_SSH_HOST }}
-        username: ${{ secrets.SERVER_SSH_USER }}
-        key: ${{ secrets.SERVER_SSH_KEY }}
-        port: ${{ secrets.SERVER_SSH_PORT }}
+        host: ${{ inputs.host }}
+        username: ${{ inputs.username }}
+        key: ${{ inputs.key }}
+        port: ${{ inputs.port }}
         envs: SERVICE_NAMES
         script: |
           cd /var/sta
