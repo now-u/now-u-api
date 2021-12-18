@@ -1,0 +1,33 @@
+name: Staging Deployment 
+
+on:
+  push:
+    branches:
+      - dev
+  
+jobs:
+  pr-test:
+    name: Run tests on pr 
+    runs-on: ubuntu-latest
+
+    steps: 
+      - name: Checkout repo 
+        uses: actions/checkout@v2
+
+      - name: Run the tests 
+        uses: ./.github/workflows/test
+      
+      - name: Build image
+        uses: ./.github/workflows/build
+        with:
+          image-name: 'api-dev'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Deploy
+        uses: ./.github/workflows/deploy
+        with:
+          services: 'staging-api staging-db'
+          host: ${{ secrets.SERVER_SSH_HOST }}
+          username: ${{ secrets.SERVER_SSH_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          port: ${{ secrets.SERVER_SSH_PORT }}

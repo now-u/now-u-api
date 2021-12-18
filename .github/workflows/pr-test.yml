@@ -1,0 +1,17 @@
+name: Run tests on pr 
+on:
+  pull_request:
+
+jobs:
+  pr-test:
+    name: Run tests on pr 
+    runs-on: ubuntu-latest
+    env:
+      COMPOSE_FILE: docker-compose.yml
+
+    steps: 
+      - name: Checkout repo 
+        uses: actions/checkout@v2
+
+      - name: Run the tests 
+        uses: ./.github/workflows/test

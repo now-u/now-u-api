@@ -1,0 +1,12 @@
+name: Test
+
+runs:
+  using: "composite"
+  steps:
+    - name: Build docker images
+      run: make build
+      shell: bash
+
+    - name: Run tests
+      run: make test
+      shell: bash
