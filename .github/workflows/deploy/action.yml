@@ -31,7 +31,7 @@ runs:
         port: ${{ inputs.port }}
         envs: SERVICE_NAMES
         script: |
-          cd /var/sta
+          cd /var/now-u
           docker-compose pull $SERVICE_NAMES
           docker-compose up -d $SERVICE_NAMES
           # TODO migrations
