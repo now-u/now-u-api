@@ -28,5 +28,5 @@ runs:
       shell: bash
 
     - name: Push image
-      run: docker push ghcr.io/$${ inputs.image-owner }/${{ inputs.image-name }}:latest
+      run: docker push ghcr.io/${{ inputs.image-owner }}/${{ inputs.image-name }}:latest
       shell: bash
