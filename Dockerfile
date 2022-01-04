@@ -1,6 +1,6 @@
 FROM ruby:2.5.0
 
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 RUN apt-get update -yqq \
     && apt-get install -y \
     nodejs \

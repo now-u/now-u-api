@@ -1,36 +1,87 @@
-FROM ruby:2.5.0
+FROM ruby:2.5.0-alpine AS builder
+
+LABEL maintener='joel.azemar@gmail.com'
+
+# Minimal requirements to run a Rails app
+RUN apk add --no-cache --update build-base \
+  linux-headers \
+  git \
+  postgresql-dev=~10 \
+  # Rails SQL schema format requires `pg_dump(1)` and `psql(1)`
+  postgresql=~10\
+  # Install same version of pg_dump
+  postgresql-client=~10 \
+  nodejs \
+  yarn \
+  # Needed for nodejs / node-gyp
+  python2 \
+  bash \
+  openssl=~1 \
+  openssl-dev=1.0.2 \
+  tzdata
+
+ENV BUNDLER_VERSION 2.0.2
+ENV BUNDLE_JOBS 8
+ENV BUNDLE_RETRY 5
+ENV BUNDLE_WITHOUT development:test
+ENV BUNDLE_CACHE_ALL true
+ENV RAILS_ENV production
+ENV RACK_ENV production
+ENV NODE_ENV production
+ENV APP_PATH /work
+
+WORKDIR $APP_PATH
+
+# Gems installation
+COPY Gemfile Gemfile.lock ./
+
+RUN gem install bundler -v $BUNDLER_VERSION
+
+RUN bundle config --global frozen 1 && \
+  bundle install && \
+  rm -rf /usr/local/bundle/cache/*.gem && \
+  find /usr/local/bundle/gems/ -name "*.c" -delete && \
+  find /usr/local/bundle/gems/ -name "*.o" -delete
+
+# NPM packages installation
+COPY package.json yarn.lock ./
+
+RUN yarn install --frozen-lockfile --non-interactive --production
+
+ADD . $APP_PATH
+
+# RUN rails assets:precompile
+RUN rails assets:precompile --trace
+RUN yarn cache clean
+RUN rm -rf node_modules tmp/cache vendor/assets test
+
+FROM ruby:2.5.0-alpine
+
+RUN apk add --no-cache bash
+
+RUN mkdir -p /work
+WORKDIR /work
+
+ENV RAILS_ENV production
+ENV NODE_ENV production
+ENV RAILS_SERVE_STATIC_FILES true
+ENV BUNDLER_VERSION 2.0.2
+
+# RUN gem install bundler -v $BUNDLER_VERSION
+
+# Some native extensions required by gems such as pg or mysql2.
+COPY --from=builder /usr/lib /usr/lib
+
+# Timezone data is required at runtime
+COPY --from=builder /usr/share/zoneinfo/ /usr/share/zoneinfo/
+
+# Ruby gems
+COPY --from=builder /usr/local/bundle /usr/local/bundle
+
+COPY --from=builder /work /work
 
 RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
-
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
-RUN apt-get update -yqq \
-    && apt-get install -y \
-    nodejs \
-    postgresql-client
-
-ENV RAILS_ENV=production
-ENV RAILS_LOG_TO_STDOUT true
-
-ENV BUNDLER_VERSION='2.0.2'
-RUN gem install bundler --no-document -v '2.0.2'
-
-COPY Gemfile* ./
-RUN bundle config --global frozen 1
-RUN npm install
-RUN gem update --system
-RUN bundle install --without development test
-
 COPY . /usr/src/app
-#RUN bundle exec rake DATABASE_URL=postgresql:no_db:precompile
-
-EXPOSE 3000
-#CMD ["rails", "server", "-b", "0.0.0.0"]
-
-#COPY docker/entrypoint-deploy.sh /usr/bin/
-#RUN chmod +x /usr/bin/entrypoint-deploy.sh
-
-#ENTRYPOINT ["entrypoint-deploy.sh"]
-
+ 
 RUN chmod +x /usr/src/app/docker/entrypoint-deploy.sh
 ENTRYPOINT ["/usr/src/app/docker/entrypoint-deploy.sh"]

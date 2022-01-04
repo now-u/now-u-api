@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
 
-unset BUNDLE_PATH
-unset BUNDLE_BIN
+# unset BUNDLE_PATH
+# unset BUNDLE_BIN
 
 # Remove a potentially pre-existing server.pid for Rails.
 rm -f /usr/src/app/tmp/pids/server.pid
@@ -11,17 +11,17 @@ rm -f /usr/src/app/tmp/pids/server.pid
 
 #bundle install
 
-echo "Bundling gems"
-bundle install --without development test --jobs 8 --retry 3
+# echo "Bundling gems"
+# bundle install --without development test --jobs 8 --retry 3
 
 echo "Clearing logs"
-bin/rake log:clear
+bundle exec rails log:clear
 #
 echo "Run migrations"
-bundle exec rake db:migrate
+bundle exec rails db:migrate
 #
 echo "Removing contents of tmp dirs"
-bin/rake tmp:clear
+bundle exec rails tmp:clear
 
 #echo "Doing the rake thing"
 #bundle exec rake DATABASE_URL=postgresql:no_db:precompile
