@@ -3,6 +3,7 @@ FROM ruby:2.5.0
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
 RUN apt-get update -yqq \
     && apt-get install -y \
     nodejs \
@@ -16,6 +17,7 @@ RUN gem install bundler --no-document -v '2.0.2'
 
 COPY Gemfile* ./
 RUN bundle config --global frozen 1
+RUN npm install
 RUN gem update --system
 RUN bundle install --without development test
 
