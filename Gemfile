@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.0'
+ruby '3.1.0'
 
 gem 'active_hash', '~> 3.1'
 gem 'active_model_serializers', '~> 0.10.10'

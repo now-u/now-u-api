@@ -1,26 +1,26 @@
-FROM ruby:2.5.0-alpine AS builder
+FROM ruby:3.1.0-alpine3.15 AS builder
 
-LABEL maintener='joel.azemar@gmail.com'
+LABEL maintener='james@now-u.com'
 
 # Minimal requirements to run a Rails app
 RUN apk add --no-cache --update build-base \
   linux-headers \
   git \
-  postgresql-dev=~10 \
+  postgresql-dev \
   # Rails SQL schema format requires `pg_dump(1)` and `psql(1)`
-  postgresql=~10\
+  postgresql \
   # Install same version of pg_dump
-  postgresql-client=~10 \
+  postgresql-client \
   nodejs \
   yarn \
   # Needed for nodejs / node-gyp
   python2 \
   bash \
-  openssl=~1 \
-  openssl-dev=1.0.2 \
+  openssl \
+  openssl-dev \
   tzdata
 
-ENV BUNDLER_VERSION 2.0.2
+ENV BUNDLER_VERSION 2.3.4
 ENV BUNDLE_JOBS 8
 ENV BUNDLE_RETRY 5
 ENV BUNDLE_WITHOUT development:test
@@ -55,7 +55,7 @@ RUN rails assets:precompile --trace
 RUN yarn cache clean
 RUN rm -rf node_modules tmp/cache vendor/assets test
 
-FROM ruby:2.5.0-alpine
+FROM ruby:3.1.0-alpine3.15
 
 RUN apk add --no-cache bash
 
