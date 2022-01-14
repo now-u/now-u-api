@@ -1,4 +1,4 @@
-base:
+default: &default
   adapter: postgresql
   database: <%= ENV['POSTGRES_DB'] %>
   username: <%= ENV['POSTGRES_USER'] %>
@@ -7,6 +7,7 @@ base:
   pool: 5
 
 development:
+  <<: *default
   adapter: postgresql
   database: <%= ENV['POSTGRES_DB'] %>
   username: <%= ENV['POSTGRES_USER'] %>
@@ -15,6 +16,7 @@ development:
   pool: 5
 
 test:
+  <<: *default
   database: now_u_test
   adapter: postgresql
   username: <%= ENV['POSTGRES_USER'] %>
@@ -23,6 +25,7 @@ test:
   pool: 5
 
 production:
+  <<: *default
   adapter: postgresql
   database: <%= ENV['POSTGRES_DB'] %>
   username: <%= ENV['POSTGRES_USER'] %>
