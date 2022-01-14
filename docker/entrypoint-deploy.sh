@@ -12,8 +12,7 @@ rm -f /usr/src/app/tmp/pids/server.pid
 #bundle install
 
 # echo "Bundling gems"
-# bundle install --without development test --jobs 8 --retry 3
-
+# bundler install --without development test --jobs 8 --retry 3
 echo "Clearing logs"
 bundle exec rails log:clear
 #

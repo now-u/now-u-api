@@ -9,26 +9,15 @@ default: &default
 development:
   <<: *default
   adapter: postgresql
-  database: <%= ENV['POSTGRES_DB'] %>
-  username: <%= ENV['POSTGRES_USER'] %>
-  password: <%= ENV['POSTGRES_PASSWORD'] %>
-  host: <%= ENV['POSTGRES_HOST'] %>
-  pool: 5
+  database: now_u_development
 
 test:
   <<: *default
   database: now_u_test
   adapter: postgresql
-  username: <%= ENV['POSTGRES_USER'] %>
-  password: <%= ENV['POSTGRES_PASSWORD'] %>
-  host: <%= ENV['POSTGRES_HOST'] %>
-  pool: 5
 
 production:
   <<: *default
+  database: now_u_production
   adapter: postgresql
   database: <%= ENV['POSTGRES_DB'] %>
-  username: <%= ENV['POSTGRES_USER'] %>
-  password: <%= ENV['POSTGRES_PASSWORD'] %>
-  host: <%= ENV['POSTGRES_HOST'] %>
-  pool: 5

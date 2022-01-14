@@ -6,8 +6,8 @@ RUN apt-get update -yqq \
     nodejs \
     postgresql-client
 
-ENV BUNDLER_VERSION='2.1.4'
-RUN gem install bundler --no-document -v '2.1.4'
+ENV BUNDLER_VERSION='2.2.3'
+RUN gem install bundler --no-document -v '2.2.3'
 
 RUN bundle config --global frozen 1
 RUN npm install
