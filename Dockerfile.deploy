@@ -1,4 +1,4 @@
-FROM ruby:3.1.0-alpine3.15 AS builder
+FROM ruby:3.0.0-alpine3.15 AS builder
 
 LABEL maintener='james@now-u.com'
 

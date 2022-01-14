@@ -1,4 +1,4 @@
-FROM ruby:3.1.0
+FROM ruby:3.0.0
 
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 RUN apt-get update -yqq \
