@@ -22,7 +22,7 @@ services:
       - .:/now-u-api
       - ../api-local/bundle/:/usr/local/bundle/
     ports:
-      - "3001:3000"
+      - "3000:3000"
     depends_on:
       - db
     env_file:
