@@ -17,6 +17,7 @@ services:
     build: 
       context: .
       dockerfile: Dockerfile.deploy
+    command: ash -c "bundle exec rails server -p 3001 -b '0.0.0.0'"
     volumes:
       - .:/now-u-api
       - ../api-local/bundle/:/usr/local/bundle/

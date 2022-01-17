@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.0.3'
+ruby '2.7.4'
 
 gem 'active_hash', '~> 3.1'
 gem 'active_model_serializers', '~> 0.10.10'
@@ -15,11 +15,11 @@ gem 'factory_bot_rails'
 gem 'gibbon', '~> 3.4'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 5.5'
-gem 'rails', '~> 6.0.0'
+gem 'rails', '~> 6.1.4.4'
 gem 'rails-controller-testing'
 gem 'rspec-rails'
 gem 'sendgrid-ruby'
-gem 'rails_admin'
+gem 'rails_admin', ['>= 3.0.0.beta2', '< 4']
 gem 'devise'
 gem 'cancancan'
 gem 'faker'

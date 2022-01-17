@@ -1,92 +1,35 @@
-FROM ruby:3.0-alpine AS builder
+FROM ruby:2.7.4-alpine3.12
 
-LABEL maintener='james@now-u.com'
+ENV APP_HOME /app
+RUN mkdir $APP_HOME
+WORKDIR $APP_HOME
 
-# Minimal requirements to run a Rails app
-RUN apk add --no-cache --update build-base \
-  linux-headers \
-  git \
-  postgresql-dev \
-  # Rails SQL schema format requires `pg_dump(1)` and `psql(1)`
-  postgresql \
-  # Install same version of pg_dump
-  postgresql-client \
-  nodejs \
-  yarn \
-  # Needed for nodejs / node-gyp
-  python2 \
-  bash \
-  openssl \
-  openssl-dev \
-  tzdata
+RUN apk add --update --no-cache tzdata && \
+    cp /usr/share/zoneinfo/Europe/London /etc/localtime && \
+    echo "Europe/London" > /etc/timezone
 
-ENV BUNDLER_VERSION 2.2.3
-ENV BUNDLE_JOBS 8
-ENV BUNDLE_RETRY 5
-ENV BUNDLE_WITHOUT development:test
-ENV BUNDLE_CACHE_ALL true
-ENV RAILS_ENV production
-ENV RACK_ENV production
-ENV NODE_ENV production
-ENV APP_PATH /work
-
-WORKDIR $APP_PATH
-
-# Gems installation
 COPY Gemfile Gemfile.lock ./
 
-RUN gem install bundler -v $BUNDLER_VERSION
+RUN apk add --update --no-cache --virtual build-dependances \
+    postgresql-dev build-base && \
+    apk add --update --no-cache libpq yarn shared-mime-info && \
+    bundle install --jobs=4 && \
+    rm -rf /usr/local/bundle/cache && \
+    apk del build-dependances
 
-RUN bundle config --global frozen 1 && \
-  bundle install && \
-  rm -rf /usr/local/bundle/cache/*.gem && \
-  find /usr/local/bundle/gems/ -name "*.c" -delete && \
-  find /usr/local/bundle/gems/ -name "*.o" -delete
-
-# NPM packages installation
 COPY package.json yarn.lock ./
+RUN  yarn install --frozen-lockfile && \
+     yarn cache clean
 
-RUN yarn install --frozen-lockfile --non-interactive --production
+COPY . .
 
-ADD . $APP_PATH
+RUN echo export PATH=/usr/local/bin:\$PATH > /root/.ashrc
+ENV ENV="/root/.ashrc"
 
-# RUN rails assets:precompile
-# RUN rails assets:precompile --trace
-RUN yarn cache clean
-RUN rm -rf node_modules tmp/cache vendor/assets test
+RUN rm -rf node_modules tmp
 
-FROM ruby:3.0-alpine
+ARG COMMIT_SHA
+ENV COMMIT_SHA=$COMMIT_SHA
 
-RUN apk add --no-cache bash
-
-RUN mkdir -p /work
-WORKDIR /work
-
-ENV RAILS_ENV production
-ENV NODE_ENV production
-ENV RAILS_SERVE_STATIC_FILES true
-ENV BUNDLER_VERSION 2.2.3
-
-RUN gem install bundler -v $BUNDLER_VERSION
-
-# Gems installation
-COPY Gemfile* ./
-
-# Some native extensions required by gems such as pg or mysql2.
-COPY --from=builder /usr/lib /usr/lib
-
-# Timezone data is required at runtime
-COPY --from=builder /usr/share/zoneinfo/ /usr/share/zoneinfo/
-
-# Ruby gems
-COPY --from=builder /usr/local/bundle /usr/local/bundle
-
-COPY --from=builder /work /work
-
-RUN mkdir -p /usr/src/app
-COPY . /usr/src/app
- 
-RUN bundle install
-
-RUN chmod +x /usr/src/app/docker/entrypoint-deploy.sh
-ENTRYPOINT ["/usr/src/app/docker/entrypoint-deploy.sh"]
+RUN chmod +x /app/docker/entrypoint-deploy.sh
+ENTRYPOINT ["/app/docker/entrypoint-deploy.sh"]
