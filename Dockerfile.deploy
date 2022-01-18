@@ -33,6 +33,10 @@ COPY . .
 RUN echo export PATH=/usr/local/bin:\$PATH > /root/.ashrc
 ENV ENV="/root/.ashrc"
 
+RUN gem install bundler
+
+RUN bundle install
+
 RUN rm -rf node_modules tmp
 
 ARG COMMIT_SHA
