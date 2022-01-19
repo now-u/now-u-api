@@ -24,8 +24,8 @@ bundle exec rails tmp:clear
 #echo "Doing the rake thing"
 #bundle exec rake DATABASE_URL=postgresql:no_db:precompile
 
-echo "Starting app server ..."
-bundle exec rails s -p 3000 -b '0.0.0.0'
+# echo "Starting app server ..."
+# bundle exec rails s -p 3000 -b '0.0.0.0'
 
 #rails db:create db:migrate db:seed
 
