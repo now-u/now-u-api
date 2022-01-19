@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.0'
+ruby '2.7.4'
 
 gem 'active_hash', '~> 3.1'
 gem 'active_model_serializers', '~> 0.10.10'
@@ -24,6 +24,7 @@ gem 'devise'
 gem 'cancancan'
 gem 'faker'
 gem 'rswag'
+gem 'bootstrap-sass', '3.3.6'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

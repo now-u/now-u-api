@@ -1,36 +1,46 @@
-FROM ruby:2.5.0
+FROM ruby:2.7.4-alpine3.12
 
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+ENV APP_HOME /app
+RUN mkdir $APP_HOME
+WORKDIR $APP_HOME
 
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
-RUN apt-get update -yqq \
-    && apt-get install -y \
-    nodejs \
-    postgresql-client
+RUN apk add --update \
+  build-base \
+  libxml2-dev \
+  libxslt-dev \
+  postgresql-dev \
+  && rm -rf /var/cache/apk/*
 
-ENV RAILS_ENV=production
-ENV RAILS_LOG_TO_STDOUT true
+RUN apk add --update --no-cache tzdata && \
+    cp /usr/share/zoneinfo/Europe/London /etc/localtime && \
+    echo "Europe/London" > /etc/timezone
 
-ENV BUNDLER_VERSION='2.0.2'
-RUN gem install bundler --no-document -v '2.0.2'
+COPY Gemfile Gemfile.lock ./
 
-COPY Gemfile* ./
-RUN bundle config --global frozen 1
-RUN npm install
-RUN gem update --system
-RUN bundle install --without development test
+RUN apk add --update --no-cache --virtual build-dependances \
+    postgresql-dev build-base && \
+    apk add --update --no-cache libpq yarn shared-mime-info && \
+    bundle install --jobs=4 && \
+    rm -rf /usr/local/bundle/cache && \
+    apk del build-dependances
 
-COPY . /usr/src/app
-#RUN bundle exec rake DATABASE_URL=postgresql:no_db:precompile
+COPY package.json yarn.lock ./
+RUN  yarn install --frozen-lockfile && \
+     yarn cache clean
 
-EXPOSE 3000
-#CMD ["rails", "server", "-b", "0.0.0.0"]
+COPY . .
 
-#COPY docker/entrypoint-deploy.sh /usr/bin/
-#RUN chmod +x /usr/bin/entrypoint-deploy.sh
+RUN echo export PATH=/usr/local/bin:\$PATH > /root/.ashrc
+ENV ENV="/root/.ashrc"
 
-#ENTRYPOINT ["entrypoint-deploy.sh"]
+RUN gem install bundler
 
-RUN chmod +x /usr/src/app/docker/entrypoint-deploy.sh
-ENTRYPOINT ["/usr/src/app/docker/entrypoint-deploy.sh"]
+RUN bundle install
+
+RUN rm -rf node_modules tmp
+
+ARG COMMIT_SHA
+ENV COMMIT_SHA=$COMMIT_SHA
+
+RUN chmod +x /app/docker/entrypoint-deploy.sh
+ENTRYPOINT ["/app/docker/entrypoint-deploy.sh"]

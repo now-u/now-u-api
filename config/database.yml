@@ -8,10 +8,16 @@ default: &default
 
 development:
   <<: *default
+  adapter: postgresql
+  database: now_u_development
 
 test:
   <<: *default
   database: now_u_test
+  adapter: postgresql
 
 production:
   <<: *default
+  database: now_u_production
+  adapter: postgresql
+  database: <%= ENV['POSTGRES_DB'] %>

@@ -16,7 +16,7 @@ services:
   api:
     build: 
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.deploy
     volumes:
       - .:/now-u-api
       - ../api-local/bundle/:/usr/local/bundle/
@@ -28,7 +28,7 @@ services:
       - .env.development
     networks:
       - db-network
-    command: start.sh
+    # command: start.sh
 
   adminer:
     image: adminer
