@@ -24,7 +24,7 @@ gem 'devise'
 gem 'cancancan'
 gem 'faker'
 gem 'rswag'
-gem 'bootstrap-sass', '3.3.6'
+gem 'bootstrap-sass', '3.4.1'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
