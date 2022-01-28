@@ -9,6 +9,7 @@ RUN apk add --update \
   libxml2-dev \
   libxslt-dev \
   postgresql-dev \
+  bash \
   && rm -rf /var/cache/apk/*
 
 RUN apk add --update --no-cache tzdata && \
@@ -36,6 +37,7 @@ ENV ENV="/root/.ashrc"
 RUN gem install bundler
 
 RUN bundle install
+RUN bundle exec rake DATABASE_URL=postgresql:does_not_exist assets:precompile
 
 EXPOSE 3000
 
