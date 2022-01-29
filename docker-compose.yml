@@ -16,7 +16,8 @@ services:
   api:
     build: 
       context: .
-      dockerfile: Dockerfile.deploy
+      dockerfile: Dockerfile
+      target: dev
     volumes:
       - .:/now-u-api
     ports:

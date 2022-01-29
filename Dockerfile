@@ -1,31 +1,57 @@
-FROM ruby:3.0.0
+FROM ruby:2.7.4-alpine3.12 as builder
 
-RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
-RUN apt-get update -yqq \
-    && apt-get install -y \
-    nodejs \
-    postgresql-client
+ENV APP_HOME /app
+RUN mkdir $APP_HOME
+WORKDIR $APP_HOME
 
-ENV BUNDLER_VERSION='2.2.3'
-RUN gem install bundler --no-document -v '2.2.3'
+RUN apk add --update \
+  build-base \
+  libxml2-dev \
+  libxslt-dev \
+  postgresql-dev \
+  bash \
+  && rm -rf /var/cache/apk/*
 
-RUN bundle config --global frozen 1
-RUN npm install
+RUN apk add --update --no-cache tzdata && \
+    cp /usr/share/zoneinfo/Europe/London /etc/localtime && \
+    echo "Europe/London" > /etc/timezone
 
-RUN mkdir /now-u-api
-WORKDIR /now-u-api
+COPY Gemfile Gemfile.lock ./
 
-COPY Gemfile* ./
+RUN apk add --update --no-cache --virtual build-dependances \
+    postgresql-dev build-base && \
+    apk add --update --no-cache libpq yarn shared-mime-info && \
+    bundle install --jobs=4 --without development && \
+    rm -rf /usr/local/bundle/cache && \
+    apk del build-dependances
 
-RUN gem update --system
-
-RUN bundle install --with=development
+COPY package.json yarn.lock ./
+RUN  yarn install --frozen-lockfile && \
+     yarn cache clean
 
 COPY . .
 
-COPY ./docker/entrypoint.sh /usr/bin/
-RUN chmod +x /usr/bin/entrypoint.sh
-COPY ./docker/start.sh /usr/bin/
-RUN chmod +x /usr/bin/start.sh
+RUN echo export PATH=/usr/local/bin:\$PATH > /root/.ashrc
+ENV ENV="/root/.ashrc"
 
-ENTRYPOINT ["entrypoint.sh"]
+RUN bundle exec rake DATABASE_URL=postgresql:does_not_exist assets:precompile
+
+EXPOSE 3000
+
+RUN rm -rf node_modules tmp
+
+ARG COMMIT_SHA
+ENV COMMIT_SHA=$COMMIT_SHA
+
+
+RUN chmod +x /app/docker/start.sh
+RUN chmod +x /app/docker/entrypoint.sh
+
+FROM builder as dev
+RUN bundle install
+RUN chmod +x /app/docker/entrypoint.sh
+ENTRYPOINT ["/app/docker/entrypoint.sh"]
+
+FROM builder as prod
+RUN chmod +x /app/docker/entrypoint-depoy.sh
+ENTRYPOINT ["/app/docker/entrypoint-deploy.sh"]
