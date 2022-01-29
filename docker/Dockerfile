@@ -1,4 +1,4 @@
-FROM ruby:2.7.4-alpine3.12 as build
+FROM ruby:2.7.4-alpine3.12 as builder
 
 ENV APP_HOME /app
 RUN mkdir $APP_HOME
@@ -9,6 +9,7 @@ RUN apk add --update \
   libxml2-dev \
   libxslt-dev \
   postgresql-dev \
+  bash \
   && rm -rf /var/cache/apk/*
 
 RUN apk add --update --no-cache tzdata && \
@@ -20,7 +21,7 @@ COPY Gemfile Gemfile.lock ./
 RUN apk add --update --no-cache --virtual build-dependances \
     postgresql-dev build-base && \
     apk add --update --no-cache libpq yarn shared-mime-info && \
-    bundle install --jobs=4 && \
+    bundle install --jobs=4 --without development && \
     rm -rf /usr/local/bundle/cache && \
     apk del build-dependances
 
@@ -33,9 +34,7 @@ COPY . .
 RUN echo export PATH=/usr/local/bin:\$PATH > /root/.ashrc
 ENV ENV="/root/.ashrc"
 
-RUN gem install bundler
-
-RUN bundle install
+RUN bundle exec rake DATABASE_URL=postgresql:does_not_exist assets:precompile
 
 EXPOSE 3000
 
@@ -46,5 +45,13 @@ ENV COMMIT_SHA=$COMMIT_SHA
 
 
 RUN chmod +x /app/docker/start.sh
-RUN chmod +x /app/docker/entrypoint-deploy.sh
+RUN chmod +x /app/docker/entrypoint.sh
+
+FROM builder as dev
+RUN bundle install
+RUN chmod +x /app/docker/entrypoint.sh
+ENTRYPOINT ["/app/docker/entrypoint.sh"]
+
+FROM builder as prod
+RUN chmod +x /app/docker/entrypoint-depoy.sh
 ENTRYPOINT ["/app/docker/entrypoint-deploy.sh"]
