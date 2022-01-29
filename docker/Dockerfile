@@ -53,5 +53,5 @@ RUN chmod +x /app/docker/entrypoint.sh
 ENTRYPOINT ["/app/docker/entrypoint.sh"]
 
 FROM builder as prod
-RUN chmod +x /app/docker/entrypoint-depoy.sh
+RUN chmod +x /app/docker/entrypoint-deploy.sh
 ENTRYPOINT ["/app/docker/entrypoint-deploy.sh"]
