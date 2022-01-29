@@ -4,7 +4,11 @@ inputs:
   docker-file:  # id of input
     description: 'The docker file to use for build'
     required: true
-    default: 'Dockerfile.deploy'
+    default: 'docker/Dockerfile'
+  docker-file-target:  # id of input
+    description: 'The target stage of the dockerfile'
+    required: true
+    default: 'prod'
   image-name:
     description: 'The name of the docker image to push'
     required: true
@@ -20,7 +24,7 @@ runs:
   using: "composite"
   steps:
     - name: Build image
-      run: docker build . --file ${{ inputs.docker-file }} --tag ghcr.io/${{ inputs.image-owner }}/${{ inputs.image-name }} --label "runnumber=${GITHUB_RUN_ID}"
+      run: docker build . --file ${{ inputs.docker-file }} --target ${{ inputs.docker-file-target }} --tag ghcr.io/${{ inputs.image-owner }}/${{ inputs.image-name }} --label "runnumber=${GITHUB_RUN_ID}"
       shell: bash
       
     - name: Log into registry
