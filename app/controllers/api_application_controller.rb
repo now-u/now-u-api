@@ -2,6 +2,7 @@
 
 class APIApplicationController < ActionController::API
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  rescue_from V2::Filters::Filter::InvalidFilter, with: :invalid_filter_message
 
   private
 
@@ -13,7 +14,11 @@ class APIApplicationController < ActionController::API
     token = request.headers['token']
     @user = User.find_by(token: token)
 
-    render json: {}, status: :unauthorized unless @user&.verified
+    render json: { message: "User authorization failed" }, status: :unauthorized unless @user&.verified
+  end
+
+  def user
+    @user ||= User.find_by token: request.headers['token']
   end
 
   def user_response
@@ -30,5 +35,13 @@ class APIApplicationController < ActionController::API
     data = data.to_json(
       methods: [:organisation]
     )
+  end
+
+  def invalid_json_message(exception)
+    render json: { data: "There was an error when parsing the JSON. #{exception}" }
+  end
+
+  def invalid_filter_message(exception)
+    render json: { data: exception }
   end
 end

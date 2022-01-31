@@ -14,7 +14,7 @@ RSpec.describe Api::V1::PressCoverageArticlesController, type: :request do
 
   path '/api/v1/press_coverage' do
     get 'Retrieves all press_coverage' do
-      tags 'Press coverage'
+      tags 'API::V1 -> Press coverage'
       produces 'application/json'
 
       response '200', 'press_coverage found' do
@@ -34,7 +34,7 @@ RSpec.describe Api::V1::PressCoverageArticlesController, type: :request do
 
   path '/api/v1/press_coverage/{id}' do
     get 'Retrieves a press_coverage' do
-      tags 'Press coverage'
+      tags 'API::V1 -> Press coverage'
       produces 'application/json'
       parameter name: :id, in: :path, type: :string
 

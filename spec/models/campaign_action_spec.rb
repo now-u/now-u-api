@@ -2,15 +2,15 @@
 
 require 'rails_helper'
 
-describe Campaign do
-  subject { build(:campaign) }
+describe CampaignAction do
+  subject { build(:campaign_action) }
 
   it { should be_valid }
 
   before do
-    3.times { create(:campaign) }
-    2.times { create(:campaign, of_the_month: true) }
-    1.times { create(:campaign, recommended: true) }
+    3.times { create(:campaign_action) }
+    2.times { create(:campaign_action, of_the_month: true) }
+    1.times { create(:campaign_action, recommended: true) }
   end
 
   context "scopes" do
@@ -36,23 +36,6 @@ describe Campaign do
       it "returns recommended featured actions" do
         expect(described_class.recommended(true).length).to eq 1
       end
-    end
-  end
-
-  describe "#status" do
-    let!(:published_campaign) { build(:campaign, status: 1)}
-    let!(:archived_campaign) { build(:campaign, status: 2)}
-
-    it "has a default status of draft" do
-      expect(subject.status).to eq "draft"
-    end
-
-    it "can have a published status" do
-      expect(published_campaign.status).to eq "published"
-    end
-
-    it "can have a archived status" do
-      expect(archived_campaign.status).to eq "archived"
     end
   end
 end

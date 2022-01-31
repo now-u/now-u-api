@@ -1,24 +1,28 @@
 require 'swagger_helper'
 
-RSpec.describe Api::V1::OffersController, type: :request do
-  let(:offer) { create(:offer) }
-  let(:id) { offer.id }
-  offer_schema = Offer.column_names.reduce({}) { |res, column_name|
-          res[column_name.to_sym] = {type: Offer.column_for_attribute(column_name).type}
+RSpec.describe Api::V1::QuizController, type: :request do
+  let(:quiz) { create(:quiz) }
+  let(:id) { quiz.id }
+  quiz_schema = Quiz.column_names.reduce({}) { |res, column_name|
+          res[column_name.to_sym] = {type: Quiz.column_for_attribute(column_name).type}
           res
   }
 
-  path '/api/v1/offers' do
-    get 'Retrieves all offers' do
-      tags 'Offers'
+  before do
+    quiz
+  end
+
+  path '/api/v1/quizzes' do
+    get 'Retrieves all quizzes' do
+      tags 'API::V1 -> Quizzes'
       produces 'application/json'
 
-      response '200', 'offers found' do
+      response '200', 'quizzes found' do
         schema type: :object,
-        properties: offer_schema
+        properties: quiz_schema
 
         before do |example|
-          offer
+          quiz
           submit_request(example.metadata)
         end
 
@@ -29,15 +33,15 @@ RSpec.describe Api::V1::OffersController, type: :request do
     end
   end
 
-  path '/api/v1/offers/{id}' do
-    get 'Retrieves a offer' do
-      tags 'Offers'
+  path '/api/v1/quizzes/{id}' do
+    get 'Retrieves a quiz' do
+      tags 'API::V1 -> Quizzes'
       produces 'application/json'
       parameter name: :id, in: :path, type: :string
 
-      response '200', 'offer found' do
+      response '200', 'quiz found' do
         schema type: :object,
-        properties: offer_schema
+        properties: quiz_schema
 
         before do |example|
           submit_request(example.metadata)
@@ -47,7 +51,7 @@ RSpec.describe Api::V1::OffersController, type: :request do
           assert_response_matches_metadata(example.metadata)
         end
       end
-      
+
       response '404', 'Not found' do
         let(:id) { "something_invalid" }
         run_test!

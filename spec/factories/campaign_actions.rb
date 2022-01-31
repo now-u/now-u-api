@@ -12,5 +12,7 @@ FactoryBot.define do
     enabled { true }
     release_date { Faker::Date.in_date_period }
     end_date { Faker::Date.in_date_period }
+    of_the_month { false }
+    recommended { false }
   end
 end

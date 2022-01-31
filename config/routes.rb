@@ -80,6 +80,30 @@ Rails.application.routes.draw do
       post '/app_released', to: 'app_version#check'
     end
   end
+
+  # V2 API
+
+  namespace :api do
+    namespace :v2 do
+      # User specific routes
+      get '/user/actions', to: 'user_actions#index'
+      get '/user/actions/:id', to: 'user_actions#index'
+      get '/user/campaigns', to: 'user_campaigns#index'
+      get '/user/campaigns/:id', to: 'user_campaigns#index'
+
+      # Actions
+      get '/actions', to: 'campaign_actions#index'
+      get '/actions/:id', to: 'campaign_actions#show'
+
+      # Campaigns
+      get '/campaigns', to: 'campaigns#index'
+      get '/campaigns/:id', to: 'campaigns#show'
+
+      # Causes
+      get '/causes', to: 'causes#index'
+    end
+  end
+
   
   devise_for :admins
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
