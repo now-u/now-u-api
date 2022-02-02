@@ -3,25 +3,26 @@
 class Ability
   include CanCan::Ability
   UNRESTRICTED_MODEL_LIST = [
-    CampaignAction,
     Article,
     BlogArticle,
     BlogComment,
-    CampaignGoal,
     Campaign,
-    Goal,
+    Cause,
+    CampaignAction,
+    CampaignGoal,
     Faq,
+    Goal,
     LearningResource,
     LearningTopic,
-    Notification,
     Offer,
     Organisation,
-    Partnership
+    Partnership,
+    Notification,
   ]
 
   MODEL_LIST = [
     Admin,
-    User
+    User,
   ] + UNRESTRICTED_MODEL_LIST
 
   def initialize(admin)

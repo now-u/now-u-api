@@ -40,4 +40,34 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
   end
+
+  config.model 'Campaign' do
+    field :title
+    field :description_app
+    field :header_image
+    field :video_link
+    field :description_web
+    field :enabled
+    field :start_date
+    field :end_date
+    field :short_name
+    field :infographic_url
+    field :of_the_month
+    field :recommended
+    field :status
+    field :campaign_actions
+    field :blog_articles
+    field :articles
+    field :offers
+    field :partnerships
+    field :learning_topics
+    field :organisations
+    field :campaign_goals
+    field :goals
+    field :user_campaigns
+    field :cause_campaigns
+    field :causes do
+      required true
+    end
+  end
 end
