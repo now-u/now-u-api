@@ -42,6 +42,6 @@ class APIApplicationController < ActionController::API
   end
 
   def invalid_filter_message(exception)
-    render json: { data: exception }
+    render json: { data: exception }, status: 501
   end
 end
