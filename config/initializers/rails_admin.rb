@@ -49,4 +49,22 @@ RailsAdmin.config do |config|
       required true
     end
   end
+
+  config.model 'CampaignAction' do
+    fields.each do |f|
+      field f.name
+    end
+    field :causes do
+      required true
+    end
+  end
+
+  config.model 'LearningResource' do
+    fields.each do |f|
+      field f.name
+    end
+    field :causes do
+      required true
+    end
+  end
 end
