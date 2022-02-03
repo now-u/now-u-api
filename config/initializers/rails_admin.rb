@@ -40,4 +40,31 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
   end
+
+  config.model 'Campaign' do
+    fields.each do |f|
+      field f.name
+    end
+    field :causes do
+      required true
+    end
+  end
+
+  config.model 'CampaignAction' do
+    fields.each do |f|
+      field f.name
+    end
+    field :causes do
+      required true
+    end
+  end
+
+  config.model 'LearningResource' do
+    fields.each do |f|
+      field f.name
+    end
+    field :causes do
+      required true
+    end
+  end
 end
