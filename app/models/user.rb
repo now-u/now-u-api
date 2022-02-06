@@ -30,6 +30,16 @@ class User < ApplicationRecord
     user_campaigns.where(progress: 100).pluck(:campaign_id)
   end
 
+  def completed_campaigns_v2
+    completed_ids = user_campaigns.where(progress: 100).pluck(:campaign_id)
+    campaigns.where(id: completed_ids)
+  end
+
+  def completed_actions_v2
+    completed_ids = user_actions.where(status: 'completed').pluck(:campaign_action_id)
+    campaign_actions.where(id: completed_ids)
+  end
+
   def completed_actions
     user_actions.where(status: 'completed').pluck(:campaign_action_id)
   end
