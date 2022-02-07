@@ -17,5 +17,7 @@ FactoryBot.create_list(:partnership, 10)
 FactoryBot.create_list(:text_section, 10)
 FactoryBot.create_list(:user_action, 10)
 FactoryBot.create_list(:user, 10)
+FactoryBot.create_list(:user_learning_resource, 10)
+FactoryBot.create_list(:user_cause, 10)
 
 puts "Seeding finished."

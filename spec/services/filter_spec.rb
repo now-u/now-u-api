@@ -143,13 +143,18 @@ RSpec.describe V2::Filters::Filter, type: :model do
   
         context "completed filter" do
           let!(:request_url) { "https://ilovecats.com/bigkahunaburger?completed=true" }
-
-          before do
-            user_campaign = UserCampaign.find_by(campaign_id: campaign.id)
-            user_campaign.progress = 100
-            user_campaign.save!
-          end
+          # create a new learning topic with the campaign
+          let!(:learning_topic) { create(:learning_topic, campaign_id: campaign.id) }
+          # create a new learning resource with the topic and the user
+          let!(:learning_resource) { create(:learning_resource, learning_topic_id: learning_topic.id) }
+          # create a new campaign action with the campaign and the user
+          let!(:campaign_action) { create(:campaign_action, campaign_id: campaign.id) }
   
+          before do
+            user.campaign_actions << campaign_action
+            user.learning_resources << learning_resource
+          end
+
           it "returns users completed campaign actions" do
             expect(subject.call.length).to eq 1
             expect(subject.call).to eq [campaign]

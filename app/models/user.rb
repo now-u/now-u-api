@@ -24,17 +24,23 @@ class User < ApplicationRecord
     user_tokens.valid.first || user_tokens.create
   end
 
+  # In V2, a campaign is completed by the user if: 
+  # 1. They have completed the learning resources (completed means just 'joined' in the sense that the relationship exists)
+  # 2. They have completed the campaign actions (completed means just 'joined' in the sense that the relationship exists)
+  def completed_campaigns_v2
+    learning_resource_topic_ids = learning_resources.pluck(:learning_topic_id)
+    learning_resource_campaign_ids = LearningTopic.where(id: learning_resource_topic_ids).pluck(:campaign_id)
+    campaign_action_ids = campaign_actions.pluck(:campaign_id)
+    completed_campaign_ids = learning_resource_campaign_ids & campaign_action_ids
+    campaigns.where(id: completed_campaign_ids)
+  end
+
   def selected_campaigns
     campaigns.ids
   end
 
   def completed_campaigns
     user_campaigns.where(progress: 100).pluck(:campaign_id)
-  end
-
-  def completed_campaigns_v2
-    completed_ids = user_campaigns.where(progress: 100).pluck(:campaign_id)
-    campaigns.where(id: completed_ids)
   end
 
   def completed_actions_v2
