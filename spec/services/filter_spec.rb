@@ -167,4 +167,27 @@ RSpec.describe V2::Filters::Filter, type: :model do
       end
     end
   end
+
+  context "with causes filter module" do
+    let!(:filter_model) { V2::Filters::CauseFilter }
+    let!(:data_scope) { Cause.all }
+    let!(:cause) { create(:cause) }
+    let!(:cause1) { create(:cause) }
+    let!(:cause2) { create(:cause) }
+    let!(:cause3) { create(:cause) }
+    let!(:user) { create(:user, causes: [cause, cause3]) }
+
+    context "with user filters" do
+      let!(:headers) { {'token' => user.token} }
+
+      context "with the joined filter" do
+        let!(:request_url) { "https://ilovecats.com/bigkahunaburger?joined=true" }
+
+        it "returns the causes that the user has joined" do
+          expect(subject.call.length).to eq 2
+          expect(subject.call).to eq [cause, cause3]
+        end
+      end
+    end
+  end
 end

@@ -8,6 +8,8 @@ class User < ApplicationRecord
   belongs_to :organisation, optional: true
   has_many :user_campaigns
   has_many :campaigns, through: :user_campaigns
+  has_many :user_causes
+  has_many :causes, through: :user_causes
   has_many :user_actions
   has_many :campaign_actions, through: :user_actions
   has_many :user_learning_resources
