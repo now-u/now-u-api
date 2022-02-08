@@ -6,7 +6,7 @@ class Api::V2::UserCausesController < APIApplicationController
   before_action :set_user, only: [:create]
 
   def create
-    if user.causes = causes_from_params
+    if causes_from_params && user.causes = causes_from_params
       render json: { data: "User successfully added to causes" }, status: :ok
     else
       render json: { data: "Something went wrong" }, status: 501
@@ -16,7 +16,9 @@ class Api::V2::UserCausesController < APIApplicationController
 private
 
   def causes_from_params
-    JSON(params["cause_ids"]).map do |cid|
+    return nil unless params["cause_ids"]
+
+    JSON(params["cause_ids"])&.map do |cid|
       Cause.find(cid)
     end
   end
