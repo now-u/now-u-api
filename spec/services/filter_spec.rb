@@ -131,16 +131,7 @@ RSpec.describe V2::Filters::Filter, type: :model do
     context "with a user header" do
       let!(:headers) { {'token' => user.token} }
   
-      context "with a single user specific filter" do
-        context "joined filter" do
-          let!(:request_url) { "https://ilovecats.com/bigkahunaburger?joined=true" }
-  
-          it "returns users joined campaign actions" do
-            expect(subject.call.length).to eq 2
-            expect(subject.call).to eq [campaign, campaign3]
-          end
-        end
-  
+      context "with a single user specific filter" do  
         context "completed filter" do
           let!(:request_url) { "https://ilovecats.com/bigkahunaburger?completed=true" }
           # create a new learning topic with the campaign
@@ -159,15 +150,6 @@ RSpec.describe V2::Filters::Filter, type: :model do
             expect(subject.call.length).to eq 1
             expect(subject.call).to eq [campaign]
           end
-        end
-      end
-  
-      context "with multiple filters, mix of user-specific and model specific" do
-        let!(:request_url) { "https://ilovecats.com/bigkahunaburger?recommended=true&joined=true" }
-  
-        it "filters through user attributes" do
-          expect(subject.call.length).to eq 1
-          expect(subject.call).to eq [campaign3]
         end
       end
     end

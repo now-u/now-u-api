@@ -32,7 +32,7 @@ class User < ApplicationRecord
     learning_resource_campaign_ids = LearningTopic.where(id: learning_resource_topic_ids).pluck(:campaign_id)
     campaign_action_ids = campaign_actions.pluck(:campaign_id)
     completed_campaign_ids = learning_resource_campaign_ids & campaign_action_ids
-    campaigns.where(id: completed_campaign_ids)
+    Campaign.where(id: completed_campaign_ids)
   end
 
   def selected_campaigns
