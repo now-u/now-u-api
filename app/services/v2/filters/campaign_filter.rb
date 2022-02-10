@@ -12,7 +12,7 @@ module V2
       }
 
       USER_FILTERS = {
-        'joined' => :joined?
+        'completed' => :completed_campaigns_v2,
       }
     end
   end

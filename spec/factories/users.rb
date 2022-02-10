@@ -16,5 +16,9 @@ FactoryBot.define do
     description { nil }
     newsletter { false }
     user_role_id { 1 }
+
+    trait :with_causes do
+      causes { create_list(:cause, 5) }
+    end
   end
 end

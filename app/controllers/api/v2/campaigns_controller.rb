@@ -37,7 +37,7 @@ private
   def get_status(campaign_id)
     return 'Authentication failed' unless request.headers['token'] && user
 
-    user.user_campaigns.find_by(campaign_id: campaign_id)&.status
+    user.completed_campaigns_v2&.any? { |c| c.id == campaign_id} ? "completed" : nil
   end
 
   def merge_additional_fields(model)

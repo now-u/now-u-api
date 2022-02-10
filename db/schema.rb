@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_04_151911) do
+ActiveRecord::Schema.define(version: 2022_02_07_165725) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -322,6 +322,15 @@ ActiveRecord::Schema.define(version: 2021_12_04_151911) do
     t.integer "progress", default: 0
   end
 
+  create_table "user_causes", force: :cascade do |t|
+    t.bigint "cause_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cause_id"], name: "index_user_causes_on_cause_id"
+    t.index ["user_id"], name: "index_user_causes_on_user_id"
+  end
+
   create_table "user_learning_resources", force: :cascade do |t|
     t.integer "user_id"
     t.integer "learning_resource_id"
@@ -373,4 +382,6 @@ ActiveRecord::Schema.define(version: 2021_12_04_151911) do
   add_foreign_key "cause_learning_resources", "learning_resources"
   add_foreign_key "quiz_answers", "quiz_questions"
   add_foreign_key "quiz_questions", "quizzes"
+  add_foreign_key "user_causes", "causes"
+  add_foreign_key "user_causes", "users"
 end

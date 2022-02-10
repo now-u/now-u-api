@@ -9,4 +9,7 @@ class Cause < ApplicationRecord
 
   has_many :cause_campaigns, dependent: :destroy
   has_many :campaigns, through: :cause_campaigns
+
+  has_many :user_causes
+  has_many :users, through: :user_causes
 end

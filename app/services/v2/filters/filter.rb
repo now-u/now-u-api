@@ -27,10 +27,9 @@ module V2
 
         if user_query?(key)
           # NOTE: This only returns all instances of the join table. This is because at the time of writing,
-          # the only user-specific filter we have is `joined`, which naturally should send us all
+          # the only user-specific filter we have is `joined` and `completed`, which naturally should send us all
           # user-related data back
-
-          User.find_by(token: user_token).public_send(filter_model::USER_MODEL).where(id: data_scope.pluck(:id))
+          User.find_by(token: user_token).public_send(filter_model::USER_FILTERS[key]).where(id: data_scope.pluck(:id))
         else
           data_scope.public_send(filter_model::FILTERS[key], JSON(query))
         end
