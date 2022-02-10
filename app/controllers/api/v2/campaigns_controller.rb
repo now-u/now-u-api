@@ -40,7 +40,7 @@ private
 
   def additional_campaign_fields(campaign)
     additional_fields(campaign).merge({
-      learning_topics: campaign.learning_topics,
+      learning_resources: campaign.learning_resources,
       campaign_actions: campaign.campaign_actions,
     })
   end

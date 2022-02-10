@@ -14,6 +14,8 @@ class Campaign < ApplicationRecord
   has_many :goals, through: :campaign_goals
   has_many :user_campaigns
 
+  has_many :learning_resources, through: :learning_topics
+
   include PgSearch::Model
   pg_search_scope :search, against: %i[title description_app description_web]
 

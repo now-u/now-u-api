@@ -13,6 +13,22 @@ describe Campaign do
     1.times { create(:campaign, recommended: true) }
   end
 
+  context "associations" do
+    it { is_expected.to have_many(:learning_resources) }
+    it { is_expected.to have_many(:learning_topics) }
+    it { is_expected.to have_many(:causes) }
+    it { is_expected.to have_many(:offers) }
+    it { is_expected.to have_many(:articles) }
+    it { is_expected.to have_many(:blog_articles) }
+    it { is_expected.to have_many(:partnerships) }
+    it { is_expected.to have_many(:campaign_actions) }
+    it { is_expected.to have_many(:user_campaigns) }
+    it { is_expected.to have_many(:goals) }
+    it { is_expected.to have_many(:organisations) }
+    it { is_expected.to have_many(:campaign_goals) }
+    it { is_expected.to have_many(:cause_campaigns) }
+  end
+
   context "scopes" do
     describe "filter_by_cause" do
       it "takes an array of cause id's and returns associated records" do
