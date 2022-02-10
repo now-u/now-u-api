@@ -310,7 +310,7 @@ GEM
       parser (>= 3.0.1.1)
     ruby-progressbar (1.11.0)
     ruby2_keywords (0.0.5)
-    ruby_http_client (3.5.3)
+    ruby_http_client (3.5.4)
     sassc (2.4.0)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -319,7 +319,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    sendgrid-ruby (6.6.0)
+    sendgrid-ruby (6.6.1)
       ruby_http_client (~> 3.4)
     shoulda-matchers (5.1.0)
       activesupport (>= 5.2.0)
