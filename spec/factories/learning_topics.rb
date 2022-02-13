@@ -5,6 +5,6 @@ FactoryBot.define do
     title { Faker::Marketing.buzzwords }
     image_link { Faker::Internet.url }
     our_answer { nil }
-    campaign_id { create(:campaign).id }
+    association :campaign
   end
 end

@@ -5,7 +5,7 @@ FactoryBot.define do
     title { Faker::Marketing.buzzwords }
     description { Faker::Lorem.sentence }
     link { Faker::Internet.url }
-    campaign_id { create(:campaign).id }
-    campaign_action_id { create(:campaign_action).id }
+    association :campaign, :with_campaign_actions
+    association :campaign_action
   end
 end

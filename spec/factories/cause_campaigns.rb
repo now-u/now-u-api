@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :cause_campaign do
-    association :cause
-    association :campaign
+    association :cause, :with_cause_action
+    association :campaign, :with_campaign_actions
   end
 end

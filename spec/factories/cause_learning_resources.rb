@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :cause_learning_resource do
-    association :cause
+    association :cause, :with_cause_action
     association :learning_resource
   end
 end

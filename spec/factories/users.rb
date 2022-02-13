@@ -11,11 +11,11 @@ FactoryBot.define do
     monthly_donation_limit { nil }
     home_owner { true }
     points { 0 }
-    organisation_id { create(:organisation).id }
     profile_picture_url { nil }
     description { nil }
     newsletter { false }
     user_role_id { 1 }
+    association :organisation
 
     trait :with_causes do
       causes { create_list(:cause, 5) }

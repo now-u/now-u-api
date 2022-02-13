@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   factory :user_campaign do
-    user_id { create(:user).id }
-    campaign_id { create(:campaign).id }
     progress { 0 }
+    association :user
+    association :campaign, :with_campaign_actions
   end
 end

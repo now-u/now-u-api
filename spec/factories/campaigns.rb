@@ -14,5 +14,13 @@ FactoryBot.define do
     infographic_url { Faker::Internet.url }
     of_the_month { false }
     recommended { false }
+
+    trait :with_causes do
+      causes { [association(:cause)] }
+    end
+
+    trait :with_campaign_actions do
+      campaign_actions { [association(:campaign_action)] }
+    end
   end
 end

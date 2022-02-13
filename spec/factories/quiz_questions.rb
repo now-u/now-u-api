@@ -3,6 +3,6 @@
 FactoryBot.define do
   factory :quiz_question do
     question { Faker::Marketing.buzzwords }
-    quiz_id { create(:quiz).id }
+    association :quiz
   end
 end

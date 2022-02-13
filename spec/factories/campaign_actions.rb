@@ -5,7 +5,6 @@ FactoryBot.define do
     title { Faker::Marketing.buzzwords }
     link  { Faker::Internet.url }
     type { nil }
-    campaign_id { create(:campaign).id }
     what_description { Faker::Lorem.sentence }
     why_description { Faker::Lorem.sentence }
     time { 0.1 }
@@ -14,5 +13,7 @@ FactoryBot.define do
     end_date { Faker::Date.in_date_period }
     of_the_month { false }
     recommended { false }
+
+    association :campaign, :with_causes
   end
 end
