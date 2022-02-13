@@ -5,6 +5,6 @@ FactoryBot.define do
     answer_image_url { Faker::Internet.url }
     answer_text { Faker::Lorem.sentence }
     is_correct { false }
-    association :quiz_question
+    quiz_question_id { create(:quiz_question).id }
   end
 end
