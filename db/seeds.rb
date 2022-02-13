@@ -19,14 +19,14 @@ FactoryBot.create_list(:user, 5)
 FactoryBot.create_list(:user_learning_resource, 5)
 FactoryBot.create_list(:user_cause, 5)
 
-Cause.all.each do |c|
-  c.campaigns << Campaign.all.sample(2)
-  c.cause_actions << FactoryBot.create_list(:cause_action, 2)
-end
+# Cause.all.each do |c|
+#   c.campaigns << Campaign.all.sample(2)
+#   c.cause_actions << FactoryBot.create_list(:cause_action, 2)
+# end
 
-Campaign.all.each do |c|
-  c.causes << Cause.all.sample(2)
-  c.campaign_actions << FactoryBot.create_list(:campaign_action, 2)
-end
+# Campaign.all.each do |c|
+#   c.causes << Cause.all.sample(2)
+#   c.campaign_actions << FactoryBot.create_list(:campaign_action, 2)
+# end
 
 puts "Seeding finished."

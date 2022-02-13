@@ -14,6 +14,6 @@ FactoryBot.define do
     of_the_month { false }
     recommended { false }
 
-    association :campaign, :with_causes
+    association :campaign
   end
 end

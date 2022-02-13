@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe Campaign do
-  subject { build(:campaign) }
+  subject { create(:campaign) }
 
   it { should be_valid }
 

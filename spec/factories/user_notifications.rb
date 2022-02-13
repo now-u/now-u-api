@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   factory :user_notification do
-    association :user
-    association :notification
+    user_id { create(:user).id }
+    notification_id { create(:notification).id }
     dismissed { false }
   end
 end
