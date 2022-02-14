@@ -6,9 +6,9 @@ FactoryBot.define do
     time  { 0.1 }
     link { Faker::Internet.url }
     type { nil }
-    learning_topic_id { create(:learning_topic).id }
     source { nil }
     release_date { Faker::Date.in_date_period }
     end_date { Faker::Date.in_date_period }
+    association :learning_topic
   end
 end

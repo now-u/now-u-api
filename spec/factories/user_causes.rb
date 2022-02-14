@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :user_cause do
-    user_id { create(:user).id }
-    cause_id { create(:cause).id }
+    association :user
+    association :cause, :with_cause_action
   end
 end

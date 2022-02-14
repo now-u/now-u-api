@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :user_learning_resource do
-    user_id { create(:user).id }
-    learning_resource_id { create(:learning_resource).id }
+    association :user
+    association :learning_resource
   end
 end

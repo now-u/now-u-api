@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :blog_tag do
-    tag_id { create(:tag).id }
-    blog_article_id { create(:blog_article).id }
+    association :tag
+    association :blog_article
   end
 end

@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :campaign_goal do
-    campaign_id { create(:campaign).id }
-    goal_id { create(:goal).id }
+    association :campaign, :with_campaign_actions
+    association :goal
   end
 end
