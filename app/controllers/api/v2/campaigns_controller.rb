@@ -24,14 +24,25 @@ private
   end
 
   def campaign_data
-    merge_additional_fields(Campaign.find(params[:id]))
+    campaign.serializable_hash.symbolize_keys.merge(additional_campaign_fields(campaign))
   end
 
-  def additional_fields(campaign_id)
+  def campaign
+    @campaign ||= Campaign.find(params[:id])
+  end
+
+  def additional_fields(campaign)
     {
-      causes: Campaign.find(campaign_id)&.causes,
-      completed: get_status(campaign_id),
+      causes: campaign.causes,
+      completed: get_status(campaign),
     }
+  end
+
+  def additional_campaign_fields(campaign)
+    additional_fields(campaign).merge({
+      learning_resources: campaign.learning_resources,
+      campaign_actions: campaign.campaign_actions,
+    })
   end
 
   def get_status(campaign_id)
@@ -41,6 +52,6 @@ private
   end
 
   def merge_additional_fields(model)
-    model.serializable_hash.symbolize_keys.merge(additional_fields(model.id))
+    model.serializable_hash.symbolize_keys.merge(additional_fields(model))
   end
 end
