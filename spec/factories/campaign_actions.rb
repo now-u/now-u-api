@@ -15,5 +15,9 @@ FactoryBot.define do
     recommended { false }
 
     association :campaign
+
+    trait :with_cause_action do
+      cause_actions { [association(:cause_action)] }
+    end
   end
 end
