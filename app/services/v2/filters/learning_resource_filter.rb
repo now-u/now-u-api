@@ -10,7 +10,7 @@ module V2
       }
 
       USER_FILTERS = {
-        # 'completed' => :completed_learning_resources_v2,
+        'completed' => :learning_resources,
       }
     end
   end

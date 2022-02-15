@@ -177,4 +177,60 @@ RSpec.describe V2::Filters::Filter, type: :model do
       end
     end
   end
+
+  context "with learning resource filter module" do
+    let!(:filter_model) { V2::Filters::LearningResourceFilter }
+    let!(:data_scope) { LearningResource.all }
+    let!(:learning_resource) { create(:learning_resource) }
+    let!(:learning_resource1) { create(:learning_resource) }
+    let!(:learning_resource2) { create(:learning_resource) }
+    let!(:user) { create(:user, learning_resources: [learning_resource1]) }
+
+    context "with a filter that exists" do
+      let!(:request_url) { "https://ilovecats.com/bigkahunaburger?limit=2" }
+
+      it "calls the limit onto the model" do
+        expect(subject.call.length).to eq 2
+      end
+    end
+
+    context "with a filter that doesnt exist" do
+      let!(:request_url) { "https://ilovecats.com/bigkahunaburger?catsrule=true" }
+
+      it "returns nothing" do
+        expect { subject.call }.to raise_error "Invalid filter 'catsrule' for model LearningResource"
+      end
+    end
+
+    context "when there are no filters" do
+      let!(:request_url) { "https://icanhazcheezeburger.com/doublewhopperplease" }
+      it "returns the fallback data" do
+        expect(subject.call).to eq LearningResource.all
+      end
+    end
+  
+    context "with multiple filters" do
+      let!(:request_url) { "https://ilovecats.com/bigkahunaburger?cause__in=[#{learning_resource.causes.first.id},#{learning_resource1.causes.first.id}]&limit=2" }
+  
+      it "filters recursively through the filter set" do
+        expect(subject.call.length).to eq 2
+        expect(subject.call).to eq [learning_resource, learning_resource1]
+      end
+    end
+  
+    context "with a user header" do
+      let!(:headers) { {'token' => user.token} }
+  
+      context "with a single user specific filter" do  
+        context "completed filter" do
+          let!(:request_url) { "https://ilovecats.com/bigkahunaburger?completed=true" }
+
+          it "returns users completed campaign actions" do
+            expect(subject.call.length).to eq 1
+            expect(subject.call).to eq [learning_resource1]
+          end
+        end
+      end
+    end
+  end
 end
