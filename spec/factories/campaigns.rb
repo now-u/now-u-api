@@ -15,12 +15,12 @@ FactoryBot.define do
     of_the_month { false }
     recommended { false }
 
-    trait :with_causes do
-      causes { [association(:cause, :with_cause_action)] }
-    end
-
     trait :with_campaign_actions do
       campaign_actions { [association(:campaign_action)] }
+    end
+
+    after :create do |campaign| 
+      campaign.causes << create(:cause)
     end
   end
 end
