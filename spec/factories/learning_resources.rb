@@ -10,5 +10,9 @@ FactoryBot.define do
     release_date { Faker::Date.in_date_period }
     end_date { Faker::Date.in_date_period }
     association :learning_topic
+
+    after :create do |learning_resource|
+      learning_resource.causes << create(:cause)
+    end
   end
 end
