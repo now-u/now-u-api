@@ -16,8 +16,8 @@ FactoryBot.define do
 
     association :campaign
 
-    trait :with_cause_action do
-      cause_actions { [association(:cause_action)] }
+    after :create do |campaign_action| 
+      campaign_action.cause_actions << create(:cause_action, campaign_action_id: campaign_action.id)
     end
   end
 end
