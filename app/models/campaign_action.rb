@@ -29,4 +29,7 @@ class CampaignAction < ApplicationRecord
   scope :recommended, ->(bool) { where(recommended: bool) }
 
   scope :type, ->(type) { where(type: type) }
+
+  scope :time_gte, ->(time) { where("time >= ?", time.to_i) }
+  scope :time_lte, ->(time) { where("time <= ?", time.to_i) }
 end

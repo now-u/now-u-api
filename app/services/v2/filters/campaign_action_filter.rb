@@ -9,7 +9,9 @@ module V2
         'limit' => :limit,
         'of_the_month' => :of_the_month,
         'recommended' => :recommended,
-        'type' => :type
+        'type' => :type,
+        'time__gte' => :time_gte,
+        'time__lte' => :time_lte
       }
 
       USER_FILTERS = {
