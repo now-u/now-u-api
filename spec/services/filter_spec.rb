@@ -209,9 +209,10 @@ RSpec.describe V2::Filters::Filter, type: :model do
   context "with learning resource filter module" do
     let!(:filter_model) { V2::Filters::LearningResourceFilter }
     let!(:data_scope) { LearningResource.all }
-    let!(:learning_resource) { create(:learning_resource) }
-    let!(:learning_resource1) { create(:learning_resource) }
-    let!(:learning_resource2) { create(:learning_resource) }
+    let!(:learning_resource) { create(:learning_resource, time: 10.0) }
+    let!(:learning_resource1) { create(:learning_resource, time: 5.0) }
+    let!(:learning_resource2) { create(:learning_resource, time: 17.0) }
+    let!(:learning_resource3) { create(:learning_resource, time: 3.0) }
     let!(:user) { create(:user, learning_resources: [learning_resource1]) }
 
     context "with a filter that exists" do
@@ -243,6 +244,34 @@ RSpec.describe V2::Filters::Filter, type: :model do
       it "filters recursively through the filter set" do
         expect(subject.call.length).to eq 2
         expect(subject.call).to eq [learning_resource, learning_resource1]
+      end
+    end
+
+    context "time filter" do
+      context "with the time_gte filter" do
+        let!(:request_url) { "https://ilovecats.com/bigkahunaburger?time__gte=8" }
+
+        it "returns the correct learning resource based on the time greater than filter" do
+          expect(subject.call.length).to eq 2
+          expect(subject.call).to include(learning_resource, learning_resource2)
+        end
+      end
+
+      context "with the time_lte filter" do
+        let!(:request_url) { "https://ilovecats.com/bigkahunaburger?time__lte=8" }
+
+        it "returns the correct learning resource based on the time less than filter" do
+          expect(subject.call).to include(learning_resource1, learning_resource3)
+        end
+      end
+
+      context "with both the filters" do
+        let!(:request_url) { "https://ilovecats.com/bigkahunaburger?time__gte=4&time__lte=11" }
+
+        it "returns the correct learning resource based on the time greater than and less than filter" do
+          expect(subject.call.length).to eq 2
+          expect(subject.call).to include(learning_resource, learning_resource1)
+        end
       end
     end
   

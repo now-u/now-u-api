@@ -7,6 +7,8 @@ module V2
       FILTERS = {
         'cause__in' => :filter_by_cause,
         'limit' => :limit,
+        'time__gte' => :time_gte,
+        'time__lte' => :time_lte
       }
 
       USER_FILTERS = {
