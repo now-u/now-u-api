@@ -18,4 +18,7 @@ class LearningResource < ApplicationRecord
 
   has_many :cause_learning_resources, dependent: :destroy
   has_many :causes, through: :cause_learning_resources
+
+  scope :time_gte, ->(time) { where("time >= ?", time.to_i) }
+  scope :time_lte, ->(time) { where("time <= ?", time.to_i) }
 end
