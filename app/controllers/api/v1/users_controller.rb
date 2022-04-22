@@ -31,9 +31,15 @@ class Api::V1::UsersController < APIApplicationController
   def authenticate_user
     user = find_user
     if user
-      send_registration_email(user)
+      begin
+        send_registration_email(user)
 
-      render json: {}, status: :ok
+        render json: {}, status: :ok
+      rescue StandardError => e
+        Sentry.capture_exception(e)
+
+        render json: {message: "Something went wrong!"}, status: 500
+      end
     else
       render text: 'Not Found', status: 404
     end
