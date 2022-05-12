@@ -15,23 +15,7 @@ paths:
           content:
             application/json:
               example:
-                data:
-                - id: 204
-                  title: heads down
-                  body: Alias rerum est eos.
-                  header_image: http://osinski.com/chi
-                  full_article_link: http://prohaska.net/ok
-                  video_link: http://shields.io/gregorio
-                  campaign_action_id: 3421
-                  campaign_id: 7952
-                  created_at: '2022-02-15T15:04:22.041Z'
-                  updated_at: '2022-02-15T15:04:22.041Z'
-                  video_of_the_day:
-                  subtitle: bandwidth-constrained
-                  link_text: http://predovic.info/leandro
-                  source: http://volkman.net/darryl.beahan
-                  enabled: true
-                  release_date: '2022-01-02T00:00:00.000Z'
+                data: []
               schema:
                 type: object
                 properties:
@@ -85,22 +69,22 @@ paths:
             application/json:
               example:
                 data:
-                  id: 205
-                  title: learnings
-                  body: Possimus pariatur repellat exercitationem.
-                  header_image: http://block.biz/ernesto_hilpert
-                  full_article_link: http://hand.co/lizzette
-                  video_link: http://cole.net/fay
-                  campaign_action_id: 3423
-                  campaign_id: 7955
-                  created_at: '2022-02-15T15:04:22.112Z'
-                  updated_at: '2022-02-15T15:04:22.112Z'
+                  id: 23
+                  title: bucketize it
+                  body: Est distinctio quia dolores.
+                  header_image: http://gislason-mclaughlin.info/tenisha
+                  full_article_link: http://nienow.co/lavern
+                  video_link: http://reichel-adams.biz/ernestine
+                  campaign_action_id: 447
+                  campaign_id: 1224
+                  created_at: '2022-05-12T10:29:02.871Z'
+                  updated_at: '2022-05-12T10:29:02.871Z'
                   video_of_the_day:
-                  subtitle: buying cycle
-                  link_text: http://nitzsche.biz/tera
-                  source: http://gleason.name/robbie
+                  subtitle: customer journey
+                  link_text: http://paucek-senger.biz/garret
+                  source: http://kirlin.com/claud.jenkins
                   enabled: true
-                  release_date: '2022-11-22T00:00:00.000Z'
+                  release_date: '2022-12-04T00:00:00.000Z'
               schema:
                 type: object
                 properties:
@@ -153,20 +137,20 @@ paths:
           content:
             application/json:
               example:
-              - id: 218
-                title: infographic
-                subtitle: Quo pariatur laboriosam et.
-                campaign_action_id: 3427
-                user_id: 2699
-                campaign_id: 7961
-                reading_time: 55
-                created_at: '2022-02-15T15:04:22.259Z'
-                updated_at: '2022-02-15T15:04:22.259Z'
+              - id: 16
+                title: immersive experience
+                subtitle: Nam odio aut dolorum.
+                campaign_action_id: 451
+                user_id: 339
+                campaign_id: 1230
+                reading_time: 1
+                created_at: '2022-05-12T10:29:03.017Z'
+                updated_at: '2022-05-12T10:29:03.017Z'
                 enabled: true
-                header_image: http://sanford.name/gabriela
+                header_image: http://altenwerth.org/machelle.brekke
                 tags: []
                 user:
-                  full_name: Pamella Prohaska II
+                  full_name: Kimberly Larson
                   profile_picture_url:
                   description:
   "/api/v1/blogs/{id}":
@@ -188,20 +172,20 @@ paths:
               example:
                 data:
                   blog:
-                    id: 219
-                    title: infographic
-                    subtitle: Facere magni dolorem recusandae.
-                    campaign_action_id: 3429
-                    user_id: 2700
-                    campaign_id: 7964
-                    reading_time: 6
-                    created_at: '2022-02-15T15:04:22.330Z'
-                    updated_at: '2022-02-15T15:04:22.330Z'
+                    id: 17
+                    title: make it actionable
+                    subtitle: Et et doloremque incidunt.
+                    campaign_action_id: 453
+                    user_id: 340
+                    campaign_id: 1233
+                    reading_time: 15
+                    created_at: '2022-05-12T10:29:03.095Z'
+                    updated_at: '2022-05-12T10:29:03.095Z'
                     enabled: true
-                    header_image: http://schroeder.biz/ericka
+                    header_image: http://kris.io/cammie.gulgowski
                     tags: []
                     user:
-                      full_name: Mrs. Guadalupe Herzog
+                      full_name: Ms. Sparkle Heaney
                       profile_picture_url:
                       description:
                 sections: []
@@ -301,18 +285,18 @@ paths:
             application/json:
               example:
                 data:
-                  id: 7969
-                  title: had to 'punt' on that
-                  description_app: Asperiores molestiae eius voluptas.
-                  header_image: http://rempel.io/valentine.walker
-                  created_at: '2022-02-15T15:04:22.424Z'
-                  updated_at: '2022-02-15T15:04:22.424Z'
-                  video_link: http://bayer-gusikowski.biz/stuart.braun
+                  id: 1238
+                  title: learnings
+                  description_app: Est unde nemo et.
+                  header_image: http://ward.info/season.hintz
+                  created_at: '2022-05-12T10:29:03.186Z'
+                  updated_at: '2022-05-12T10:29:03.186Z'
+                  video_link: http://kuhic.org/tijuana_watsica
                   description_web:
                   enabled: true
-                  start_date: '2022-12-13T00:00:00.000Z'
-                  end_date: '2022-03-28T00:00:00.000Z'
-                  short_name: Umami swag everyday craft beer cleanse roof dreamcatcher.
+                  start_date: '2022-12-30T00:00:00.000Z'
+                  end_date: '2022-11-08T00:00:00.000Z'
+                  short_name: Marfa chia meh pour-over portland.
                   number_of_campaigners: 0
                   number_of_completed_actions: 0
                   general_partners: []
@@ -321,7 +305,7 @@ paths:
                   key_aims: []
                   campaign_actions: []
                   learning_topics: []
-                  infographic_url: http://schroeder.org/contessa_bednar
+                  infographic_url: http://dickens.org/sandy
               schema:
                 type: object
                 properties:
@@ -443,36 +427,35 @@ paths:
             application/json:
               example:
                 data:
-                  id: 3433
-                  title: branding
-                  link: http://schroeder.biz/rubin
+                  id: 457
+                  title: plug and chug
+                  link: http://rohan.io/pinkie
                   type:
-                  campaign_id: 7973
-                  created_at: '2022-02-15T15:04:22.529Z'
-                  updated_at: '2022-02-15T15:04:22.529Z'
-                  what_description: Similique architecto corporis delectus.
-                  why_description: Nam alias dicta ad.
+                  campaign_id: 1242
+                  created_at: '2022-05-12T10:29:03.324Z'
+                  updated_at: '2022-05-12T10:29:03.324Z'
+                  what_description: Aut qui deleniti hic.
+                  why_description: Aliquid ut quidem consectetur.
                   time: 0.1
                   enabled: true
-                  release_date: '2022-08-17T00:00:00.000Z'
-                  end_date: '2022-12-20T00:00:00.000Z'
+                  release_date: '2022-02-16T00:00:00.000Z'
+                  end_date: '2022-07-26T00:00:00.000Z'
                   of_the_month: false
                   recommended: false
                   campaign:
-                    id: 7973
-                    title: out of the box
-                    description_app: Vel enim unde odio.
-                    header_image: http://mcglynn-pollich.org/jamaal
-                    created_at: '2022-02-15T15:04:22.522Z'
-                    updated_at: '2022-02-15T15:04:22.522Z'
-                    video_link: http://vandervort.biz/whitney.trantow
+                    id: 1242
+                    title: out of pocket
+                    description_app: Debitis necessitatibus vel repellendus.
+                    header_image: http://reichert-cartwright.com/sherman_roob
+                    created_at: '2022-05-12T10:29:03.315Z'
+                    updated_at: '2022-05-12T10:29:03.315Z'
+                    video_link: http://conroy-denesik.io/dann_smitham
                     description_web:
                     enabled: true
-                    start_date: '2022-12-18T00:00:00.000Z'
-                    end_date: '2022-11-09T00:00:00.000Z'
-                    short_name: Freegan paleo vice vhs church-key godard dreamcatcher
-                      readymade.
-                    infographic_url: http://murray-okuneva.name/harlan
+                    start_date: '2022-08-10T00:00:00.000Z'
+                    end_date: '2022-06-12T00:00:00.000Z'
+                    short_name: Hammock cronut ethical whatever goth.
+                    infographic_url: http://mcdermott-roberts.co/hubert_schneider
                     of_the_month: false
                     recommended: false
                     status: draft
@@ -539,22 +522,22 @@ paths:
             application/json:
               example:
                 data:
-                - id: 208
-                  title: infographic
-                  body: Adipisci omnis itaque et.
-                  header_image: http://homenick.biz/erasmo
-                  full_article_link: http://franecki-rowe.biz/lindsay_botsford
-                  video_link: http://sanford-reilly.co/jere
-                  campaign_action_id: 3436
-                  campaign_id: 7980
-                  created_at: '2022-02-15T15:04:22.637Z'
-                  updated_at: '2022-02-15T15:04:22.637Z'
+                - id: 26
+                  title: buying cycle
+                  body: Consequatur exercitationem ipsa nulla.
+                  header_image: http://mosciski-will.info/tyisha_witting
+                  full_article_link: http://schneider.io/yong.blick
+                  video_link: http://pacocha.co/virginia.murphy
+                  campaign_action_id: 460
+                  campaign_id: 1249
+                  created_at: '2022-05-12T10:29:03.443Z'
+                  updated_at: '2022-05-12T10:29:03.443Z'
                   video_of_the_day:
-                  subtitle: branding
-                  link_text: http://durgan.co/sebastian
-                  source: http://stehr-zulauf.io/clyde
+                  subtitle: buying cycle
+                  link_text: http://toy-kling.biz/vashti
+                  source: http://mertz.com/beverlee
                   enabled: true
-                  release_date: '2022-08-17T00:00:00.000Z'
+                  release_date: '2022-01-29T00:00:00.000Z'
               schema:
                 type: object
                 properties:
@@ -816,18 +799,18 @@ paths:
             application/json:
               example:
                 data:
-                - id: 2328
-                  name: home stretch
-                  image: http://maggio.io/brant.connelly
-                  icon: http://willms.com/francoise_trantow
-                  joiners: 2
-                  description: Praesentium delectus voluptatum consequatur.
-                - id: 2329
-                  name: immersive experience
-                  image: http://kulas.net/mollie_dietrich
-                  icon: http://emard-nicolas.io/junior
-                  joiners: 3
-                  description: Eum dolore aut accusantium.
+                - id: 1904
+                  name: bandwidth-constrained
+                  image: http://glover.name/lorena.will
+                  icon: http://corwin-will.io/ian.kris
+                  joiners: 9
+                  description: Quis iste veritatis eius.
+                - id: 1905
+                  name: snackable content
+                  image: http://littel.co/aaron.schamberger
+                  icon: http://runolfsdottir.org/robin
+                  joiners: 85
+                  description: Veritatis sed corporis eveniet.
               schema:
                 type: object
                 properties:
@@ -864,12 +847,12 @@ paths:
           content:
             application/json:
               example:
-                id: 2330
-                name: circle back
-                image: http://walsh.name/tyrell.treutel
-                icon: http://conroy.name/edna.tromp
-                joiners: 19
-                description: Quos qui molestias nemo.
+                id: 1906
+                name: impact map
+                image: http://padberg-bode.com/lynn_mcdermott
+                icon: http://harvey.info/charmain.feil
+                joiners: 7
+                description: Ut dolores nihil optio.
               schema:
                 type: object
                 properties:
@@ -907,11 +890,11 @@ paths:
             application/json:
               example:
                 data:
-                - id: 30
-                  question: buying cycle
-                  answer: best practice
-                  created_at: '2022-02-15T15:04:22.882Z'
-                  updated_at: '2022-02-15T15:04:22.882Z'
+                - id: 4
+                  question: rubber meets the road
+                  answer: thought leadership
+                  created_at: '2022-05-12T10:29:03.690Z'
+                  updated_at: '2022-05-12T10:29:03.690Z'
               schema:
                 type: object
                 properties:
@@ -937,14 +920,14 @@ paths:
             application/json:
               example:
                 data:
-                - id: 59
-                  title: immersive experience
-                  description: Unde quia cumque odio.
-                  link: http://bailey.biz/marisa
-                  campaign_id: 7998
-                  created_at: '2022-02-15T15:04:22.933Z'
-                  updated_at: '2022-02-15T15:04:22.933Z'
-                  campaign_action_id: 3445
+                - id: 7
+                  title: t-shirt sizes
+                  description: Repudiandae perferendis et ut.
+                  link: http://moen.com/dell
+                  campaign_id: 1267
+                  created_at: '2022-05-12T10:29:03.738Z'
+                  updated_at: '2022-05-12T10:29:03.738Z'
+                  campaign_action_id: 469
               schema:
                 type: object
                 properties:
@@ -982,14 +965,14 @@ paths:
             application/json:
               example:
                 data:
-                  id: 60
-                  title: market share
-                  description: Id aut laboriosam excepturi.
-                  link: http://kozey-zieme.name/reena
-                  campaign_id: 8001
-                  created_at: '2022-02-15T15:04:22.976Z'
-                  updated_at: '2022-02-15T15:04:22.976Z'
-                  campaign_action_id: 3447
+                  id: 8
+                  title: bandwidth-constrained
+                  description: Non fugiat voluptas perferendis.
+                  link: http://dach-adams.com/rocky
+                  campaign_id: 1270
+                  created_at: '2022-05-12T10:29:03.780Z'
+                  updated_at: '2022-05-12T10:29:03.780Z'
+                  campaign_action_id: 471
               schema:
                 type: object
                 properties:
@@ -1027,25 +1010,25 @@ paths:
             application/json:
               example:
                 data:
-                - id: 1623
-                  name: value proposition
-                  description: Odit labore consequatur soluta.
-                  logo_link: http://ryan.info/jenelle
-                  created_at: '2022-02-15T15:04:22.989Z'
-                  updated_at: '2022-02-15T15:04:22.989Z'
-                  email: chere_miller@morissette.org
-                  website: http://crist.net/roosevelt
-                  IG_link: http://crist-streich.org/leeanne
-                  FB_link: http://kassulke.com/carlos_fritsch
-                  twitter_link: http://keebler.info/consuelo_stamm
-                  extra_text_1: Earum sit odio qui.
+                - id: 213
+                  name: impact map
+                  description: Non quos cumque quo.
+                  logo_link: http://wisozk.io/angel
+                  created_at: '2022-05-12T10:29:03.791Z'
+                  updated_at: '2022-05-12T10:29:03.791Z'
+                  email: darius_schinner@morar.name
+                  website: http://strosin.net/shawna.bradtke
+                  IG_link: http://goyette.org/felipe.jerde
+                  FB_link: http://berge-mosciski.net/marci
+                  twitter_link: http://nicolas-rogahn.com/olevia
+                  extra_text_1: Magnam cum et id.
                   extra_text_2:
                   extra_text_3:
-                  extra_link_1: http://wisozk.org/joe
+                  extra_link_1: http://raynor.org/roy_kerluke
                   extra_link_2:
                   extra_link_3:
                   organisation_type:
-                  code: QUPDVNAZ
+                  code: ERTSAZUB
                   geographic_reach:
                   campaigns: []
               schema:
@@ -1109,25 +1092,25 @@ paths:
             application/json:
               example:
                 data:
-                  id: 1624
-                  name: home stretch
-                  description: Voluptas quam sint consequuntur.
-                  logo_link: http://huels.co/ashlee
-                  created_at: '2022-02-15T15:04:23.003Z'
-                  updated_at: '2022-02-15T15:04:23.003Z'
-                  email: tisa.lemke@schoen.co
-                  website: http://skiles.io/stephane
-                  IG_link: http://bauch-wilkinson.net/hoyt.ruecker
-                  FB_link: http://towne.io/denae
-                  twitter_link: http://aufderhar-shields.org/bernardo
-                  extra_text_1: Unde ipsa velit sunt.
+                  id: 214
+                  name: out of the box
+                  description: Nemo ab vel dolorem.
+                  logo_link: http://tremblay.net/lottie_mayer
+                  created_at: '2022-05-12T10:29:03.809Z'
+                  updated_at: '2022-05-12T10:29:03.809Z'
+                  email: tayna@mayer.biz
+                  website: http://fisher-stehr.net/stephane
+                  IG_link: http://crona-thompson.biz/jonas
+                  FB_link: http://roberts.info/albert_mosciski
+                  twitter_link: http://cole-flatley.io/jude
+                  extra_text_1: Iusto nesciunt eaque repellat.
                   extra_text_2:
                   extra_text_3:
-                  extra_link_1: http://senger.net/cory.walsh
+                  extra_link_1: http://stoltenberg-gleichner.name/mark
                   extra_link_2:
                   extra_link_3:
                   organisation_type:
-                  code: MNCAWREL
+                  code: UAWPMVDS
                   geographic_reach:
               schema:
                 type: object
@@ -1190,13 +1173,13 @@ paths:
             application/json:
               example:
                 data:
-                - id: 88
-                  image_url: http://miller-altenwerth.name/nelida
-                  link: http://kutch-macejkovic.info/sherwood
-                  media_name: sprint to the finish line
-                  created_at: '2022-02-15T15:04:23.036Z'
-                  updated_at: '2022-02-15T15:04:23.036Z'
-                  title: immersive experience
+                - id: 10
+                  image_url: http://leannon.io/kathrin
+                  link: http://hessel.name/albert
+                  media_name: bandwidth-constrained
+                  created_at: '2022-05-12T10:29:03.843Z'
+                  updated_at: '2022-05-12T10:29:03.843Z'
+                  title: learnings
               schema:
                 type: object
                 properties:
@@ -1232,13 +1215,13 @@ paths:
             application/json:
               example:
                 data:
-                  id: 89
-                  image_url: http://lebsack-pouros.biz/deshawn_emmerich
-                  link: http://west-walter.com/fabian.boehm
-                  media_name: get a pulse on
-                  created_at: '2022-02-15T15:04:23.046Z'
-                  updated_at: '2022-02-15T15:04:23.046Z'
-                  title: SWAG
+                  id: 11
+                  image_url: http://fisher.org/tamica
+                  link: http://kling.biz/beverly
+                  media_name: swim lane
+                  created_at: '2022-05-12T10:29:03.851Z'
+                  updated_at: '2022-05-12T10:29:03.851Z'
+                  title: thought leader
               schema:
                 type: object
                 properties:
@@ -1274,9 +1257,9 @@ paths:
             application/json:
               example:
                 data:
-                - id: 130
-                  title: get a pulse on
-                  description: Omnis in deleniti repellat.
+                - id: 13
+                  title: data points
+                  description: Repellendus natus quia nobis.
                   questions: []
               schema:
                 type: object
@@ -1309,9 +1292,9 @@ paths:
             application/json:
               example:
                 data:
-                  id: 131
-                  title: heads down
-                  description: Nostrum officiis et deleniti.
+                  id: 14
+                  title: let's take this offline
+                  description: Consectetur excepturi sit saepe.
                   questions: []
               schema:
                 type: object
@@ -1349,38 +1332,38 @@ paths:
             application/json:
               example:
                 data:
-                - id: 3449
-                  title: rubber meets the road
-                  link: http://mayer.name/brittni
+                - id: 473
+                  title: buying cycle
+                  link: http://will-stehr.co/kip
                   type:
-                  campaign_id: 8004
-                  created_at: '2022-02-15T15:04:23.148Z'
-                  updated_at: '2022-02-15T15:04:23.148Z'
-                  what_description: Praesentium quia sit labore.
-                  why_description: Consequuntur aut eum accusantium.
+                  campaign_id: 1273
+                  created_at: '2022-05-12T10:29:03.951Z'
+                  updated_at: '2022-05-12T10:29:03.951Z'
+                  what_description: Eum quam laudantium est.
+                  why_description: Tempore vel molestiae repellendus.
                   time: 0.1
                   enabled: true
-                  release_date: '2022-06-25T00:00:00.000Z'
-                  end_date: '2022-05-31T00:00:00.000Z'
+                  release_date: '2022-11-06T00:00:00.000Z'
+                  end_date: '2022-03-04T00:00:00.000Z'
                   of_the_month: false
                   recommended: false
                   causes:
-                  - id: 2347
-                    image: http://ortiz.com/elbert_rath
-                    icon: http://kunze.io/randal_frami
-                    name: value add
-                    description: Illo rerum harum ipsam.
-                    joiners: 41
-                    created_at: '2022-02-15T15:04:23.138Z'
-                    updated_at: '2022-02-15T15:04:23.138Z'
-                  - id: 2349
-                    image: http://hartmann.co/mose_rice
-                    icon: http://dach.io/mac
-                    name: make it actionable
-                    description: Quidem voluptatem dolores at.
-                    joiners: 1
-                    created_at: '2022-02-15T15:04:23.151Z'
-                    updated_at: '2022-02-15T15:04:23.151Z'
+                  - id: 1923
+                    image: http://kuphal-rippin.net/demetra
+                    icon: http://quigley.name/burl
+                    name: bandwidth-constrained
+                    description: Harum magni ad debitis.
+                    joiners: 44
+                    created_at: '2022-05-12T10:29:03.942Z'
+                    updated_at: '2022-05-12T10:29:03.942Z'
+                  - id: 1925
+                    image: http://runolfsson-kilback.net/raymon.murphy
+                    icon: http://franecki.io/monty
+                    name: let's take this offline
+                    description: Aliquam placeat et eos.
+                    joiners: 43
+                    created_at: '2022-05-12T10:29:03.954Z'
+                    updated_at: '2022-05-12T10:29:03.954Z'
                   completed: Authentication failed
               schema:
                 type: object
@@ -1433,38 +1416,38 @@ paths:
             application/json:
               example:
                 data:
-                - id: 3453
-                  title: agile marketing
-                  link: http://stoltenberg-pacocha.net/delisa
+                - id: 477
+                  title: impact map
+                  link: http://walter-zulauf.net/augustus_walter
                   type:
-                  campaign_id: 8008
-                  created_at: '2022-02-15T15:04:23.237Z'
-                  updated_at: '2022-02-15T15:04:23.237Z'
-                  what_description: Odio ipsa laudantium sint.
-                  why_description: Eum quas error voluptatem.
+                  campaign_id: 1277
+                  created_at: '2022-05-12T10:29:04.044Z'
+                  updated_at: '2022-05-12T10:29:04.044Z'
+                  what_description: Atque est fuga velit.
+                  why_description: Sunt rerum vel eos.
                   time: 0.1
                   enabled: true
-                  release_date: '2022-03-07T00:00:00.000Z'
-                  end_date: '2022-10-04T00:00:00.000Z'
+                  release_date: '2022-10-23T00:00:00.000Z'
+                  end_date: '2022-10-21T00:00:00.000Z'
                   of_the_month: false
                   recommended: false
                   causes:
-                  - id: 2359
-                    image: http://dicki.io/kim.howe
-                    icon: http://bartoletti.info/otis.watsica
+                  - id: 1935
+                    image: http://barrows.co/lazaro_harvey
+                    icon: http://bartoletti.info/viola
+                    name: two-way street
+                    description: Facilis deserunt vitae saepe.
+                    joiners: 5
+                    created_at: '2022-05-12T10:29:04.034Z'
+                    updated_at: '2022-05-12T10:29:04.034Z'
+                  - id: 1937
+                    image: http://larson.com/shelba_cartwright
+                    icon: http://schinner.com/delphia
                     name: thought leadership
-                    description: Repellendus ea doloribus quasi.
-                    joiners: 25
-                    created_at: '2022-02-15T15:04:23.227Z'
-                    updated_at: '2022-02-15T15:04:23.227Z'
-                  - id: 2361
-                    image: http://ledner-osinski.info/mack.becker
-                    icon: http://schamberger.name/connie
-                    name: out of pocket
-                    description: Atque non labore veritatis.
-                    joiners: 6
-                    created_at: '2022-02-15T15:04:23.240Z'
-                    updated_at: '2022-02-15T15:04:23.240Z'
+                    description: Sapiente et quos ut.
+                    joiners: 1
+                    created_at: '2022-05-12T10:29:04.048Z'
+                    updated_at: '2022-05-12T10:29:04.048Z'
                   completed: Authentication failed
               schema:
                 type: object
@@ -1521,38 +1504,38 @@ paths:
             application/json:
               example:
                 data:
-                  id: 3454
-                  title: etc. etc.
-                  link: http://renner-terry.name/isreal
+                  id: 478
+                  title: expansion play
+                  link: http://kuhic.biz/rebeca
                   type:
-                  campaign_id: 8009
-                  created_at: '2022-02-15T15:04:23.259Z'
-                  updated_at: '2022-02-15T15:04:23.259Z'
-                  what_description: Molestias modi ipsa reiciendis.
-                  why_description: Facere architecto id suscipit.
+                  campaign_id: 1278
+                  created_at: '2022-05-12T10:29:04.068Z'
+                  updated_at: '2022-05-12T10:29:04.068Z'
+                  what_description: Ut sit alias et.
+                  why_description: Dolor et dolorem velit.
                   time: 0.1
                   enabled: true
-                  release_date: '2022-08-14T00:00:00.000Z'
-                  end_date: '2022-02-09T00:00:00.000Z'
+                  release_date: '2022-10-08T00:00:00.000Z'
+                  end_date: '2022-08-31T00:00:00.000Z'
                   of_the_month: false
                   recommended: false
                   causes:
-                  - id: 2362
-                    image: http://oberbrunner.org/jeffry.effertz
-                    icon: http://schneider.co/danial_collier
-                    name: infographic
-                    description: Enim voluptatem animi reiciendis.
-                    joiners: 89
-                    created_at: '2022-02-15T15:04:23.249Z'
-                    updated_at: '2022-02-15T15:04:23.249Z'
-                  - id: 2364
-                    image: http://leannon.biz/omar
-                    icon: http://kreiger.biz/dong
-                    name: let's take this offline
-                    description: Explicabo voluptatibus in maiores.
-                    joiners: 1
-                    created_at: '2022-02-15T15:04:23.262Z'
-                    updated_at: '2022-02-15T15:04:23.262Z'
+                  - id: 1938
+                    image: http://mohr.com/shakita
+                    icon: http://emmerich-abshire.net/evangeline_waters
+                    name: value add
+                    description: Aut distinctio laborum autem.
+                    joiners: 36
+                    created_at: '2022-05-12T10:29:04.058Z'
+                    updated_at: '2022-05-12T10:29:04.058Z'
+                  - id: 1940
+                    image: http://kuvalis.co/nina
+                    icon: http://bergnaum.name/marcell
+                    name: heads down
+                    description: Voluptatem ratione dolorem illum.
+                    joiners: 0
+                    created_at: '2022-05-12T10:29:04.071Z'
+                    updated_at: '2022-05-12T10:29:04.071Z'
                   completed:
               schema:
                 type: object
@@ -1600,40 +1583,39 @@ paths:
             application/json:
               example:
                 data:
-                - id: 8013
-                  title: get value out of the conversation
-                  description_app: Aliquid provident dicta sit.
-                  header_image: http://johnston.co/bethanie.wunsch
-                  created_at: '2022-02-15T15:04:23.350Z'
-                  updated_at: '2022-02-15T15:04:23.350Z'
-                  video_link: http://schulist.io/latrisha_crooks
+                - id: 1282
+                  title: value proposition
+                  description_app: Voluptatem laboriosam voluptatibus maiores.
+                  header_image: http://strosin.io/beulah.sawayn
+                  created_at: '2022-05-12T10:29:04.159Z'
+                  updated_at: '2022-05-12T10:29:04.159Z'
+                  video_link: http://robel-schroeder.info/alfredia.schuppe
                   description_web:
                   enabled: true
-                  start_date: '2022-05-30T00:00:00.000Z'
-                  end_date: '2022-01-25T00:00:00.000Z'
-                  short_name: Whatever echo bushwick photo booth try-hard phlogiston
-                    beard cornhole celiac.
-                  infographic_url: http://emard.org/wilfred
+                  start_date: '2022-08-17T00:00:00.000Z'
+                  end_date: '2022-10-17T00:00:00.000Z'
+                  short_name: Crucifix hoodie ennui muggle magic deep v.
+                  infographic_url: http://kunze.io/charles.schiller
                   of_the_month: false
                   recommended: false
                   status: draft
                   causes:
-                  - id: 2371
-                    image: http://hilll-grady.io/rosann
-                    icon: http://white.co/dorothy
-                    name: immersive experience
-                    description: Ipsam enim fuga rem.
-                    joiners: 6
-                    created_at: '2022-02-15T15:04:23.346Z'
-                    updated_at: '2022-02-15T15:04:23.346Z'
-                  - id: 2372
-                    image: http://luettgen-gottlieb.net/annmarie
-                    icon: http://damore.info/marilu_feeney
-                    name: learnings
-                    description: Voluptatem sunt nulla sit.
-                    joiners: 82
-                    created_at: '2022-02-15T15:04:23.353Z'
-                    updated_at: '2022-02-15T15:04:23.353Z'
+                  - id: 1947
+                    image: http://konopelski.info/terrie
+                    icon: http://rosenbaum.co/dave_kemmer
+                    name: button up the loose ends
+                    description: Officia voluptatum expedita ipsa.
+                    joiners: 66
+                    created_at: '2022-05-12T10:29:04.155Z'
+                    updated_at: '2022-05-12T10:29:04.155Z'
+                  - id: 1948
+                    image: http://harber.com/nolan
+                    icon: http://heathcote-pfannerstill.co/christiana.murray
+                    name: out of pocket
+                    description: Ut eius qui et.
+                    joiners: 7
+                    created_at: '2022-05-12T10:29:04.162Z'
+                    updated_at: '2022-05-12T10:29:04.162Z'
                   completed:
               schema:
                 type: object
@@ -1697,39 +1679,39 @@ paths:
             application/json:
               example:
                 data:
-                  id: 8015
+                  id: 1284
                   title: buying cycle
-                  description_app: Accusamus qui commodi minima.
-                  header_image: http://breitenberg.info/joella
-                  created_at: '2022-02-15T15:04:23.409Z'
-                  updated_at: '2022-02-15T15:04:23.409Z'
-                  video_link: http://schultz.com/oliva
+                  description_app: Velit molestias dolor earum.
+                  header_image: http://labadie.net/terrell
+                  created_at: '2022-05-12T10:29:04.215Z'
+                  updated_at: '2022-05-12T10:29:04.215Z'
+                  video_link: http://okeefe.io/jacinto
                   description_web:
                   enabled: true
-                  start_date: '2022-10-27T00:00:00.000Z'
-                  end_date: '2022-03-05T00:00:00.000Z'
-                  short_name: Cray dreamcatcher cronut narwhal vegan.
-                  infographic_url: http://cummerata.net/grover
+                  start_date: '2022-10-11T00:00:00.000Z'
+                  end_date: '2022-05-02T00:00:00.000Z'
+                  short_name: Retro kombucha ramps bitters polaroid cray disrupt.
+                  infographic_url: http://kovacek.net/daron
                   of_the_month: false
                   recommended: false
                   status: draft
                   causes:
-                  - id: 2375
-                    image: http://kris.io/burl_cremin
-                    icon: http://jacobson-paucek.io/arnulfo
-                    name: heads down
-                    description: Animi eaque atque sit.
-                    joiners: 6
-                    created_at: '2022-02-15T15:04:23.406Z'
-                    updated_at: '2022-02-15T15:04:23.406Z'
-                  - id: 2376
-                    image: http://casper.info/rex.johnston
-                    icon: http://doyle-hessel.org/kamala
-                    name: button up the loose ends
-                    description: Veniam dolore culpa cum.
-                    joiners: 53
-                    created_at: '2022-02-15T15:04:23.412Z'
-                    updated_at: '2022-02-15T15:04:23.412Z'
+                  - id: 1951
+                    image: http://treutel.co/tyrone.christiansen
+                    icon: http://gorczany.io/antonio.daugherty
+                    name: granular
+                    description: Est autem odit suscipit.
+                    joiners: 71
+                    created_at: '2022-05-12T10:29:04.211Z'
+                    updated_at: '2022-05-12T10:29:04.211Z'
+                  - id: 1952
+                    image: http://casper.io/alex_hyatt
+                    icon: http://bergstrom-pollich.biz/sherell.oconner
+                    name: growth unit
+                    description: Sed qui autem voluptatibus.
+                    joiners: 87
+                    created_at: '2022-05-12T10:29:04.218Z'
+                    updated_at: '2022-05-12T10:29:04.218Z'
                   completed:
                   learning_resources: []
                   campaign_actions: []
@@ -1786,39 +1768,40 @@ paths:
             application/json:
               example:
                 data:
-                - id: 8019
-                  title: make it actionable
-                  description_app: Corrupti veniam incidunt omnis.
-                  header_image: http://stracke-murray.io/zona
-                  created_at: '2022-02-15T15:04:23.481Z'
-                  updated_at: '2022-02-15T15:04:23.481Z'
-                  video_link: http://ruecker-green.name/alvaro.greenfelder
+                - id: 1288
+                  title: bucketize it
+                  description_app: Dolores animi unde sit.
+                  header_image: http://dicki.io/dion_hartmann
+                  created_at: '2022-05-12T10:29:04.286Z'
+                  updated_at: '2022-05-12T10:29:04.286Z'
+                  video_link: http://durgan.io/davis
                   description_web:
                   enabled: true
-                  start_date: '2022-03-06T00:00:00.000Z'
-                  end_date: '2022-06-23T00:00:00.000Z'
-                  short_name: Typewriter tousled lumbersexual everyday brooklyn.
-                  infographic_url: http://upton.com/jenise.aufderhar
+                  start_date: '2022-05-12T00:00:00.000Z'
+                  end_date: '2022-10-28T00:00:00.000Z'
+                  short_name: Carry sustainable photo booth dreamcatcher blog neutra
+                    3 wolf moon selfies fixie.
+                  infographic_url: http://nienow-flatley.name/horacio.hand
                   of_the_month: false
                   recommended: false
                   status: draft
                   causes:
-                  - id: 2383
-                    image: http://koch.biz/darcel
-                    icon: http://damore.net/lou.mraz
-                    name: circle back
-                    description: Iure quia rerum saepe.
-                    joiners: 29
-                    created_at: '2022-02-15T15:04:23.477Z'
-                    updated_at: '2022-02-15T15:04:23.477Z'
-                  - id: 2384
-                    image: http://padberg-ritchie.net/karleen
-                    icon: http://muller.net/dusti_kuphal
-                    name: bucketize it
-                    description: Ratione dicta mollitia aperiam.
-                    joiners: 3
-                    created_at: '2022-02-15T15:04:23.484Z'
-                    updated_at: '2022-02-15T15:04:23.484Z'
+                  - id: 1959
+                    image: http://glover-barton.com/nelly
+                    icon: http://hettinger-dietrich.co/kraig
+                    name: two-way street
+                    description: Modi ipsum non accusantium.
+                    joiners: 78
+                    created_at: '2022-05-12T10:29:04.282Z'
+                    updated_at: '2022-05-12T10:29:04.282Z'
+                  - id: 1960
+                    image: http://herman-hickle.com/junior
+                    icon: http://breitenberg.net/chas
+                    name: expansion play
+                    description: Et a atque molestias.
+                    joiners: 1
+                    created_at: '2022-05-12T10:29:04.289Z'
+                    updated_at: '2022-05-12T10:29:04.289Z'
                   completed: Authentication failed
               schema:
                 type: object
@@ -1868,14 +1851,14 @@ paths:
             application/json:
               example:
                 data:
-                - id: 2386
-                  image: http://turner.net/lindsey
-                  icon: http://parker.biz/carmen
-                  name: gamification
-                  description: Quis dolore aperiam sint.
-                  joiners: 95
-                  created_at: '2022-02-15T15:04:23.507Z'
-                  updated_at: '2022-02-15T15:04:23.507Z'
+                - id: 1962
+                  image: http://bergstrom.co/alvin.hahn
+                  icon: http://rempel.com/sigrid_quitzon
+                  name: streamline
+                  description: Perspiciatis optio qui beatae.
+                  joiners: 9
+                  created_at: '2022-05-12T10:29:04.304Z'
+                  updated_at: '2022-05-12T10:29:04.304Z'
                   joined: Not yet implemented
               schema:
                 type: object
@@ -1914,34 +1897,34 @@ paths:
             application/json:
               example:
                 data:
-                - id: 588
-                  title: SWAG
+                - id: 190
+                  title: t-shirt sizes
                   time: 0.1
-                  link: http://king-herman.com/sonja.steuber
+                  link: http://glover-feest.name/randy
                   type:
-                  learning_topic_id: 460
-                  created_at: '2022-02-15T15:04:23.637Z'
-                  updated_at: '2022-02-15T15:04:23.637Z'
+                  learning_topic_id: 169
+                  created_at: '2022-05-12T10:29:04.444Z'
+                  updated_at: '2022-05-12T10:29:04.444Z'
                   source:
-                  release_date: '2022-08-09T00:00:00.000Z'
-                  end_date: '2022-12-08T00:00:00.000Z'
+                  release_date: '2022-02-05T00:00:00.000Z'
+                  end_date: '2022-05-24T00:00:00.000Z'
                   causes:
-                  - id: 2396
-                    image: http://streich-lindgren.com/griselda
-                    icon: http://von.org/raeann
-                    name: out of pocket
-                    description: Ratione odio in sit.
-                    joiners: 1
-                    created_at: '2022-02-15T15:04:23.626Z'
-                    updated_at: '2022-02-15T15:04:23.626Z'
-                  - id: 2398
-                    image: http://reinger-padberg.name/gregg
-                    icon: http://koelpin.info/karin_dooley
-                    name: infographic
-                    description: Impedit hic modi quis.
-                    joiners: 83
-                    created_at: '2022-02-15T15:04:23.640Z'
-                    updated_at: '2022-02-15T15:04:23.640Z'
+                  - id: 1972
+                    image: http://kemmer-cassin.name/lloyd
+                    icon: http://collier.net/jamel
+                    name: t-shirt sizes
+                    description: Nihil sit labore molestiae.
+                    joiners: 0
+                    created_at: '2022-05-12T10:29:04.432Z'
+                    updated_at: '2022-05-12T10:29:04.432Z'
+                  - id: 1974
+                    image: http://wilderman.io/darren_bins
+                    icon: http://price-kassulke.name/haywood.kuhic
+                    name: get value out of the conversation
+                    description: Est cum molestiae quo.
+                    joiners: 23
+                    created_at: '2022-05-12T10:29:04.447Z'
+                    updated_at: '2022-05-12T10:29:04.447Z'
                   completed:
               schema:
                 type: object
@@ -1995,34 +1978,34 @@ paths:
             application/json:
               example:
                 data:
-                  id: 590
-                  title: out of pocket
+                  id: 192
+                  title: swim lane
                   time: 0.1
-                  link: http://ritchie-rempel.name/delphine.armstrong
+                  link: http://nikolaus.com/geraldo.heller
                   type:
-                  learning_topic_id: 462
-                  created_at: '2022-02-15T15:04:23.700Z'
-                  updated_at: '2022-02-15T15:04:23.700Z'
+                  learning_topic_id: 171
+                  created_at: '2022-05-12T10:29:04.507Z'
+                  updated_at: '2022-05-12T10:29:04.507Z'
                   source:
-                  release_date: '2022-08-01T00:00:00.000Z'
-                  end_date: '2022-07-23T00:00:00.000Z'
+                  release_date: '2022-09-27T00:00:00.000Z'
+                  end_date: '2022-03-10T00:00:00.000Z'
                   causes:
-                  - id: 2402
-                    image: http://hackett.com/loraine
-                    icon: http://hamill.com/deana
-                    name: out of the box
-                    description: Et molestias dolorem maiores.
-                    joiners: 4
-                    created_at: '2022-02-15T15:04:23.689Z'
-                    updated_at: '2022-02-15T15:04:23.689Z'
-                  - id: 2404
-                    image: http://schiller.com/pete.schmeler
-                    icon: http://upton.org/stacy_schuppe
-                    name: make it actionable
-                    description: Repellat nemo repudiandae corrupti.
-                    joiners: 4
-                    created_at: '2022-02-15T15:04:23.703Z'
-                    updated_at: '2022-02-15T15:04:23.703Z'
+                  - id: 1978
+                    image: http://zieme.com/dominic
+                    icon: http://sanford.co/nelly.abernathy
+                    name: etc. etc.
+                    description: Eveniet qui et asperiores.
+                    joiners: 1
+                    created_at: '2022-05-12T10:29:04.496Z'
+                    updated_at: '2022-05-12T10:29:04.496Z'
+                  - id: 1980
+                    image: http://mante-harvey.co/zada
+                    icon: http://stamm.name/sherrell
+                    name: get value out of the conversation
+                    description: Et molestias eveniet error.
+                    joiners: 34
+                    created_at: '2022-05-12T10:29:04.511Z'
+                    updated_at: '2022-05-12T10:29:04.511Z'
                   completed:
               schema:
                 type: object
@@ -2067,34 +2050,34 @@ paths:
             application/json:
               example:
                 data:
-                - id: 594
-                  title: market share
+                - id: 196
+                  title: synergy
                   time: 0.1
-                  link: http://fay-rogahn.io/james_ortiz
+                  link: http://daniel.co/darrin.reichel
                   type:
-                  learning_topic_id: 466
-                  created_at: '2022-02-15T15:04:23.801Z'
-                  updated_at: '2022-02-15T15:04:23.801Z'
+                  learning_topic_id: 175
+                  created_at: '2022-05-12T10:29:04.613Z'
+                  updated_at: '2022-05-12T10:29:04.613Z'
                   source:
-                  release_date: '2022-03-29T00:00:00.000Z'
-                  end_date: '2022-05-25T00:00:00.000Z'
+                  release_date: '2022-05-23T00:00:00.000Z'
+                  end_date: '2022-12-28T00:00:00.000Z'
                   causes:
-                  - id: 2414
-                    image: http://sauer.info/taisha
-                    icon: http://hand-ullrich.co/ileen.hayes
-                    name: value proposition
-                    description: Atque eum dolores nostrum.
-                    joiners: 8
-                    created_at: '2022-02-15T15:04:23.790Z'
-                    updated_at: '2022-02-15T15:04:23.790Z'
-                  - id: 2416
-                    image: http://medhurst.biz/damien_bernier
-                    icon: http://mohr.net/dwight
-                    name: swim lane
-                    description: Accusantium doloremque quis autem.
-                    joiners: 9
-                    created_at: '2022-02-15T15:04:23.804Z'
-                    updated_at: '2022-02-15T15:04:23.804Z'
+                  - id: 1990
+                    image: http://ullrich-hills.co/anton
+                    icon: http://kulas-kris.name/nelson
+                    name: bandwidth-constrained
+                    description: Exercitationem sequi dolorem harum.
+                    joiners: 46
+                    created_at: '2022-05-12T10:29:04.602Z'
+                    updated_at: '2022-05-12T10:29:04.602Z'
+                  - id: 1992
+                    image: http://johns.co/mitsue_deckow
+                    icon: http://russel.com/jackie.considine
+                    name: deep dive
+                    description: Incidunt tenetur iure id.
+                    joiners: 2
+                    created_at: '2022-05-12T10:29:04.616Z'
+                    updated_at: '2022-05-12T10:29:04.616Z'
                   completed: Authentication failed
               schema:
                 type: object
@@ -2138,30 +2121,30 @@ paths:
             application/json:
               example:
                 data:
-                - id: 3455
-                  title: sprint to the finish line
-                  link: http://aufderhar.co/kirk
+                - id: 479
+                  title: ideate
+                  link: http://hudson.info/lakeisha
                   type:
-                  campaign_id: 8030
-                  created_at: '2022-02-15T15:04:23.833Z'
-                  updated_at: '2022-02-15T15:04:23.833Z'
-                  what_description: Dolores consequatur corporis esse.
-                  why_description: Impedit eum vel ipsum.
+                  campaign_id: 1299
+                  created_at: '2022-05-12T10:29:04.646Z'
+                  updated_at: '2022-05-12T10:29:04.646Z'
+                  what_description: Non nemo totam aperiam.
+                  why_description: Rerum fugit aut voluptatibus.
                   time: 0.1
                   enabled: true
-                  release_date: '2022-07-27T00:00:00.000Z'
+                  release_date: '2022-06-09T00:00:00.000Z'
                   end_date: '2022-03-01T00:00:00.000Z'
                   of_the_month: false
                   recommended: false
                   causes:
-                  - id: 2418
-                    image: http://rolfson.org/mariann.emard
-                    icon: http://medhurst.info/theodore.orn
-                    name: circle back
-                    description: Culpa harum facere velit.
-                    joiners: 9
-                    created_at: '2022-02-15T15:04:23.836Z'
-                    updated_at: '2022-02-15T15:04:23.836Z'
+                  - id: 1994
+                    image: http://orn.name/patria
+                    icon: http://waters.name/pablo
+                    name: value proposition
+                    description: Illo amet nulla similique.
+                    joiners: 8
+                    created_at: '2022-05-12T10:29:04.648Z'
+                    updated_at: '2022-05-12T10:29:04.648Z'
                   completed:
               schema:
                 type: object
@@ -2225,30 +2208,30 @@ paths:
             application/json:
               example:
                 data:
-                - id: 3458
-                  title: heavy lifting
-                  link: http://towne-schowalter.net/renita
+                - id: 482
+                  title: penetrate the market
+                  link: http://hand.name/rogelio
                   type:
-                  campaign_id: 8033
-                  created_at: '2022-02-15T15:04:23.950Z'
-                  updated_at: '2022-02-15T15:04:23.950Z'
-                  what_description: Et voluptatem tenetur illo.
-                  why_description: Quo delectus nisi ut.
+                  campaign_id: 1302
+                  created_at: '2022-05-12T10:29:04.732Z'
+                  updated_at: '2022-05-12T10:29:04.732Z'
+                  what_description: Est et dolore animi.
+                  why_description: Ad magnam nemo maxime.
                   time: 0.1
                   enabled: true
-                  release_date: '2022-07-20T00:00:00.000Z'
-                  end_date: '2022-11-22T00:00:00.000Z'
+                  release_date: '2022-07-12T00:00:00.000Z'
+                  end_date: '2022-07-01T00:00:00.000Z'
                   of_the_month: false
                   recommended: false
                   causes:
-                  - id: 2424
-                    image: http://effertz.com/hollie
-                    icon: http://parker.net/gisela
-                    name: thought leadership
-                    description: Aut quia aut fuga.
-                    joiners: 20
-                    created_at: '2022-02-15T15:04:23.952Z'
-                    updated_at: '2022-02-15T15:04:23.952Z'
+                  - id: 2000
+                    image: http://klocko.com/solomon_cassin
+                    icon: http://hagenes.net/jarred
+                    name: infographic
+                    description: Ducimus architecto cupiditate voluptatem.
+                    joiners: 0
+                    created_at: '2022-05-12T10:29:04.734Z'
+                    updated_at: '2022-05-12T10:29:04.734Z'
                   completed:
               schema:
                 type: object
@@ -2284,32 +2267,32 @@ paths:
             application/json:
               example:
                 data:
-                - id: 8035
-                  title: circle back
-                  description_app: Aut accusantium quas ut.
-                  header_image: http://wilkinson-doyle.info/alexa_bahringer
-                  created_at: '2022-02-15T15:04:23.994Z'
-                  updated_at: '2022-02-15T15:04:23.994Z'
-                  video_link: http://oconner.org/marylouise.dicki
+                - id: 1304
+                  title: button up the loose ends
+                  description_app: Ea qui nostrum vel.
+                  header_image: http://corwin.io/kevin.franecki
+                  created_at: '2022-05-12T10:29:04.776Z'
+                  updated_at: '2022-05-12T10:29:04.776Z'
+                  video_link: http://miller.io/katharyn.weimann
                   description_web:
                   enabled: true
-                  start_date: '2022-01-04T00:00:00.000Z'
-                  end_date: '2022-10-12T00:00:00.000Z'
-                  short_name: Literally chartreuse kogi lomo pour-over single-origin
-                    coffee keytar locavore.
-                  infographic_url: http://purdy.io/armanda
+                  start_date: '2022-06-13T00:00:00.000Z'
+                  end_date: '2022-11-04T00:00:00.000Z'
+                  short_name: Lomo swag messenger bag try-hard offal food truck 8-bit
+                    bushwick.
+                  infographic_url: http://doyle.org/foster
                   of_the_month: false
                   recommended: false
                   status: draft
                   causes:
-                  - id: 2427
-                    image: http://christiansen-pouros.info/drew_parker
-                    icon: http://nitzsche.biz/yolande
-                    name: infographic
-                    description: Maxime provident et beatae.
-                    joiners: 94
-                    created_at: '2022-02-15T15:04:24.002Z'
-                    updated_at: '2022-02-15T15:04:24.002Z'
+                  - id: 2003
+                    image: http://koch.biz/marge_bosco
+                    icon: http://stamm-medhurst.biz/tina_kub
+                    name: buying cycle
+                    description: Quidem rerum illum minus.
+                    joiners: 77
+                    created_at: '2022-05-12T10:29:04.779Z'
+                    updated_at: '2022-05-12T10:29:04.779Z'
               schema:
                 type: object
                 properties:
@@ -2368,31 +2351,32 @@ paths:
             application/json:
               example:
                 data:
-                - id: 8039
-                  title: infographic
-                  description_app: Ut quo autem eos.
-                  header_image: http://beier.org/kelvin
-                  created_at: '2022-02-15T15:04:24.083Z'
-                  updated_at: '2022-02-15T15:04:24.083Z'
-                  video_link: http://kiehn.info/roseann.huels
+                - id: 1308
+                  title: best practice
+                  description_app: Accusamus nesciunt sequi quas.
+                  header_image: http://morissette-cummerata.name/luther
+                  created_at: '2022-05-12T10:29:04.854Z'
+                  updated_at: '2022-05-12T10:29:04.854Z'
+                  video_link: http://hahn.name/roscoe.dach
                   description_web:
                   enabled: true
-                  start_date: '2022-09-25T00:00:00.000Z'
-                  end_date: '2022-12-26T00:00:00.000Z'
-                  short_name: Whatever umami poutine tumblr park tattooed.
-                  infographic_url: http://schuster-stracke.co/keenan_parisian
+                  start_date: '2022-10-07T00:00:00.000Z'
+                  end_date: '2022-06-15T00:00:00.000Z'
+                  short_name: Diy messenger bag aesthetic pour-over plaid disrupt
+                    jean shorts.
+                  infographic_url: http://carroll.name/jeff
                   of_the_month: false
                   recommended: false
                   status: draft
                   causes:
-                  - id: 2433
-                    image: http://bednar.co/gilberto.raynor
-                    icon: http://wolf.com/fausto
-                    name: impact map
-                    description: Suscipit asperiores voluptas est.
-                    joiners: 90
-                    created_at: '2022-02-15T15:04:24.086Z'
-                    updated_at: '2022-02-15T15:04:24.086Z'
+                  - id: 2009
+                    image: http://kris-treutel.biz/jerrold
+                    icon: http://rohan.name/elene
+                    name: bleeding edge
+                    description: Unde nesciunt ut magnam.
+                    joiners: 5
+                    created_at: '2022-05-12T10:29:04.857Z'
+                    updated_at: '2022-05-12T10:29:04.857Z'
               schema:
                 type: object
                 properties:
@@ -2430,6 +2414,87 @@ paths:
             application/json:
               example:
                 data: User successfully added to causes
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  cause_id:
+                    type:
+                  user_id:
+                    type:
+                  created_at:
+                    type: datetime
+                  updated_at:
+                    type: datetime
+  "/api/v2/user/me":
+    get:
+      summary: Returns the user object with a bunch of relevant attributes. Will need
+        user token header
+      tags:
+      - API::V2(latest) -> Users
+      parameters:
+      - name: token
+        in: header
+        schema:
+          type: string
+      - name: cause_ids
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Causes joined
+          content:
+            application/json:
+              example:
+                data:
+                  id: 361
+                  email: dong@kihn.org
+                  token: 537f7d
+                  verified: true
+                  created_at: '2022-05-12T10:29:04.915Z'
+                  updated_at: '2022-05-12T10:29:04.915Z'
+                  full_name: Leora Anderson
+                  location: Ouagadougou
+                  date_of_birth: '1981-02-09'
+                  monthly_donation_limit:
+                  home_owner: true
+                  points: 0
+                  organisation_id: 235
+                  profile_picture_url:
+                  description:
+                  newsletter: false
+                  user_role_id: user
+                  selected_campaigns: []
+                  selected_causes: []
+                  completed_campaigns: []
+                  completed_actions: []
+                  rejected_actions: []
+                  favourited_actions: []
+                  completed_learning_resources: []
+                  active_notifications: []
+                  organisation:
+                    id: 235
+                    name: get a pulse on
+                    description: Quod amet voluptatem quisquam.
+                    logo_link: http://sawayn.biz/emory_waelchi
+                    created_at: '2022-05-12T10:29:04.913Z'
+                    updated_at: '2022-05-12T10:29:04.913Z'
+                    email: kurtis.larkin@wehner-streich.info
+                    website: http://stehr-mitchell.info/hien
+                    IG_link: http://von.org/will.gutmann
+                    FB_link: http://johnson-cruickshank.io/emiko
+                    twitter_link: http://parisian.net/junior.hodkiewicz
+                    extra_text_1: Blanditiis veniam et tenetur.
+                    extra_text_2:
+                    extra_text_3:
+                    extra_link_1: http://pagac-homenick.io/diego
+                    extra_link_2:
+                    extra_link_3:
+                    organisation_type:
+                    code: KJUCRLVH
+                    geographic_reach:
               schema:
                 type: object
                 properties:

@@ -44,4 +44,19 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe "methods" do
+    let(:user) { create(:user) }
+    let(:cause) { create(:cause) }
+
+    before do
+      user.causes << cause
+    end
+
+    describe "selected_causes" do
+      it "returns back the causes that the user has joined" do
+        expect(user.selected_causes).to eq([cause.id])
+      end
+    end
+  end
 end
