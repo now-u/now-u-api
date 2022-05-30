@@ -71,7 +71,7 @@ RSpec.describe Api::V2::CampaignsController, type: :request do
           end
 
           it 'returns true if the user has completed the campaign' do
-            expect(JSON(response.body)['data'][0]['completed']).to eq true
+            expect(JSON(response.body)['data'][-1]['completed']).to eq true
           end
         end
       end
