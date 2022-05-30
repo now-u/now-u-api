@@ -86,6 +86,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v2 do
       # User specific routes
+      get '/user/me', to: 'users#show'
       get '/user/actions', to: 'user_actions#index'
       get '/user/actions/:id', to: 'user_actions#index'
       get '/user/campaigns', to: 'user_campaigns#index'
