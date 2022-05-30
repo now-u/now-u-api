@@ -39,7 +39,7 @@ RSpec.describe Api::V2::CampaignsController, type: :request do
       end
     end
 
-    get 'Retrieves all Campaigns. If user token header present, returns with a completed: null/completed param.' do
+    get 'Retrieves all Campaigns. If user token header present, returns with a completed: true/false param.' do
       tags 'API::V2(latest) -> Campaigns'
       produces 'application/json'
       let(:'token') { user.token }
@@ -49,17 +49,30 @@ RSpec.describe Api::V2::CampaignsController, type: :request do
         properties: campaign_schema
         parameter name: 'token', :in => :header, :type => :string
 
-        before do |example|
-          campaign
-          submit_request(example.metadata)
+        context "user has not completed the campaign" do
+          before do |example|
+            campaign
+            submit_request(example.metadata)
+          end
+  
+          it 'returns a valid 200 response' do |example|
+            assert_response_matches_metadata(example.metadata)
+          end
+
+          it 'returns completed: false' do
+            expect(JSON(response.body)['data'][0]['completed']).to eq false
+          end
         end
 
-        it 'returns a valid 200 response' do |example|
-          assert_response_matches_metadata(example.metadata)
-        end
+        context "user has completed the resource" do
+          before do |example|
+            user.campaigns << campaign
+            submit_request(example.metadata)
+          end
 
-        it 'returns completed: null' do
-          expect(JSON(response.body)['data'][0]['completed']).to eq nil
+          it 'returns true if the user has completed the campaign' do
+            expect(JSON(response.body)['data'][-1]['completed']).to eq true
+          end
         end
       end
     end
@@ -87,7 +100,7 @@ RSpec.describe Api::V2::CampaignsController, type: :request do
         end
 
         it 'returns if the user has completed the campaign' do
-          expect(JSON(response.body)['data']['completed']).to eq nil
+          expect(JSON(response.body)['data']['completed']).to eq false
         end
       end
     end

@@ -58,8 +58,8 @@ RSpec.describe Api::V2::LearningResourcesController, type: :request do
           assert_response_matches_metadata(example.metadata)
         end
 
-        it 'returns completed: null' do
-          expect(JSON(response.body)['data'][0]['completed']).to eq nil
+        it 'returns completed: false' do
+          expect(JSON(response.body)['data'][0]['completed']).to eq false
         end
       end
     end
@@ -85,9 +85,22 @@ RSpec.describe Api::V2::LearningResourcesController, type: :request do
         it 'returns a valid 200 response' do |example|
           assert_response_matches_metadata(example.metadata)
         end
+        
+        context "user has not completed the resource" do
+          it 'returns false if the user has not completed the learning_resource' do
+            expect(JSON(response.body)['data']['completed']).to eq false
+          end
+        end
 
-        it 'returns if the user has completed the learning_resource' do
-          expect(JSON(response.body)['data']['completed']).to eq nil
+        context "user has completed the resource" do
+          before do |example|
+            user.learning_resources << learning_resource
+            submit_request(example.metadata)
+          end
+
+          it 'returns true if the user has completed the learning_resource' do
+            expect(JSON(response.body)['data']['completed']).to eq true
+          end
         end
       end
     end

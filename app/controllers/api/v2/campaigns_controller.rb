@@ -34,21 +34,15 @@ private
   def additional_fields(campaign)
     {
       causes: campaign.causes,
-      completed: get_status(campaign),
+      completed: get_campaign_status(request.headers['token'], campaign.id),
     }
   end
 
   def additional_campaign_fields(campaign)
     additional_fields(campaign).merge({
-      learning_resources: campaign.learning_resources,
-      campaign_actions: campaign.campaign_actions,
+      learning_resources: campaign.learning_resources.map{|lr| lr.attributes.merge({ completed: get_learning_resource_status(request.headers['token'], lr.id) })},
+      campaign_actions: campaign.campaign_actions.map{|ca| ca.attributes.merge({ completed: get_campaign_action_status(request.headers['token'], ca.id) }) },
     })
-  end
-
-  def get_status(campaign_id)
-    return 'Authentication failed' unless request.headers['token'] && user
-
-    user.completed_campaigns_v2&.any? { |c| c.id == campaign_id} ? "completed" : nil
   end
 
   def merge_additional_fields(model)

@@ -26,17 +26,11 @@ private
   def additional_fields(action_id)
     {
       causes: CampaignAction.find(action_id)&.causes,
-      completed: get_status(action_id),
+      completed: get_campaign_action_status(request.headers['token'], action_id),
     }
   end
 
   def merge_additional_fields(model)
     model.serializable_hash.symbolize_keys.merge(additional_fields(model.id))
-  end
-
-  def get_status(action_id)
-    return 'Authentication failed' unless request.headers['token'] && user
-
-    user.user_actions.find_by(campaign_action_id: action_id)&.status
   end
 end
