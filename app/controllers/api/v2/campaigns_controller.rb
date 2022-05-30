@@ -34,7 +34,7 @@ private
   def additional_fields(campaign)
     {
       causes: campaign.causes,
-      completed: get_campaign_status(request.headers['token'], campaign),
+      completed: get_campaign_status(request.headers['token'], campaign.id),
     }
   end
 

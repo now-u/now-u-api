@@ -58,8 +58,21 @@ RSpec.describe Api::V2::CampaignsController, type: :request do
           assert_response_matches_metadata(example.metadata)
         end
 
-        it 'returns completed: null' do
-          expect(JSON(response.body)['data'][0]['completed']).to eq nil
+        context "user has not completed the campaign" do
+          it 'returns completed: false' do
+            expect(JSON(response.body)['data'][0]['completed']).to eq false
+          end
+        end
+
+        context "user has completed the resource" do
+          before do |example|
+            user.campaigns << campaign
+            submit_request(example.metadata)
+          end
+
+          it 'returns true if the user has completed the learning_resource' do
+            expect(JSON(response.body)['data'][0]['completed']).to eq true
+          end
         end
       end
     end
@@ -87,7 +100,7 @@ RSpec.describe Api::V2::CampaignsController, type: :request do
         end
 
         it 'returns if the user has completed the campaign' do
-          expect(JSON(response.body)['data']['completed']).to eq nil
+          expect(JSON(response.body)['data']['completed']).to eq false
         end
       end
     end
