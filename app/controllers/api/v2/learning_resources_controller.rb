@@ -26,17 +26,11 @@ private
   def additional_fields(learning_resource_id)
     {
       causes: LearningResource.find(learning_resource_id)&.causes,
-      completed: get_status(learning_resource_id),
+      completed: get_learning_resource_status(request.headers['token'], learning_resource_id),
     }
   end
 
   def merge_additional_fields(model)
     model.serializable_hash.symbolize_keys.merge(additional_fields(model.id))
-  end
-
-  def get_status(learning_resource_id)
-    return 'Authentication failed' unless request.headers['token'] && user
-
-    user.user_learning_resources.find_by(learning_resource_id: learning_resource_id)&.status
   end
 end

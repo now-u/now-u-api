@@ -44,4 +44,22 @@ class APIApplicationController < ActionController::API
   def invalid_filter_message(exception)
     render json: { data: exception }, status: 501
   end
+
+  def get_campaign_action_status(token, action_id)
+    return 'Authentication failed' unless token && user
+
+    user.user_actions.find_by(campaign_action_id: action_id)&.status
+  end
+
+  def get_campaign_status(token, campaign_id)
+    return 'Authentication failed' unless token && user
+
+    user.completed_campaigns_v2&.any? { |c| c.id == campaign_id} ? "completed" : nil
+  end
+
+  def get_learning_resource_status(token, learning_resource_id)
+    return 'Authentication failed' unless token && user
+
+    user.user_learning_resources.find_by(learning_resource_id: learning_resource_id)&.status
+  end
 end
