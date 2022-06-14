@@ -22,10 +22,16 @@ class Api::V1::UsersController < APIApplicationController
 
   def create
     user = find_user || create_user
-    send_registration_email(user)
-    add_to_mailing_list(user) if params[:newsletter_signup]
+    begin
+      send_registration_email(user)
+      add_to_mailing_list(user) if params[:newsletter_signup]
 
-    render json: {}, status: :ok
+      render json: {}, status: :ok
+    rescue StandardError => e
+      Sentry.capture_exception(e)
+
+      render json: {message: "Something went wrong!"}, status: 500
+    end
   end
 
   def authenticate_user
