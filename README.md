@@ -59,3 +59,6 @@ To make swagger api documentation, run the following command
 
 `SWAGGER_DRY_RUN=0 RAILS_ENV=test rails rswag`
 
+## Sentry
+
+RAILS_ENV=production || staging
