@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+include ::V2::Progress::UserProgress
 
 class Api::V2::CampaignsController < APIApplicationController
   rescue_from JSON::ParserError, with: :invalid_json_message
@@ -33,7 +34,7 @@ private
 
   def additional_fields(campaign)
     {
-      causes: campaign.causes,
+      causes: get_campaign_causes(campaign),
       completed: get_campaign_status(request.headers['token'], campaign.id),
     }
   end
@@ -47,5 +48,11 @@ private
 
   def merge_additional_fields(model)
     model.serializable_hash.symbolize_keys.merge(additional_fields(model))
+  end
+
+  def get_campaign_causes(campaign)
+    campaign.causes.map do |cc|
+      cc.serializable_hash.symbolize_keys.merge({joined: get_status(cc.id, request)})
+    end
   end
 end

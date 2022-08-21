@@ -39,6 +39,10 @@ class User < ApplicationRecord
     campaigns.ids
   end
 
+  def joined_cause?(cause_id) 
+    causes.ids.include?(cause_id.to_i)
+  end
+
   def completed_campaigns
     user_campaigns.where(progress: 100).pluck(:campaign_id)
   end

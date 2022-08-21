@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+include ::V2::Progress::UserProgress
 
 class Api::V2::CausesController < APIApplicationController
   def index
@@ -23,13 +24,7 @@ private
 
   def additional_fields(cause_id)
     {
-      joined: get_status(cause_id)
+      joined: get_status(cause_id, request)
     }
-  end
-
-  def get_status(cause_id)
-    return 'Authentication failed' unless request.headers['token'] && user
-    
-    user.causes.ids.include?(cause_id.to_i)
   end
 end
