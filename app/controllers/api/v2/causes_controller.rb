@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+include ::V2::Progress::UserProgress
 
 class Api::V2::CausesController < APIApplicationController
   def index
@@ -22,16 +23,8 @@ private
   end
 
   def additional_fields(cause_id)
-    # TODO: How do we find out if a user has "joined" a cause?
     {
-      joined: get_status(cause_id)
+      joined: get_status(cause_id, request)
     }
-  end
-
-  def get_status(cause_id)
-    return 'Authentication failed' unless request.headers['token'] && user
-
-    # user.user_causes.find_by(cause: cause_id)&.status,
-    'Not yet implemented'
   end
 end

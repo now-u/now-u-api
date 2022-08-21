@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+include ::V2::Progress::UserProgress
 
 class Api::V2::LearningResourcesController < APIApplicationController
   rescue_from JSON::ParserError, with: :invalid_json_message
@@ -25,12 +26,18 @@ private
 
   def additional_fields(learning_resource_id)
     {
-      causes: LearningResource.find(learning_resource_id)&.causes,
+      causes: get_learning_resource_causes(learning_resource_id),
       completed: get_learning_resource_status(request.headers['token'], learning_resource_id),
     }
   end
 
   def merge_additional_fields(model)
     model.serializable_hash.symbolize_keys.merge(additional_fields(model.id))
+  end
+
+  def get_learning_resource_causes(learning_resource_id)
+    LearningResource.find(learning_resource_id)&.causes.map do |lrc|
+      lrc.serializable_hash.symbolize_keys.merge({joined: get_status(lrc.id, request)})
+    end
   end
 end
