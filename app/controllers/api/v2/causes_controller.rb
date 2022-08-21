@@ -29,7 +29,7 @@ private
 
   def get_status(cause_id)
     return 'Authentication failed' unless request.headers['token'] && user
-
-    user.causes.ids.include?(cause_id)
+    
+    user.causes.ids.include?(cause_id.to_i)
   end
 end
