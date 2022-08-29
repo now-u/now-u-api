@@ -37,7 +37,7 @@ private
 
   def get_learning_resource_causes(learning_resource_id)
     LearningResource.find(learning_resource_id)&.causes.map do |lrc|
-      lrc.serializable_hash.symbolize_keys.merge({joined: get_status(lrc.id, request)})
+      lrc.serializable_hash.symbolize_keys.merge({joined: get_status(lrc.id, request, user)})
     end
   end
 end

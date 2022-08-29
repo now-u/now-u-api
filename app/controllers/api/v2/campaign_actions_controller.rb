@@ -37,7 +37,7 @@ private
 
   def get_campaign_action_causes(action_id)
     CampaignAction.find(action_id)&.causes.map do |cac|
-      cac.serializable_hash.symbolize_keys.merge({joined: get_status(cac.id, request)})
+      cac.serializable_hash.symbolize_keys.merge({joined: get_status(cac.id, request, user)})
     end
   end
 end
