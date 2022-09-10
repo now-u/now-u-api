@@ -18,7 +18,7 @@ private
   def causes_from_params
     return nil unless params["cause_ids"]
 
-    JSON(params["cause_ids"])&.map do |cid|
+    params["cause_ids"]&.map do |cid|
       Cause.find(cid)
     end
   end
