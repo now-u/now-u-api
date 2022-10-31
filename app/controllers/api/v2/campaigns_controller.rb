@@ -41,8 +41,14 @@ private
 
   def additional_campaign_fields(campaign)
     additional_fields(campaign).merge({
-      learning_resources: campaign.learning_resources.map{|lr| lr.attributes.merge({ completed: get_learning_resource_status(request.headers['token'], lr.id) })},
-      campaign_actions: campaign.campaign_actions.map{|ca| ca.attributes.merge({ completed: get_campaign_action_status(request.headers['token'], ca.id) }) },
+      learning_resources: campaign.learning_resources.map{|lr| lr.attributes.merge({ 
+        completed: get_learning_resource_status(request.headers['token'], lr.id),
+        causes: lr.causes
+      })},
+      campaign_actions: campaign.campaign_actions.map{|ca| ca.attributes.merge({ 
+        completed: get_campaign_action_status(request.headers['token'], ca.id),
+        causes: ca.causes
+      }) },
     })
   end
 

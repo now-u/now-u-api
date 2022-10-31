@@ -101,7 +101,8 @@ Rails.application.routes.draw do
 
       # Causes
       get '/causes', to: 'causes#index'
-      post 'me/causes', to: 'user_causes#create'
+      post '/me/causes', to: 'user_causes#create'
+      get '/me', to: 'user_causes#show'
       get '/causes/:id', to: 'causes#show'
 
       # Learning Resources
