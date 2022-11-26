@@ -26,7 +26,7 @@ class APIApplicationController < ActionController::API
     data = data.to_json(
       methods: %i[selected_campaigns completed_campaigns completed_actions
                   rejected_actions favourited_actions completed_learning_resources
-                  active_notifications organisation causes]
+                  active_notifications organisation cause_ids]
     )
   end
 
