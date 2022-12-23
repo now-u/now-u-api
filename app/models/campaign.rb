@@ -3,6 +3,8 @@
 class Campaign < ApplicationRecord
   validates_presence_of :title
 
+  has_one_attached :header_image_s3
+
   has_many :campaign_actions
   has_many :blog_articles
   has_many :articles
@@ -51,6 +53,12 @@ class Campaign < ApplicationRecord
 
   def key_aims
     goals.where('type = ?', 'Key Aim')
+  end
+
+  def header_image
+    if header_image_s3.attached?
+      header_image_s3.service_url
+    end
   end
 
   def general_partners

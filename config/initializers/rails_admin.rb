@@ -49,9 +49,9 @@ RailsAdmin.config do |config|
       required true
     end
 
-    field :header_image do
-      partial "example_partial"
-    end
+    # field :header_image do
+    #   partial "example_partial"
+    # end
   end
 
   config.model 'CampaignAction' do
