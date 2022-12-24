@@ -23,6 +23,8 @@
 
 /.DS_Store
 
+.env.*
+
 # Ignore uploaded files in development
 /storage/*
 !/storage/.keep

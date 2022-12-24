@@ -25,7 +25,7 @@ gem 'cancancan'
 gem 'faker'
 gem 'rswag'
 gem 'bootstrap-sass', '3.4.1'
-gem 'aws-sdk-s3'
+gem 'aws-sdk-s3', require: false
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
