@@ -58,7 +58,7 @@ class Campaign < ApplicationRecord
   def header_image
     if header_image_s3.attached?
       header_image_s3.service_url
-    else 
+    else
       super
     end
   end

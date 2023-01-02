@@ -48,10 +48,6 @@ RailsAdmin.config do |config|
     field :causes do
       required true
     end
-
-    # field :header_image do
-    #   partial "example_partial"
-    # end
   end
 
   config.model 'CampaignAction' do
