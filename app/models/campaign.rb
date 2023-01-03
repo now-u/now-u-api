@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Campaign < ApplicationRecord
+  include ::V2::Image::ImageService
+
   validates_presence_of :title
 
   has_one_attached :header_image_s3
@@ -57,7 +59,7 @@ class Campaign < ApplicationRecord
 
   def header_image
     if header_image_s3.attached?
-      header_image_s3.service_url
+      get_image_path(header_image_s3)
     else
       super
     end
