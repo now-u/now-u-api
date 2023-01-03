@@ -7,6 +7,25 @@ RSpec.configure do |config|
   # NOTE: If you're using the rswag-api to serve API descriptions, you'll need
   # to ensure that it's configured to serve Swagger from the same folder
   config.swagger_root = Rails.root.join('swagger').to_s
+ 
+  # cause model
+  cause_non_model_properties = {
+    joined: {
+      type: :string
+    }
+  }
+  cause_properties = Cause.column_names.reduce(cause_non_model_properties) { |res, column_name|
+    column = Cause.column_for_attribute(column_name)
+    res[column_name.to_sym] = { type: column.type, nullable: column.null }
+    res
+  }
+  cause_schema = {
+    type: :object,
+    properties: cause_properties,
+    additionalProperties: false,
+    # All fields are required (but may be nullable)
+    required: Cause.column_names.map{|column_name| column_name.to_sym} + cause_non_model_properties.keys,
+  }
 
   # Define one or more Swagger documents and provide global metadata for each one
   # When you run the 'rswag:specs:swaggerize' rake task, the complete Swagger will
@@ -18,8 +37,8 @@ RSpec.configure do |config|
     'v1/swagger.yaml' => {
       openapi: '3.0.1',
       info: {
-        title: 'API V1',
-        version: 'v1'
+        title: 'now-u API',
+        version: 'v2'
       },
       paths: {},
       servers: [
@@ -31,7 +50,12 @@ RSpec.configure do |config|
             }
           }
         }
-      ]
+      ],
+      components: {
+        schemas: {
+          cause_schema: cause_schema,
+        }
+      }
     }
   }
 
