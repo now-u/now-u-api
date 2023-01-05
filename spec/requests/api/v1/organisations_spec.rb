@@ -3,10 +3,6 @@ require 'swagger_helper'
 RSpec.describe Api::V1::OrganisationsController, type: :request do
   let(:organisation) { create(:organisation) }
   let(:id) { organisation.id }
-  organisation_schema = Organisation.column_names.reduce({}) { |res, column_name|
-          res[column_name.to_sym] = {type: Organisation.column_for_attribute(column_name).type}
-          res
-  }
 
   before do
     organisation
@@ -19,7 +15,13 @@ RSpec.describe Api::V1::OrganisationsController, type: :request do
 
       response '200', 'organisations found' do
         schema type: :object,
-        properties: organisation_schema
+          properties: {
+            data: {
+              type: :array,
+              items: { '$ref' => '#/components/schemas/organisation' },
+            }
+          },
+          required: ["data"]
 
         before do |example|
           submit_request(example.metadata)
@@ -39,8 +41,7 @@ RSpec.describe Api::V1::OrganisationsController, type: :request do
       parameter name: :id, in: :path, type: :string
 
       response '200', 'organisation found' do
-        schema type: :object,
-        properties: organisation_schema
+        schema '$ref' => '#/components/schemas/organisation'
 
         before do |example|
           submit_request(example.metadata)

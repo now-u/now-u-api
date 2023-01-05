@@ -19,7 +19,7 @@ describe Api::V2::CausesController, type: :request do
           properties: {
             data: {
               type: :array,
-              items: { '$ref' => '#/components/schemas/cause_schema' },
+              items: { '$ref' => '#/components/schemas/cause' },
             }
           },
           required: ["data"]
@@ -41,7 +41,7 @@ describe Api::V2::CausesController, type: :request do
           properties: {
             data: {
               type: :array,
-              items: { '$ref' => '#/components/schemas/cause_schema' },
+              items: { '$ref' => '#/components/schemas/cause' },
             }
           },
           required: ["data"]
@@ -98,7 +98,7 @@ describe Api::V2::CausesController, type: :request do
       produces 'application/json'
       
       response '200', 'Cause found!' do
-        schema '$ref' => '#/components/schemas/cause_schema'
+        schema '$ref' => '#/components/schemas/cause'
 
         before do |example|
           cause
@@ -117,7 +117,7 @@ describe Api::V2::CausesController, type: :request do
       let(:'token') { user.token }
       
       response '200', 'Cause found' do
-        schema '$ref' => '#/components/schemas/cause_schema'
+        schema '$ref' => '#/components/schemas/cause'
         parameter name: 'token', :in => :header, :type => :string
 
         before do |example|

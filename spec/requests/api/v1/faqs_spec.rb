@@ -18,7 +18,13 @@ RSpec.describe Api::V1::FaqsController, type: :request do
 
       response '200', 'faqs found' do
         schema type: :object,
-        properties: faq_schema
+          properties: {
+            data: {
+              type: :array,
+              items: { '$ref' => '#/components/schemas/faq' },
+            }
+          },
+          required: ["data"]
 
         before do |example|
           submit_request(example.metadata)

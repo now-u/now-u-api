@@ -7,25 +7,35 @@ RSpec.configure do |config|
   # NOTE: If you're using the rswag-api to serve API descriptions, you'll need
   # to ensure that it's configured to serve Swagger from the same folder
   config.swagger_root = Rails.root.join('swagger').to_s
+
+  def get_schema_from_model (model, additional_properties)
+    model_properties = model.column_names.reduce(additional_properties) { |res, column_name|
+      column = model.column_for_attribute(column_name)
+      puts column.type 
+      if column.type == :datetime
+        res[column_name.to_sym] = { type: :string, format: "date-time", nullable: column.null }
+      else
+        res[column_name.to_sym] = { type: column.type, nullable: column.null }
+      end
+      res
+    }
+    {
+      type: :object,
+      properties: model_properties,
+      additionalProperties: false,
+      # All fields are required (but may be nullable)
+      required: model.column_names.map{|column_name| column_name.to_sym} + additional_properties.keys,
+    }
+  end
  
-  # cause model
   cause_non_model_properties = {
     joined: {
       type: :string
     }
   }
-  cause_properties = Cause.column_names.reduce(cause_non_model_properties) { |res, column_name|
-    column = Cause.column_for_attribute(column_name)
-    res[column_name.to_sym] = { type: column.type, nullable: column.null }
-    res
-  }
-  cause_schema = {
-    type: :object,
-    properties: cause_properties,
-    additionalProperties: false,
-    # All fields are required (but may be nullable)
-    required: Cause.column_names.map{|column_name| column_name.to_sym} + cause_non_model_properties.keys,
-  }
+  cause_schema = get_schema_from_model(Cause, cause_non_model_properties)
+  faq_schema = get_schema_from_model(Faq, {})
+  organisation_schema = get_schema_from_model(Organisation, {})
 
   # Define one or more Swagger documents and provide global metadata for each one
   # When you run the 'rswag:specs:swaggerize' rake task, the complete Swagger will
@@ -53,7 +63,9 @@ RSpec.configure do |config|
       ],
       components: {
         schemas: {
-          cause_schema: cause_schema,
+          cause: cause_schema,
+          faq: faq_schema,
+          organisation: organisation_schema,
         }
       }
     }

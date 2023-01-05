@@ -679,16 +679,12 @@ paths:
               schema:
                 type: object
                 properties:
-                  id:
-                    type: integer
-                  question:
-                    type: string
-                  answer:
-                    type: string
-                  created_at:
-                    type: datetime
-                  updated_at:
-                    type: datetime
+                  data:
+                    type: array
+                    items:
+                      "$ref": "#/components/schemas/faq"
+                required:
+                - data
   "/api/v1/offers":
     get:
       summary: Retrieves all offers
@@ -768,46 +764,12 @@ paths:
               schema:
                 type: object
                 properties:
-                  id:
-                    type: integer
-                  name:
-                    type: string
-                  description:
-                    type: string
-                  logo_link:
-                    type: string
-                  created_at:
-                    type: datetime
-                  updated_at:
-                    type: datetime
-                  email:
-                    type: string
-                  website:
-                    type: string
-                  IG_link:
-                    type: string
-                  FB_link:
-                    type: string
-                  twitter_link:
-                    type: string
-                  extra_text_1:
-                    type: string
-                  extra_text_2:
-                    type: string
-                  extra_text_3:
-                    type: string
-                  extra_link_1:
-                    type: string
-                  extra_link_2:
-                    type: string
-                  extra_link_3:
-                    type: string
-                  organisation_type:
-                    type: string
-                  code:
-                    type: string
-                  geographic_reach:
-                    type: string
+                  data:
+                    type: array
+                    items:
+                      "$ref": "#/components/schemas/organisation"
+                required:
+                - data
   "/api/v1/organisations/{id}":
     get:
       summary: Retrieves a organisation
@@ -825,48 +787,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                  name:
-                    type: string
-                  description:
-                    type: string
-                  logo_link:
-                    type: string
-                  created_at:
-                    type: datetime
-                  updated_at:
-                    type: datetime
-                  email:
-                    type: string
-                  website:
-                    type: string
-                  IG_link:
-                    type: string
-                  FB_link:
-                    type: string
-                  twitter_link:
-                    type: string
-                  extra_text_1:
-                    type: string
-                  extra_text_2:
-                    type: string
-                  extra_text_3:
-                    type: string
-                  extra_link_1:
-                    type: string
-                  extra_link_2:
-                    type: string
-                  extra_link_3:
-                    type: string
-                  organisation_type:
-                    type: string
-                  code:
-                    type: string
-                  geographic_reach:
-                    type: string
+                "$ref": "#/components/schemas/organisation"
         '404':
           description: Not found
   "/api/v1/press_coverage":
@@ -1309,7 +1230,7 @@ paths:
                   data:
                     type: array
                     items:
-                      "$ref": "#/components/schemas/cause_schema"
+                      "$ref": "#/components/schemas/cause"
                 required:
                 - data
       parameters:
@@ -1329,7 +1250,7 @@ paths:
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/cause_schema"
+                "$ref": "#/components/schemas/cause"
       parameters:
       - name: token
         in: header
@@ -1643,7 +1564,7 @@ servers:
       default: api.now-u.com
 components:
   schemas:
-    cause_schema:
+    cause:
       type: object
       properties:
         joined:
@@ -1653,24 +1574,26 @@ components:
           nullable: false
         image:
           type: string
-          nullable: true
+          nullable: false
         icon:
           type: string
-          nullable: true
+          nullable: false
         name:
           type: string
-          nullable: true
+          nullable: false
         description:
           type: string
-          nullable: true
+          nullable: false
         joiners:
           type: integer
           nullable: true
         created_at:
-          type: datetime
+          type: string
+          format: date-time
           nullable: false
         updated_at:
-          type: datetime
+          type: string
+          format: date-time
           nullable: false
       additionalProperties: false
       required:
@@ -1691,3 +1614,142 @@ components:
       - joiners
       - created_at
       - updated_at
+    faq:
+      type: object
+      properties:
+        id:
+          type: integer
+          nullable: false
+        question:
+          type: string
+          nullable: false
+        answer:
+          type: string
+          nullable: false
+        created_at:
+          type: string
+          format: date-time
+          nullable: false
+        updated_at:
+          type: string
+          format: date-time
+          nullable: false
+      additionalProperties: false
+      required:
+      - id
+      - question
+      - answer
+      - created_at
+      - updated_at
+      - id
+      - question
+      - answer
+      - created_at
+      - updated_at
+    organisation:
+      type: object
+      properties:
+        id:
+          type: integer
+          nullable: false
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        logo_link:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          nullable: false
+        updated_at:
+          type: string
+          format: date-time
+          nullable: false
+        email:
+          type: string
+          nullable: true
+        website:
+          type: string
+          nullable: true
+        IG_link:
+          type: string
+          nullable: true
+        FB_link:
+          type: string
+          nullable: true
+        twitter_link:
+          type: string
+          nullable: true
+        extra_text_1:
+          type: string
+          nullable: true
+        extra_text_2:
+          type: string
+          nullable: true
+        extra_text_3:
+          type: string
+          nullable: true
+        extra_link_1:
+          type: string
+          nullable: true
+        extra_link_2:
+          type: string
+          nullable: true
+        extra_link_3:
+          type: string
+          nullable: true
+        organisation_type:
+          type: string
+          nullable: true
+        code:
+          type: string
+          nullable: true
+        geographic_reach:
+          type: string
+          nullable: true
+      additionalProperties: false
+      required:
+      - id
+      - name
+      - description
+      - logo_link
+      - created_at
+      - updated_at
+      - email
+      - website
+      - IG_link
+      - FB_link
+      - twitter_link
+      - extra_text_1
+      - extra_text_2
+      - extra_text_3
+      - extra_link_1
+      - extra_link_2
+      - extra_link_3
+      - organisation_type
+      - code
+      - geographic_reach
+      - id
+      - name
+      - description
+      - logo_link
+      - created_at
+      - updated_at
+      - email
+      - website
+      - IG_link
+      - FB_link
+      - twitter_link
+      - extra_text_1
+      - extra_text_2
+      - extra_text_3
+      - extra_link_1
+      - extra_link_2
+      - extra_link_3
+      - organisation_type
+      - code
+      - geographic_reach

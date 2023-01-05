@@ -17,7 +17,4 @@ bundle exec rails db:migrate
 echo "Removing contents of tmp dirs"
 bundle exec rails tmp:clear
 
-echo "Generating swagger spec"
-bundle exec rake rswag:specs:swaggerize
-
 exec "$@"
