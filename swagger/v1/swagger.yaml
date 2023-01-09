@@ -803,20 +803,12 @@ paths:
               schema:
                 type: object
                 properties:
-                  id:
-                    type: integer
-                  image_url:
-                    type: string
-                  link:
-                    type: string
-                  media_name:
-                    type: string
-                  created_at:
-                    type: datetime
-                  updated_at:
-                    type: datetime
-                  title:
-                    type: string
+                  data:
+                    type: array
+                    items:
+                      "$ref": "#/components/schemas/press_article"
+                required:
+                - data
   "/api/v1/press_coverage/{id}":
     get:
       summary: Retrieves a press_coverage
@@ -834,22 +826,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                  image_url:
-                    type: string
-                  link:
-                    type: string
-                  media_name:
-                    type: string
-                  created_at:
-                    type: datetime
-                  updated_at:
-                    type: datetime
-                  title:
-                    type: string
+                "$ref": "#/components/schemas/press_article"
         '404':
           description: Not found
   "/api/v1/quizzes":
@@ -1753,3 +1730,45 @@ components:
       - organisation_type
       - code
       - geographic_reach
+    press_article:
+      type: object
+      properties:
+        id:
+          type: integer
+          nullable: false
+        image_url:
+          type: string
+          nullable: true
+        link:
+          type: string
+          nullable: true
+        media_name:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          nullable: false
+        updated_at:
+          type: string
+          format: date-time
+          nullable: false
+        title:
+          type: string
+          nullable: true
+      additionalProperties: false
+      required:
+      - id
+      - image_url
+      - link
+      - media_name
+      - created_at
+      - updated_at
+      - title
+      - id
+      - image_url
+      - link
+      - media_name
+      - created_at
+      - updated_at
+      - title

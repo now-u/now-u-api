@@ -36,6 +36,7 @@ RSpec.configure do |config|
   cause_schema = get_schema_from_model(Cause, cause_non_model_properties)
   faq_schema = get_schema_from_model(Faq, {})
   organisation_schema = get_schema_from_model(Organisation, {})
+  press_article_schema = get_schema_from_model(PressCoverageArticle, {})
 
   # Define one or more Swagger documents and provide global metadata for each one
   # When you run the 'rswag:specs:swaggerize' rake task, the complete Swagger will
@@ -66,6 +67,7 @@ RSpec.configure do |config|
           cause: cause_schema,
           faq: faq_schema,
           organisation: organisation_schema,
+          press_article: press_article_schema,
         }
       }
     }
