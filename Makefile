@@ -7,7 +7,7 @@ up: ## Start api
 	docker-compose up
 
 test: ## Run tests
-	docker-compose exec api bundle exec rspec
+	docker-compose run --rm api bundle exec rspec
 
 build: ## Build api image
 	docker-compose build api

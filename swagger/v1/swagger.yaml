@@ -768,7 +768,7 @@ paths:
                   data:
                     type: array
                     items:
-                      "$ref": "#/components/schemas/organisation"
+                      "$ref": "#/components/schemas/list_organisation"
                 additionalProperties: false
                 required:
                 - data
@@ -815,6 +815,7 @@ paths:
                     type: array
                     items:
                       "$ref": "#/components/schemas/press_article"
+                additionalProperties: false
                 required:
                 - data
   "/api/v1/press_coverage/{id}":
@@ -834,7 +835,13 @@ paths:
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/press_article"
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/press_article"
+                additionalProperties: false
+                required:
+                - data
         '404':
           description: Not found
   "/api/v1/quizzes":
@@ -1633,8 +1640,97 @@ components:
     organisation:
       type: object
       properties:
+        id:
+          type: integer
+          nullable: false
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        logo_link:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          nullable: false
+        updated_at:
+          type: string
+          format: date-time
+          nullable: false
+        email:
+          type: string
+          nullable: true
+        website:
+          type: string
+          nullable: true
+        IG_link:
+          type: string
+          nullable: true
+        FB_link:
+          type: string
+          nullable: true
+        twitter_link:
+          type: string
+          nullable: true
+        extra_text_1:
+          type: string
+          nullable: true
+        extra_text_2:
+          type: string
+          nullable: true
+        extra_text_3:
+          type: string
+          nullable: true
+        extra_link_1:
+          type: string
+          nullable: true
+        extra_link_2:
+          type: string
+          nullable: true
+        extra_link_3:
+          type: string
+          nullable: true
+        organisation_type:
+          type: string
+          nullable: true
+        code:
+          type: string
+          nullable: true
+        geographic_reach:
+          type: string
+          nullable: true
+      additionalProperties: false
+      required:
+      - id
+      - name
+      - description
+      - logo_link
+      - created_at
+      - updated_at
+      - email
+      - website
+      - IG_link
+      - FB_link
+      - twitter_link
+      - extra_text_1
+      - extra_text_2
+      - extra_text_3
+      - extra_link_1
+      - extra_link_2
+      - extra_link_3
+      - organisation_type
+      - code
+      - geographic_reach
+    list_organisation:
+      type: object
+      properties:
         campaigns:
-          "$ref": "#/components/schemas/campaign"
+          type: array
+          items:
+            "$ref": "#/components/schemas/campaign"
         id:
           type: integer
           nullable: false
@@ -1827,3 +1923,76 @@ components:
       - source
       - enabled
       - release_date
+    campaign:
+      type: object
+      properties:
+        id:
+          type: integer
+          nullable: false
+        title:
+          type: string
+          nullable: true
+        description_app:
+          type: text
+          nullable: true
+        header_image:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          nullable: false
+        updated_at:
+          type: string
+          format: date-time
+          nullable: false
+        video_link:
+          type: string
+          nullable: true
+        description_web:
+          type: text
+          nullable: true
+        enabled:
+          type: boolean
+          nullable: true
+        start_date:
+          type: string
+          format: date-time
+          nullable: true
+        end_date:
+          type: string
+          format: date-time
+          nullable: true
+        short_name:
+          type: string
+          nullable: true
+        infographic_url:
+          type: string
+          nullable: true
+        of_the_month:
+          type: boolean
+          nullable: true
+        recommended:
+          type: boolean
+          nullable: true
+        status:
+          type: integer
+          nullable: true
+      additionalProperties: false
+      required:
+      - id
+      - title
+      - description_app
+      - header_image
+      - created_at
+      - updated_at
+      - video_link
+      - description_web
+      - enabled
+      - start_date
+      - end_date
+      - short_name
+      - infographic_url
+      - of_the_month
+      - recommended
+      - status

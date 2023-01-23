@@ -10,7 +10,7 @@ module V2
         'of_the_month' => :of_the_month,
         'recommended' => :recommended,
         'type' => :type,
-        'type__in' => :type_in_filter,
+        'type__in' => :type,
         'time__gte' => :time_gte,
         'time__lte' => :time_lte
       }
