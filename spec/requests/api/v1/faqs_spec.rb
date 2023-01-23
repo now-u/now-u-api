@@ -2,10 +2,6 @@ require 'swagger_helper'
 
 RSpec.describe Api::V1::FaqsController, type: :request do
   let(:faq) { create(:faq) }
-  faq_schema = Faq.column_names.reduce({}) { |res, column_name|
-          res[column_name.to_sym] = {type: Faq.column_for_attribute(column_name).type}
-          res
-  }
 
   before do
     faq
@@ -17,14 +13,7 @@ RSpec.describe Api::V1::FaqsController, type: :request do
       produces 'application/json'
 
       response '200', 'faqs found' do
-        schema type: :object,
-          properties: {
-            data: {
-              type: :array,
-              items: { '$ref' => '#/components/schemas/faq' },
-            }
-          },
-          required: ["data"]
+        schema api_response("faq", true)
 
         before do |example|
           submit_request(example.metadata)

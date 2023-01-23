@@ -1,6 +1,8 @@
 require 'swagger_helper'
 
 RSpec.describe Api::V1::OrganisationsController, type: :request do
+  # TODO Create a campaign which this organisation links to/ remove campaigns
+  # from organisations
   let(:organisation) { create(:organisation) }
   let(:id) { organisation.id }
 
@@ -14,14 +16,7 @@ RSpec.describe Api::V1::OrganisationsController, type: :request do
       produces 'application/json'
 
       response '200', 'organisations found' do
-        schema type: :object,
-          properties: {
-            data: {
-              type: :array,
-              items: { '$ref' => '#/components/schemas/organisation' },
-            }
-          },
-          required: ["data"]
+        schema api_response('list_organisation', true)
 
         before do |example|
           submit_request(example.metadata)
@@ -41,7 +36,7 @@ RSpec.describe Api::V1::OrganisationsController, type: :request do
       parameter name: :id, in: :path, type: :string
 
       response '200', 'organisation found' do
-        schema '$ref' => '#/components/schemas/organisation'
+        schema api_response('organisation')
 
         before do |example|
           submit_request(example.metadata)

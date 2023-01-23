@@ -15,18 +15,11 @@ describe Api::V2::CausesController, type: :request do
       produces 'application/json'
       
       response '200', 'Cause found!' do
-        schema type: :object,
-          properties: {
-            data: {
-              type: :array,
-              items: { '$ref' => '#/components/schemas/cause' },
-            }
-          },
-          required: ["data"]
+        schema api_response("cause", true) 
 
         run_test! do |response| 
           data = JSON.parse(response.body)
-          expect(data['data'][0]['joined']).to eq('Authentication failed')
+          expect(data['data'][0]['joined']).to eq false
         end
       end
     end
@@ -37,18 +30,10 @@ describe Api::V2::CausesController, type: :request do
       let(:'token') { user.token }
       
       response '200', 'Cause found' do
-        schema type: :object,
-          properties: {
-            data: {
-              type: :array,
-              items: { '$ref' => '#/components/schemas/cause' },
-            }
-          },
-          required: ["data"]
+        schema api_response("cause", true) 
         parameter name: 'token', :in => :header, :type => :string
 
         before do |example|
-          cause
           submit_request(example.metadata)
         end
 
@@ -86,22 +71,22 @@ describe Api::V2::CausesController, type: :request do
         end
 
         it 'returns false if the there is no authentication' do
-          expect(JSON(response.body)['data'][-1]['joined']).to eq "Authentication failed"
+          expect(JSON(response.body)['data'][-1]['joined']).to eq false 
         end
       end
     end
   end
 
   path '/api/v2/causes/{id}' do
-    get "If no user token header present, returns joined: 'User not authenticated'" do
+    get "If no user token header present, returns joined: false" do
       tags 'API::V2(latest) -> Causes'
       produces 'application/json'
       
       response '200', 'Cause found!' do
-        schema '$ref' => '#/components/schemas/cause'
+        schema api_response("cause")
+        parameter name: :id, in: :path, type: :string
 
         before do |example|
-          cause
           submit_request(example.metadata)
         end
 
@@ -114,14 +99,14 @@ describe Api::V2::CausesController, type: :request do
     get 'Retrieves cause from cause id. If user token header present, returns with joined: true/false.' do
       tags 'API::V2(latest) -> Causes'
       produces 'application/json'
+      parameter name: :id, in: :path, type: :string
       let(:'token') { user.token }
       
       response '200', 'Cause found' do
-        schema '$ref' => '#/components/schemas/cause'
+        schema api_response("cause")
         parameter name: 'token', :in => :header, :type => :string
 
         before do |example|
-          cause
           submit_request(example.metadata)
         end
 
@@ -137,7 +122,7 @@ describe Api::V2::CausesController, type: :request do
         end
 
         it 'returns true if the user has joined the cause' do
-          expect(JSON(response.body)['data'][-1]['joined']).to eq true
+          expect(JSON(response.body)['data']['joined']).to eq true
         end
       end
 
@@ -147,7 +132,7 @@ describe Api::V2::CausesController, type: :request do
         end
 
         it 'returns false if the user has not joined the cause' do
-          expect(JSON(response.body)['data'][-1]['joined']).to eq false
+          expect(JSON(response.body)['data']['joined']).to eq false
         end
       end
 
@@ -159,7 +144,7 @@ describe Api::V2::CausesController, type: :request do
         end
 
         it 'returns false if the there is no authentication' do
-          expect(JSON(response.body)['data'][-1]['joined']).to eq "Authentication failed"
+          expect(JSON(response.body)['data']['joined']).to eq false 
         end
       end
     end

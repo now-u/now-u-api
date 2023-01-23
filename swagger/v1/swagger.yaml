@@ -683,6 +683,7 @@ paths:
                     type: array
                     items:
                       "$ref": "#/components/schemas/faq"
+                additionalProperties: false
                 required:
                 - data
   "/api/v1/offers":
@@ -768,6 +769,7 @@ paths:
                     type: array
                     items:
                       "$ref": "#/components/schemas/organisation"
+                additionalProperties: false
                 required:
                 - data
   "/api/v1/organisations/{id}":
@@ -787,7 +789,13 @@ paths:
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/organisation"
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/organisation"
+                additionalProperties: false
+                required:
+                - data
         '404':
           description: Not found
   "/api/v1/press_coverage":
@@ -1208,6 +1216,7 @@ paths:
                     type: array
                     items:
                       "$ref": "#/components/schemas/cause"
+                additionalProperties: false
                 required:
                 - data
       parameters:
@@ -1221,18 +1230,29 @@ paths:
         with joined: true/false.'
       tags:
       - API::V2(latest) -> Causes
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: token
+        in: header
+        schema:
+          type: string
       responses:
         '200':
           description: Cause found
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/cause"
-      parameters:
-      - name: token
-        in: header
-        schema:
-          type: string
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/cause"
+                additionalProperties: false
+                required:
+                - data
   "/api/v2/learning_resources":
     get:
       summary: 'Retrieves all Learning Resources. If user token header present, returns
@@ -1545,7 +1565,7 @@ components:
       type: object
       properties:
         joined:
-          type: string
+          type: boolean
         id:
           type: integer
           nullable: false
@@ -1574,14 +1594,6 @@ components:
           nullable: false
       additionalProperties: false
       required:
-      - id
-      - image
-      - icon
-      - name
-      - description
-      - joiners
-      - created_at
-      - updated_at
       - joined
       - id
       - image
@@ -1618,14 +1630,11 @@ components:
       - answer
       - created_at
       - updated_at
-      - id
-      - question
-      - answer
-      - created_at
-      - updated_at
     organisation:
       type: object
       properties:
+        campaigns:
+          "$ref": "#/components/schemas/campaign"
         id:
           type: integer
           nullable: false
@@ -1690,26 +1699,7 @@ components:
           nullable: true
       additionalProperties: false
       required:
-      - id
-      - name
-      - description
-      - logo_link
-      - created_at
-      - updated_at
-      - email
-      - website
-      - IG_link
-      - FB_link
-      - twitter_link
-      - extra_text_1
-      - extra_text_2
-      - extra_text_3
-      - extra_link_1
-      - extra_link_2
-      - extra_link_3
-      - organisation_type
-      - code
-      - geographic_reach
+      - campaigns
       - id
       - name
       - description
@@ -1765,10 +1755,75 @@ components:
       - created_at
       - updated_at
       - title
+    news_article:
+      type: object
+      properties:
+        id:
+          type: integer
+          nullable: false
+        title:
+          type: string
+          nullable: true
+        body:
+          type: text
+          nullable: true
+        header_image:
+          type: string
+          nullable: true
+        full_article_link:
+          type: string
+          nullable: true
+        video_link:
+          type: string
+          nullable: true
+        campaign_action_id:
+          type: integer
+          nullable: true
+        campaign_id:
+          type: integer
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          nullable: false
+        updated_at:
+          type: string
+          format: date-time
+          nullable: false
+        video_of_the_day:
+          type: boolean
+          nullable: true
+        subtitle:
+          type: string
+          nullable: true
+        link_text:
+          type: string
+          nullable: true
+        source:
+          type: string
+          nullable: true
+        enabled:
+          type: boolean
+          nullable: true
+        release_date:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+      required:
       - id
-      - image_url
-      - link
-      - media_name
+      - title
+      - body
+      - header_image
+      - full_article_link
+      - video_link
+      - campaign_action_id
+      - campaign_id
       - created_at
       - updated_at
-      - title
+      - video_of_the_day
+      - subtitle
+      - link_text
+      - source
+      - enabled
+      - release_date

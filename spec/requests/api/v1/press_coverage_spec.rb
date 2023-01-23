@@ -14,14 +14,7 @@ RSpec.describe Api::V1::PressCoverageArticlesController, type: :request do
       produces 'application/json'
 
       response '200', 'press_coverage found' do
-        schema type: :object,
-          properties: {
-            data: {
-              type: :array,
-              items: { '$ref' => '#/components/schemas/press_article' },
-            }
-          },
-          required: ["data"]
+        schema api_response("press_article", true)
 
         before do |example|
           submit_request(example.metadata)
@@ -41,7 +34,7 @@ RSpec.describe Api::V1::PressCoverageArticlesController, type: :request do
       parameter name: :id, in: :path, type: :string
 
       response '200', 'press_coverage found' do
-        schema '$ref' => '#/components/schemas/press_article'
+        schema api_response("press_article")
 
         before do |example|
           submit_request(example.metadata)
