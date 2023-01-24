@@ -1824,13 +1824,13 @@ components:
           nullable: false
         image_url:
           type: string
-          nullable: true
+          nullable: false
         link:
           type: string
-          nullable: true
+          nullable: false
         media_name:
           type: string
-          nullable: true
+          nullable: false
         created_at:
           type: string
           format: date-time
@@ -1841,7 +1841,7 @@ components:
           nullable: false
         title:
           type: string
-          nullable: true
+          nullable: false
       additionalProperties: false
       required:
       - id
