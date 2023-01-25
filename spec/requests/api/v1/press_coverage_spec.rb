@@ -3,10 +3,6 @@ require 'swagger_helper'
 RSpec.describe Api::V1::PressCoverageArticlesController, type: :request do
   let(:press_coverage_article) { create(:press_coverage_article) }
   let(:id) { press_coverage_article.id }
-  press_coverage_schema = PressCoverageArticle.column_names.reduce({}) { |res, column_name|
-          res[column_name.to_sym] = {type: PressCoverageArticle.column_for_attribute(column_name).type}
-          res
-  }
 
   before do
     press_coverage_article
@@ -18,8 +14,7 @@ RSpec.describe Api::V1::PressCoverageArticlesController, type: :request do
       produces 'application/json'
 
       response '200', 'press_coverage found' do
-        schema type: :object,
-        properties: press_coverage_schema
+        schema api_response("press_article", true)
 
         before do |example|
           submit_request(example.metadata)
@@ -39,8 +34,7 @@ RSpec.describe Api::V1::PressCoverageArticlesController, type: :request do
       parameter name: :id, in: :path, type: :string
 
       response '200', 'press_coverage found' do
-        schema type: :object,
-        properties: press_coverage_schema
+        schema api_response("press_article")
 
         before do |example|
           submit_request(example.metadata)
