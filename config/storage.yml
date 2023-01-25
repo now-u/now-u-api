@@ -11,5 +11,5 @@ amazon:
   service: S3
   access_key_id: <%= Rails.application.credentials.dig(:aws, :access_key_id) %>
   secret_access_key: <%= Rails.application.credentials.dig(:aws, :secret_access_key) %>
-  region: eu-west-2
-  bucket: now-u-bucket
+  region: <%= ENV['AWS_REGION'] %>
+  bucket: <%= ENV['BUCKET_NAME'] %>

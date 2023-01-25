@@ -3,7 +3,7 @@
 class User < ApplicationRecord
   include ::V2::Image::ImageService
 
-  has_one_attached :profile_picture_url_s3
+  has_one_attached :profile_picture_s3
 
   validates_uniqueness_of :email
   validates_uniqueness_of :token
@@ -83,8 +83,8 @@ class User < ApplicationRecord
   end
 
   def profile_picture_url
-    if profile_picture_url_s3.attached?
-      get_image_path(profile_picture_url_s3)
+    if profile_picture_s3.attached?
+      get_image_path(profile_picture_s3)
     else
       super
     end
