@@ -1,8 +1,8 @@
 ---
 openapi: 3.0.1
 info:
-  title: API V1
-  version: v1
+  title: now-u API
+  version: v2
 paths:
   "/api/v1/articles":
     get:
@@ -14,8 +14,6 @@ paths:
           description: articles found
           content:
             application/json:
-              example:
-                data: []
               schema:
                 type: object
                 properties:
@@ -122,10 +120,6 @@ paths:
                     type: datetime
         '404':
           description: Not found
-          content:
-            application/json:
-              example:
-                error: Couldn't find Article with 'id'=something_invalid
   "/api/v1/blogs":
     get:
       summary: Retrieves all blogs
@@ -216,10 +210,6 @@ paths:
                     type: string
         '404':
           description: Not found
-          content:
-            application/json:
-              example:
-                error: Couldn't find BlogArticle with 'id'=something_invalid
   "/api/v1/campaigns":
     get:
       summary: Retrieves all Campaigns
@@ -230,8 +220,6 @@ paths:
           description: Campaigns found
           content:
             application/json:
-              example:
-                data: []
               schema:
                 type: object
                 properties:
@@ -320,10 +308,6 @@ paths:
                     type: integer
         '404':
           description: Not found
-          content:
-            application/json:
-              example:
-                error: Couldn't find Campaign with 'id'=something_invalid
   "/api/v1/campaigns/{campaign_id}/actions":
     get:
       summary: Retrieves a Campaigns actions
@@ -340,8 +324,6 @@ paths:
           description: Campaigns actions found
           content:
             application/json:
-              example:
-                data: []
               schema:
                 type: object
                 properties:
@@ -377,10 +359,6 @@ paths:
                     type: boolean
         '404':
           description: Not found
-          content:
-            application/json:
-              example:
-                error: Couldn't find Campaign with 'id'=something_invalid
   "/api/v1/campaigns/{campaign_id}/actions/{action_id}":
     get:
       summary: Retrieves a Campaigns action through action id
@@ -437,10 +415,6 @@ paths:
                     type: boolean
         '404':
           description: Not found
-          content:
-            application/json:
-              example:
-                error: Couldn't find CampaignAction with 'id'=something_invalid
   "/api/v1/campaigns/{campaign_id}/actions/{action_id}/articles":
     get:
       summary: Retrieves a Campaigns articles through action id
@@ -517,10 +491,6 @@ paths:
                     type: datetime
         '404':
           description: Not found
-          content:
-            application/json:
-              example:
-                error: Couldn't find Campaign with 'id'=something_invalid
   "/api/v1/campaigns/{campaign_id}/actions/{action_id}/offers":
     get:
       summary: Retrieves a Campaigns offers through action id
@@ -542,8 +512,6 @@ paths:
           description: Campaign found
           content:
             application/json:
-              example:
-                data: []
               schema:
                 type: object
                 properties:
@@ -565,10 +533,6 @@ paths:
                     type: integer
         '404':
           description: Not found
-          content:
-            application/json:
-              example:
-                error: Couldn't find Campaign with 'id'=something_invalid
   "/api/v1/campaigns/{campaign_id}/articles":
     get:
       summary: Retrieves a Campaigns articles
@@ -590,8 +554,6 @@ paths:
           description: Campaign found
           content:
             application/json:
-              example:
-                data: []
               schema:
                 type: object
                 properties:
@@ -629,10 +591,6 @@ paths:
                     type: datetime
         '404':
           description: Not found
-          content:
-            application/json:
-              example:
-                error: Couldn't find Campaign with 'id'=something_invalid
   "/api/v1/campaigns/{campaign_id}/offers":
     get:
       summary: Retrieves a Campaigns articles
@@ -654,8 +612,6 @@ paths:
           description: Campaign found
           content:
             application/json:
-              example:
-                data: []
               schema:
                 type: object
                 properties:
@@ -677,10 +633,6 @@ paths:
                     type: integer
         '404':
           description: Not found
-          content:
-            application/json:
-              example:
-                error: Couldn't find Campaign with 'id'=something_invalid
   "/api/v1/campaigns/{campaign_id}/learning_topics":
     get:
       summary: Retrieves a Campaigns learning topics
@@ -702,8 +654,6 @@ paths:
           description: Campaign found
           content:
             application/json:
-              example:
-                data: []
               schema:
                 type: object
                 properties:
@@ -725,10 +675,6 @@ paths:
                     type: integer
         '404':
           description: Not found
-          content:
-            application/json:
-              example:
-                error: Couldn't find Campaign with 'id'=something_invalid
   "/api/v1/causes":
     get:
       summary: Retrieves all causes
@@ -816,10 +762,6 @@ paths:
                     type: datetime
         '404':
           description: Not found
-          content:
-            application/json:
-              example:
-                error: Couldn't find Cause with 'id'=something_invalid
   "/api/v1/faqs":
     get:
       summary: Retrieves all faqs
@@ -840,16 +782,13 @@ paths:
               schema:
                 type: object
                 properties:
-                  id:
-                    type: integer
-                  question:
-                    type: string
-                  answer:
-                    type: string
-                  created_at:
-                    type: datetime
-                  updated_at:
-                    type: datetime
+                  data:
+                    type: array
+                    items:
+                      "$ref": "#/components/schemas/faq"
+                additionalProperties: false
+                required:
+                - data
   "/api/v1/offers":
     get:
       summary: Retrieves all offers
@@ -936,10 +875,6 @@ paths:
                     type: integer
         '404':
           description: Not found
-          content:
-            application/json:
-              example:
-                error: Couldn't find Offer with 'id'=something_invalid
   "/api/v1/organisations":
     get:
       summary: Retrieves all organisations
@@ -976,46 +911,13 @@ paths:
               schema:
                 type: object
                 properties:
-                  id:
-                    type: integer
-                  name:
-                    type: string
-                  description:
-                    type: string
-                  logo_link:
-                    type: string
-                  created_at:
-                    type: datetime
-                  updated_at:
-                    type: datetime
-                  email:
-                    type: string
-                  website:
-                    type: string
-                  IG_link:
-                    type: string
-                  FB_link:
-                    type: string
-                  twitter_link:
-                    type: string
-                  extra_text_1:
-                    type: string
-                  extra_text_2:
-                    type: string
-                  extra_text_3:
-                    type: string
-                  extra_link_1:
-                    type: string
-                  extra_link_2:
-                    type: string
-                  extra_link_3:
-                    type: string
-                  organisation_type:
-                    type: string
-                  code:
-                    type: string
-                  geographic_reach:
-                    type: string
+                  data:
+                    type: array
+                    items:
+                      "$ref": "#/components/schemas/list_organisation"
+                additionalProperties: false
+                required:
+                - data
   "/api/v1/organisations/{id}":
     get:
       summary: Retrieves a organisation
@@ -1057,52 +959,13 @@ paths:
               schema:
                 type: object
                 properties:
-                  id:
-                    type: integer
-                  name:
-                    type: string
-                  description:
-                    type: string
-                  logo_link:
-                    type: string
-                  created_at:
-                    type: datetime
-                  updated_at:
-                    type: datetime
-                  email:
-                    type: string
-                  website:
-                    type: string
-                  IG_link:
-                    type: string
-                  FB_link:
-                    type: string
-                  twitter_link:
-                    type: string
-                  extra_text_1:
-                    type: string
-                  extra_text_2:
-                    type: string
-                  extra_text_3:
-                    type: string
-                  extra_link_1:
-                    type: string
-                  extra_link_2:
-                    type: string
-                  extra_link_3:
-                    type: string
-                  organisation_type:
-                    type: string
-                  code:
-                    type: string
-                  geographic_reach:
-                    type: string
+                  data:
+                    "$ref": "#/components/schemas/organisation"
+                additionalProperties: false
+                required:
+                - data
         '404':
           description: Not found
-          content:
-            application/json:
-              example:
-                error: Couldn't find Organisation with 'id'=something_invalid
   "/api/v1/press_coverage":
     get:
       summary: Retrieves all press_coverage
@@ -1125,20 +988,13 @@ paths:
               schema:
                 type: object
                 properties:
-                  id:
-                    type: integer
-                  image_url:
-                    type: string
-                  link:
-                    type: string
-                  media_name:
-                    type: string
-                  created_at:
-                    type: datetime
-                  updated_at:
-                    type: datetime
-                  title:
-                    type: string
+                  data:
+                    type: array
+                    items:
+                      "$ref": "#/components/schemas/press_article"
+                additionalProperties: false
+                required:
+                - data
   "/api/v1/press_coverage/{id}":
     get:
       summary: Retrieves a press_coverage
@@ -1167,26 +1023,13 @@ paths:
               schema:
                 type: object
                 properties:
-                  id:
-                    type: integer
-                  image_url:
-                    type: string
-                  link:
-                    type: string
-                  media_name:
-                    type: string
-                  created_at:
-                    type: datetime
-                  updated_at:
-                    type: datetime
-                  title:
-                    type: string
+                  data:
+                    "$ref": "#/components/schemas/press_article"
+                additionalProperties: false
+                required:
+                - data
         '404':
           description: Not found
-          content:
-            application/json:
-              example:
-                error: Couldn't find PressCoverageArticle with 'id'=something_invalid
   "/api/v1/quizzes":
     get:
       summary: Retrieves all quizzes
@@ -1253,10 +1096,6 @@ paths:
                     type: datetime
         '404':
           description: Not found
-          content:
-            application/json:
-              example:
-                error: Couldn't find Quiz with 'id'=something_invalid
   "/api/v2/actions":
     get:
       summary: 'If no user token header present, completed: ''User not authenticated'''
@@ -1485,6 +1324,7 @@ paths:
                     updated_at: '2023-01-02T21:49:50.146Z'
                     joined: false
                   completed: false
+
               schema:
                 type: object
                 properties:
@@ -1640,8 +1480,10 @@ paths:
           description: Campaign found!
           content:
             application/json:
+
               example:
                 data: []
+
               schema:
                 type: object
                 properties:
@@ -1679,8 +1521,8 @@ paths:
                     type: integer
   "/api/v2/causes":
     get:
-      summary: 'Retrieves cause from cause id. If user token header present, returns
-        with joined: true/false.'
+      summary: 'Retrieves all Causes. If user token header present, returns with joined:
+        true/false.'
       tags:
       - API::V2(latest) -> Causes
       responses:
@@ -1702,27 +1544,47 @@ paths:
               schema:
                 type: object
                 properties:
-                  id:
-                    type: integer
-                  image:
-                    type: string
-                  icon:
-                    type: string
-                  name:
-                    type: string
-                  description:
-                    type: string
-                  joiners:
-                    type: integer
-                  created_at:
-                    type: datetime
-                  updated_at:
-                    type: datetime
+                  data:
+                    type: array
+                    items:
+                      "$ref": "#/components/schemas/cause"
+                additionalProperties: false
+                required:
+                - data
       parameters:
       - name: token
         in: header
         schema:
           type: string
+  "/api/v2/causes/{id}":
+    get:
+      summary: 'Retrieves cause from cause id. If user token header present, returns
+        with joined: true/false.'
+      tags:
+      - API::V2(latest) -> Causes
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: token
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Cause found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/cause"
+                additionalProperties: false
+                required:
+                - data
   "/api/v2/learning_resources":
     get:
       summary: 'Retrieves all Learning Resources. If user token header present, returns
@@ -2012,8 +1874,6 @@ paths:
           description: User not authenticated
           content:
             application/json:
-              example:
-                message: User authorization failed
               schema:
                 type: object
                 properties:
@@ -2129,8 +1989,6 @@ paths:
           description: User not authenticated
           content:
             application/json:
-              example:
-                message: User authorization failed
               schema:
                 type: object
                 properties:
@@ -2186,3 +2044,433 @@ servers:
   variables:
     defaultHost:
       default: api.now-u.com
+components:
+  schemas:
+    cause:
+      type: object
+      properties:
+        joined:
+          type: boolean
+        id:
+          type: integer
+          nullable: false
+        image:
+          type: string
+          nullable: false
+        icon:
+          type: string
+          nullable: false
+        name:
+          type: string
+          nullable: false
+        description:
+          type: string
+          nullable: false
+        joiners:
+          type: integer
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          nullable: false
+        updated_at:
+          type: string
+          format: date-time
+          nullable: false
+      additionalProperties: false
+      required:
+      - joined
+      - id
+      - image
+      - icon
+      - name
+      - description
+      - joiners
+      - created_at
+      - updated_at
+    faq:
+      type: object
+      properties:
+        id:
+          type: integer
+          nullable: false
+        question:
+          type: string
+          nullable: false
+        answer:
+          type: string
+          nullable: false
+        created_at:
+          type: string
+          format: date-time
+          nullable: false
+        updated_at:
+          type: string
+          format: date-time
+          nullable: false
+      additionalProperties: false
+      required:
+      - id
+      - question
+      - answer
+      - created_at
+      - updated_at
+    organisation:
+      type: object
+      properties:
+        id:
+          type: integer
+          nullable: false
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        logo_link:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          nullable: false
+        updated_at:
+          type: string
+          format: date-time
+          nullable: false
+        email:
+          type: string
+          nullable: true
+        website:
+          type: string
+          nullable: true
+        IG_link:
+          type: string
+          nullable: true
+        FB_link:
+          type: string
+          nullable: true
+        twitter_link:
+          type: string
+          nullable: true
+        extra_text_1:
+          type: string
+          nullable: true
+        extra_text_2:
+          type: string
+          nullable: true
+        extra_text_3:
+          type: string
+          nullable: true
+        extra_link_1:
+          type: string
+          nullable: true
+        extra_link_2:
+          type: string
+          nullable: true
+        extra_link_3:
+          type: string
+          nullable: true
+        organisation_type:
+          type: string
+          nullable: true
+        code:
+          type: string
+          nullable: true
+        geographic_reach:
+          type: string
+          nullable: true
+      additionalProperties: false
+      required:
+      - id
+      - name
+      - description
+      - logo_link
+      - created_at
+      - updated_at
+      - email
+      - website
+      - IG_link
+      - FB_link
+      - twitter_link
+      - extra_text_1
+      - extra_text_2
+      - extra_text_3
+      - extra_link_1
+      - extra_link_2
+      - extra_link_3
+      - organisation_type
+      - code
+      - geographic_reach
+    list_organisation:
+      type: object
+      properties:
+        campaigns:
+          type: array
+          items:
+            "$ref": "#/components/schemas/campaign"
+        id:
+          type: integer
+          nullable: false
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        logo_link:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          nullable: false
+        updated_at:
+          type: string
+          format: date-time
+          nullable: false
+        email:
+          type: string
+          nullable: true
+        website:
+          type: string
+          nullable: true
+        IG_link:
+          type: string
+          nullable: true
+        FB_link:
+          type: string
+          nullable: true
+        twitter_link:
+          type: string
+          nullable: true
+        extra_text_1:
+          type: string
+          nullable: true
+        extra_text_2:
+          type: string
+          nullable: true
+        extra_text_3:
+          type: string
+          nullable: true
+        extra_link_1:
+          type: string
+          nullable: true
+        extra_link_2:
+          type: string
+          nullable: true
+        extra_link_3:
+          type: string
+          nullable: true
+        organisation_type:
+          type: string
+          nullable: true
+        code:
+          type: string
+          nullable: true
+        geographic_reach:
+          type: string
+          nullable: true
+      additionalProperties: false
+      required:
+      - campaigns
+      - id
+      - name
+      - description
+      - logo_link
+      - created_at
+      - updated_at
+      - email
+      - website
+      - IG_link
+      - FB_link
+      - twitter_link
+      - extra_text_1
+      - extra_text_2
+      - extra_text_3
+      - extra_link_1
+      - extra_link_2
+      - extra_link_3
+      - organisation_type
+      - code
+      - geographic_reach
+    press_article:
+      type: object
+      properties:
+        id:
+          type: integer
+          nullable: false
+        image_url:
+          type: string
+          nullable: false
+        link:
+          type: string
+          nullable: false
+        media_name:
+          type: string
+          nullable: false
+        created_at:
+          type: string
+          format: date-time
+          nullable: false
+        updated_at:
+          type: string
+          format: date-time
+          nullable: false
+        title:
+          type: string
+          nullable: false
+      additionalProperties: false
+      required:
+      - id
+      - image_url
+      - link
+      - media_name
+      - created_at
+      - updated_at
+      - title
+    news_article:
+      type: object
+      properties:
+        id:
+          type: integer
+          nullable: false
+        title:
+          type: string
+          nullable: true
+        body:
+          type: text
+          nullable: true
+        header_image:
+          type: string
+          nullable: true
+        full_article_link:
+          type: string
+          nullable: true
+        video_link:
+          type: string
+          nullable: true
+        campaign_action_id:
+          type: integer
+          nullable: true
+        campaign_id:
+          type: integer
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          nullable: false
+        updated_at:
+          type: string
+          format: date-time
+          nullable: false
+        video_of_the_day:
+          type: boolean
+          nullable: true
+        subtitle:
+          type: string
+          nullable: true
+        link_text:
+          type: string
+          nullable: true
+        source:
+          type: string
+          nullable: true
+        enabled:
+          type: boolean
+          nullable: true
+        release_date:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+      required:
+      - id
+      - title
+      - body
+      - header_image
+      - full_article_link
+      - video_link
+      - campaign_action_id
+      - campaign_id
+      - created_at
+      - updated_at
+      - video_of_the_day
+      - subtitle
+      - link_text
+      - source
+      - enabled
+      - release_date
+    campaign:
+      type: object
+      properties:
+        id:
+          type: integer
+          nullable: false
+        title:
+          type: string
+          nullable: true
+        description_app:
+          type: text
+          nullable: true
+        header_image:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          nullable: false
+        updated_at:
+          type: string
+          format: date-time
+          nullable: false
+        video_link:
+          type: string
+          nullable: true
+        description_web:
+          type: text
+          nullable: true
+        enabled:
+          type: boolean
+          nullable: true
+        start_date:
+          type: string
+          format: date-time
+          nullable: true
+        end_date:
+          type: string
+          format: date-time
+          nullable: true
+        short_name:
+          type: string
+          nullable: true
+        infographic_url:
+          type: string
+          nullable: true
+        of_the_month:
+          type: boolean
+          nullable: true
+        recommended:
+          type: boolean
+          nullable: true
+        status:
+          type: integer
+          nullable: true
+      additionalProperties: false
+      required:
+      - id
+      - title
+      - description_app
+      - header_image
+      - created_at
+      - updated_at
+      - video_link
+      - description_web
+      - enabled
+      - start_date
+      - end_date
+      - short_name
+      - infographic_url
+      - of_the_month
+      - recommended
+      - status

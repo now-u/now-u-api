@@ -43,14 +43,16 @@ RUN rm -rf node_modules tmp
 ARG COMMIT_SHA
 ENV COMMIT_SHA=$COMMIT_SHA
 
-
 RUN chmod +x /app/docker/start.sh
 RUN chmod +x /app/docker/entrypoint.sh
 
 FROM builder as dev
 RUN bundle install
-RUN chmod +x /app/docker/entrypoint.sh
-ENTRYPOINT ["/app/docker/entrypoint.sh"]
+COPY ./docker/start.sh /start
+COPY ./docker/entrypoint.sh /entrypoint
+RUN chmod +x /start
+RUN chmod +x /entrypoint
+ENTRYPOINT ["/entrypoint"]
 
 FROM builder as prod
 RUN chmod +x /app/docker/entrypoint-deploy.sh

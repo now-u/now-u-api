@@ -11,3 +11,12 @@ test: ## Run tests
 
 build: ## Build api image
 	docker-compose build api
+
+swag-generate: ## Generate swagger spec
+	docker-compose exec api bundle exec rake rswag:specs:swaggerize
+
+migrate: ## Run migrations
+	docker-compose exec api rails db:migrate
+
+create-empty-migration: ## Create an empty migration 
+	docker-compose exec api rails g migration

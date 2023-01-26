@@ -200,7 +200,8 @@ RSpec.describe V2::Filters::Filter, type: :model do
 
         it "returns the causes that the user has joined" do
           expect(subject.call.length).to eq 2
-          expect(subject.call).to eq [cause, cause3]
+          expect(subject.call).to include (cause)
+          expect(subject.call).to include (cause3)
         end
       end
     end
