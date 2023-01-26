@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 class Campaign < ApplicationRecord
+  include ::V2::Image::ImageService
+
   validates_presence_of :title
+
+  has_one_attached :header_image_s3
 
   has_many :campaign_actions
   has_many :blog_articles
@@ -51,6 +55,14 @@ class Campaign < ApplicationRecord
 
   def key_aims
     goals.where('type = ?', 'Key Aim')
+  end
+
+  def header_image
+    if header_image_s3.attached?
+      get_image_path(header_image_s3)
+    else
+      super
+    end
   end
 
   def general_partners

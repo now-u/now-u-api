@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  include ::V2::Image::ImageService
+
+  has_one_attached :profile_picture_s3
+
   validates_uniqueness_of :email
   validates_uniqueness_of :token
 
@@ -24,7 +28,7 @@ class User < ApplicationRecord
     user_tokens.valid.first || user_tokens.create
   end
 
-  # In V2, a campaign is completed by the user if: 
+  # In V2, a campaign is completed by the user if:
   # 1. They have completed the learning resources (completed means just 'joined' in the sense that the relationship exists)
   # 2. They have completed the campaign actions (completed means just 'joined' in the sense that the relationship exists)
   def completed_campaigns_v2
@@ -39,7 +43,7 @@ class User < ApplicationRecord
     campaigns.ids
   end
 
-  def joined_cause?(cause_id) 
+  def joined_cause?(cause_id)
     causes.ids.include?(cause_id.to_i)
   end
 
@@ -76,5 +80,13 @@ class User < ApplicationRecord
     user_actions.destroy_all
     user_campaigns.destroy_all
     update_attributes(points: 0)
+  end
+
+  def profile_picture_url
+    if profile_picture_s3.attached?
+      get_image_path(profile_picture_s3)
+    else
+      super
+    end
   end
 end
