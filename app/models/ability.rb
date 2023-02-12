@@ -21,8 +21,8 @@ class Ability
   ]
 
   MODEL_LIST = [
-    Admin,
-    User,
+    # Admin,
+    # User,
   ] + UNRESTRICTED_MODEL_LIST
 
   def initialize(admin)

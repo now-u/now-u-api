@@ -1,0 +1,7 @@
+# Attribute map for admin user SSO
+# See: https://github.com/apokalipto/devise_saml_authenticatable/wiki/Google-Apps
+
+"email": "email"
+"first_name": "first_name"
+"last_name": "last_name"
+"groups": "groups"

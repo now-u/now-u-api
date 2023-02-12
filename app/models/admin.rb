@@ -1,9 +1,5 @@
 class Admin < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable, :registerable and :omniauthable
-  devise :database_authenticatable, :recoverable, :rememberable, :validatable
-
-  # set default role to 1
+  devise :saml_authenticatable, :trackable
 
   # README:
   # Follow the geometric sequence if you are to add more enums. Ie, after 128 will be 256, then 512, etc.
@@ -26,6 +22,8 @@ class Admin < ApplicationRecord
   }
 
   def has_permission(role)
-    admin_role & role == role
+    true
+    # TODO Set admin role based on SSO groups
+    # admin_role & role == role
   end
 end

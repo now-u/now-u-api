@@ -3,6 +3,10 @@ name: Test
 runs:
   using: "composite"
   steps:
+    - name: Create env file
+      run: touch .env.development.local
+      shell: bash
+
     - name: Build docker images
       run: make build
       shell: bash
