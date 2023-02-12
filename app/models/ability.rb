@@ -4,19 +4,19 @@ class Ability
   include CanCan::Ability
   UNRESTRICTED_MODEL_LIST = [
     Article,
-    BlogArticle,
-    BlogComment,
+    # BlogArticle,
+    # BlogComment,
     Campaign,
     Cause,
     CampaignAction,
-    CampaignGoal,
+    # CampaignGoal,
     Faq,
-    Goal,
+    # Goal,
     LearningResource,
     LearningTopic,
-    Offer,
-    Organisation,
-    Partnership,
+    # Offer,
+    # Organisation,
+    # Partnership,
     Notification,
   ]
 
@@ -39,15 +39,6 @@ class Ability
         Partnership,
         Organisation,
         CampaignGoal
-      ]
-    end
-
-    if admin.has_permission(Admin.admin_roles[:blog_writer])
-      can :manage, [
-        BlogArticle,
-        BlogTag,
-        ImageSection,
-        TextSection
       ]
     end
 

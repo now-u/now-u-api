@@ -42,38 +42,134 @@ RailsAdmin.config do |config|
   end
 
   config.model 'Campaign' do
-    fields.each do |f|
-      field f.name
-    end
-    field :causes do
+    field :title do
       required true
     end
+    field :short_name do
+      required true
+    end
+    field :description_app do
+      label "Description"
+      required true
+    end
+    field :header_image_s3 do
+      label "Header image"
+      required true
+    end
+    # NOTE: Video link is not currently used
+    # field :video_link
+    field :enabled
+    field :start_date
+    field :end_date
+    # NOTE: Not sure if we use this
+    # field :infographic_url
+    field :of_the_month
+    field :recommended
+    # TODO We should probably remove enabled and add this to every model (and
+    # check it works)
+    field :status do
+      required true
+    end
+
+    field :campaign_actions
+    field :learning_resources
+    field :causes
   end
 
   config.model 'CampaignAction' do
-    fields.each do |f|
-      field f.name
-    end
-    field :causes do
+    label "Action"
+
+    field :title do
       required true
     end
+    field :link do
+      required true
+    end
+    field :type do
+      required true
+    end
+    field :what_description do
+      required true
+    end
+    field :why_description do
+      required true
+    end
+    field :time do
+      required true
+    end
+    field :enabled
+    field :release_date
+    field :end_date
+    field :of_the_month
+    field :recommended
+    field :causes
   end
 
   config.model 'Cause' do
-    fields.each do |f|
-      if f.name == :user_causes
-        next
-      end
-      field f.name
+    field :name do
+      required true
+    end
+    field :icon do
+      required true
+    end
+    field :description do 
+      required true
+    end
+    field :image_s3 do
+      label "Image"
+      required true
+    end
+    field :campaign_actions do
+      label "Actions"
+    end
+    field :learning_resources do
+      label "Learning Resources"
+    end
+    field :campaigns do
+      label "Campaigns"
     end
   end
 
   config.model 'LearningResource' do
-    fields.each do |f|
-      field f.name
-    end
-    field :causes do
+    field :title do
       required true
     end
+    field :time do
+      required true
+    end
+    field :link do
+      required true
+    end
+    field :type do
+      required true
+    end
+    field :source do
+      required true
+    end
+    field :learning_topic do
+      required false 
+    end
+    field :release_date
+    field :end_date
+    field :causes
+  end
+  
+  config.model 'Article' do
+    field :title do
+      required true
+    end
+    field :subtitle do
+      required true
+    end
+    field :source
+    field :full_article_link do
+      required true
+    end
+    field :header_image_s3 do
+      label "Header image"
+      required true
+    end
+    field :release_date
+    field :enabled
   end
 end

@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :campaign_action do
     title { Faker::Marketing.buzzwords }
     link  { Faker::Internet.url }
-    type { nil }
+    type { "volunteer" }
     what_description { Faker::Lorem.sentence }
     why_description { Faker::Lorem.sentence }
     time { 0.1 }

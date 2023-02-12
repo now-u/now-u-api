@@ -65,24 +65,6 @@ paths:
           description: article found
           content:
             application/json:
-              example:
-                data:
-                  id: 2
-                  title: gamification
-                  body: Autem ipsam dolor repellat.
-                  header_image: http://reilly-reinger.com/demarcus
-                  full_article_link: http://ullrich.co/vito
-                  video_link: http://brown.co/yolando.cruickshank
-                  campaign_action_id: 3
-                  campaign_id: 6
-                  created_at: '2023-01-02T21:49:49.344Z'
-                  updated_at: '2023-01-02T21:49:49.344Z'
-                  video_of_the_day:
-                  subtitle: synergy
-                  link_text: http://haag.net/lanell
-                  source: http://beahan.io/lelia
-                  enabled: true
-                  release_date: '2023-08-12T00:00:00.000Z'
               schema:
                 type: object
                 properties:
@@ -128,25 +110,6 @@ paths:
       responses:
         '200':
           description: blogs found
-          content:
-            application/json:
-              example:
-              - id: 1
-                title: penetrate the market
-                subtitle: Modi nam maiores dolor.
-                campaign_action_id: 7
-                user_id: 1
-                campaign_id: 12
-                reading_time: 90
-                created_at: '2023-01-02T21:49:49.442Z'
-                updated_at: '2023-01-02T21:49:49.442Z'
-                enabled: true
-                header_image: http://cremin-ortiz.io/thanh_cummerata
-                tags: []
-                user:
-                  full_name: Saul Corwin
-                  profile_picture_url:
-                  description:
   "/api/v1/blogs/{id}":
     get:
       summary: Retrieves a blog
@@ -163,26 +126,6 @@ paths:
           description: blog found
           content:
             application/json:
-              example:
-                data:
-                  blog:
-                    id: 2
-                    title: immersive experience
-                    subtitle: Ut est quo laboriosam.
-                    campaign_action_id: 9
-                    user_id: 2
-                    campaign_id: 15
-                    reading_time: 89
-                    created_at: '2023-01-02T21:49:49.501Z'
-                    updated_at: '2023-01-02T21:49:49.501Z'
-                    enabled: true
-                    header_image: http://morissette.co/rodolfo.hansen
-                    tags: []
-                    user:
-                      full_name: Susy Dach
-                      profile_picture_url:
-                      description:
-                sections: []
               schema:
                 type: object
                 properties:
@@ -436,24 +379,6 @@ paths:
           description: Campaign found
           content:
             application/json:
-              example:
-                data:
-                - id: 5
-                  title: granular
-                  body: Optio quibusdam laborum magnam.
-                  header_image: http://weissnat.co/gary_osinski
-                  full_article_link: http://hammes-oberbrunner.net/kimberly_runolfsson
-                  video_link: http://pagac.info/miquel_graham
-                  campaign_action_id: 16
-                  campaign_id: 31
-                  created_at: '2023-01-02T21:49:49.687Z'
-                  updated_at: '2023-01-02T21:49:49.687Z'
-                  video_of_the_day:
-                  subtitle: two-way street
-                  link_text: http://schmidt-graham.co/winford
-                  source: http://pagac.net/orlando.cormier
-                  enabled: true
-                  release_date: '2023-11-20T00:00:00.000Z'
               schema:
                 type: object
                 properties:
@@ -685,20 +610,6 @@ paths:
           description: causes found
           content:
             application/json:
-              example:
-                data:
-                - id: 68
-                  name: best practice
-                  image: http://feil.net/tiffani
-                  icon: http://daugherty-weber.io/jacquetta
-                  joiners: 7
-                  description: Aut quidem labore veniam.
-                - id: 69
-                  name: synergy
-                  image: http://stanton-morar.biz/emile_ohara
-                  icon: http://huels.org/jose.ratke
-                  joiners: 8
-                  description: Rem laborum dolores corrupti.
               schema:
                 type: object
                 properties:
@@ -734,13 +645,6 @@ paths:
           description: cause found
           content:
             application/json:
-              example:
-                id: 70
-                name: ideate
-                image: http://green-collins.biz/dave
-                icon: http://marquardt-zieme.co/marlin
-                joiners: 28
-                description: Nisi itaque ducimus qui.
               schema:
                 type: object
                 properties:
@@ -772,13 +676,6 @@ paths:
           description: faqs found
           content:
             application/json:
-              example:
-                data:
-                - id: 1
-                  question: gamification
-                  answer: out of pocket
-                  created_at: '2023-01-02T21:49:49.856Z'
-                  updated_at: '2023-01-02T21:49:49.856Z'
               schema:
                 type: object
                 properties:
@@ -799,16 +696,6 @@ paths:
           description: offers found
           content:
             application/json:
-              example:
-                data:
-                - id: 1
-                  title: make it actionable
-                  description: Quia illum id dolorem.
-                  link: http://stokes.biz/arlie
-                  campaign_id: 49
-                  created_at: '2023-01-02T21:49:49.892Z'
-                  updated_at: '2023-01-02T21:49:49.892Z'
-                  campaign_action_id: 25
               schema:
                 type: object
                 properties:
@@ -844,16 +731,6 @@ paths:
           description: offer found
           content:
             application/json:
-              example:
-                data:
-                  id: 2
-                  title: learnings
-                  description: Sed est ratione sit.
-                  link: http://ebert.io/valentin_watsica
-                  campaign_id: 52
-                  created_at: '2023-01-02T21:49:49.922Z'
-                  updated_at: '2023-01-02T21:49:49.922Z'
-                  campaign_action_id: 27
               schema:
                 type: object
                 properties:
@@ -885,29 +762,6 @@ paths:
           description: organisations found
           content:
             application/json:
-              example:
-                data:
-                - id: 4
-                  name: agile marketing
-                  description: Eum soluta facilis ullam.
-                  logo_link: http://mayert.name/arnulfo_schimmel
-                  created_at: '2023-01-02T21:49:49.930Z'
-                  updated_at: '2023-01-02T21:49:49.930Z'
-                  email: rusty@lynch.name
-                  website: http://kuvalis.net/carlita_larson
-                  IG_link: http://koepp-schuppe.net/stacey
-                  FB_link: http://marvin.co/cathie
-                  twitter_link: http://keebler.biz/kurt.johnston
-                  extra_text_1: Hic molestiae alias porro.
-                  extra_text_2:
-                  extra_text_3:
-                  extra_link_1: http://luettgen-gorczany.biz/dee.mueller
-                  extra_link_2:
-                  extra_link_3:
-                  organisation_type:
-                  code: ILXSCWVT
-                  geographic_reach:
-                  campaigns: []
               schema:
                 type: object
                 properties:
@@ -934,28 +788,6 @@ paths:
           description: organisation found
           content:
             application/json:
-              example:
-                data:
-                  id: 5
-                  name: had to 'punt' on that
-                  description: Eligendi molestiae quos laborum.
-                  logo_link: http://daugherty.net/dawna.bogan
-                  created_at: '2023-01-02T21:49:49.942Z'
-                  updated_at: '2023-01-02T21:49:49.942Z'
-                  email: isaac@yost.info
-                  website: http://tromp.info/kasey
-                  IG_link: http://willms-daugherty.net/dorene
-                  FB_link: http://pacocha.biz/laverne
-                  twitter_link: http://boyle.biz/janet.flatley
-                  extra_text_1: Fuga unde qui eum.
-                  extra_text_2:
-                  extra_text_3:
-                  extra_link_1: http://flatley.com/jamee
-                  extra_link_2:
-                  extra_link_3:
-                  organisation_type:
-                  code: YCJMZTQP
-                  geographic_reach:
               schema:
                 type: object
                 properties:
@@ -976,15 +808,6 @@ paths:
           description: press_coverage found
           content:
             application/json:
-              example:
-                data:
-                - id: 1
-                  image_url: http://jacobi.biz/marcelene.mayer
-                  link: http://watsica-mayer.biz/marcella_davis
-                  media_name: button up the loose ends
-                  created_at: '2023-01-02T21:49:49.959Z'
-                  updated_at: '2023-01-02T21:49:49.959Z'
-                  title: best practice
               schema:
                 type: object
                 properties:
@@ -1011,15 +834,6 @@ paths:
           description: press_coverage found
           content:
             application/json:
-              example:
-                data:
-                  id: 2
-                  image_url: http://bailey.org/kimber.heller
-                  link: http://zulauf.io/garnett.pollich
-                  media_name: thought leadership
-                  created_at: '2023-01-02T21:49:49.964Z'
-                  updated_at: '2023-01-02T21:49:49.964Z'
-                  title: streamline
               schema:
                 type: object
                 properties:
@@ -1040,12 +854,6 @@ paths:
           description: quizzes found
           content:
             application/json:
-              example:
-                data:
-                - id: 1
-                  title: impact map
-                  description: Repudiandae ipsum commodi sit.
-                  questions: []
               schema:
                 type: object
                 properties:
@@ -1075,12 +883,6 @@ paths:
           description: quiz found
           content:
             application/json:
-              example:
-                data:
-                  id: 2
-                  title: get a pulse on
-                  description: Modi non eius accusantium.
-                  questions: []
               schema:
                 type: object
                 properties:
@@ -1111,43 +913,6 @@ paths:
           description: Campaign Actions found!
           content:
             application/json:
-              example:
-                data:
-                - id: 29
-                  title: circle back
-                  link: http://fisher-jacobs.co/clair
-                  type:
-                  campaign_id: 55
-                  created_at: '2023-01-02T21:49:50.037Z'
-                  updated_at: '2023-01-02T21:49:50.037Z'
-                  what_description: Excepturi nihil non animi.
-                  why_description: Accusantium qui veritatis magnam.
-                  time: 0.1
-                  enabled: true
-                  release_date: '2023-05-18T00:00:00.000Z'
-                  end_date: '2023-11-04T00:00:00.000Z'
-                  of_the_month: false
-                  recommended: false
-                  causes:
-                  - id: 87
-                    image: http://rau-sporer.io/jessie
-                    icon: http://zulauf-lemke.io/genevieve.schaefer
-                    name: buying cycle
-                    description: Quia ea molestiae eius.
-                    joiners: 40
-                    created_at: '2023-01-02T21:49:50.030Z'
-                    updated_at: '2023-01-02T21:49:50.030Z'
-                    joined: Authentication failed
-                  - id: 89
-                    image: http://prohaska.biz/oswaldo
-                    icon: http://fritsch.biz/broderick
-                    name: market share
-                    description: Earum quidem sed adipisci.
-                    joiners: 80
-                    created_at: '2023-01-02T21:49:50.039Z'
-                    updated_at: '2023-01-02T21:49:50.039Z'
-                    joined: Authentication failed
-                  completed: Authentication failed
               schema:
                 type: object
                 properties:
@@ -1197,43 +962,6 @@ paths:
           description: Campaign Action found!
           content:
             application/json:
-              example:
-                data:
-                - id: 33
-                  title: sprint to the finish line
-                  link: http://carroll.org/carey
-                  type:
-                  campaign_id: 59
-                  created_at: '2023-01-02T21:49:50.127Z'
-                  updated_at: '2023-01-02T21:49:50.127Z'
-                  what_description: Saepe quas omnis enim.
-                  why_description: Et maiores voluptas ex.
-                  time: 0.1
-                  enabled: true
-                  release_date: '2023-12-22T00:00:00.000Z'
-                  end_date: '2023-12-25T00:00:00.000Z'
-                  of_the_month: false
-                  recommended: false
-                  causes:
-                  - id: 99
-                    image: http://oreilly-stoltenberg.com/rhett
-                    icon: http://barrows.net/marietta
-                    name: swim lane
-                    description: Rem omnis qui possimus.
-                    joiners: 95
-                    created_at: '2023-01-02T21:49:50.118Z'
-                    updated_at: '2023-01-02T21:49:50.118Z'
-                    joined: Authentication failed
-                  - id: 101
-                    image: http://waters-kunze.io/jenine_johns
-                    icon: http://paucek-lind.io/cherilyn_feil
-                    name: circle back
-                    description: Voluptatem ut architecto libero.
-                    joiners: 75
-                    created_at: '2023-01-02T21:49:50.129Z'
-                    updated_at: '2023-01-02T21:49:50.129Z'
-                    joined: Authentication failed
-                  completed: Authentication failed
               schema:
                 type: object
                 properties:
@@ -1287,44 +1015,6 @@ paths:
           description: Campaign Action found! (with user header)
           content:
             application/json:
-              example:
-                data:
-                  id: 34
-                  title: get value out of the conversation
-                  link: http://runolfsson.net/marget
-                  type:
-                  campaign_id: 60
-                  created_at: '2023-01-02T21:49:50.143Z'
-                  updated_at: '2023-01-02T21:49:50.143Z'
-                  what_description: Numquam asperiores autem fuga.
-                  why_description: Nihil officia culpa amet.
-                  time: 0.1
-                  enabled: true
-                  release_date: '2023-08-26T00:00:00.000Z'
-                  end_date: '2023-09-29T00:00:00.000Z'
-                  of_the_month: false
-                  recommended: false
-                  causes:
-                  - id: 102
-                    image: http://wilkinson-hills.co/arnette.mckenzie
-                    icon: http://littel-botsford.info/cristin_cremin
-                    name: granular
-                    description: Architecto nihil autem dicta.
-                    joiners: 20
-                    created_at: '2023-01-02T21:49:50.137Z'
-                    updated_at: '2023-01-02T21:49:50.137Z'
-                    joined: false
-                  - id: 104
-                    image: http://blanda.com/avis
-                    icon: http://rice.io/gertrud
-                    name: sales funnel
-                    description: At et sed nobis.
-                    joiners: 6
-                    created_at: '2023-01-02T21:49:50.146Z'
-                    updated_at: '2023-01-02T21:49:50.146Z'
-                    joined: false
-                  completed: false
-
               schema:
                 type: object
                 properties:
@@ -1480,10 +1170,6 @@ paths:
           description: Campaign found!
           content:
             application/json:
-
-              example:
-                data: []
-
               schema:
                 type: object
                 properties:
@@ -1530,17 +1216,6 @@ paths:
           description: Cause found
           content:
             application/json:
-              example:
-                data:
-                - id: 133
-                  image: http://jakubowski.biz/shirl.labadie
-                  icon: http://jakubowski-skiles.co/chassidy_sipes
-                  name: bucketize it
-                  description: Eligendi distinctio nobis nulla.
-                  joiners: 91
-                  created_at: '2023-01-02T21:49:50.374Z'
-                  updated_at: '2023-01-02T21:49:50.374Z'
-                  joined: false
               schema:
                 type: object
                 properties:
@@ -1596,39 +1271,6 @@ paths:
           description: Learning Resource found!
           content:
             application/json:
-              example:
-                data:
-                - id: 4
-                  title: expansion play
-                  time: 0.1
-                  link: http://fisher-fay.io/starla.dare
-                  type:
-                  learning_topic_id: 4
-                  created_at: '2023-01-02T21:49:50.512Z'
-                  updated_at: '2023-01-02T21:49:50.512Z'
-                  source:
-                  release_date: '2023-03-07T00:00:00.000Z'
-                  end_date: '2023-06-14T00:00:00.000Z'
-                  causes:
-                  - id: 146
-                    image: http://schimmel.com/maira_hoppe
-                    icon: http://larkin-swift.info/danilo
-                    name: home stretch
-                    description: Fugiat nihil praesentium labore.
-                    joiners: 5
-                    created_at: '2023-01-02T21:49:50.504Z'
-                    updated_at: '2023-01-02T21:49:50.504Z'
-                    joined: false
-                  - id: 148
-                    image: http://hills.biz/toney_gottlieb
-                    icon: http://mertz.io/herb_kunde
-                    name: thought leadership
-                    description: Saepe voluptate animi autem.
-                    joiners: 71
-                    created_at: '2023-01-02T21:49:50.514Z'
-                    updated_at: '2023-01-02T21:49:50.514Z'
-                    joined: false
-                  completed: false
               schema:
                 type: object
                 properties:
@@ -1679,39 +1321,6 @@ paths:
           description: Learning Resource found! (with user header)
           content:
             application/json:
-              example:
-                data:
-                  id: 7
-                  title: agile marketing
-                  time: 0.1
-                  link: http://crona-macgyver.com/norris
-                  type:
-                  learning_topic_id: 7
-                  created_at: '2023-01-02T21:49:50.580Z'
-                  updated_at: '2023-01-02T21:49:50.580Z'
-                  source:
-                  release_date: '2023-03-14T00:00:00.000Z'
-                  end_date: '2023-09-04T00:00:00.000Z'
-                  causes:
-                  - id: 155
-                    image: http://monahan-schamberger.info/barry
-                    icon: http://reichert.net/lawana_vonrueden
-                    name: growth unit
-                    description: Eum officiis facere dolor.
-                    joiners: 56
-                    created_at: '2023-01-02T21:49:50.573Z'
-                    updated_at: '2023-01-02T21:49:50.573Z'
-                    joined: false
-                  - id: 157
-                    image: http://hane.net/brooks
-                    icon: http://cassin-johnson.io/selena
-                    name: infographic
-                    description: Laudantium quia aut accusamus.
-                    joiners: 57
-                    created_at: '2023-01-02T21:49:50.582Z'
-                    updated_at: '2023-01-02T21:49:50.582Z'
-                    joined: false
-                  completed: true
               schema:
                 type: object
                 properties:
@@ -1753,39 +1362,6 @@ paths:
           description: Learning Resource found!
           content:
             application/json:
-              example:
-                data:
-                - id: 11
-                  title: out of the box
-                  time: 0.1
-                  link: http://waelchi.info/leigh.bayer
-                  type:
-                  learning_topic_id: 11
-                  created_at: '2023-01-02T21:49:50.669Z'
-                  updated_at: '2023-01-02T21:49:50.669Z'
-                  source:
-                  release_date: '2023-10-12T00:00:00.000Z'
-                  end_date: '2023-12-19T00:00:00.000Z'
-                  causes:
-                  - id: 167
-                    image: http://bahringer.info/brendon_hammes
-                    icon: http://schiller.name/walter.sawayn
-                    name: get value out of the conversation
-                    description: Nam occaecati in eos.
-                    joiners: 1
-                    created_at: '2023-01-02T21:49:50.661Z'
-                    updated_at: '2023-01-02T21:49:50.661Z'
-                    joined: Authentication failed
-                  - id: 169
-                    image: http://beer-paucek.info/eleanor_wiegand
-                    icon: http://gulgowski.net/mickey_buckridge
-                    name: penetrate the market
-                    description: Velit doloribus necessitatibus placeat.
-                    joiners: 63
-                    created_at: '2023-01-02T21:49:50.671Z'
-                    updated_at: '2023-01-02T21:49:50.671Z'
-                    joined: Authentication failed
-                  completed: Authentication failed
               schema:
                 type: object
                 properties:
@@ -1826,33 +1402,6 @@ paths:
           description: User actions found
           content:
             application/json:
-              example:
-                data:
-                - id: 35
-                  title: customer journey
-                  link: http://jaskolski-barton.co/delmar_moen
-                  type:
-                  campaign_id: 83
-                  created_at: '2023-01-02T21:49:50.696Z'
-                  updated_at: '2023-01-02T21:49:50.696Z'
-                  what_description: Officiis rerum assumenda voluptate.
-                  why_description: Exercitationem adipisci ducimus officia.
-                  time: 0.1
-                  enabled: true
-                  release_date: '2023-01-12T00:00:00.000Z'
-                  end_date: '2023-10-28T00:00:00.000Z'
-                  of_the_month: false
-                  recommended: false
-                  causes:
-                  - id: 171
-                    image: http://kreiger.org/maxwell_runolfsdottir
-                    icon: http://rice.org/eugene
-                    name: SWAG
-                    description: Sapiente ut officiis molestiae.
-                    joiners: 63
-                    created_at: '2023-01-02T21:49:50.698Z'
-                    updated_at: '2023-01-02T21:49:50.698Z'
-                  completed:
               schema:
                 type: object
                 properties:
@@ -1911,33 +1460,6 @@ paths:
           description: User action found!
           content:
             application/json:
-              example:
-                data:
-                - id: 38
-                  title: agile marketing
-                  link: http://pfannerstill.io/nam
-                  type:
-                  campaign_id: 86
-                  created_at: '2023-01-02T21:49:50.758Z'
-                  updated_at: '2023-01-02T21:49:50.758Z'
-                  what_description: Odio debitis in voluptates.
-                  why_description: Nam consequatur laborum minus.
-                  time: 0.1
-                  enabled: true
-                  release_date: '2023-04-09T00:00:00.000Z'
-                  end_date: '2023-09-09T00:00:00.000Z'
-                  of_the_month: false
-                  recommended: false
-                  causes:
-                  - id: 177
-                    image: http://muller-effertz.info/carla
-                    icon: http://nitzsche.biz/felix_white
-                    name: tee it up
-                    description: Rerum nihil aut veniam.
-                    joiners: 5
-                    created_at: '2023-01-02T21:49:50.759Z'
-                    updated_at: '2023-01-02T21:49:50.759Z'
-                  completed:
               schema:
                 type: object
                 properties:
@@ -2056,7 +1578,7 @@ components:
           nullable: false
         image:
           type: string
-          nullable: false
+          nullable: true
         icon:
           type: string
           nullable: false
@@ -2302,7 +1824,7 @@ components:
           nullable: false
         image_url:
           type: string
-          nullable: false
+          nullable: true
         link:
           type: string
           nullable: false
@@ -2337,7 +1859,7 @@ components:
           nullable: false
         title:
           type: string
-          nullable: true
+          nullable: false
         body:
           type: text
           nullable: true
@@ -2346,7 +1868,7 @@ components:
           nullable: true
         full_article_link:
           type: string
-          nullable: true
+          nullable: false
         video_link:
           type: string
           nullable: true
@@ -2369,7 +1891,7 @@ components:
           nullable: true
         subtitle:
           type: string
-          nullable: true
+          nullable: false
         link_text:
           type: string
           nullable: true
@@ -2378,7 +1900,7 @@ components:
           nullable: true
         enabled:
           type: boolean
-          nullable: true
+          nullable: false
         release_date:
           type: string
           format: date-time
@@ -2409,10 +1931,10 @@ components:
           nullable: false
         title:
           type: string
-          nullable: true
+          nullable: false
         description_app:
           type: text
-          nullable: true
+          nullable: false
         header_image:
           type: string
           nullable: true
@@ -2432,7 +1954,7 @@ components:
           nullable: true
         enabled:
           type: boolean
-          nullable: true
+          nullable: false
         start_date:
           type: string
           format: date-time
@@ -2443,19 +1965,19 @@ components:
           nullable: true
         short_name:
           type: string
-          nullable: true
+          nullable: false
         infographic_url:
           type: string
           nullable: true
         of_the_month:
           type: boolean
-          nullable: true
+          nullable: false
         recommended:
           type: boolean
-          nullable: true
+          nullable: false
         status:
           type: integer
-          nullable: true
+          nullable: false
       additionalProperties: false
       required:
       - id

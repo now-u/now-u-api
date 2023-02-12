@@ -5,8 +5,8 @@ FactoryBot.define do
     title { Faker::Marketing.buzzwords }
     time  { 0.1 }
     link { Faker::Internet.url }
-    type { nil }
-    source { nil }
+    type { "video" }
+    source { "source" }
     release_date { Faker::Date.in_date_period }
     end_date { Faker::Date.in_date_period }
     association :learning_topic

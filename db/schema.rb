@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_23_221442) do
+ActiveRecord::Schema.define(version: 2023_02_12_122805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,16 +37,18 @@ ActiveRecord::Schema.define(version: 2023_01_23_221442) do
   end
 
   create_table "admins", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
+    t.string "email", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.string "groups", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "admin_role"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
     t.index ["email"], name: "index_admins_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
   create_table "app_versions", force: :cascade do |t|
@@ -58,20 +60,20 @@ ActiveRecord::Schema.define(version: 2023_01_23_221442) do
   end
 
   create_table "articles", force: :cascade do |t|
-    t.string "title"
+    t.string "title", null: false
     t.text "body"
     t.string "header_image"
-    t.string "full_article_link"
+    t.string "full_article_link", null: false
     t.string "video_link"
     t.integer "campaign_action_id"
     t.integer "campaign_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "video_of_the_day", default: false
-    t.string "subtitle"
+    t.string "subtitle", null: false
     t.string "link_text"
     t.string "source"
-    t.boolean "enabled", default: false
+    t.boolean "enabled", default: false, null: false
     t.datetime "release_date"
   end
 
@@ -104,20 +106,20 @@ ActiveRecord::Schema.define(version: 2023_01_23_221442) do
   end
 
   create_table "campaign_actions", force: :cascade do |t|
-    t.string "title"
-    t.string "link"
-    t.string "type"
+    t.string "title", null: false
+    t.string "link", null: false
+    t.string "type", null: false
     t.integer "campaign_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "what_description"
-    t.string "why_description"
-    t.float "time"
-    t.boolean "enabled", default: false
+    t.string "what_description", null: false
+    t.string "why_description", null: false
+    t.float "time", null: false
+    t.boolean "enabled", default: false, null: false
     t.datetime "release_date"
     t.datetime "end_date"
-    t.boolean "of_the_month"
-    t.boolean "recommended"
+    t.boolean "of_the_month", default: false, null: false
+    t.boolean "recommended", default: false, null: false
   end
 
   create_table "campaign_goals", force: :cascade do |t|
@@ -128,21 +130,21 @@ ActiveRecord::Schema.define(version: 2023_01_23_221442) do
   end
 
   create_table "campaigns", force: :cascade do |t|
-    t.string "title"
-    t.text "description_app"
+    t.string "title", null: false
+    t.text "description_app", null: false
     t.string "header_image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "video_link"
     t.text "description_web"
-    t.boolean "enabled", default: false
+    t.boolean "enabled", default: false, null: false
     t.datetime "start_date"
     t.datetime "end_date"
-    t.string "short_name"
+    t.string "short_name", null: false
     t.string "infographic_url"
-    t.boolean "of_the_month"
-    t.boolean "recommended"
-    t.integer "status", default: 0
+    t.boolean "of_the_month", null: false
+    t.boolean "recommended", null: false
+    t.integer "status", default: 0, null: false
   end
 
   create_table "cause_actions", force: :cascade do |t|
@@ -173,7 +175,7 @@ ActiveRecord::Schema.define(version: 2023_01_23_221442) do
   end
 
   create_table "causes", force: :cascade do |t|
-    t.string "image", null: false
+    t.string "image"
     t.string "icon", null: false
     t.string "name", null: false
     t.string "description", null: false
@@ -206,14 +208,14 @@ ActiveRecord::Schema.define(version: 2023_01_23_221442) do
   end
 
   create_table "learning_resources", force: :cascade do |t|
-    t.string "title"
-    t.float "time"
-    t.string "link"
-    t.string "type"
+    t.string "title", null: false
+    t.float "time", null: false
+    t.string "link", null: false
+    t.string "type", null: false
     t.integer "learning_topic_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "source"
+    t.string "source", null: false
     t.datetime "release_date"
     t.datetime "end_date"
   end
@@ -279,7 +281,7 @@ ActiveRecord::Schema.define(version: 2023_01_23_221442) do
   end
 
   create_table "press_coverage_articles", force: :cascade do |t|
-    t.string "image_url", null: false
+    t.string "image_url"
     t.string "link", null: false
     t.string "media_name", null: false
     t.datetime "created_at", null: false

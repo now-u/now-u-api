@@ -3,7 +3,7 @@
 class LearningResource < ApplicationRecord
   self.inheritance_column = nil
 
-  belongs_to :learning_topic
+  belongs_to :learning_topic, optional: true
 
   include PgSearch::Model
   pg_search_scope :search, against: %i[title type]

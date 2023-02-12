@@ -15,7 +15,8 @@ class Admin < ApplicationRecord
 
   enum admin_roles: {
     campaign_researcher: 1,
-    blog_writer: 2,
+    # TODO This can be removed
+    # blog_writer: 2,
     internal_notifications: 4,
     news: 8,
     analytics: 16,
