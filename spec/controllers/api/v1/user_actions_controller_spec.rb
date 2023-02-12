@@ -4,10 +4,8 @@ require 'rails_helper'
 
 RSpec.describe Api::V1::UserActionsController, type: :controller do
   let!(:user) { User.create(email: 'ok@ok.com', token: 'abc1234', verified: true, points: points) }
-  let!(:campaign) { Campaign.create!(title: 'My campaign') }
-  let!(:campaign_action) do
-    CampaignAction.create!(title: 'My action', campaign_id: campaign.id, enabled: true)
-  end
+  let!(:campaign) { FactoryBot.create(:campaign) }
+  let!(:campaign_action) { FactoryBot.create(:campaign_action, campaign_id: campaign.id, enabled: true)}
   let!(:points) { 0 }
 
   describe '#destroy' do
