@@ -20,3 +20,6 @@ migrate: ## Run migrations
 
 create-empty-migration: ## Create an empty migration 
 	docker-compose exec api rails g migration
+
+create-super-user: ## Create a test super user with creds testuser@now-u.com, strongpassword
+	docker-compose exec api bash -c echo "Admin.create!(email: "testuser@now-u.com", password: "strongpassword", admin_role: 64)" | rails c

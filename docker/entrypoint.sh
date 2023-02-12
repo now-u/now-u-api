@@ -17,8 +17,8 @@ bundle exec rake db:create
 echo "Run migrations"
 bundle exec rake db:migrate
 
-echo "Seed database"
-bundle exec rake db:seed
+# echo "Seed database"
+# bundle exec rake db:seed
 
 echo "Removing contents of tmp dirs"
 bin/rake tmp:clear

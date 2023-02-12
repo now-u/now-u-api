@@ -5,8 +5,9 @@ class Article < ApplicationRecord
 
   has_one_attached :header_image_s3
 
-  belongs_to :campaign
-  belongs_to :campaign_action
+  # TODO Remove these
+  belongs_to :campaign, optional: true
+  belongs_to :campaign_action, optional: true
 
   scope :active, lambda {
     where('enabled IS TRUE AND release_date IS NULL').or(

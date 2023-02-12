@@ -3,7 +3,8 @@
 class CampaignAction < ApplicationRecord
   self.inheritance_column = nil
 
-  belongs_to :campaign
+  # TODO Remove this
+  belongs_to :campaign, optional: true
   has_many :articles
   has_many :offers
   has_many :blog_articles
