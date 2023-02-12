@@ -308,4 +308,40 @@ Devise.setup do |config|
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
+
+    # ==> Configuration for :saml_authenticatable
+
+    # Create user if the user does not exist. (Default is false)
+    config.saml_create_user = true
+
+    # Update the attributes of the user after a successful login. (Default is false)
+    config.saml_update_user = true
+
+    # Set the default user key. The user will be looked up by this key. Make
+    # sure that the Authentication Response includes the attribute.
+    config.saml_default_user_key = :email
+
+    # Optional. This stores the session index defined by the IDP during login.  If provided it will be used as a salt
+    # for the user's session to facilitate an IDP initiated logout request.
+    config.saml_session_index_key = :session_index
+
+    # You can set this value to use Subject or SAML assertation as info to which email will be compared
+    # If you don't set it then email will be extracted from SAML assertation attributes
+    config.saml_use_subject = true
+
+    # Configure with your SAML settings (see [ruby-saml][] for more information).
+    server_url = "https://#{ENV['BASE_URL']}"
+    config.saml_configure do |settings|
+      settings.assertion_consumer_service_url     = "#{server_url}/admins/saml/auth"
+      settings.assertion_consumer_service_binding = "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+      settings.name_identifier_format             = "urn:oasis:names:tc:SAML:2.0:nameid-format:transient"
+      settings.issuer                             = "#{server_url}/admins/saml/metadata"
+      settings.authn_context                      = ""
+      settings.idp_slo_target_url                 = ""
+      settings.idp_sso_target_url                 = "https://accounts.google.com/o/saml2/idp?idpid=C00xuarny"
+      settings.idp_cert                           = <<-CERT.chomp
+        #{ENV['GOOGLE_SAML_CERT'].gsub "\\n", "\n"}
+
+      CERT
+    end
 end
