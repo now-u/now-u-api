@@ -24,11 +24,11 @@ Prerequisites:
 - `make`
 
 #### Local
-1. First clone this repo. Prerequisites include Ruby version 2.5.0 and Ruby on Rails 5.2.3, as stated in the Gemfile at the time of writing this. 
+1. First clone this repo. Prerequisites include Ruby version 2.7.4 and Ruby on Rails 5.2.3, as stated in the Gemfile at the time of writing this. 
 2. Make sure you are on the `master` branch
 3. Run the following commands
 ```
-$ gem install bundler:2.0.2
+$ gem install bundler:2.2.24
 ```
 then...
 ```
@@ -59,3 +59,6 @@ To make swagger api documentation, run the following command
 
 `SWAGGER_DRY_RUN=0 RAILS_ENV=test rails rswag`
 
+## Sentry
+
+RAILS_ENV=production || staging

@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class Cause < ApplicationRecord
+  include ::V2::Image::ImageService
+
+  has_one_attached :image_s3
+
   has_many :cause_actions, dependent: :destroy
   has_many :campaign_actions, through: :cause_actions
 
@@ -12,4 +16,12 @@ class Cause < ApplicationRecord
 
   has_many :user_causes
   has_many :users, through: :user_causes
+
+  def image
+    if image_s3.attached?
+      get_image_path(image_s3)
+    else
+      super
+    end
+  end
 end

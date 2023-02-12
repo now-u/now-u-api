@@ -3,7 +3,7 @@
 class Api::V2::UserCausesController < APIApplicationController
   rescue_from JSON::ParserError, with: :invalid_json_message
 
-  before_action :set_user, only: [:create]
+  before_action :set_user, only: [:create, :show]
 
   def create
     if causes_from_params && user.causes = causes_from_params
@@ -11,6 +11,10 @@ class Api::V2::UserCausesController < APIApplicationController
     else
       render json: { data: "Something went wrong" }, status: 501
     end
+  end
+
+  def show
+    render json: { data: user.causes }, status: :ok
   end
 
 private

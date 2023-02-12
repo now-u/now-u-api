@@ -41,5 +41,8 @@ module NowUApi
 
     config.assets.paths << Rails.root.join('node_modules')
     config.assets.precompile += %w( application.css )
+    config.assets.configure do |env|
+      env.export_concurrent = false
+    end
   end
 end

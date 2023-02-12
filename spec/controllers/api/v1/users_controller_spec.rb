@@ -131,10 +131,26 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       end
     end
 
-    it 'sends an email' do
-      register_user
+    context 'sending emails' do
+      context 'with no errors' do
+        it 'sends an email' do
+          register_user
+  
+          expect(email_client).to have_received(:send).once
+        end
+      end
+  
+      context 'with errors' do
+        before do
+          allow(email_client).to receive(:send).and_raise(StandardError)
+        end
 
-      expect(email_client).to have_received(:send).once
+        it 'raises a sentry error' do
+          expect(Sentry).to receive(:capture_exception).with StandardError
+          
+          register_user
+        end
+      end
     end
 
     it 'does not add user to mailchimp' do

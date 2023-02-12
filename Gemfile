@@ -7,7 +7,7 @@ ruby '2.7.4'
 
 gem 'active_hash', '~> 3.1'
 gem 'active_model_serializers', '~> 0.10.10'
-gem 'aws-sdk-ses', '~> 1.46'
+gem 'aws-sdk-ses', '~> 1.49'
 gem 'aws-sdk-sns', '~> 1.52'
 gem 'bitly', '~> 2.0', '>= 2.0.1'
 gem 'database_cleaner'
@@ -25,6 +25,9 @@ gem 'cancancan'
 gem 'faker'
 gem 'rswag'
 gem 'bootstrap-sass', '3.4.1'
+gem 'aws-sdk-s3', require: false
+gem 'sentry-ruby'
+gem 'sentry-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -38,6 +41,7 @@ gem 'rack-cors'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'dotenv-rails'
   gem 'rubocop'
   gem 'shoulda-matchers', '~> 5.1'
 end

@@ -27,7 +27,7 @@ RailsAdmin.config do |config|
 
   config.actions do
     dashboard
-    index     
+    index
     new
     export
     bulk_delete
@@ -56,6 +56,15 @@ RailsAdmin.config do |config|
     end
     field :causes do
       required true
+    end
+  end
+
+  config.model 'Cause' do
+    fields.each do |f|
+      if f.name == :user_causes
+        next
+      end
+      field f.name
     end
   end
 
