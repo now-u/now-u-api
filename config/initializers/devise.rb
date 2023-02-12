@@ -340,7 +340,7 @@ Devise.setup do |config|
       settings.idp_slo_target_url                 = ""
       settings.idp_sso_target_url                 = "https://accounts.google.com/o/saml2/idp?idpid=C00xuarny"
       settings.idp_cert                           = <<-CERT.chomp
-        #{ENV['GOOGLE_SAML_CERT'].gsub "\\n", "\n"}
+        #{(ENV['GOOGLE_SAML_CERT'] || "").gsub "\\n", "\n"}
 
       CERT
     end
