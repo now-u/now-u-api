@@ -223,7 +223,7 @@ GEM
       activerecord (>= 5.2)
       activesupport (>= 5.2)
     public_suffix (4.0.6)
-    puma (5.6.2)
+    puma (6.1.0)
       nio4r (~> 2.0)
     racc (1.6.0)
     rack (2.2.3)
@@ -404,7 +404,7 @@ DEPENDENCIES
   listen
   pg (>= 0.18, < 2.0)
   pg_search
-  puma (~> 5.6)
+  puma (~> 6.1)
   rack-cors
   rails (~> 5.2.3)
   rails-controller-testing
