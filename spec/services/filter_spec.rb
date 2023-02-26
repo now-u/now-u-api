@@ -37,29 +37,29 @@ RSpec.describe V2::Filters::Filter, type: :model do
         expect(subject.call).to eq CampaignAction.all
       end
     end
-  
+
     context "with multiple filters" do
       let!(:request_url) { "https://ilovecats.com/bigkahunaburger?recommended=true&of_the_month=true" }
-  
+
       it "filters recursively through the filter set" do
         expect(subject.call.length).to eq 2
         expect(subject.call).to eq [campaign_action1, campaign_action3]
       end
     end
-  
+
     context "with a user header" do
       let!(:headers) { {'token' => user.token} }
-  
+
       context "with a single user specific filter" do
         context "joined filter" do
           let!(:request_url) { "https://ilovecats.com/bigkahunaburger?joined=true" }
-  
+
           it "returns users joined campaign actions" do
             expect(subject.call.length).to eq 2
             expect(subject.call).to eq [campaign_action, campaign_action3]
           end
         end
-  
+
         context "completed filter" do
           let!(:request_url) { "https://ilovecats.com/bigkahunaburger?completed=true" }
 
@@ -68,17 +68,17 @@ RSpec.describe V2::Filters::Filter, type: :model do
             user_action.status = "completed"
             user_action.save!
           end
-  
+
           it "returns users completed campaign actions" do
             expect(subject.call.length).to eq 1
             expect(subject.call).to eq [campaign_action]
           end
         end
       end
-  
+
       context "with multiple filters, mix of user-specific and model specific" do
         let!(:request_url) { "https://ilovecats.com/bigkahunaburger?recommended=true&joined=true" }
-  
+
         it "filters through user attributes" do
           expect(subject.call.length).to eq 1
           expect(subject.call).to eq [campaign_action3]
@@ -94,7 +94,7 @@ RSpec.describe V2::Filters::Filter, type: :model do
             expect(subject.call).to include(campaign_action, campaign_action2)
           end
         end
-  
+
         context "with the time_lte filter" do
           let!(:request_url) { "https://ilovecats.com/bigkahunaburger?time__lte=8" }
 
@@ -146,37 +146,54 @@ RSpec.describe V2::Filters::Filter, type: :model do
         expect(subject.call).to eq Campaign.all
       end
     end
-  
+
     context "with multiple filters" do
       let!(:request_url) { "https://ilovecats.com/bigkahunaburger?recommended=true&of_the_month=true" }
-  
+
       it "filters recursively through the filter set" do
         expect(subject.call.length).to eq 2
         expect(subject.call).to eq [campaign1, campaign3]
       end
     end
-  
+
     context "with a user header" do
       let!(:headers) { {'token' => user.token} }
-  
-      context "with a single user specific filter" do  
+
+      context "with a single user specific filter" do
         context "completed filter" do
-          let!(:request_url) { "https://ilovecats.com/bigkahunaburger?completed=true" }
-          # create a new learning topic with the campaign
-          let!(:learning_topic) { create(:learning_topic, campaign_id: campaign.id) }
-          # create a new learning resource with the topic and the user
-          let!(:learning_resource) { create(:learning_resource, learning_topic_id: learning_topic.id) }
-          # create a new campaign action with the campaign and the user
-          let!(:campaign_action) { create(:campaign_action, campaign_id: campaign.id) }
-  
-          before do
-            user.campaign_actions << campaign_action
-            user.learning_resources << learning_resource
+          context "set to true" do
+            let!(:request_url) { "https://ilovecats.com/bigkahunaburger?completed=true" }
+            # create a new learning topic with the campaign
+            let!(:learning_topic) { create(:learning_topic, campaign_id: campaign.id) }
+            # create a new learning resource with the topic and the user
+            let!(:learning_resource) { create(:learning_resource, learning_topic_id: learning_topic.id) }
+            # create a new campaign action with the campaign and the user
+            let!(:campaign_action) { create(:campaign_action, campaign_id: campaign.id) }
+
+            before do
+              user.campaign_actions << campaign_action
+              user.learning_resources << learning_resource
+            end
+
+            it "returns users completed campaign actions" do
+              expect(subject.call.length).to eq 1
+              expect(subject.call).to eq [campaign]
+            end
           end
 
-          it "returns users completed campaign actions" do
-            expect(subject.call.length).to eq 1
-            expect(subject.call).to eq [campaign]
+          context "set to false" do
+            let!(:request_url) { "https://ilovecats.com/bigkahunaburger?completed=false" }
+            # create a new learning topic with the campaign
+            let!(:learning_topic) { create(:learning_topic, campaign_id: campaign.id) }
+            # create a new learning resource with the topic and the user
+            let!(:learning_resource) { create(:learning_resource, learning_topic_id: learning_topic.id) }
+            # create a new campaign action with the campaign and the user
+            let!(:campaign_action) { create(:campaign_action, campaign_id: campaign.id) }
+
+            it "returns users incomplete campaign actions" do
+              expect(subject.call.length).to eq 4
+              expect(subject.call).to include campaign
+            end
           end
         end
       end
@@ -196,12 +213,24 @@ RSpec.describe V2::Filters::Filter, type: :model do
       let!(:headers) { {'token' => user.token} }
 
       context "with the joined filter" do
-        let!(:request_url) { "https://ilovecats.com/bigkahunaburger?joined=true" }
+        context "set to true" do
+          let!(:request_url) { "https://ilovecats.com/bigkahunaburger?joined=true" }
 
-        it "returns the causes that the user has joined" do
-          expect(subject.call.length).to eq 2
-          expect(subject.call).to include (cause)
-          expect(subject.call).to include (cause3)
+          it "returns the causes that the user has joined" do
+            expect(subject.call.length).to eq 2
+            expect(subject.call).to include (cause)
+            expect(subject.call).to include (cause3)
+          end
+        end
+
+        context "set to false" do
+          let!(:request_url) { "https://ilovecats.com/bigkahunaburger?joined=false" }
+
+          it "returns the causes that the user has not joined" do
+            expect(subject.call.length).to eq 2
+            expect(subject.call).to include (cause1)
+            expect(subject.call).to include (cause2)
+          end
         end
       end
     end
@@ -238,10 +267,10 @@ RSpec.describe V2::Filters::Filter, type: :model do
         expect(subject.call).to eq LearningResource.all
       end
     end
-  
+
     context "with multiple filters" do
       let!(:request_url) { "https://ilovecats.com/bigkahunaburger?cause__in=[#{learning_resource.causes.first.id},#{learning_resource1.causes.first.id}]&limit=2" }
-  
+
       it "filters recursively through the filter set" do
         expect(subject.call.length).to eq 2
         expect(subject.call).to eq [learning_resource, learning_resource1]
@@ -275,17 +304,28 @@ RSpec.describe V2::Filters::Filter, type: :model do
         end
       end
     end
-  
+
     context "with a user header" do
       let!(:headers) { {'token' => user.token} }
-  
-      context "with a single user specific filter" do  
-        context "completed filter" do
-          let!(:request_url) { "https://ilovecats.com/bigkahunaburger?completed=true" }
 
-          it "returns users completed campaign actions" do
-            expect(subject.call.length).to eq 1
-            expect(subject.call).to eq [learning_resource1]
+      context "with a single user specific filter" do
+        context "completed filter" do
+          context "set to true" do
+            let!(:request_url) { "https://ilovecats.com/bigkahunaburger?completed=true" }
+
+            it "returns users completed campaign actions" do
+              expect(subject.call.length).to eq 1
+              expect(subject.call).to eq [learning_resource1]
+            end
+          end
+
+          context "set to false" do
+            let!(:request_url) { "https://ilovecats.com/bigkahunaburger?completed=false" }
+
+            it "returns users incompleted campaign actions" do
+              expect(subject.call.length).to eq 3
+              expect(subject.call).to eq [learning_resource, learning_resource2, learning_resource3]
+            end
           end
         end
       end

@@ -31,12 +31,40 @@ class User < ApplicationRecord
   # In V2, a campaign is completed by the user if:
   # 1. They have completed the learning resources (completed means just 'joined' in the sense that the relationship exists)
   # 2. They have completed the campaign actions (completed means just 'joined' in the sense that the relationship exists)
-  def completed_campaigns_v2
+  def completed_campaigns_v2(boolean = true)
     learning_resource_topic_ids = learning_resources.pluck(:learning_topic_id)
     learning_resource_campaign_ids = LearningTopic.where(id: learning_resource_topic_ids).pluck(:campaign_id)
     campaign_action_ids = campaign_actions.pluck(:campaign_id)
     completed_campaign_ids = learning_resource_campaign_ids & campaign_action_ids
-    Campaign.where(id: completed_campaign_ids)
+    if boolean
+      Campaign.where(id: completed_campaign_ids)
+    else
+      Campaign.where.not(id: completed_campaign_ids)
+    end
+  end
+
+  def campaign_actions(boolean = true)
+    if boolean
+      super()
+    else
+      CampaignAction.where.not(id: super().pluck(:id))
+    end
+  end
+
+  def causes(boolean = true)
+    if boolean
+      super()
+    else
+      Cause.where.not(id: super().pluck(:id))
+    end
+  end
+
+  def learning_resources(boolean = true)
+    if boolean
+      super()
+    else
+      LearningResource.where.not(id: super().pluck(:id))
+    end
   end
 
   def selected_campaigns
@@ -51,9 +79,13 @@ class User < ApplicationRecord
     user_campaigns.where(progress: 100).pluck(:campaign_id)
   end
 
-  def completed_actions_v2
+  def completed_actions_v2(boolean = true)
     completed_ids = user_actions.where(status: 'completed').pluck(:campaign_action_id)
-    campaign_actions.where(id: completed_ids)
+    if boolean
+      campaign_actions.where(id: completed_ids)
+    else
+      campaign_actions.where.not(id: completed_ids)
+    end
   end
 
   def completed_actions
