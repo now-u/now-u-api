@@ -19,12 +19,12 @@ RSpec.describe Api::V2::CampaignActionsController, type: :request do
     get 'Retrieves all Campaign Actions. If user token header present, with a completed: null/completed param' do
       tags 'API::V2(latest) -> Actions'
       produces 'application/json'
-      let(:'token') { user.token }
+      let(:'Authorization') { create_jwt_header(user) }
       
       response '200', 'Campaign actions found' do
         schema type: :object,
         properties: campaign_action_schema
-        parameter name: 'token', :in => :header, :type => :string
+        parameter name: 'Authorization', :in => :header, :type => :string
 
         before do |example|
           campaign_action
@@ -113,12 +113,12 @@ RSpec.describe Api::V2::CampaignActionsController, type: :request do
       tags 'API::V2(latest) -> Actions'
       produces 'application/json'
       parameter name: :id, in: :path, type: :string
-      let(:'token') { user.token }
+      let(:'Authorization') { create_jwt_header(user) }
       
       response '200', 'Campaign Action found! (with user header)' do
         schema type: :object,
         properties: campaign_action_schema
-        parameter name: 'token', :in => :header, :type => :string
+        parameter name: 'Authorization', :in => :header, :type => :string
 
         before do |example|
           campaign_action

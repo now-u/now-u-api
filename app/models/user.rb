@@ -6,7 +6,7 @@ class User < ApplicationRecord
   has_one_attached :profile_picture_s3
 
   validates_uniqueness_of :email
-  validates_uniqueness_of :token
+  validates_uniqueness_of :auth_user_id
 
   has_many :blog_articles
   belongs_to :organisation, optional: true
@@ -20,13 +20,8 @@ class User < ApplicationRecord
   has_many :learning_resources, through: :user_learning_resources
   has_many :user_notifications
   has_many :notifications, through: :user_notifications
-  has_many :user_tokens
 
   enum user_role_id: { user: 1, developer: 2, campaign_admin: 3 }
-
-  def short_token
-    user_tokens.valid.first || user_tokens.create
-  end
 
   # In V2, a campaign is completed by the user if:
   # 1. They have completed the learning resources (completed means just 'joined' in the sense that the relationship exists)
@@ -119,6 +114,19 @@ class User < ApplicationRecord
       get_image_path(profile_picture_s3)
     else
       super
+    end
+  end
+
+  def self.get_user_from_request(request)
+    token = request.headers['Authorization'].try(:split, ' ').try(:last)
+    if not token
+      return nil
+    end
+    begin
+      decoded_token = (JWT.decode token, ENV['SUPABASE_JWT_SECRET'], true, { algorithm: 'HS256' })[0]
+      return User.find_or_create_by(auth_user_id: decoded_token["sub"], email: decoded_token["email"])
+    rescue
+      return nil
     end
   end
 end

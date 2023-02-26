@@ -7,8 +7,6 @@ ruby '2.7.4'
 
 gem 'active_hash', '~> 3.1'
 gem 'active_model_serializers', '~> 0.10.10'
-gem 'aws-sdk-ses', '~> 1.49'
-gem 'aws-sdk-sns', '~> 1.52'
 gem 'bitly', '~> 2.0', '>= 2.0.1'
 gem 'database_cleaner'
 gem 'factory_bot_rails'
@@ -18,7 +16,6 @@ gem 'puma', '~> 5.6'
 gem 'rails', '~> 5.2.3'
 gem 'rails-controller-testing'
 gem 'rspec-rails'
-gem 'sendgrid-ruby'
 gem 'rails_admin'
 gem 'devise'
 gem 'devise_saml_authenticatable'
@@ -29,6 +26,7 @@ gem 'bootstrap-sass', '3.4.1'
 gem 'aws-sdk-s3', require: false
 gem 'sentry-ruby'
 gem 'sentry-rails'
+gem 'jwt'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

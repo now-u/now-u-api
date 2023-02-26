@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe V2::Filters::Filter, type: :model do
   let!(:request_url) { "https://ilovecats.com/bigkahunaburger?completed=true" }
-  let!(:headers) { {'token' => nil} }
+  let!(:headers) { {'Authorization' => nil } }
   let!(:request) { OpenStruct.new(headers: headers, url: request_url) }
   subject { described_class.new(request: request, filter_model: filter_model, data: data_scope) }
 
@@ -48,8 +48,8 @@ RSpec.describe V2::Filters::Filter, type: :model do
     end
 
     context "with a user header" do
-      let!(:headers) { {'token' => user.token} }
-
+      let!(:headers) { {'Authorization' => create_jwt_header(user)} }
+  
       context "with a single user specific filter" do
         context "joined filter" do
           let!(:request_url) { "https://ilovecats.com/bigkahunaburger?joined=true" }
@@ -157,7 +157,7 @@ RSpec.describe V2::Filters::Filter, type: :model do
     end
 
     context "with a user header" do
-      let!(:headers) { {'token' => user.token} }
+      let!(:headers) { {'Authorization' => create_jwt_header(user)} }
 
       context "with a single user specific filter" do
         context "completed filter" do
@@ -210,7 +210,7 @@ RSpec.describe V2::Filters::Filter, type: :model do
     let!(:user) { create(:user, causes: [cause, cause3]) }
 
     context "with user filters" do
-      let!(:headers) { {'token' => user.token} }
+      let!(:headers) { {'Authorization' => create_jwt_header(user)} }
 
       context "with the joined filter" do
         context "set to true" do
@@ -306,8 +306,8 @@ RSpec.describe V2::Filters::Filter, type: :model do
     end
 
     context "with a user header" do
-      let!(:headers) { {'token' => user.token} }
-
+      let!(:headers) { {'Authorization' => create_jwt_header(user)} }
+  
       context "with a single user specific filter" do
         context "completed filter" do
           context "set to true" do

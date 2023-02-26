@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class Api::V1::CampaignsController < APIApplicationController
-  before_action :set_user
-
   def index
     render json: campaign_data, root: 'data', status: :ok, adapter: :json
   end
@@ -21,10 +19,5 @@ class Api::V1::CampaignsController < APIApplicationController
       campaigns = (campaigns + Campaign.current_and_future).uniq if @user&.campaign_admin?
     end
     campaigns
-  end
-
-  def set_user
-    token = request.headers['token']
-    @user = User.find_by(token: token)
   end
 end

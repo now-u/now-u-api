@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::UserActionsController, type: :controller do
-  let!(:user) { User.create(email: 'ok@ok.com', token: 'abc1234', verified: true, points: points) }
+  let!(:user) { FactoryBot.create(:user, email: 'ok@ok.com', points: points) }
   let!(:campaign) { FactoryBot.create(:campaign) }
   let!(:campaign_action) { FactoryBot.create(:campaign_action, campaign_id: campaign.id, enabled: true)}
   let!(:points) { 0 }
@@ -13,7 +13,7 @@ RSpec.describe Api::V1::UserActionsController, type: :controller do
       UserAction.create!(user_id: user.id, campaign_action_id: campaign_action.id, status: 'completed')
     end
     subject(:delete_user_action) do
-      request.headers.merge!('token' => 'abc1234')
+      request.headers.merge!('Authorization' => create_jwt_header(user))
       delete :destroy, params: { id: campaign_action.id }
     end
 
@@ -27,7 +27,7 @@ RSpec.describe Api::V1::UserActionsController, type: :controller do
       UserAction.create!(user_id: user.id, campaign_action_id: campaign_action.id)
     end
     subject(:get_actions) do
-      request.headers.merge!('token' => 'abc1234')
+      request.headers.merge!('Authorization' => create_jwt_header(user))
       get :index
     end
 
@@ -44,7 +44,7 @@ RSpec.describe Api::V1::UserActionsController, type: :controller do
     let(:points) { 4 }
     let(:status) { 'reject' }
     subject(:create_action_with_status) do
-      request.headers.merge!('token' => 'abc1234')
+      request.headers.merge!('Authorization' => create_jwt_header(user))
       post :create, params: { id: campaign_action.id, status: status }
     end
 

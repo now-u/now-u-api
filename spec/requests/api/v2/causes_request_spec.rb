@@ -10,7 +10,7 @@ describe Api::V2::CausesController, type: :request do
   end
 
   path '/api/v2/causes' do
-    get "If no user token header present, returns joined: 'User not authenticated'" do
+    get "If no user token header present, returns joined: false" do
       tags 'API::V2(latest) -> Causes'
       produces 'application/json'
       
@@ -27,11 +27,11 @@ describe Api::V2::CausesController, type: :request do
     get 'Retrieves all Causes. If user token header present, returns with joined: true/false.' do
       tags 'API::V2(latest) -> Causes'
       produces 'application/json'
-      let(:'token') { user.token }
+      let(:'Authorization') { create_jwt_header(user) }
       
       response '200', 'Cause found' do
         schema api_response("cause", true) 
-        parameter name: 'token', :in => :header, :type => :string
+        parameter name: 'Authorization', :in => :header, :type => :string
 
         before do |example|
           submit_request(example.metadata)
@@ -64,7 +64,7 @@ describe Api::V2::CausesController, type: :request do
       end
 
       context "there is no authentication" do
-        let(:'token') { nil }
+        let(:'Authorization') { nil }
 
         before do |example|
           submit_request(example.metadata)
@@ -100,11 +100,11 @@ describe Api::V2::CausesController, type: :request do
       tags 'API::V2(latest) -> Causes'
       produces 'application/json'
       parameter name: :id, in: :path, type: :string
-      let(:'token') { user.token }
+      let(:'Authorization') { create_jwt_header(user) }
       
       response '200', 'Cause found' do
         schema api_response("cause")
-        parameter name: 'token', :in => :header, :type => :string
+        parameter name: 'Authorization', :in => :header, :type => :string
 
         before do |example|
           submit_request(example.metadata)
@@ -137,7 +137,7 @@ describe Api::V2::CausesController, type: :request do
       end
 
       context "there is no authentication" do
-        let(:'token') { nil }
+        let(:'Authorization') { nil }
 
         before do |example|
           submit_request(example.metadata)

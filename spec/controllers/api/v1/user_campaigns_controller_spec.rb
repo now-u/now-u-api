@@ -9,7 +9,7 @@ RSpec.describe Api::V1::UserCampaignsController, type: :controller do
   describe '#create' do
     let(:points) { 0 }
     subject(:create_user_campaign) do
-      request.headers.merge!('token' => user.token )
+      request.headers.merge!('Authorization' => create_jwt_header(user))
       post :create, params: { id: campaign.id }
     end
 
@@ -30,7 +30,7 @@ RSpec.describe Api::V1::UserCampaignsController, type: :controller do
     end
 
     subject(:destroy_user_campaign) do
-      request.headers.merge!('token' => user.token)
+      request.headers.merge!('Authorization' => create_jwt_header(user))
       delete :destroy, params: { id: campaign.id }
     end
 

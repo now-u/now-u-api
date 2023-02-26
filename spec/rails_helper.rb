@@ -67,3 +67,20 @@ RSpec.configure do |config|
     end
   end
 end
+
+# Test helpers to create a valid JWT for a user
+def create_jwt(user)
+  payload = {
+    "aud": "authenticated",
+    "exp": Time.now.to_i + 4 * 3600,
+    "sub": user.auth_user_id,
+    "email": user.email,
+    "role": "authenticated",
+    "aal": "aal1",
+  }
+  token = JWT.encode payload, ENV['SUPABASE_JWT_SECRET'], 'HS256'
+end
+
+def create_jwt_header(user)
+  "JWT " + create_jwt(user)
+end
