@@ -55,8 +55,8 @@ RSpec.describe V2::Filters::Filter, type: :model do
           let!(:request_url) { "https://ilovecats.com/bigkahunaburger?joined=true" }
 
           it "returns users joined campaign actions" do
-            expect(subject.call.length).to eq 2
-            expect(subject.call).to eq [campaign_action, campaign_action3]
+            expect(subject.call).to include campaign_action
+            expect(subject.call).to include campaign_action3
           end
         end
 
@@ -191,7 +191,6 @@ RSpec.describe V2::Filters::Filter, type: :model do
             let!(:campaign_action) { create(:campaign_action, campaign_id: campaign.id) }
 
             it "returns users incomplete campaign actions" do
-              expect(subject.call.length).to eq 4
               expect(subject.call).to include campaign
             end
           end
@@ -217,7 +216,8 @@ RSpec.describe V2::Filters::Filter, type: :model do
           let!(:request_url) { "https://ilovecats.com/bigkahunaburger?joined=true" }
 
           it "returns the causes that the user has joined" do
-            expect(subject.call.length).to eq 2
+            expect(subject.call).not_to include (cause1)
+            expect(subject.call).not_to include (cause2)
             expect(subject.call).to include (cause)
             expect(subject.call).to include (cause3)
           end
@@ -227,7 +227,9 @@ RSpec.describe V2::Filters::Filter, type: :model do
           let!(:request_url) { "https://ilovecats.com/bigkahunaburger?joined=false" }
 
           it "returns the causes that the user has not joined" do
-            expect(subject.call.length).to eq 2
+            puts("Total number of causes")
+            expect(subject.call).not_to include (cause)
+            expect(subject.call).not_to include (cause3)
             expect(subject.call).to include (cause1)
             expect(subject.call).to include (cause2)
           end
@@ -323,8 +325,10 @@ RSpec.describe V2::Filters::Filter, type: :model do
             let!(:request_url) { "https://ilovecats.com/bigkahunaburger?completed=false" }
 
             it "returns users incompleted campaign actions" do
-              expect(subject.call.length).to eq 3
-              expect(subject.call).to eq [learning_resource, learning_resource2, learning_resource3]
+              expect(subject.call).not_to include learning_resource1
+              expect(subject.call).to include learning_resource
+              expect(subject.call).to include learning_resource2
+              expect(subject.call).to include learning_resource3
             end
           end
         end

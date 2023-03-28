@@ -79,7 +79,7 @@ class User < ApplicationRecord
     if boolean
       campaign_actions.where(id: completed_ids)
     else
-      campaign_actions.where.not(id: completed_ids)
+      CampaignAction.where.not(id: completed_ids)
     end
   end
 
@@ -125,7 +125,8 @@ class User < ApplicationRecord
     begin
       decoded_token = (JWT.decode token, ENV['SUPABASE_JWT_SECRET'], true, { algorithm: 'HS256' })[0]
       return User.find_or_create_by(auth_user_id: decoded_token["sub"], email: decoded_token["email"])
-    rescue
+    rescue => error
+      puts(error)
       return nil
     end
   end
