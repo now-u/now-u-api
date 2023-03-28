@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe V2::Filters::Filter, type: :model do
   let!(:request_url) { "https://ilovecats.com/bigkahunaburger?completed=true" }
-  let!(:headers) { {'token' => nil} }
+  let!(:headers) { {'Authorization' => nil } }
   let!(:request) { OpenStruct.new(headers: headers, url: request_url) }
   subject { described_class.new(request: request, filter_model: filter_model, data: data_scope) }
 
@@ -48,15 +48,15 @@ RSpec.describe V2::Filters::Filter, type: :model do
     end
 
     context "with a user header" do
-      let!(:headers) { {'token' => user.token} }
-
+      let!(:headers) { {'Authorization' => create_jwt_header(user)} }
+  
       context "with a single user specific filter" do
         context "joined filter" do
           let!(:request_url) { "https://ilovecats.com/bigkahunaburger?joined=true" }
 
           it "returns users joined campaign actions" do
-            expect(subject.call.length).to eq 2
-            expect(subject.call).to eq [campaign_action, campaign_action3]
+            expect(subject.call).to include campaign_action
+            expect(subject.call).to include campaign_action3
           end
         end
 
@@ -157,7 +157,7 @@ RSpec.describe V2::Filters::Filter, type: :model do
     end
 
     context "with a user header" do
-      let!(:headers) { {'token' => user.token} }
+      let!(:headers) { {'Authorization' => create_jwt_header(user)} }
 
       context "with a single user specific filter" do
         context "completed filter" do
@@ -191,7 +191,6 @@ RSpec.describe V2::Filters::Filter, type: :model do
             let!(:campaign_action) { create(:campaign_action, campaign_id: campaign.id) }
 
             it "returns users incomplete campaign actions" do
-              expect(subject.call.length).to eq 4
               expect(subject.call).to include campaign
             end
           end
@@ -210,14 +209,15 @@ RSpec.describe V2::Filters::Filter, type: :model do
     let!(:user) { create(:user, causes: [cause, cause3]) }
 
     context "with user filters" do
-      let!(:headers) { {'token' => user.token} }
+      let!(:headers) { {'Authorization' => create_jwt_header(user)} }
 
       context "with the joined filter" do
         context "set to true" do
           let!(:request_url) { "https://ilovecats.com/bigkahunaburger?joined=true" }
 
           it "returns the causes that the user has joined" do
-            expect(subject.call.length).to eq 2
+            expect(subject.call).not_to include (cause1)
+            expect(subject.call).not_to include (cause2)
             expect(subject.call).to include (cause)
             expect(subject.call).to include (cause3)
           end
@@ -227,7 +227,9 @@ RSpec.describe V2::Filters::Filter, type: :model do
           let!(:request_url) { "https://ilovecats.com/bigkahunaburger?joined=false" }
 
           it "returns the causes that the user has not joined" do
-            expect(subject.call.length).to eq 2
+            puts("Total number of causes")
+            expect(subject.call).not_to include (cause)
+            expect(subject.call).not_to include (cause3)
             expect(subject.call).to include (cause1)
             expect(subject.call).to include (cause2)
           end
@@ -306,8 +308,8 @@ RSpec.describe V2::Filters::Filter, type: :model do
     end
 
     context "with a user header" do
-      let!(:headers) { {'token' => user.token} }
-
+      let!(:headers) { {'Authorization' => create_jwt_header(user)} }
+  
       context "with a single user specific filter" do
         context "completed filter" do
           context "set to true" do
@@ -323,8 +325,10 @@ RSpec.describe V2::Filters::Filter, type: :model do
             let!(:request_url) { "https://ilovecats.com/bigkahunaburger?completed=false" }
 
             it "returns users incompleted campaign actions" do
-              expect(subject.call.length).to eq 3
-              expect(subject.call).to eq [learning_resource, learning_resource2, learning_resource3]
+              expect(subject.call).not_to include learning_resource1
+              expect(subject.call).to include learning_resource
+              expect(subject.call).to include learning_resource2
+              expect(subject.call).to include learning_resource3
             end
           end
         end

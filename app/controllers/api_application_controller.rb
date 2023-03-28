@@ -10,15 +10,12 @@ class APIApplicationController < ActionController::API
     render json: { error: error.message }, status: :not_found
   end
 
-  def set_user
-    token = request.headers['token']
-    @user = User.find_by(token: token)
-
-    render json: { message: "User authorization failed" }, status: :unauthorized unless @user&.verified
+  def user
+    @user ||= User.get_user_from_request(request)
   end
 
-  def user
-    @user ||= User.find_by token: request.headers['token']
+  def set_user
+    render json: { message: "User authorization failed" }, status: :unauthorized unless user
   end
 
   def user_response
@@ -46,19 +43,19 @@ class APIApplicationController < ActionController::API
   end
 
   def get_campaign_action_status(token, action_id)
-    return 'Authentication failed' unless token && user
+    return false unless user
 
     user.user_actions.find_by(campaign_action_id: action_id).present?
   end
 
   def get_campaign_status(token, campaign_id)
-    return 'Authentication failed' unless token && user
+    return false unless user
 
     user.user_campaigns.find_by(campaign_id: campaign_id).present?
   end
 
   def get_learning_resource_status(token, learning_resource_id)
-    return 'Authentication failed' unless token && user
+    return false unless user
 
     user.user_learning_resources.find_by(learning_resource_id: learning_resource_id).present?
   end

@@ -11,12 +11,11 @@ RSpec.describe Api::V1::UserNewsletterSignupController, type: :controller do
     end
 
     let(:newsletter) { false }
-    let(:user) { User.create(email: 'ok@ok.com', token: 'abc1234', verified: true, newsletter: newsletter) }
-    let(:token) { user.token }
+    let(:user) { FactoryBot.create(:user, newsletter: newsletter) }
     let(:status) { 'subscribe' }
 
     subject(:update_subscription) do
-      request.headers.merge!('token' => token)
+      request.headers.merge!('Authorization' => create_jwt_header(user))
       put :update, params: { status: status }
     end
 

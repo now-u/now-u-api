@@ -1,4 +1,5 @@
 require 'swagger_helper'
+require 'rails_helper'
 
 RSpec.describe Api::V2::UserCampaignsController, type: :request do
   let!(:user) { create(:user) }
@@ -13,12 +14,12 @@ RSpec.describe Api::V2::UserCampaignsController, type: :request do
     get 'Retrieves all campaigns from said user when including User in header' do
       tags 'API::V2(latest) -> User Campaigns'
       produces 'application/json'
-      let!(:'token') { user.token }
+      let!(:'Authorization') { create_jwt_header(user) }
       
       response '200', 'User campaigns found' do
         schema type: :object,
         properties: user_campaign_schema
-        parameter name: 'token', :in => :header, :type => :string
+        parameter name: 'Authorization', :in => :header, :type => :string
 
         before do |example|
           user_campaign
@@ -34,12 +35,12 @@ RSpec.describe Api::V2::UserCampaignsController, type: :request do
     get 'Not including the correct header' do
       tags 'API::V2(latest) -> User Campaigns'
       produces 'application/json'
-      let!(:'token') { 'I can haz cheesburger' }
+      let!(:'Authorization') { 'I can haz cheesburger' }
       
       response '401', 'User not authenticated' do
         schema type: :object,
         properties: user_campaign_schema
-        parameter name: 'token', :in => :header, :type => :string
+        parameter name: 'Authorization', :in => :header, :type => :string
 
         before do |example|
           user_campaign
@@ -58,12 +59,12 @@ RSpec.describe Api::V2::UserCampaignsController, type: :request do
       tags 'API::V2(latest) -> User Campaigns'
       produces 'application/json'
       parameter name: :id, in: :path, type: :string
-      let!(:'token') { user.token }
+      let!(:'Authorization') { create_jwt_header(user) }
       
       response '200', 'User campaign found!' do
         schema type: :object,
         properties: user_campaign_schema
-        parameter name: 'token', :in => :header, :type => :string
+        parameter name: 'Authorization', :in => :header, :type => :string
 
         before do |example|
           user_campaign

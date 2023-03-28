@@ -401,6 +401,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   gibbon (~> 3.4)
+  jwt
   listen
   pg (>= 0.18, < 2.0)
   pg_search

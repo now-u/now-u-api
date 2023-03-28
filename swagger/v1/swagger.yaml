@@ -904,7 +904,7 @@ paths:
       tags:
       - API::V2(latest) -> Actions
       parameters:
-      - name: token
+      - name: Authorization
         in: header
         schema:
           type: string
@@ -1006,7 +1006,7 @@ paths:
         required: true
         schema:
           type: string
-      - name: token
+      - name: Authorization
         in: header
         schema:
           type: string
@@ -1095,7 +1095,7 @@ paths:
                   status:
                     type: integer
       parameters:
-      - name: token
+      - name: Authorization
         in: header
         schema:
           type: string
@@ -1110,7 +1110,7 @@ paths:
         required: true
         schema:
           type: string
-      - name: token
+      - name: Authorization
         in: header
         schema:
           type: string
@@ -1227,7 +1227,7 @@ paths:
                 required:
                 - data
       parameters:
-      - name: token
+      - name: Authorization
         in: header
         schema:
           type: string
@@ -1243,7 +1243,7 @@ paths:
         required: true
         schema:
           type: string
-      - name: token
+      - name: Authorization
         in: header
         schema:
           type: string
@@ -1297,7 +1297,7 @@ paths:
                   end_date:
                     type: datetime
       parameters:
-      - name: token
+      - name: Authorization
         in: header
         schema:
           type: string
@@ -1312,7 +1312,7 @@ paths:
         required: true
         schema:
           type: string
-      - name: token
+      - name: Authorization
         in: header
         schema:
           type: string
@@ -1393,7 +1393,7 @@ paths:
       tags:
       - API::V2(latest) -> User Actions
       parameters:
-      - name: token
+      - name: Authorization
         in: header
         schema:
           type: string
@@ -1451,7 +1451,7 @@ paths:
         required: true
         schema:
           type: string
-      - name: token
+      - name: Authorization
         in: header
         schema:
           type: string
@@ -1483,7 +1483,7 @@ paths:
       tags:
       - API::V2(latest) -> User Campaigns
       parameters:
-      - name: token
+      - name: Authorization
         in: header
         schema:
           type: string
@@ -1537,7 +1537,7 @@ paths:
         required: true
         schema:
           type: string
-      - name: token
+      - name: Authorization
         in: header
         schema:
           type: string

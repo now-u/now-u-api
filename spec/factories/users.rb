@@ -3,8 +3,6 @@
 FactoryBot.define do
   factory :user do
     email { Faker::Internet.email }
-    token { SecureRandom.hex(3) }
-    verified { true }
     full_name { Faker::Name.name }
     location { Faker::Nation.capital_city }
     date_of_birth { Faker::Date.birthday(min_age: 18, max_age: 65) }
@@ -15,6 +13,7 @@ FactoryBot.define do
     description { nil }
     newsletter { false }
     user_role_id { 1 }
+    auth_user_id { Faker::Internet.uuid }
     association :organisation
 
     trait :with_causes do

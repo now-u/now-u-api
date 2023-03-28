@@ -13,12 +13,12 @@ RSpec.describe Api::V2::UserActionsController, type: :request do
     get 'Retrieves all actions from said user' do
       tags 'API::V2(latest) -> User Actions'
       produces 'application/json'
-      let(:'token') { user.token }
+      let!(:'Authorization') { create_jwt_header(user) }
       
       response '200', 'User actions found' do
         schema type: :object,
         properties: user_action_schema
-        parameter name: 'token', :in => :header, :type => :string
+        parameter name: 'Authorization', :in => :header, :type => :string
 
         before do |example|
           user_action
@@ -34,12 +34,12 @@ RSpec.describe Api::V2::UserActionsController, type: :request do
     get 'Retrieves all actions from said user' do
       tags 'API::V2(latest) -> User Actions'
       produces 'application/json'
-      let(:'token') { 'I can haz cheesburger' }
+      let(:'Authorization') { 'I can haz cheesburger' }
       
       response '401', 'User not authenticated' do
         schema type: :object,
         properties: user_action_schema
-        parameter name: 'token', :in => :header, :type => :string
+        parameter name: 'Authorization', :in => :header, :type => :string
 
         before do |example|
           user_action
@@ -62,12 +62,12 @@ RSpec.describe Api::V2::UserActionsController, type: :request do
       tags 'API::V2(latest) -> User Actions'
       produces 'application/json'
       parameter name: :id, in: :path, type: :string
-      let(:'token') { user.token }
+      let(:'Authorization') { create_jwt_header(user) }
       
       response '200', 'User action found!' do
         schema type: :object,
         properties: user_action_schema
-        parameter name: 'token', :in => :header, :type => :string
+        parameter name: 'Authorization', :in => :header, :type => :string
 
         before do |example|
           user_action

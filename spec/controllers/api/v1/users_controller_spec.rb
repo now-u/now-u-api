@@ -10,18 +10,17 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       allow(MailingListClient).to receive(:new).and_return(newsletter_client)
     end
 
-    let(:user) { User.create(email: 'ok@ok.com', token: 'abc1234', verified: true) }
-    let(:token) { user.token }
+    let(:user) { FactoryBot.create(:user, email: 'ok@ok.com') }
 
     subject(:delete_user) do
-      request.headers.merge!('token' => token)
+      request.headers.merge!('Authorization' => create_jwt_header(user))
       delete :destroy
     end
 
     it 'deletes the user' do
       expect { delete_user }.to change { User.exists?(user.id) }.from(true).to(false)
     end
-
+      
     it 'makes request to Mailchimp to remove user from mailing list' do
       delete_user
       expect(newsletter_client).to have_received(:remove_from_list).once
@@ -30,8 +29,12 @@ RSpec.describe Api::V1::UsersController, type: :controller do
 
   describe '#update' do
     let(:organisation) { Organisation.create(name: 'Org 1', code: 'TEST123') }
-    let(:user) { User.create(email: 'ok@ok.com', token: 'abc1234', verified: true) }
-    let(:token) { user.token }
+    let(:user) { User.create(email: 'ok@ok.com', auth_user_id: "auth_user_id") }
+    let(:newsletter_client) { instance_double(MailingListClient, add_to_list: 'ok', remove_from_list: 'ok') }
+    
+    before do
+      allow(MailingListClient).to receive(:new).and_return(newsletter_client)
+    end
 
     let(:user_params) do
       {
@@ -44,7 +47,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
     end
 
     subject(:update_user) do
-      request.headers.merge!('token' => token)
+      request.headers.merge!('Authorization' => create_jwt_header(user))
       put :update, params: user_params
     end
 
@@ -94,123 +97,46 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       #     expect { update_user }.to raise_exception(ActiveRecord::RecordNotFound)
       #   end
       # end
-    end
-  end
 
-  describe '#create' do
-    let(:email) { 'ok@ok.com' }
-    let(:email_client) { instance_double(SesEmailClient, send: 'ok') }
-    let(:newsletter_client) { instance_double(MailingListClient, add_to_list: 'ok') }
-
-    let(:user_params) do
-      { email: email }
     end
 
-    before do
-      allow(SesEmailClient).to receive(:new).and_return(email_client)
-      allow(MailingListClient).to receive(:new).and_return(newsletter_client)
-      allow(Gibbon::Request).to receive(:new).and_return(instance_double(Gibbon::Request))
-    end
-
-    subject(:register_user) do
-      post :create, params: user_params
-    end
-
-    it 'creates the user' do
-      expect { register_user }.to change { User.count }.by(1)
-    end
-
-    context 'when full_name param present' do
+    context 'when newsletter_signup param true' do
       let(:user_params) do
-        { email: email, full_name: 'Dave' }
-      end
-
-      it 'creates the user with full_name' do
-        register_user
-        expect(User.last.full_name).to eq('Dave')
-      end
-    end
-
-    context 'sending emails' do
-      context 'with no errors' do
-        it 'sends an email' do
-          register_user
-  
-          expect(email_client).to have_received(:send).once
-        end
-      end
-  
-      context 'with errors' do
-        before do
-          allow(email_client).to receive(:send).and_raise(StandardError)
-        end
-
-        it 'raises a sentry error' do
-          expect(Sentry).to receive(:capture_exception).with StandardError
-          
-          register_user
-        end
-      end
-    end
-
-    it 'does not add user to mailchimp' do
-      register_user
-
-      expect(newsletter_client).not_to have_received(:add_to_list)
-    end
-
-    context 'when newsletter_signup param present' do
-      let(:user_params) do
-        { email: email, full_name: 'Dave', newsletter_signup: true }
+        { email: 'ok@ok.com', full_name: 'Dave', newsletter_signup: true }
       end
 
       it 'adds the user to Mailchimp' do
-        register_user
+        update_user  
 
-        expect(newsletter_client).to have_received(:add_to_list).once.with(list_id: Api::V1::UsersController::MAILCHIMP_LIST_ID, email_address: email, name: 'Dave')
+        expect(newsletter_client).to have_received(:add_to_list).once.with(list_id: Api::V1::UsersController::MAILCHIMP_LIST_ID, email_address: 'ok@ok.com', name: 'Dave')
+      end
+    end
+    
+    context 'when newsletter_signup param false' do
+      let(:user_params) do
+        { email: 'ok@ok.com', full_name: 'Dave', newsletter_signup: false }
+      end
+
+      it 'removes the user from Mailchimp' do
+        update_user  
+
+        expect(newsletter_client).to have_received(:remove_from_list).once.with(list_id: Api::V1::UsersController::MAILCHIMP_LIST_ID, email_address: 'ok@ok.com')
       end
     end
 
-    it 'returns empty object' do
-      register_user
-
-      expect(JSON.parse(response.body)).to eq({})
-    end
-
-    it 'returns 200 status' do
-      register_user
-
-      expect(response.status).to eq(200)
-    end
-
-    context 'when email is not valid' do
-    end
-
-    context 'when email is already registered' do
-      let!(:user) { User.create(email: 'ok@ok.com', token: 'abc123') }
-
-      it 'does not create a new user' do
-        expect { register_user }.not_to change { User.count }
-      end
-
-      # it 'changes the token' do
-      #   expect { register_user }.to change { user.reload.token }
-      # end
-
-      it 'sends an email' do
-        register_user
-
-        expect(email_client).to have_received(:send).once
-      end
+    it 'does not add or remove user from mailchimp when no newsletter_client param' do
+      update_user 
+      expect(newsletter_client).not_to have_received(:add_to_list)
+      expect(newsletter_client).not_to have_received(:remove_from_list)
     end
   end
 
   describe '#show' do
-    let(:user) { User.create(email: 'ok@ok.com', token: 'abc1234', verified: true) }
-    let(:token) { user.token }
+    let(:user) { FactoryBot.create(:user, email: 'ok@ok.com') }
+    let(:auth_header) { create_jwt_header(user) }
 
     subject(:get_user) do
-      request.headers.merge!('token' => token)
+      request.headers.merge!('Authorization' => auth_header)
       get :show
     end
 
@@ -229,46 +155,17 @@ RSpec.describe Api::V1::UsersController, type: :controller do
     end
 
     context 'when no token in header' do
-      let(:token) { nil }
-
+      let(:auth_header) { nil }
       it 'returns 401 status' do
         expect(response.status).to eq(401)
       end
     end
 
     context 'when invalid token in header' do
-      let(:token) { 'adddddd' }
-
+      let(:auth_header) { "abc" }
       it 'returns 401 status' do
         expect(response.status).to eq(401)
       end
     end
   end
-
-  describe '#authenticate_user' do
-    
-    let(:user) { User.create(email: 'ok@ok.com', token: 'abc1234', verified: true) }
-    let(:email) { user.email }
-    let(:user_params) do
-      { email: email }
-    end
-    let(:worng_params) do
-      { email: "wrong@email.com"}
-    end
-    let(:email_client) { instance_double(SesEmailClient, send: 'ok') }
-
-    before do
-      allow(SesEmailClient).to receive(:new).and_return(email_client)
-    end
-    
-    it 'should return status 200 if user exists' do
-      post :authenticate_user, params: user_params
-      expect(response).to have_http_status(200)
-    end 
-    it 'should return status 404 if no user found' do
-      post :authenticate_user, params: worng_params
-      expect(response).to have_http_status(404)
-    end
-  end
-  
 end

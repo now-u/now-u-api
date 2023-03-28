@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_12_122805) do
+ActiveRecord::Schema.define(version: 2023_03_28_194251) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -127,6 +127,15 @@ ActiveRecord::Schema.define(version: 2023_02_12_122805) do
     t.integer "goal_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "campaign_learning_resources", force: :cascade do |t|
+    t.bigint "campaign_id"
+    t.bigint "learning_resource_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["campaign_id"], name: "index_campaign_learning_resources_on_campaign_id"
+    t.index ["learning_resource_id"], name: "index_campaign_learning_resources_on_learning_resource_id"
   end
 
   create_table "campaigns", force: :cascade do |t|
@@ -369,19 +378,8 @@ ActiveRecord::Schema.define(version: 2023_02_12_122805) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "user_tokens", force: :cascade do |t|
-    t.string "token", null: false
-    t.integer "user_id"
-    t.datetime "expires_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["token"], name: "index_user_tokens_on_token", unique: true
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email"
-    t.string "token"
-    t.boolean "verified", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "full_name"
@@ -395,9 +393,13 @@ ActiveRecord::Schema.define(version: 2023_02_12_122805) do
     t.text "description"
     t.boolean "newsletter", default: false
     t.integer "user_role_id"
+    t.string "auth_user_id", null: false
+    t.index ["auth_user_id"], name: "index_users_on_auth_user_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "campaign_learning_resources", "campaigns"
+  add_foreign_key "campaign_learning_resources", "learning_resources"
   add_foreign_key "cause_actions", "campaign_actions"
   add_foreign_key "cause_actions", "causes"
   add_foreign_key "cause_campaigns", "campaigns"

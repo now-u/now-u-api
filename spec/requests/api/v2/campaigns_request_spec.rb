@@ -16,7 +16,7 @@ RSpec.describe Api::V2::CampaignsController, type: :request do
   end
 
   path '/api/v2/campaigns' do
-    get "If no user token header present, returns completed: 'Authentication failed'" do
+    get "If no user token header present, returns completed: false" do
       tags 'API::V2(latest) -> Campaigns'
       produces 'application/json'
       
@@ -34,7 +34,7 @@ RSpec.describe Api::V2::CampaignsController, type: :request do
         end
 
         it 'returns "Authentication failed"' do
-          expect(JSON(response.body)['data'][0]['completed']).to eq 'Authentication failed'
+          expect(JSON(response.body)['data'][0]['completed']).to eq false 
         end
       end
     end
@@ -42,12 +42,12 @@ RSpec.describe Api::V2::CampaignsController, type: :request do
     get 'Retrieves all Campaigns. If user token header present, returns with a completed: true/false param.' do
       tags 'API::V2(latest) -> Campaigns'
       produces 'application/json'
-      let(:'token') { user.token }
+      let(:'Authorization') { create_jwt_header(user) }
       
       response '200', 'Campaign found' do
         schema type: :object,
         properties: campaign_schema
-        parameter name: 'token', :in => :header, :type => :string
+        parameter name: 'Authorization', :in => :header, :type => :string
 
         context "user has not completed the campaign" do
           before do |example|
@@ -83,12 +83,12 @@ RSpec.describe Api::V2::CampaignsController, type: :request do
       tags 'API::V2(latest) -> Campaigns'
       produces 'application/json'
       parameter name: :id, in: :path, type: :string
-      let(:'token') { user.token }
+      let(:'Authorization') { create_jwt_header(user) }
       
       response '200', 'Campaign found! (with user header)' do
         schema type: :object,
         properties: campaign_schema
-        parameter name: 'token', :in => :header, :type => :string
+        parameter name: 'Authorization', :in => :header, :type => :string
 
         before do |example|
           campaign

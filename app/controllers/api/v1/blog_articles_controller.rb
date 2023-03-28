@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::BlogArticlesController < APIApplicationController
-  before_action :validate_token, only: [:create]
+  before_action :set_user, only: [:create]
 
   def index
     data = BlogArticle.where(enabled: true).order(created_at: :desc)
@@ -52,15 +52,5 @@ class Api::V1::BlogArticlesController < APIApplicationController
     )
     data = { data: JSON.parse(data), sections: sections }
     render json: data, status: :ok
-  end
-
-  private
-
-  def validate_token
-    @user = User.find_by(token: params[:token])
-
-    return if @user
-
-    render json: {}, status: :unauthorized
   end
 end
