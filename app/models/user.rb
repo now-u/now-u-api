@@ -124,7 +124,13 @@ class User < ApplicationRecord
     end
     begin
       decoded_token = (JWT.decode token, ENV['SUPABASE_JWT_SECRET'], true, { algorithm: 'HS256' })[0]
-      return User.find_or_create_by(auth_user_id: decoded_token["sub"], email: decoded_token["email"])
+      # Get the user with the specified email address
+      user = User.find_or_initialize_by(email: decoded_token["email"])
+      # Set their auth id (So maybe one day we can remove email from this
+      # service)
+      user.auth_user_id = decoded_token["sub"]
+      user.save
+      user
     rescue => error
       puts(error)
       return nil
