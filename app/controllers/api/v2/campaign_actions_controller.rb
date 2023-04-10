@@ -11,7 +11,7 @@ class Api::V2::CampaignActionsController < APIApplicationController
     Pagy::DEFAULT[:items] = page_size || 25
     @pagy, @campaign_actions = pagy(CampaignAction.all)
 
-    render json: { data: actions_data(@campaign_actions), pagination_metadata: get_pagy_metadata(@pagy) }, status: :ok
+    render json: { data: actions_data(@campaign_actions), pagination_metadata: get_pagy_metadata(@pagy, page_size) }, status: :ok
   end
 
   def show
@@ -20,8 +20,8 @@ class Api::V2::CampaignActionsController < APIApplicationController
 
 private
 
-  def actions_data(paginated_campaign_actions_data)
-    ::V2::Filters::Filter.new(request: request, filter_model: ::V2::Filters::CampaignActionFilter, data: paginated_campaign_actions_data).call.map do |campaign|
+  def actions_data(data)
+    ::V2::Filters::Filter.new(request: request, filter_model: ::V2::Filters::CampaignActionFilter, data: data).call.map do |campaign|
       merge_additional_fields(campaign)
     end
   end
@@ -54,8 +54,8 @@ private
       pages: metadata.pages,
       next: metadata.next,
       prev: metadata.prev,
-      next_url: api_v2_actions_url(page: metadata.next),
-      prev_url: api_v2_actions_url(page: metadata.prev)
+      next_url: api_v2_actions_url(page_size: page_size, page: metadata.next),
+      prev_url: api_v2_actions_url(page_size: page_size, page: metadata.prev)
     }
   end
 end
