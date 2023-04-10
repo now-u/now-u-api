@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+include Pagy::Backend
 
 class APIApplicationController < ActionController::API
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found

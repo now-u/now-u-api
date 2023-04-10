@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-include Pagy::Backend
 include ::V2::Progress::UserProgress
 
 class Api::V2::LearningResourcesController < APIApplicationController
