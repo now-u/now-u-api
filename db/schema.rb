@@ -393,7 +393,7 @@ ActiveRecord::Schema.define(version: 2023_03_28_194251) do
     t.text "description"
     t.boolean "newsletter", default: false
     t.integer "user_role_id"
-    t.string "auth_user_id", null: false
+    t.string "auth_user_id", default: "-", null: false
     t.index ["auth_user_id"], name: "index_users_on_auth_user_id"
   end
 

@@ -1,11 +1,17 @@
 # frozen_string_literal: true
+include Pagy::Backend
 include ::V2::Progress::UserProgress
 
 class Api::V2::CampaignActionsController < APIApplicationController
   rescue_from JSON::ParserError, with: :invalid_json_message
 
   def index
-    render json: { data: actions_data }, status: :ok
+    page_size = Addressable::URI.parse(request.url).query_values["page_size"]
+
+    Pagy::DEFAULT[:items] = page_size || 25
+    @pagy, @campaign_actions = pagy(CampaignAction.all)
+
+    render json: { data: actions_data(@campaign_actions), pagination_metadata: get_pagy_metadata(@pagy) }, status: :ok
   end
 
   def show
@@ -14,8 +20,8 @@ class Api::V2::CampaignActionsController < APIApplicationController
 
 private
 
-  def actions_data
-    ::V2::Filters::Filter.new(request: request, filter_model: ::V2::Filters::CampaignActionFilter, data: CampaignAction.all).call.map do |campaign|
+  def actions_data(paginated_campaign_actions_data)
+    ::V2::Filters::Filter.new(request: request, filter_model: ::V2::Filters::CampaignActionFilter, data: paginated_campaign_actions_data).call.map do |campaign|
       merge_additional_fields(campaign)
     end
   end
@@ -39,5 +45,17 @@ private
     CampaignAction.find(action_id)&.causes.map do |cac|
       cac.serializable_hash.symbolize_keys.merge({joined: get_status(cac.id, request)})
     end
+  end
+
+  def get_pagy_metadata(metadata)
+    {
+      count: metadata.count,
+      page: metadata.page,
+      pages: metadata.pages,
+      next: metadata.next,
+      prev: metadata.prev,
+      next_url: api_v2_actions_url(page: metadata.next),
+      prev_url: api_v2_actions_url(page: metadata.prev)
+    }
   end
 end
