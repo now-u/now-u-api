@@ -1,11 +1,17 @@
 # frozen_string_literal: true
+include Pagy::Backend
 include ::V2::Progress::UserProgress
 
 class Api::V2::CampaignsController < APIApplicationController
   rescue_from JSON::ParserError, with: :invalid_json_message
 
   def index
-    render json: { data: campaigns_data }, status: :ok
+    page_size = Addressable::URI.parse(request.url).query_values["page_size"]
+
+    Pagy::DEFAULT[:items] = page_size || 25
+    @pagy, @campaigns = pagy(Campaign.all)
+
+    render json: { data: campaigns_data(@campaigns), pagination_metadata: get_pagy_metadata(@pagy, page_size) }, status: :ok
   end
 
   def show
@@ -14,12 +20,12 @@ class Api::V2::CampaignsController < APIApplicationController
 
 private
 
-  def campaigns_data
+  def campaigns_data(data)
     # TODO: at the moment we are returning all campaigns, published, not published, draft, you name it
-    # we need to split this into published campaigns for regular users, and 'all' (or maybe just draft + publishd?) 
-    # campaigns for admin users. There is currently an enum on User model to do this. 
+    # we need to split this into published campaigns for regular users, and 'all' (or maybe just draft + publishd?)
+    # campaigns for admin users. There is currently an enum on User model to do this.
 
-    ::V2::Filters::Filter.new(request: request, filter_model: ::V2::Filters::CampaignFilter, data: Campaign.all).call.map do |campaign|
+    ::V2::Filters::Filter.new(request: request, filter_model: ::V2::Filters::CampaignFilter, data: data).call.map do |campaign|
       merge_additional_fields(campaign)
     end
   end
@@ -41,11 +47,11 @@ private
 
   def additional_campaign_fields(campaign)
     additional_fields(campaign).merge({
-      learning_resources: campaign.learning_resources.map{|lr| lr.attributes.merge({ 
+      learning_resources: campaign.learning_resources.map{|lr| lr.attributes.merge({
         completed: get_learning_resource_status(request.headers['token'], lr.id),
         causes: lr.causes
       })},
-      campaign_actions: campaign.campaign_actions.map{|ca| ca.attributes.merge({ 
+      campaign_actions: campaign.campaign_actions.map{|ca| ca.attributes.merge({
         completed: get_campaign_action_status(request.headers['token'], ca.id),
         causes: ca.causes
       }) },
@@ -60,5 +66,17 @@ private
     campaign.causes.map do |cc|
       cc.serializable_hash.symbolize_keys.merge({joined: get_status(cc.id, request)})
     end
+  end
+
+  def get_pagy_metadata(metadata, page_size)
+    {
+      count: metadata.count,
+      page: metadata.page,
+      pages: metadata.pages,
+      next: metadata.next,
+      prev: metadata.prev,
+      next_url: api_v2_campaigns_url(page_size: page_size, page: metadata.next),
+      prev_url: api_v2_campaigns_url(page_size: page_size, page: metadata.prev)
+    }
   end
 end
