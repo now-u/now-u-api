@@ -27,6 +27,7 @@ gem 'aws-sdk-s3', require: false
 gem 'sentry-ruby'
 gem 'sentry-rails'
 gem 'jwt'
+gem 'meilisearch-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

@@ -21,4 +21,8 @@ class LearningResource < ApplicationRecord
 
   scope :time_gte, ->(time) { where("time >= ?", time.to_i) }
   scope :time_lte, ->(time) { where("time <= ?", time.to_i) }
+  
+  # meilisearch do
+  #   searchable_attribute [:title, :type, :source]
+  # end
 end

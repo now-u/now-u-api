@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class CampaignAction < ApplicationRecord
+  include MeiliSearch::Rails
+
   self.inheritance_column = nil
 
   # TODO Remove this
@@ -33,4 +35,9 @@ class CampaignAction < ApplicationRecord
 
   scope :time_gte, ->(time) { where("time >= ?", time.to_i) }
   scope :time_lte, ->(time) { where("time <= ?", time.to_i) }
+
+  meilisearch do
+    displayed_attributes [:id, :title, :type, :time, :created_at, :release_date]
+    searchable_attributes [:title, :what_description, :why_description]
+  end
 end
