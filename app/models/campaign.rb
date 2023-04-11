@@ -21,9 +21,6 @@ class Campaign < ApplicationRecord
   has_many :campaign_learning_resource, dependent: :destroy
   has_many :learning_resources, through: :campaign_learning_resource
 
-  include PgSearch::Model
-  pg_search_scope :search, against: %i[title description_app description_web]
-
   has_many :cause_campaigns, dependent: :destroy
   has_many :causes, through: :cause_campaigns
 

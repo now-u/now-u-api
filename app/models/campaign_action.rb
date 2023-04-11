@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class CampaignAction < ApplicationRecord
+  include MeiliSearch::Rails
+
   self.inheritance_column = nil
 
   # TODO Remove this
@@ -8,9 +10,6 @@ class CampaignAction < ApplicationRecord
   has_many :articles
   has_many :offers
   has_many :blog_articles
-
-  include PgSearch::Model
-  pg_search_scope :search, against: %i[title type what_description why_description]
 
   has_many :cause_actions, dependent: :destroy
   has_many :causes, through: :cause_actions
@@ -33,4 +32,9 @@ class CampaignAction < ApplicationRecord
 
   scope :time_gte, ->(time) { where("time >= ?", time.to_i) }
   scope :time_lte, ->(time) { where("time <= ?", time.to_i) }
+
+  meilisearch do
+    displayed_attributes [:id, :title, :type, :time, :created_at, :release_date]
+    searchable_attributes [:title, :what_description, :why_description]
+  end
 end

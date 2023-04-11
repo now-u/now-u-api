@@ -4,7 +4,7 @@ runs:
   using: "composite"
   steps:
     - name: Create env file
-      run: touch .env.development.local && echo "SUPABASE_JWT_SECRET=abc" > .env.development.local
+      run: touch .env.development.local && echo -e "SUPABASE_JWT_SECRET=abc\nMEILI_ACTIVE=false" > .env.development.local
       shell: bash
 
     - name: Build docker images

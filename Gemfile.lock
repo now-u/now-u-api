@@ -73,12 +73,6 @@ GEM
       aws-sdk-core (~> 3, >= 3.126.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.4)
-    aws-sdk-ses (1.49.0)
-      aws-sdk-core (~> 3, >= 3.165.0)
-      aws-sigv4 (~> 1.1)
-    aws-sdk-sns (1.52.0)
-      aws-sdk-core (~> 3, >= 3.126.0)
-      aws-sigv4 (~> 1.1)
     aws-sigv4 (1.5.2)
       aws-eventstream (~> 1, >= 1.0.2)
     bcrypt (3.1.16)
@@ -157,6 +151,9 @@ GEM
     haml (5.2.2)
       temple (>= 0.8.0)
       tilt
+    httparty (0.21.0)
+      mini_mime (>= 1.0.0)
+      multi_xml (>= 0.5.2)
     i18n (1.10.0)
       concurrent-ruby (~> 1.0)
     jmespath (1.6.2)
@@ -191,6 +188,10 @@ GEM
     mail (2.7.1)
       mini_mime (>= 0.1.1)
     marcel (1.0.2)
+    meilisearch (0.22.0)
+      httparty (>= 0.17.1, < 0.22.0)
+    meilisearch-rails (0.9.0)
+      meilisearch (~> 0.22.0)
     method_source (1.0.0)
     mini_mime (1.1.2)
     mini_portile2 (2.7.1)
@@ -331,7 +332,6 @@ GEM
       nokogiri (>= 1.10.5)
       rexml
     ruby2_keywords (0.0.5)
-    ruby_http_client (3.5.5)
     sassc (2.4.0)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -340,8 +340,6 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    sendgrid-ruby (6.6.2)
-      ruby_http_client (~> 3.4)
     sentry-rails (4.9.2)
       railties (>= 5.0)
       sentry-ruby-core (~> 4.9.2)
@@ -387,8 +385,6 @@ DEPENDENCIES
   active_hash (~> 3.1)
   active_model_serializers (~> 0.10.10)
   aws-sdk-s3
-  aws-sdk-ses (~> 1.49)
-  aws-sdk-sns (~> 1.52)
   bitly (~> 2.0, >= 2.0.1)
   bootsnap (>= 1.1.0)
   bootstrap-sass (= 3.4.1)
@@ -403,6 +399,7 @@ DEPENDENCIES
   gibbon (~> 3.4)
   jwt
   listen
+  meilisearch-rails
   pg (>= 0.18, < 2.0)
   pg_search
   puma (~> 5.6)
@@ -413,7 +410,6 @@ DEPENDENCIES
   rspec-rails
   rswag
   rubocop
-  sendgrid-ruby
   sentry-rails
   sentry-ruby
   shoulda-matchers (~> 5.1)

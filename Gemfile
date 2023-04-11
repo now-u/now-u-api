@@ -27,6 +27,7 @@ gem 'aws-sdk-s3', require: false
 gem 'sentry-ruby'
 gem 'sentry-rails'
 gem 'jwt'
+gem 'meilisearch-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -53,5 +54,4 @@ group :development do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'pg_search'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

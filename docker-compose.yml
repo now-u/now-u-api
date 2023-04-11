@@ -31,6 +31,17 @@ services:
       - db-network
     command: /start
 
+  meilisearch:
+    image: getmeili/meilisearch
+    networks:
+      - db-network
+    env_file:
+      - .env.development
+    ports:
+      - 7700:7700
+    volumes:
+      - meilisearch:/data.ms
+
   adminer:
     image: adminer
     networks:
@@ -42,6 +53,7 @@ services:
 
 volumes: 
   postgres:
+  meilisearch:
 
 networks:
   db-network:
