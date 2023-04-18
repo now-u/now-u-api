@@ -6,7 +6,7 @@ module V2
       attr_reader :filter_model
 
       def initialize(request:, filter_model:, data:)
-        @query_params = Addressable::URI.parse(request.url).query_values
+        @query_params = Addressable::URI.parse(request.url).query_values.except("page_size", "page")
         @filter_model = filter_model
         @data = data
         @user = User.get_user_from_request(request)

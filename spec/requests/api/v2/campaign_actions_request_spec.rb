@@ -20,7 +20,7 @@ RSpec.describe Api::V2::CampaignActionsController, type: :request do
       tags 'API::V2(latest) -> Actions'
       produces 'application/json'
       let(:'Authorization') { create_jwt_header(user) }
-      
+
       response '200', 'Campaign actions found' do
         schema type: :object,
         properties: campaign_action_schema
@@ -40,7 +40,7 @@ RSpec.describe Api::V2::CampaignActionsController, type: :request do
     get "If no user token header present, completed: 'User not authenticated'" do
       tags 'API::V2(latest) -> Actions'
       produces 'application/json'
-      
+
       response '200', 'Campaign Actions found!' do
         schema type: :object,
         properties: campaign_action_schema
@@ -61,7 +61,7 @@ RSpec.describe Api::V2::CampaignActionsController, type: :request do
     get "Filters campaign actions by cause id's" do
       tags 'API::V2(latest) -> Actions'
       produces 'application/json'
-      
+
       let(:cause_id) { '1' }
       response '200', 'Actions found!' do
         schema type: :object,
@@ -86,7 +86,7 @@ RSpec.describe Api::V2::CampaignActionsController, type: :request do
     get "Filters campaign actions by cause id's" do
       tags 'API::V2(latest) -> Actions'
       produces 'application/json'
-      
+
       response '200', 'Campaign Action found!' do
         schema type: :object,
         properties: campaign_action_schema
@@ -114,7 +114,7 @@ RSpec.describe Api::V2::CampaignActionsController, type: :request do
       produces 'application/json'
       parameter name: :id, in: :path, type: :string
       let(:'Authorization') { create_jwt_header(user) }
-      
+
       response '200', 'Campaign Action found! (with user header)' do
         schema type: :object,
         properties: campaign_action_schema
@@ -127,6 +127,33 @@ RSpec.describe Api::V2::CampaignActionsController, type: :request do
 
         it 'returns a valid 200 response' do |example|
           assert_response_matches_metadata(example.metadata)
+        end
+      end
+    end
+  end
+
+  context "pagination" do
+    path '/api/v2/actions?page_size=1' do
+      get 'Pagination' do
+        tags 'API::V2(latest) -> Actions'
+        produces 'application/json'
+        parameter name: :id, in: :path, type: :string
+        let(:'Authorization') { create_jwt_header(user) }
+
+        response '200', 'Campaign Actions returned with Pagination Metadata' do
+          schema type: :object,
+          properties: campaign_action_schema
+          parameter name: 'Authorization', :in => :header, :type => :string
+
+          before do |example|
+            campaign_action
+            submit_request(example.metadata)
+          end
+
+          it 'returns a valid 200 response' do |example|
+            assert_response_matches_metadata(example.metadata)
+            p example.metadata
+          end
         end
       end
     end
